@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2021 at 09:32 AM
+-- Generation Time: Jun 20, 2021 at 10:21 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -97,6 +97,16 @@ CREATE TABLE IF NOT EXISTS `tbl_quyen` (
   `PK_sMaQuyen` varchar(50) NOT NULL,
   `sTenQuyen` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_quyen`
+--
+
+INSERT INTO `tbl_quyen` (`PK_sMaQuyen`, `sTenQuyen`) VALUES
+('1', 'Admin'),
+('2', 'Sinh viên'),
+('3', 'Liên chi đoàn, liên chi hội'),
+('4', 'Cán bộ hành chính');
 
 -- --------------------------------------------------------
 
