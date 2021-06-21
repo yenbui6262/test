@@ -1,0 +1,61 @@
+            .cd-top {
+                position: fixed;
+                display: inline-block;
+                height: 50px;
+                width: 50px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity .3s, visibility .3s, background-color .3;
+                right: 30px;
+                /* space from right */
+                bottom: 30px;
+                /* space from bottom */
+                border-radius: 30px;
+                /* make the circle */
+                font-size: 20px;
+                /* icon size */
+                color: #fff;
+                transition: all .1s ease-in-out;
+                /* add transition */
+            }
+
+            .cd-top--is-visible {
+                visibility: visible;
+                opacity: .4;
+            }
+
+            @keyframes move {
+                from {
+                    bottom: 30px;
+                }
+                to {
+                    bottom: 35px;
+                }
+            }
+
+            .cd-top--fade-out {
+                animation-name: none;
+            }
+
+            .cd-top:hover {
+                cursor: pointer;
+                animation-name: move;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                opacity: 1;
+                border-color: #357ebd;
+                background: #428bca;
+                /*button hover color*/
+                ;
+                transition: all .1s ease-in-out;
+                /*add transition*/
+                box-shadow: 0 10px 15px #162c4e4a;
+                /*box shadow on hover*/
+                color: #fff;
+            }
+
+            .cd-top--fade-out {
+                /*reduce button opacity if user keeps scrolling*/
+                opacity: .4;
+            }
