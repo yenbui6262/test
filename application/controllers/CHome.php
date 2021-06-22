@@ -9,11 +9,17 @@ class CHome extends MY_Controller {
 	}
 	public function index()
 	{
-		$data['user'] = getSession()[0];
-		$data['message'] = getMessages();
-        $data['url'] = base_url();
-		$temp['data'] = $data;
-		$temp['template'] = "VHome";
-		$this->load->view('layout/VContent',$temp);
+		$session = $this->session->userdata("user");
+
+        $temp = array(
+            'template'  => 'VHome',
+            'data'     	=> array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                // 'tieuchi'   => $this->Mthongtincanhan->getTieuchi()
+            ),
+        );
+        $this->load->view('layout/VContent',$temp);
+	    
 	}
 }

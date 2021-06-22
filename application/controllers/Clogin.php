@@ -42,10 +42,10 @@
     		$this->session->set_userdata('user', $session);
 			setMessages('success','Đăng nhập thành công','Thông báo');
     		if($session['maquyen'] == 2){
-    			// Khong phai la sinh vien
-    			return redirect('Home');
+    			//la sinh vien
+    			return redirect('thongtincanhan');
     		}else{
-    			// La sinh vien
+    			// Khong phai la sinh vien
     			return redirect('Chuongtrinh');
     		}
 	    }

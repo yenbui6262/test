@@ -28,7 +28,6 @@
 			{/if}
 			<button class="btn btn-primary btn-block mt-2 mb-1" type="submit" title="Đăng nhập" name="dangnhap" value="dangnhap" id="dangnhap">Đăng nhập</button>
 	    </form>
-    	Bạn chưa có tài khoản? <a href="dangky">Đăng ký</a><br>
     	<a href="#" data-toggle="modal" data-target="#myModal">Quên mật khẩu</a>
 		<p class="mt-5 text-info">Minh chứng khoa kinh tế HOU</p>
 	</div>
