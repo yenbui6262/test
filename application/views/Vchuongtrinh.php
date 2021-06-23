@@ -72,4 +72,9 @@
 
 
         <script type="text/javascript" src="{base_url()}public/script/danhsachtieuchi.js"></script>
+<style>
+    .a1{
+    color:white !important;
+    }
+</style>
                           
