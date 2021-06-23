@@ -24,27 +24,7 @@
 
 	<!-- animation css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-	<style>
-	.dropdown-menu>li>a:hover{
-        background-color: #3c8dbe !important;
-		color: white !important;
-		display: block;
-    }
-	.dropdown-toggle{
-		color: #fff !important;
-	}
-    .navbar-nav>li>.dropdown-menu{
-        border: none;
-        background: #17a2b8  !important;
-        font-size: 14px;
-    }
-    .dropdown-menu>li>a{
-		display: block;
-		text-decoration: none;
-        color: #fff;
-        padding: 5px 10px;
-    }
-	</style>
+	
 </head>
 <body>
 <div id="overlay">
@@ -87,8 +67,8 @@
                                                 <span class="caret"></span></a>
                                                 <ul class="dropdown-menu">
                                                     <!-- <li><a href="./dmtieuchi">Tiêu chí</a></li> -->
-                                                    <li><a href="./dmtieuchiphu">Chương trình</a></li>
-                                                    <li><a href="./dmtaikhoan">Hành chính</a></li>
+                                                    <li><a href="./chuongtrinh">Chương trình</a></li>
+                                                    <li><a href="./hanhchinh">Hành chính</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="./huongdansinhvien"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng dẫn xét duyệt</a></li>
