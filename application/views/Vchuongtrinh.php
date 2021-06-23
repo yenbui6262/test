@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{$url}danhsachsinhvien">Trang chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Danh sách tiêu chí</li>
+                                <li class="breadcrumb-item"><a href="{$url}Chuongtrinh">Trang chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Danh sách chương trình</li>
                             </ol>
                         </nav>
                         <br>
@@ -11,10 +11,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 3%">STT</th>
-                                        <th class="text-center" style="width: 10%">Tên tiêu chí</th>
-                                        <th class="text-center" style="width: 7%">Năm tạo</th>
-                                        <th class="text-center" style="width: 50%">Mô tả tiêu chí</th>
-                                        <th class="text-center" style="width: 15%">Trạng thái</th>
+                                        <th class="text-center" style="width: 15%">Tên chương trình</th>
+                                        <th class="text-center" style="width: 45%">Mô tả</th>
+                                        <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
+                                        <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
                                         <th class="text-center" style="width: 7%">Tác vụ</th>
                                     </tr>
                                 </thead>
@@ -38,9 +38,9 @@
                                 {/if}
                                 </tbody>
                             </table>
-                            <div class="text-right form-group">
+                            <!-- <div class="text-right form-group">
                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default" title="Thêm lớp"><i class="fa fa-plus fa-sm"></i> Thêm tiêu chí</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
