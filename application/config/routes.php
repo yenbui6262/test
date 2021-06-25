@@ -7,6 +7,11 @@ $route['dangxuat'] 		= 'Clogin/logout';
 $route['Home']          = 'CHome';
 $route['Chuongtrinh']   = 'Cchuongtrinh';
 $route['thongtincanhan']='Cthongtincanhan';
+$route['hososinhvien']='Chososinhvien';
+$route['mail'] 						= 'Cemail';
+$route['sendmail'] 					= 'Cemail/sending_email';
+
+$route['doimatkhau'] 				= 'canhan/Cdoimatkhau';
 
 
 $route['default_controller'] = 'Clogin';

@@ -16,12 +16,12 @@
     <form method="post" enctype='multipart/form-data'>
         <div class="row">
             <div class="col-md-4 chieucao">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-left">
-                        <h4 style="color: #fff; margin: 0" class="text-center"><i class="fas fa-user-edit"></i> <span
+                <div class="card">
+                    <div class="card-header text-white bg-info text-left">
+                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
                                 style="color: white;">&nbsp;THÔNG TIN CƠ BẢN</span></h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div class="row">
 
                             <div class="col-md-12 form-group">
@@ -69,12 +69,12 @@
             </div>
 
             <div class="col-md-4 chieucao">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-left">
-                        <h4 style="color: #fff; margin: 0" class="text-center"><i class="fas fa-user-edit"></i> <span
+                <div class="card">
+                    <div class="card-header text-white bg-info text-left">
+                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
                                 style="color: white;">&nbsp;CẬP NHẬT MINH CHỨNG</span></h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         {foreach $sinhvien['chuongtrinh'] as $k => $val}
                         <div class="form-group">
                             <h5><strong>
@@ -100,12 +100,12 @@
             </div>
 
             <div class="col-md-4 chieucao">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-left">
-                        <h4 style="color: #fff; margin: 0" class="text-center"><i class="fas fa-user-edit"></i> <span
+                <div class="card">
+                    <div class="card-header text-white bg-info text-left">
+                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
                                 style="color: white;">&nbsp;ĐĂNG KÝ ĐƠN HÀNH CHÍNH</span></h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         {foreach $sinhvien['hanhchinh'] as $k => $val}
                         <div class="form-group">
                             <h5><strong>
@@ -128,7 +128,7 @@
         <!-- {if !empty($sinhvien['thongtincoban'])} -->
         <div class="">
             <div class="text-center">
-                <button class="btn btn-success" type="submit" name="dangky" value="update">Cập nhật hồ sơ</button>
+                <button class="btn btn-success m-2" type="submit" name="dangky" value="update">Cập nhật hồ sơ</button>
             </div>
         </div>
         <!-- {/if} -->
