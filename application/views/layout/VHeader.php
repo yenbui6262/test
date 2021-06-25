@@ -33,9 +33,9 @@
     </div>
 </div>
 <img src="{$url}public/images/banner.jpg" class="img-fluid">
-<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info header-1">
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="color:white !important;"></span>
     </button>
     <a class="navbar-brand" href="{$url}Home"><i class="fa fa-home"></i> Trang chủ</a>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -82,7 +82,6 @@
                             <i class="fas fa-user"></i>&nbsp;&nbsp;{if !empty($session['sHoten'])}{$session['sHoten']}{else}Tài khoản{/if}
                         </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <!-- <li><a href="#">Thông tin cá nhân</a></li> -->
                         {if ($session['maquyen'] == 2)}
                         <a class="dropdown-item" href="{$url}thongtincanhan">Thông tin cá nhân</a>
                         {/if}

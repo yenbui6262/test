@@ -1,65 +1,122 @@
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{$url}Chuongtrinh">Trang chủ</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Danh sách chương trình</li>
-</ol>
-<div class="container">
-    <table class="table table-respondsive table-bordered table-striped" id="example">
-        <thead>
-            <tr>
-                <th class="text-center" style="width: 3%">STT</th>
-                <th class="text-center" style="width: 15%">Tên chương trình</th>
-                <th class="text-center" style="width: 45%">Mô tả</th>
-                <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
-                <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
-                <th class="text-center" style="width: 7%">Tác vụ</th>
-            </tr>
-        </thead>
-        <tbody>
-        {if empty($tieuchi)}
-            {foreach $tieuchi as $key => $val}
-            <tr>
-                <td class="text-center">{$key+1}</td>
-                <td>{$val.sTentieuchi}</td>
-                <td class="text-center">{$val.PK_sNamtieuchi}</td>
-                <td>{$val.sMota}</td>
-                {if $val.sTrangthai==on}
-                    <td><span class="badge badge-success">Đang được sử dụng</span></td>
-                    <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$key}" value="{$val.PK_sMatieuchi}" name="deactive" id="deactive" title="ngưng kích hoạt"><i class="fa fa-power-off"></i></button></td>
-                {elseif $val.sTrangthai==off}
-                    <td><span class="badge badge-warning">Không được sử dụng</span></td>
-                    <td class="text-center"><button class="btn btn-sm btn-success check" data-id="{$key}" value="{$val.PK_sMatieuchi}" name="active" id="active" title="kích hoạt"><i class="fa fa-power-off"></i></button></td>
-                {/if}
-            </tr>
-            {/foreach}
-        {/if}
-        </tbody>
-    </table>
-    <div class="text-right form-group">
-        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default" title="Thêm lớp"><i class="fa fa-plus fa-sm"></i> Thêm tiêu chí</button>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-default" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-info">Thêm tiêu chí mới</h4>
+<style type="text/css">
+    label{
+        font-weight: bold !important;
+        font-size: 13px !important;
+    }
+    .input-group-addon{
+        border-top-left-radius: 4px !important;
+        border-bottom-left-radius: 4px !important;
+    }
+    .select2-selection--single{
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+    }
+    /* 
+        mobile
+    */
+    @media screen and (max-width: 480px) {
+        .xs{
+            text-align: center;
+        }
+    }
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Danh sách chương trình</li>
+    </ol>
+</nav>
+<br>
+<div class="container-fluid">
+    <div class="panel panel-default">
+            <div class="panel-heading text-left">
+                <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách chương trình</span</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Tên tiêu chí</label>
-                    <input type="text" name="ten_tieuchi" class="form-control">
+            <br>
+            <form action="" method="POST" class="insert" id="myForm">
+                <div class="row">
+                    <div style="display:none" class="col-12">
+                        <div class="input-group">
+                            <input type="text" name="mact">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 form-group">
+                        <div class="input-group">
+                            <label class="input-group-addon">Tên chương trình:</label>
+                            <input type="text" id="tenct" name="tenct" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
+                        </div>
+                    </div>
+                    <div class="col-md-7 form-group">
+                        <div class="input-group">
+                            <label class="input-group-addon">Mô tả:</label>
+                            <input type="text" id="mota" name="mota" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <div class="input-group">
+                            <label class="input-group-addon">Thời gian bắt đầu:</label>
+                            <input type="text" id="thoigianbd" name="thoigianbd" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <div class="input-group">
+                            <label class="input-group-addon">Thời gian kết thúc:</label>
+                            <input type="text" id="thoigiankt" name="thoigiankt" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
+                        </div>
+                    </div>
+                    <div class="col-md-2 form-group xs">
+                        <div class="row">
+                            <button id="themtcp"  type="submit" name="action" value="insert" class="btn btn-primary">Thêm</button>
+                            <button type="button" class="btn btn-primary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                            <button id="suatcp" type="submit" name="action" value="edit" class="btn btn-primary" style="display:none;">Sửa</button> 
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Mô tả tiêu chí</label>
-                    <textarea name="mota_tieuchi" class="form-control form-group"></textarea>
-                </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" name="addTC"><strong>Thêm</strong></button>
-                    <button type="button" class="btn btn-sm" data-dismiss="modal"><strong>Hủy</strong></button>
-                </div>
+            </form>
+        <div>
+            <div class="table-responsive">
+                <form  action="" method="POST">
+                    <table class="table table-hover table-striped table-bordered" id="example">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 3%">STT</th>
+                                <th class="text-center" style="width: 15%">Tên chương trình</th>
+                                <th class="text-center" style="width: 42%">Mô tả</th>
+                                <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
+                                <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
+                                <th class="text-center" style="width: 10%">Tác vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                        {if !empty($params['chuongtrinh'])}
+                            {foreach $params['chuongtrinh'] as $key => $val}
+                            <tr>
+                                <td class="text-center">{$key+1}</td>
+                                <td>{$val.sTenCT}</td>
+                                <td>{$val.tMota}</td>
+                                <td class="text-center">{$val.dThoiGIanBD}</td>
+                                <td class="text-center">{$val.dThoiGIanKT}</td>
+                                <td class="text-center">
+                                    <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-primary btnEdit"><i class="fas fa-user-edit"></i></a>
+                                    <button  type="submit"  name="delete"value="{$val['PK_sMaChuongTrinh']}" class="btn btn-danger btnDelete"
+                                     onclick="return confirm('Bạn có muốn xóa chương trình này không?');"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                        {else}
+                            <tr>
+                                <td class="text-center" colspan = "6">Không tìm thấy dữ liệu!</td>
+                            </tr>
+                        {/if}
+                        </tbody>
+                    </table>
+                </form>
             </div>
+            {if (isset($params['links']))}
+                <div style="text-align:center" id="pagination">{$params['links']}</div>
+            {/if}
         </div>
     </div>
 </div>
+<script defer type="text/javascript" src="{base_url()}public/script/chuongtrinh.js"></script>
