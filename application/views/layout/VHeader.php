@@ -37,17 +37,17 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{$url}"><i class="fa fa-home"></i></a>
+    <a class="navbar-brand" href="{$url}Home"><i class="fa fa-home"></i> Trang chủ</a>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
                 {if ($session['maquyen'] == 1)}
-                <li class="nav-item"><a href="{$url}/danhsachsinhvien" class="nav-link"><i class="fas fa-users"></i> Danh sách sinh viên</a></li>
+                <li class="nav-item"><a href="{$url}danhsachsinhvien" class="nav-link"><i class="fas fa-users"></i> Danh sách sinh viên</a></li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{$url}/chuongtrinh">Chương trình</a>
-                        <a class="dropdown-item" href="{$url}/hanhchinh">Hành chính</a>
+                        <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
+                        <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
                     </div>
                 </li>
                 <li class="nav-item">
