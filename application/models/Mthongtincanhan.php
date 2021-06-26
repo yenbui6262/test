@@ -13,22 +13,21 @@
             $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;
         }
-		public function getDonhanhchinh(){
-            
-            $this->db->select("*");
-            $res = $this->db->get("dm_hanhchinh")->result_array();
-            return $res;
+		public function getLop(){
+			$res=$this->db->get("tbl_lop")->result_array();
+			return $res;
+		}
+        public function capnhat($taikhoan,$acc){
+            $this->db->where("PK_sMaTK", $acc)
+                     ->update('tbl_taikhoan', $taikhoan);
+                            
+            return $this->db->affected_rows();
         }
-		public function getChuongtrinh(){
-            
-            $this->db->select("*");
-            $res = $this->db->get("tbl_chuongtrinh")->result_array();
-            return $res;
-        }
-		public function getLink($masv){
-            $this->db->select("*")
-					->where("FK_sMaSV", $masv);
-            $res = $this->db->get("tbl_minhchung")->result_array();
-            return $res;
-        }
+		public function checkPass($oldPass, $acc  ){
+			$this->db->where("PK_sMaTK", $acc)
+					 ->where("sMatKhau", $oldPass);
+							
+			return $this->db->count_all_results('tbl_taikhoan');
+		}
+
 	}
