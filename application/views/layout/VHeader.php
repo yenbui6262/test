@@ -47,29 +47,18 @@
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
-<<<<<<< HEAD
-                        <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
-                        <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{$url}huongdansinhvien"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng dẫn xét duyệt</a>
-                </li>
-                {elseif ($session['maquyen'] == 2)}
-=======
                             <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
                             <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
                         </div>
                     </li>
->>>>>>> 18351a7ee52b2ed885f9b558b1976da0844ab3a1
                     <li class="nav-item">
                         <a class="nav-link" href="{$url}huongdansinhvien"><i
                                 class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng dẫn xét duyệt</a>
                     </li>
                     {elseif ($session['maquyen'] == 2)}
-                    <li class="nav-item"><a href="{$url}/danhsachsinhvien" class="nav-link"><i class="fas fa-users"></i> Danh sách sinh viên</a></li>
+                    <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
                     <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Thông tin xét duyệt</a>
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"><i class="fas fa-info"></i> Thông tin xét duyệt</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{$url}dk_minhchung">Minh chứng</a>
                             <a class="dropdown-item" href="{$url}dk_hanhchinh">Đơn hành chính</a>
