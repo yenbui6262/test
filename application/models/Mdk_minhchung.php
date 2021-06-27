@@ -5,15 +5,22 @@ class Mdk_minhchung extends My_Model
 		{
 			parent::__construct();
 		}
-        
-        public function getChuongtrinh(){
-            
+        public function getTTcanhan($masv){
             $this->db->select("*");
-            $res = $this->db->get("tbl_chuongtrinh")->result_array();
+            $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;
         }
-		public function getLink($masv){
+        public function getChuongtrinh($date){
+            
+            // $this->db->select("*");
+            $query =$this->db->query(" SELECT * FROM tbl_chuongtrinh
+            WHERE dThoiGIanBD <= '$date' AND dThoiGIanKT >= '$date'");
+            return $query->result_array();
+        }
+        
+		public function getLink($masv, $maCT){
             $this->db->select("*")
+                    ->where("FK_sMaCT", $maCT)
 					->where("FK_sMaSV", $masv);
             $res = $this->db->get("tbl_minhchung")->result_array();
             return $res;
