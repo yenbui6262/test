@@ -140,7 +140,7 @@
         private function reset(){
 
             $session = $this->session->userdata("user");
-             
+            unset($_SESSION['filter']);
             $res = $this->get_params(0, NULL);
             $temp = array(
                 'template'  => 'Vchuongtrinh',
@@ -154,10 +154,8 @@
                     'session'   => $session
                 ),
             );
-            // pr($temp);
-            // exit(0);
+            
             $this->load->view('layout/Vcontent', $temp);
-            // echo json_encode($res);
         }
         private function search(){
             $filter = array(
