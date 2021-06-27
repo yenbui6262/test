@@ -36,10 +36,20 @@ class Cdk_minhchung extends CI_Controller {
                 $this->db->where('PK_sMaTK',$masv)
                         ->update("tbl_taikhoan",$data);
 				setMessages("success", "Đăng ký hồ sơ thành công");
-            }
-            if($action=="update"){
-                echo "update";
-                exit();
+
+            }else if($action=="update"){
+                for ($k=0; $k <count($duongdan) ; ++$k) {
+					$minhchung = array(
+                        'tLink'     => $duongdan[$k],
+                        'FK_sMaCT'	=> $mact[$k]
+					);
+                    
+					$this->db->where(array('FK_sMaSV'		=> $masv,
+										   'FK_sMaCT'	    => $mact[$k]));
+					$this->db->update("tbl_minhchung", $minhchung);
+				}
+                
+				setMessages("success", "Cập nhật hồ sơ thành công");
             }
             return redirect("dk_minhchung");
         }
