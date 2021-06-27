@@ -19,9 +19,7 @@ canvas{
     font-size: 13px;
     color: red;
 }
-.form-control[disabled], fieldset[disabled] .form-control{
-    cursor: text;
-}
+
 .panel-heading{
     background-color: #2178ab  !important;
 }
@@ -36,9 +34,6 @@ canvas{
     height:40px;
 }
 /*sweetalert*/ 
-.input-group-addon{
-    background-color: #fafafa !important;
-}
 
 body{
     color: #000 !important;
@@ -154,7 +149,11 @@ textarea{
 
 /* PAGINATION */
 .pagination{
-    margin: 0px;
+    margin: 0 50%;
+}
+.pagination li a{
+    padding: 5px 13px;
+    text-decoration: none;
 }
 
 /*    .pagination>li:last-child>a, .pagination>li:first-child>a {
@@ -304,6 +303,35 @@ thead>tr>th{
     background-color: #2178ab !important;
     border-bottom: 2px solid yellow;
 }
+
+.input-group-sm input{
+    border: 1px solid rgb(185, 185, 185) !important;
+    border-radius:0px 10px 10px 0px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.input-group-sm div .input-group-text{
+   color: black !important;
+   font-weight: 600;
+}
+.input-group-sm input:focus
+{
+    border: 1px solid #1670BE;
+    box-shadow: 0 0 3px #1670BE;
+    outline-offset: 0px;
+    outline: none;
+}
+
+.buttonform button{
+    padding:2px 5px !important;
+    font-size: 16px !important;
+    margin-left: 10px !important;
+}
+
+.btn-secondary{
+    background-color: #3c8dbc !important;
+    border-color: #367fa9 !important;
+}
 /* ======================================== */
 
 /*  FOOTER */
@@ -429,10 +457,10 @@ table, .box{
 .sidebar-form{
     border: none !important;
 }
-.skin-blue .sidebar-form input[type="text"]{
+/* .skin-blue .sidebar-form input[type="text"]{
     background-color: #fff !important;
     border-color: #d2d6de !important;
-}
+} */
 .badge {
     border-radius: 4px;
 }

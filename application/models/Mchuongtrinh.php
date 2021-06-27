@@ -22,12 +22,12 @@
             if(!empty($dieukien['mota'])){
                 $this->db->where('tMota', $dieukien['mota']);
             }
-            // if(!empty($dieukien['thoigianbd'])){
-            //     $this->db->where('dThoiGIanBD <', $dieukien['thoigianbd']);
-            // }
-            // if(!empty($dieukien['thoigiankt'])){
-            //     $this->db->where('dThoiGIanKT <', $dieukien['thoigiankt']);
-            // }
+            if(!empty($dieukien['thoigianbd'])){
+                $this->db->where('dThoiGIanBD >=', $dieukien['thoigianbd']);
+            }
+            if(!empty($dieukien['thoigiankt'])){
+                $this->db->where('dThoiGIanKT <=', $dieukien['thoigiankt']);
+            }
             
         }
 
@@ -40,40 +40,31 @@
             return $res;
         }
 
-        public function inserttieuchiphu($data)
+        public function getmacb($tencb)
         {
-            $this->db->insert('tbl_tieuchiphu', $data);
+            $res = $this->db->select('PK_sMaTK')
+                        ->get('tbl_taikhoan')->result_array();
+            return $res;
+        }
+
+        public function insertchuongtrinh($data)
+        {
+            $this->db->insert('tbl_chuongtrinh', $data);
             return $this->db->affected_rows();
         }
 
-        public function checkTCP($matcp)
-        {
-            $this->db->select('count("PK_sMaminhchung") as sohoso')
-                        ->like('sDStieuchiphu',$matcp)
-                        ->group_by('sDStieuchiphu');
-            return $this->db->get('tbl_minhchung')->result_array();
-        }
-
-        public function deletetieuchiphu($Matcp){
-            $this->db->where('PK_sMatieuchiphu', $Matcp);
-            $this->db->delete('tbl_tieuchiphu');
+        public function deletechuongtrinh($Mact){
+            $this->db->where('PK_sMaChuongTrinh', $Mact);
+            $this->db->delete('tbl_chuongtrinh');
             return $this->db->affected_rows();
             
         }
-        public function gettieuchiphu($Matcp){
-            $this->db->where('PK_sMatieuchiphu', $Matcp);
-            return $this->db->get('tbl_tieuchiphu')->row_array();
-        }
-        public function gettieuchi(){
-            $this->db->order_by("PK_sMatieuchi");
-            $res = $this->db->get("tbl_tieuchi")->result_array();
-            return $res;
-        }
+        
         //cập nhật 
-        public function updatetieuchiphu($Matcp, $data)
+        public function updatechuongtrinh($Mact, $data)
         {
-            $this->db->where('PK_sMatieuchiphu', $Matcp);
-            $this->db->update('tbl_tieuchiphu', $data);
+            $this->db->where('PK_sMaChuongTrinh', $Mact);
+            $this->db->update('tbl_chuongtrinh', $data);
             return $this->db->affected_rows();
         }
     }

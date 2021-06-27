@@ -32,9 +32,10 @@
 	    	}
 
     		$session = array(
-    			'taikhoan'    	=> $check_user[0]['sTenTK'],
+    			'taikhoan'    	=> $check_user[0]['PK_sMaTK'],
     			'maquyen' 		=> $check_user[0]['FK_sMaQuyen'],
                 'sHoten' 		=> $check_user[0]['sHoTen'],
+				'sMatKhau'		=> $check_user[0]['sMatKhau'],
     		);
 
 

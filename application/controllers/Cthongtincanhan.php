@@ -5,16 +5,70 @@
 	    	$this->load->model('Mthongtincanhan');
 	    }
         public function index(){
-            if($this->input->post('mail')=="mail"){
-                $this->mail();
-            }
+            
         $session = $this->session->userdata("user");
-        
+        // pr($session);
         $sinhvien['thongtincoban'] 	= $this->Mthongtincanhan->getThongtincoban($session['taikhoan']);
-        $sinhvien['hanhchinh'] 	= $this->Mthongtincanhan->getDonhanhchinh();
-        $sinhvien['chuongtrinh'] 	= $this->Mthongtincanhan->getChuongtrinh();
-        $sinhvien['link'] 	= $this->Mthongtincanhan->getLink($sinhvien['thongtincoban']['PK_sMaTK'],$sinhvien['chuongtrinh'][0]['PK_sMaChuongTrinh']);
-        $temp = array(
+        $sinhvien['lop'] 	= $this->Mthongtincanhan->getLop();
+
+        if($this->input->post("action")){
+            $hoten = $this->input->post("sHoten");
+            $ngaysinh = $this->input->post("sNgaysinh");
+            $gioitinh = $this->input->post("sGioiTinh");
+            $lop = $this->input->post("sTenLop");
+            $email= $this->input->post("sEmail");
+            $acc=$session['taikhoan'];
+            
+            if($this->input->post("newPass") != '' && $this->input->post("rePass") != 0){
+                $newPass    = sha1($this->input->post("newPass") );
+                $reNewPass  = sha1($this->input->post("rePass"));
+                if($newPass == $reNewPass){
+                    $kiemTraMatKhauTrung = true;
+                }else{
+                    $kiemTraMatKhauTrung = false;
+                }
+            }
+            if($this->input->post("oldPass") != ''&& $kiemTraMatKhauTrung = true ){
+                $oldPass = sha1($this->input->post("oldPass"));
+                $acc=$session['taikhoan'];
+
+                $xacDinhMatKhau = $this->Mthongtincanhan->checkPass($oldPass, $acc );
+                  
+            }
+            
+            if($xacDinhMatKhau == 0){        
+                $thongTinCapNhat = array(
+                    //ko thay đổi mật khẩu
+                    'PK_sMaTK' 	    => $acc,
+                    'sHoten'        =>$hoten,
+                    'dNgaySinh'     =>$ngaysinh,
+                    'iGioiTinh'     =>$gioitinh,
+                    'sFK_Lop'       =>$lop,
+                    'tEmail'        =>$email,
+                );
+            }else{
+                $thongTinCapNhat = array(
+                    'PK_sMaTK' 	    => $acc,
+                    'sHoten'        =>$hoten,
+                    'dNgaySinh'     =>$ngaysinh,
+                    'iGioiTinh'     =>$gioitinh,
+                    'sFK_Lop'       =>$lop,
+                    'tEmail'        =>$email,
+                    'sMatkhau'      => $newPass,
+                );
+            }
+            // pr($thongTinCapNhat);
+            // exit();
+            $row = $this->Mthongtincanhan->capnhat($thongTinCapNhat,$acc );
+            if($row > 0){
+				setMessages('success','Cập nhật thành công','Thông báo');
+                
+			}else{
+				setMessages('danger','cập nhật thất bại','Thông báo');
+			}
+			redirect('thongtincanhan');
+        }
+       $temp = array(
             'template'  => 'Vthongtincanhan',
             'data'     	=> array(
                 'session'	=> $session,
@@ -22,29 +76,9 @@
                 'sinhvien'  => $sinhvien,
             ),
         );
-        // pr($temp);
         
+        // pr($temp);
         $this->load->view('layout/VContent',$temp);
 	    }
-        public function mail(){
-            $config['protocol'] = 'smtp'; //Giao thức máy chủ mail
-            $config['smtp_host'] = 'ssl://smtp.gmail.com'; //Địa chỉ host máy chủ mail
-            $config['smtp_user'] = 'PPTphamthao@gmail.com'; //Địa chỉ Gmail sử dụng để gửi mail
-            $config['smtp_pass'] = 'Couttaikhoan2'; //Mật khẩu của gmail gửi
-            $config['smtp_port'] = '465'; //SMPT PORT
-            $config['smtp_timeout'] = '5';
-            $config['mailtype'] = 'html';
-            $config['charset'] = 'utf-8';
-            
-            //Thực hiện gửi
-            $this->load->library('email',$config);
-            $this->email->set_newline("\r\n");
-            $this->email->from('PPTphamthao@gmail.com', 'Tên người gửi');
-            $this->email->to('20A10010123@students.hou.edu.vn','Tên người nhận');
-            $this->email->subject('GHI NỘI DUNG CỦA CHỦ ĐỀ MAIL Ở ĐÂY');
-            $body='GHI NỘI DUNG CỦA MAIL Ở ĐÂY';
-            $this->email->message($body);
-            $this->email->send();
-        }
     }
 ?>
