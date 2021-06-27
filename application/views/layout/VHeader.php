@@ -10,7 +10,8 @@
     <script src="{$url}public/js/jquery.min.js"></script>
     <script src="{$url}public/js/popper.min.js"></script>
     <script src="{$url}public/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-
+    <!-- select2 -->
+    <link rel="stylesheet" type="text/css" href="{$url}public/select2/dist/css/select2.css">
 	<!-- fontawsome -->
 	<link rel="stylesheet" type="text/css" href="{$url}public/fontawsome-5.15.1/css/all.min.css">
 	<script type="text/javascript" src="{$url}public/fontawsome-5.15.1/js/all.min.js"></script>
@@ -46,8 +47,8 @@
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{$url}/chuongtrinh">Chương trình</a>
-                        <a class="dropdown-item" href="{$url}/hanhchinh">Hành chính</a>
+                        <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
+                        <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
                     </div>
                 </li>
                 <li class="nav-item">

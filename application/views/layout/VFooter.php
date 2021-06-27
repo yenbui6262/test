@@ -41,6 +41,7 @@
 <script type="text/javascript" src="{$url}public/script/backtotop/main.js"></script>
 <!-- style cho button backtotop --> 
 <link rel="stylesheet" type="text/css" href="{$url}public/style/backtotop.css">    
+<script src="{$url}public/select2/dist/js/select2.js"></script>
 <script type="text/javascript">
 
     function loading(){

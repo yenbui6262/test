@@ -6,6 +6,7 @@ $route['dangnhap'] 		= 'Clogin';
 $route['dangxuat'] 		= 'Clogin/logout'; 
 $route['Home']          = 'CHome';
 $route['Chuongtrinh']   = 'Cchuongtrinh';
+$route['Chuongtrinh/(:num)']		= 'Cchuongtrinh/index/$1';
 $route['thongtincanhan']='Cthongtincanhan';
 $route['hososinhvien']='Chososinhvien';
 $route['mail'] 						= 'Cemail';

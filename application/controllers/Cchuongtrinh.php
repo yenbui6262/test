@@ -16,23 +16,18 @@
                 
             }
             
-            if($Matcp = $this->input->post('suatcp')){
-                $data['tcp']      = $this->Mchuongtrinh->gettieuchiphu($Matcp);
-                $data['sua']      = true;
-            }
-            
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $this->addtieuchiphu();break;
+                    case 'insert'    : $this->addchuongtrinh();break;
                     case 'edit'      : $this->update();break;
-                    case "pagination": $this->pagination();break;
                     case "search"    :$this->search();break;
+                    case "reset"    :$this->reset();break;
                 }
                 return;
             };
             
-            if($Matcp = $this->input->post('delete')){
-                $data['tcp']      = $this->delete();
+            if($Mact = $this->input->post('delete')){
+                $deletect      = $this->delete($Mact);
             }
 
             $filter = $this->session->userdata("filter");
@@ -40,101 +35,97 @@
                 'template'  => 'Vchuongtrinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
-                    'matieuchi' => $filter['tentieuchi'],
-                    'noidung' => $filter['noidung'],
-                    'trangthai' => $filter['trangthai'],
-                    'loaicheck' => $filter['loaicheck'],
+                    'message' => getMessages(),
+                    'tenct' => $filter['tenct'],
+                    'mota' => $filter['mota'],
+                    'thoigianbd' => $filter['thoigianbd'],
+                    'thoigiankt' => $filter['thoigiankt'],
                     'session'   => $session
                 ),
             );
             // pr($temp);
-            // exit(0);
             $this->load->view('layout/Vcontent', $temp);
         }
 
-        public function addtieuchiphu(){
-            $matcp          = $this->input->post('matcp');
-            $matc           = $this->input->post('matc');
-            $noidung        = $this->input->post('noidung');
-            $trangthai      = $this->input->post('trangthai');
-            $loaicheck      = $this->input->post('loaicheck');
-            if($matc == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
+        public function addchuongtrinh(){
+            $session = $this->session->userdata("user");
+            $tenct        = $this->input->post('tenct');
+            $mota      = $this->input->post('mota');
+            $thoigianbd      = $this->input->post('thoigianbd');
+            $thoigiankt      = $this->input->post('thoigiankt');
+            if($thoigianbd == ''){
+                setMessages('warning','Vui lòng chọn thời gian bắt đầu!','Cảnh báo');
                 return redirect(current_url());
             }
-            if($trangthai == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
+            if($thoigiankt == ''){
+                setMessages('warning','Vui lòng chọn thời gian kết thúc!','Cảnh báo');
                 return redirect(current_url());
             }
-            if($loaicheck == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
-                return redirect(current_url());
-            }
+
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
             $data = array(
-                'PK_sMatieuchiphu'      => time().rand(1,1000),
-                'FK_sMatieuchi'         => $matc,
-                'sNoidung'              => $noidung,
-                'sTrangthai'            => $trangthai,
-                'sLoaicheck'            => $loaicheck
+                'PK_sMaChuongTrinh'      => time().rand(1,1000),
+                'stenCT'              => $tenct,
+                'tMota'              => $mota,
+                'FK_sMaCB'              => $this->Mchuongtrinh->getmacb($session['taikhoan'])[0]['PK_sMaTK'],
+                'dThoiGIanBD'            => $thoigianbd,
+                'dThoiGIanKT'            => $thoigiankt  
             );
-        $row = $this->Mchuongtrinh->inserttieuchiphu($data);
+            // pr($data);
+        $row = $this->Mchuongtrinh->insertchuongtrinh($data);
         
         if($row > 0){
             setMessages('success','Thêm thành công','Thông báo');
         }else{
             setMessages('danger','Thêm thất bại','Thông báo');
         }
-        redirect('dmtieuchiphu');
-        }//end
-        //xóa 
-        public function delete(){
-            // if ($this->input->post('delete')) {
-                $Matcp  = $this->input->post('delete');
-                $res = $this->Mchuongtrinh->checkTCP($Matcp);
-                if(count($res) > 0){
-                    setMessages('warning','Tiêu chí đã được sử dụng!','Thông báo');
-                    return redirect(current_url());
-                }
-                $row    = $this->Mchuongtrinh->deletetieuchiphu($Matcp);
-                
-                if ($row>0){
-                    setMessages('success','Xóa thành công','Thông báo');
-                }
-                else{
-                    setMessages('danger','Xóa thất bại','Thông báo');
-                }
-                redirect('dmtieuchiphu');
-            //}
-        } //end
+        redirect('Chuongtrinh');
+        }//end insert
+        
+        //delete 
+        public function delete($Mact){
+
+            $row    = $this->Mchuongtrinh->deletechuongtrinh($Mact);
+            
+            if ($row>0){
+                setMessages('success','Xóa thành công','Thông báo');
+            }
+            else{
+                setMessages('danger','Xóa thất bại','Thông báo');
+            }
+            redirect('Chuongtrinh');
+        } //end delete
+
+        // update
         public function update(){
-            $Matcp      = $this->input->post('matcp');
+            $Mact      = $this->input->post('mact');
+            $tenct        = $this->input->post('tenct');
+            $mota      = $this->input->post('mota');
+            $thoigianbd      = $this->input->post('thoigianbd');
+            $thoigiankt      = $this->input->post('thoigiankt');
             $data = array(
-                'FK_sMatieuchi'         => $this->input->post('matc'),
-                'sNoidung'              => $this->input->post('noidung'),
-                'sTrangthai'            => $this->input->post('trangthai'),
-                'sLoaicheck'            => $this->input->post('loaicheck')
+                'stenCT'              => $tenct,
+                'tMota'              => $mota,
+                'dThoiGIanBD'            => $thoigianbd,
+                'dThoiGIanKT'            => $thoigiankt  
             );
-            if($data['FK_sMatieuchi'] == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
+
+            if($thoigianbd == ''){
+                setMessages('warning','Vui lòng chọn thời gian bắt đầu!','Cảnh báo');
                 return redirect(current_url());
             }
-            if($data['sTrangThai'] == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
-                return redirect(current_url());
-            }
-            if($data['sLoaicheck'] == 'tatca'){
-                setMessages('warning','Vui lòng chọn tiêu chí!','Cảnh báo');
+            if($thoigiankt == ''){
+                setMessages('warning','Vui lòng chọn thời gian kết thúc!','Cảnh báo');
                 return redirect(current_url());
             }
 
-            $row = $this->Mchuongtrinh->updatetieuchiphu($Matcp, $data);
+            $row = $this->Mchuongtrinh->updatechuongtrinh($Mact, $data);
             if($row > 0){
                 setMessages('success','Sửa thành công','Thông báo');
             }else{
                 setMessages('danger','Sửa thất bại','Thông báo');
             }
-            redirect('dmtieuchiphu');
+            redirect('Chuongtrinh');
         }
 
         private function pagination(){
@@ -146,27 +137,64 @@
                 echo json_encode($res);
             }
         }
+        private function reset(){
 
+            $session = $this->session->userdata("user");
+             
+            $res = $this->get_params(0, NULL);
+            $temp = array(
+                'template'  => 'Vchuongtrinh',
+                'data'      => array(
+                    'params'    => $res,
+                    'message' => getMessages(),
+                    'tenct' => '',
+                    'mota' => '',
+                    'thoigianbd' => '',
+                    'thoigiankt' => '',
+                    'session'   => $session
+                ),
+            );
+            // pr($temp);
+            // exit(0);
+            $this->load->view('layout/Vcontent', $temp);
+            // echo json_encode($res);
+        }
         private function search(){
-            $filter = $this->input->post("filter");
+            $filter = array(
+                'tenct'           => $this->input->post('tenct'),
+                'mota'            => $this->input->post('mota'),
+                'thoigianbd'      => $this->input->post('thoigianbd'),
+                'thoigiankt'      => $this->input->post('thoigiankt')
+            );
             // luu vao sesssion
             $this->session->set_userdata("filter", $filter);
             // luu thong so vao session
-            $dieukien = array(
-                'tenct'     => $filter['tenct'],
-                'mota'          => $filter['mota'],
-                'thoigianbd'            => $filter['thoigianbd'],
-                'thoigiankt'        => $filter['thoigiankt']
+            $session = $this->session->userdata("user");
+             
+            $res = $this->get_params(0, $filter);
+            $temp = array(
+                'template'  => 'Vchuongtrinh',
+                'data'      => array(
+                    'params'    => $res,
+                    'message' => getMessages(),
+                    'tenct' => $filter['tenct'],
+                    'mota' => $filter['mota'],
+                    'thoigianbd' => $filter['thoigianbd'],
+                    'thoigiankt' => $filter['thoigiankt'],
+                    'session'   => $session
+                ),
             );
-            $res = $this->get_params(0, $dieukien);
-            echo json_encode($res);
+            // pr($temp);
+            // exit(0);
+            $this->load->view('layout/Vcontent', $temp);
+            // echo json_encode($res);
         }
 
         public function get_params($page, $dieukien){
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 50;
+            $limit_per_page = 5;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
@@ -178,7 +206,7 @@
                 // $limit_per_page la so luong ban ghi lay ra
                 $params['chuongtrinh']  = $this->Mchuongtrinh->getChuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
                 //pr($params);
-                $config['base_url']     = base_url().'chuongtrinh';
+                $config['base_url']     = base_url().'Chuongtrinh';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

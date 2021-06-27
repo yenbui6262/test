@@ -1,25 +1,3 @@
-<style type="text/css">
-    label{
-        font-weight: bold !important;
-        font-size: 13px !important;
-    }
-    .input-group-addon{
-        border-top-left-radius: 4px !important;
-        border-bottom-left-radius: 4px !important;
-    }
-    .select2-selection--single{
-        border-top-left-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
-    }
-    /* 
-        mobile
-    */
-    @media screen and (max-width: 480px) {
-        .xs{
-            text-align: center;
-        }
-    }
-</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
@@ -33,43 +11,45 @@
                 <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách chương trình</span</h4>
             </div>
             <br>
-            <form action="" method="POST" class="insert" id="myForm">
+            <form action="{$url}Chuongtrinh" method="POST" class="insert" id="myForm">
                 <div class="row">
                     <div style="display:none" class="col-12">
                         <div class="input-group">
                             <input type="text" name="mact">
                         </div>
                     </div>
+                    <div class="col-md-6 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên chương trình:</span>
+                        </div>
+                        <input type="text" id="tenct" name="tenct" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
+                    </div>
+
+                    <div class="col-md-3 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Thời gian bắt đầu:</span>
+                        </div>
+                        <input type="date" id="thoigianbd" class="form-control" name="thoigianbd"  aria-label="Small" aria-describedby="basic-addon1" value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
+                    </div>
+                    <div class="col-md-3 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2">Thời gian kết thúc:</span>
+                        </div>
+                        <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  aria-label="Small" aria-describedby="basic-addon2" value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
+                    </div>
+                    <div class="col-md-7 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
+                        </div>
+                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+                    </div>
                     
-                    <div class="col-md-4 form-group">
-                        <div class="input-group">
-                            <label class="input-group-addon">Tên chương trình:</label>
-                            <input type="text" id="tenct" name="tenct" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
-                        </div>
-                    </div>
-                    <div class="col-md-7 form-group">
-                        <div class="input-group">
-                            <label class="input-group-addon">Mô tả:</label>
-                            <input type="text" id="mota" name="mota" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
-                        </div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <div class="input-group">
-                            <label class="input-group-addon">Thời gian bắt đầu:</label>
-                            <input type="text" id="thoigianbd" name="thoigianbd" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
-                        </div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <div class="input-group">
-                            <label class="input-group-addon">Thời gian kết thúc:</label>
-                            <input type="text" id="thoigiankt" name="thoigiankt" class="form-control" style="border-radius: 0 4px 4px 0" value="{if !empty($tcp['sNoidung'])}{$tcp['sNoidung']}{/if}" placeholder="Nhập nội dung">
-                        </div>
-                    </div>
-                    <div class="col-md-2 form-group xs">
-                        <div class="row">
-                            <button id="themtcp"  type="submit" name="action" value="insert" class="btn btn-primary">Thêm</button>
-                            <button type="button" class="btn btn-primary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button id="suatcp" type="submit" name="action" value="edit" class="btn btn-primary" style="display:none;">Sửa</button> 
+                    <div class="col-md-5 form-group">
+                        <div class="row buttonform">
+                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                            <button id="suact" type="submit" name="action" value="edit" class="btn btn-primary" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
+                            <button id="themct"  type="submit" name="action" value="insert" class="btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
+                            <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +78,7 @@
                                 <td class="text-center">{$val.dThoiGIanBD}</td>
                                 <td class="text-center">{$val.dThoiGIanKT}</td>
                                 <td class="text-center">
-                                    <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-primary btnEdit"><i class="fas fa-user-edit"></i></a>
+                                    <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-secondary btnEdit" style="color:white;"><i class="fas fa-user-edit"></i></a>
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaChuongTrinh']}" class="btn btn-danger btnDelete"
                                      onclick="return confirm('Bạn có muốn xóa chương trình này không?');"><i class="fas fa-trash"></i></button>
                                 </td>
@@ -115,6 +95,7 @@
             </div>
             {if (isset($params['links']))}
                 <div style="text-align:center" id="pagination">{$params['links']}</div>
+                <hr>
             {/if}
         </div>
     </div>
