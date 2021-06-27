@@ -6,145 +6,109 @@
 </nav>
 <br>
 <br>
-{$masv = $sinhvien['thongtincoban'].PK_sMaTK}
+{$taikhoan = $sinhvien['thongtincoban'].PK_sMaTK}
 {$hoten = $sinhvien['thongtincoban'].sHoTen}
 {$ngaysinh = $sinhvien['thongtincoban'].dNgaySinh}
 {$gioitinh = $sinhvien['thongtincoban'].iGioiTinh}
 {$email = $sinhvien['thongtincoban'].tEmail}
-{$lp = $sinhvien['thongtincoban'].sTenLop}
-<div class="container-fluid">
-    <form method="post" enctype='multipart/form-data'>
-        <div class="row">
-            <div class="col-md-4 chieucao">
-                <div class="card">
-                    <div class="card-header text-white bg-info text-left">
-                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
-                                style="color: white;">&nbsp;THÔNG TIN CƠ BẢN</span></h4>
-                    </div>
-                    <div class="card-body">
+{$tlop = $sinhvien['thongtincoban'].sTenLop}
+{$mlop = $sinhvien['thongtincoban'].sFK_Lop}
+<div class="container">
+
+    <div class="card mb-5">
+
+        <div class="card-header text-white text-left" style="background-color:#337ab7">
+            <h4 class="text-center"><i class="fas fa-user-edit"></i> <span style="color: white;">&nbsp;THÔNG
+                    TIN CÁ NHÂN</span></h4>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-6 ">
+
                         <div class="row">
 
                             <div class="col-md-12 form-group">
                                 <label>Họ tên</label>
-                                <input type="text" name="data[sHoten]" value="{if !empty($hoten)}{$hoten}{/if}"
+                                <input type="text" name="sHoten" value="{if !empty($hoten)}{$hoten}{/if}"
                                     class="form-control required" autocomplete="off" id="hoten">
 
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Ngày sinh</label>
-                                <input type="text" name="data[sNgaysinh]" class="form-control datepicker required"
+                                <input type="text"name="sNgaysinh" class="form-control datepicker required"
                                     value="{if !empty($ngaysinh)}{$ngaysinh}{/if}" id="ngaysinh" autocomplete="off">
 
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Giới tính</label>
-                                <div class="form-check-inline form-group form-control">
-                                    <input class="form-check-input" id="gtnam" type="radio" class="radio"
-                                        name="data[sGioiTinh]" checked value="1"> <label for="gtnam"
-                                        style="line-height: 24px; font-size: 13px;">Nam</label>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <input class="form-check-input" id="gtnu" type="radio" class="radio"
-                                        name="data[sGioiTinh]" {if !empty($gioitinh) && $gioitinh=="2" }checked{/if}
-                                        value="Nữ"> <label for="gtnu"
-                                        style="line-height: 24px; font-size: 13px;">Nữ</label>
+                                <div class="form-check-inline form-group form-control">&nbsp;&nbsp;
+                                    {if $gioitinh == 1}
+                                    <input type="radio" class="form-check-input" name="sGioiTinh" checked value="1"
+                                        style="line-height: 24px; font-size: 13px;"> <span>Nam</span>&nbsp;&nbsp;
+                                    <input type="radio" class="form-check-input" name="sGioiTinh" value="2"
+                                        style="line-height: 24px; font-size: 13px;"> <span>Nữ</span>
+                                    {else}
+                                    <input type="radio" class="form-check-input" name="sGioiTinh" value="1"
+                                        style="line-height: 24px; font-size: 13px;"> <span>Nam</span>&nbsp;&nbsp;
+                                    <input type="radio" class="form-check-input" name="sGioiTinh" checked value="2"
+                                        style="line-height: 24px; font-size: 13px;"> <span>Nữ</span>
+                                    {/if}
+
                                 </div>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 form-group " style="margin-top: -8px;">
                                 <label>Lớp</label>
-                                <input type="text" name="data[sTenLop]" class="form-control datepicker required"
-                                    value="{if !empty($lp)}{$lp}{/if}" id="lop">
-
+                                <select class="form-control  required" name="sTenLop" id="sTenLop">
+                                {foreach $sinhvien['lop'] as $k => $val}
+                                    <option value="{if !empty($val.PK_sMaLop)}{$val.PK_sMaLop}{/if}" {if !empty($mlop) && $mlop == $val.PK_sMaLop }selected{/if}>{$val.sTenLop}
+                                    </option>
+                                {/foreach}
+                                </select>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Email</label>
-                                <input type="text" name="data[sEmail]" class="form-control required"
+                                <input type="text" name="sEmail" class="form-control required"
                                     value="{if !empty($email)}{$email}{/if}" id="email">
                                 <span class="help-block"></span>
                             </div>
                         </div>
-
-
                     </div>
-                </div>
-            </div>
 
-            <div class="col-md-4 chieucao">
-                <div class="card">
-                    <div class="card-header text-white bg-info text-left">
-                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
-                                style="color: white;">&nbsp;CẬP NHẬT MINH CHỨNG</span></h4>
-                    </div>
-                    <div class="card-body">
-                        {foreach $sinhvien['chuongtrinh'] as $k => $val}
-                        <div class="form-group">
-                            <h5><strong>
-                                    <label class="checkbox-inline" for="{$val.PK_sMaChuongTrinh}">
-                                        <!-- <input type="checkbox" name="" value="{$val.PK_sMaChuongTrinh}" id="{$val.PK_sMaChuongTrinh}"> -->
-                                        {$k+1}&nbsp;&nbsp;&nbsp;
-                                        <input type="hidden" value="{$val.PK_sMaChuongTrinh}"
-                                            id="{$val.PK_sMaChuongTrinh}">
-                                        {if !empty($val.sTenCT)}{$val.sTenCT}{/if}
-                                    </label><br>
-                                </strong></h5>Mô tả:&nbsp;
-                            {if !empty($val.tMota)}{$val.tMota}{/if} <br><br>
-                            <p>Link drive:
+                    <div class="col-md-6" id="frmChangePass">
 
-                                <input type="text" class="form-control" name="duongdan[]"
-                                    value="{$sinhvien['link'].$k.tLink}" placeholder="Link Google Drive" required>
-                            </p>
+                        <div class="form-group" style="display: none;">
+                            <label>Tên đăng nhập</label>
+                            <input type="text" class="form-control" name="acc" id="acc" value="{$taikhoan}" disabled>
                         </div>
-                        {/foreach}
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 chieucao">
-                <div class="card">
-                    <div class="card-header text-white bg-info text-left">
-                        <h4 class="text-center"><i class="fas fa-user-edit"></i> <span
-                                style="color: white;">&nbsp;ĐĂNG KÝ ĐƠN HÀNH CHÍNH</span></h4>
-                    </div>
-                    <div class="card-body">
-                        {foreach $sinhvien['hanhchinh'] as $k => $val}
-                        <div class="form-group">
-                            <h5><strong>
-                                    <label class="checkbox-inline" for="{$val.PK_sMaHanhChinh}">
-                                        <input type="checkbox" name="" value="{$val.PK_sMaHanhChinh}" id="{$val.PK_sMaHanhChinh}">
-                                        {$k+1}&nbsp;&nbsp;&nbsp;
-                                        {if !empty($val.sTenHanhChinh)}{$val.sTenHanhChinh}{/if}
-                                    </label>
-                                </strong></h5>Mô tả:&nbsp;
-                            {if !empty($val.tMota)}{$val.tMota}{/if}
-
+                        <div class="mt-3 mb-4"><b> * Thay đổi mật khẩu</b><br><small> (để trống nếu không thay đổi mật
+                                khẩu)</small>
                         </div>
-                        {/foreach}
-
-
+                        <div class="form-group">
+                            <label>Mật khẩu cũ</label>
+                            <input type="password" class="form-control" name="oldPass" id="oldPass"
+                                placeholder="••••••" />
+                            <span class="notify" id="notifyOldPass"></span>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label>Mật khẩu mới</label>
+                            <input type="password" class="form-control" name="newPass" id="newPass"
+                                placeholder="••••••" />
+                            <span class="notify" id="notifyNewPass"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" name="rePass" id="rePass"
+                                placeholder="••••••" />
+                            <span class="notify" id="notifyRePass"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- {if !empty($sinhvien['thongtincoban'])} -->
-        <div class="">
-            <div class="text-center">
-                <button class="btn btn-success m-2" type="submit" name="dangky" value="update">Cập nhật hồ sơ</button>
-            </div>
-        </div>
-        <!-- {/if} -->
-        <!-- {if ($sinhvien['thongtincoban'].FK_iMatrangthai == 1)}
-    <div class="col-12">
-        <div class="text-center">
-            <button class="btn btn-success" type="submit" name="dangky" value="update">Cập nhật hồ sơ</button>
+                <div class="text-center">
+                    <button type="submit" name="action" value="update" class="btn btn-primary capnhat">Cập nhật thông tin</button>
+                </div>
+            </form>
         </div>
     </div>
-    {/if}
-    {if !empty($sinhvien['thongtincoban'].FK_iMatrangthai) && ($sinhvien['thongtincoban'].FK_iMatrangthai == 2)}
-    <br>
-    <div class="text-center">
-        <strong class="check-hoso">Hồ sơ của bạn đã được duyệt</strong>
-    </div>
-    {/if} -->
-    </form>
 
 </div>
