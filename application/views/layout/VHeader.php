@@ -69,20 +69,16 @@
                             dẫn nộp hồ sơ</a>
                     </li>
                     {/if}
-                    {if ($session['maquyen'] == 4)}
+                    {if ($session['maquyen'] == 3)}
                     <li class="nav-item">
-                        <a class="nav-link" href="danhsachsinhvien"><i class="fas fa-users"></i>&nbsp;Danh sách sinh
-                            viên</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}danhsachdiem">Danh sách điểm</a>
+                        <a class="nav-link" href="{$url}/quanlyminhchung"><i class="fas fa-users"></i>&nbsp;Quản lý minh chứng</a>
                     </li>
                     {/if}
                     {/if}
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {if (!empty($session['maquyen']))}
-                    {if ($session['maquyen'] < 3 || $session['maquyen']==4)} <li class="nav-item dropdown">
+                    {if ($session['maquyen'] <=4)} <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
                             <i class="fas fa-user"></i>&nbsp;&nbsp;{if
                             !empty($session['sHoten'])}{$session['sHoten']}{else}Tài khoản{/if}

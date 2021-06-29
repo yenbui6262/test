@@ -332,6 +332,13 @@ thead>tr>th{
     background-color: #3c8dbc !important;
     border-color: #367fa9 !important;
 }
+
+.badge {
+    padding: 6px 5px !important;
+    font-size: 90% !important;
+}
+
+
 /* ======================================== */
 
 /*  FOOTER */

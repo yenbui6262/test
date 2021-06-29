@@ -20,17 +20,24 @@
                 switch($action){
                     case 'insert'    : $this->addchuongtrinh();break;
                     case 'edit'      : $this->update();break;
-                    case "search"    :$this->search();break;
-                    case "reset"    :$this->reset();break;
+                    case "search"    : 
+                        $filter = array(
+                        'tenct'           => $this->input->post('tenct'),
+                        'mota'            => $this->input->post('mota'),
+                        'thoigianbd'      => $this->input->post('thoigianbd'),
+                        'thoigiankt'      => $this->input->post('thoigiankt')
+                    );
+                    // luu vao sesssion
+                    $this->session->set_userdata("filterct", $filter);;break;
+                    case "reset"     :unset($_SESSION['filterct']);break;
                 }
-                return;
             };
             
             if($Mact = $this->input->post('delete')){
                 $deletect      = $this->delete($Mact);
             }
 
-            $filter = $this->session->userdata("filter");
+            $filter = $this->session->userdata("filterct");
             $temp = array(
                 'template'  => 'Vchuongtrinh',
                 'data'      => array(
@@ -129,63 +136,13 @@
         }
 
         private function pagination(){
-            $filter     = $this->input->post("filter");
+            $filter     = $this->input->post("filterct");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
             if(!empty($res)){
                 echo json_encode($res);
             }
-        }
-        private function reset(){
-
-            $session = $this->session->userdata("user");
-            unset($_SESSION['filter']);
-            $res = $this->get_params(0, NULL);
-            $temp = array(
-                'template'  => 'Vchuongtrinh',
-                'data'      => array(
-                    'params'    => $res,
-                    'message' => getMessages(),
-                    'tenct' => '',
-                    'mota' => '',
-                    'thoigianbd' => '',
-                    'thoigiankt' => '',
-                    'session'   => $session
-                ),
-            );
-            
-            $this->load->view('layout/Vcontent', $temp);
-        }
-        private function search(){
-            $filter = array(
-                'tenct'           => $this->input->post('tenct'),
-                'mota'            => $this->input->post('mota'),
-                'thoigianbd'      => $this->input->post('thoigianbd'),
-                'thoigiankt'      => $this->input->post('thoigiankt')
-            );
-            // luu vao sesssion
-            $this->session->set_userdata("filter", $filter);
-            // luu thong so vao session
-            $session = $this->session->userdata("user");
-             
-            $res = $this->get_params(0, $filter);
-            $temp = array(
-                'template'  => 'Vchuongtrinh',
-                'data'      => array(
-                    'params'    => $res,
-                    'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
-                    'mota' => $filter['mota'],
-                    'thoigianbd' => $filter['thoigianbd'],
-                    'thoigiankt' => $filter['thoigiankt'],
-                    'session'   => $session
-                ),
-            );
-            // pr($temp);
-            // exit(0);
-            $this->load->view('layout/Vcontent', $temp);
-            // echo json_encode($res);
         }
 
         public function get_params($page, $dieukien){

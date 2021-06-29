@@ -68,6 +68,11 @@
         
     }
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 
 {if !empty($message)}
 <script type="text/javascript">
@@ -80,14 +85,3 @@
 </script>
 {/if}
 </html>
-<!-- 
-        
-</body>
-<script type="text/javascript">
-{if isset($message)}
-$(document).ready(function () {
-	fireToast("{$message.type}","{$message.title}");	
-})
-{/if}
-</script>
-</html> -->

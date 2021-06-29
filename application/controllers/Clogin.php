@@ -45,10 +45,13 @@
     		if($session['maquyen'] == 2){
     			//la sinh vien
     			return redirect('thongtincanhan');
-    		}else{
-    			// Khong phai la sinh vien
+    		}elseif($session['maquyen'] == 1){
+    			// la admin
     			return redirect('Chuongtrinh');
-    		}
+    		}elseif ($session['maquyen'] == 3) {
+				// la lcd-lch
+				return redirect('quanlyminhchung');
+			}
 	    }
 
 	    public function logout(){
