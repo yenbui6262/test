@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Ngày sinh</label>
-                                <input type="text"name="sNgaysinh" class="form-control datepicker required"
+                                <input type="date" aria-label="Small" aria-describedby="basic-addon2" name="sNgaysinh" class="form-control datepicker required"
                                     value="{if !empty($ngaysinh)}{$ngaysinh}{/if}" id="ngaysinh" autocomplete="off">
 
                             </div>

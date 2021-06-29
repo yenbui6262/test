@@ -11,6 +11,8 @@ $route['quanlyminhchung']   = 'Cquanlyminhchung';
 $route['quanlyminhchung/(:num)']		= 'Cquanlyminhchung/index/$1';
 $route['thongtincanhan']='Cthongtincanhan';
 $route['dk_minhchung']  ='Cdk_minhchung';
+$route['dk_hanhchinh']  ='Cdk_hanhchinh';
+$route['duyet_minhchung']  ='Cduyet_minhchung';
 $route['mail'] 						= 'Cemail';
 $route['sendmail'] 					= 'Cemail/sending_email';
 
