@@ -6,7 +6,8 @@ class Mdk_minhchung extends My_Model
 			parent::__construct();
 		}
         public function getTTcanhan($masv){
-            $this->db->select("*");
+            $this->db->select("*")
+                    ->where('PK_sMaTK',$masv);
             $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;
         }
@@ -24,10 +25,6 @@ class Mdk_minhchung extends My_Model
 					->where("FK_sMaSV", $masv);
             $res = $this->db->get("tbl_minhchung")->result_array();
             return $res;
-        }
-        public function updateMinhChung($id, $sTrangthai){
-            $this->db->where("PK_sMaMC", $id);
-            $this->db->update("tbl_minhchung", array('sTrangthai' => $sTrangthai));
         }
         
 }

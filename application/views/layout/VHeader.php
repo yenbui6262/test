@@ -57,13 +57,14 @@
                     </li>
                     {elseif ($session['maquyen'] == 2)}
                     <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Đăng ký hành chính</a></li>
+                    <!-- <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"><i class="fas fa-info"></i> Thông tin xét duyệt</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{$url}dk_minhchung">Minh chứng</a>
                             <a class="dropdown-item" href="{$url}dk_hanhchinh">Đơn hành chính</a>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="huongdansinhvien"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng
                             dẫn nộp hồ sơ</a>
