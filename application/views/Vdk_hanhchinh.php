@@ -24,26 +24,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {if (!empty($sinhvien))}
                     {foreach $sinhvien['hanhchinh'] as $k => $val}
                         <tr>
                             <td class="text-center">{$k+1}</td>
                             <td>{$val.sTenHanhChinh}</td>
                             <td>{$val.tMota}</td>
 
-                            {if (empty($sinhvien['don'].$k.0.FK_sMaHanhChinh))}
+                            {if (empty($sinhvien['dondk'][$k]))}
                             <td class="text-center"><span class="badge badge-warning">Chưa đăng ký</span></td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success check"  data-id="{$k}"  data-add="{$val.PK_sMaHanhChinh}" title="Đăng ký"><i class="fa fa-key"></i></button></td>
+                                <button class="btn btn-sm btn-success check"  data-id="{$k}"  data-update="{$val.PK_sMaHanhChinh}" title="Đăng ký"><i class="fa fa-key"></i></button></td>
                             {else}
                             <td class="text-center"><span class="badge badge-success">Đã đăng ký</span></td>
-                            <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$k}"  data-deletehc="{$val.PK_sMaHanhChinh}" title="Huỷ đăng ký"><i class="fa fa-window-close"></i></button></td>
+                            <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$k}"  data-update="{$val.PK_sMaHanhChinh}" title="Huỷ đăng ký"><i class="fa fa-window-close"></i></button></td>
                             {/if}
                         </tr>
                     {/foreach}
+                    {else}
+                        <tr><td class="text-center" colspan="5"> Chưa có dữ liệu</td></tr>
+                    {/if}
                     </tbody>
                 </table>
                 <div class="text-center">
-                    <input type="submit" class="btn btn-primary text-center" value="Cập nhật">
+                    <input type="submit" class="btn btn-success text-center" value="Cập nhật">
                 </div>
 
             </form>
