@@ -55,13 +55,6 @@
                         ->get('tbl_chuongtrinh')->result_array();
             return $res;
         }
-
-        public function deleteminhchung($Mamc){
-            $this->db->where('PK_sMaMC', $Mamc);
-            $this->db->delete('tbl_minhchung');
-            return $this->db->affected_rows();
-            
-        }
         
     }
 ?>

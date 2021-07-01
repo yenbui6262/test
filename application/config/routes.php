@@ -5,7 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['dangnhap'] 		= 'Clogin'; 
 $route['dangxuat'] 		= 'Clogin/logout'; 
 $route['Home']          = 'CHome';
-
+$route['hanhchinh']   = 'Chanhchinh';
+$route['hanhchinh/(:num)']		= 'Chanhchinh/index/$1';
 $route['Chuongtrinh']   = 'Cchuongtrinh';
 $route['Chuongtrinh/(:num)']		= 'Cchuongtrinh/index/$1';
 $route['quanlyminhchung']   = 'Cquanlyminhchung';

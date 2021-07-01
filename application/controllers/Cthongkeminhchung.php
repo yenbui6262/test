@@ -50,20 +50,6 @@
             $this->load->view('layout/Vcontent', $temp);
         }
         
-        //delete 
-        public function delete($Mamc){
-
-            $row    = $this->Mthongkeminhchung->deleteminhchung($Mamc);
-            
-            if ($row>0){
-                setMessages('success','Xóa thành công','Thông báo');
-            }
-            else{
-                setMessages('danger','Xóa thất bại','Thông báo');
-            }
-            redirect('thongkeminhchung');
-        } //end delete
-
         private function pagination(){
             $filter     = $this->input->post("filtermc");
 

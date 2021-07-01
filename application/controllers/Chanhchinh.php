@@ -1,10 +1,10 @@
 <?php
-    class Cchuongtrinh extends MY_Controller
+    class Chanhchinh extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mchuongtrinh');
+            $this->load->model('Mhanhchinh');
         }
 
         public function index($page=1)
@@ -18,35 +18,31 @@
             
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $this->addchuongtrinh();redirect('Chuongtrinh');
-                    case 'edit'      : $this->update();redirect('Chuongtrinh');
+                    case 'insert'    : $this->addhanhchinh();redirect('hanhchinh');
+                    case 'edit'      : $this->update();redirect('hanhchinh');
                     case "search"    : 
                         $filter = array(
-                        'tenct'           => $this->input->post('tenct'),
-                        'mota'            => $this->input->post('mota'),
-                        'thoigianbd'      => $this->input->post('thoigianbd'),
-                        'thoigiankt'      => $this->input->post('thoigiankt')
+                        'tenhc'           => $this->input->post('tenhc'),
+                        'mota'            => $this->input->post('mota')
                     );
                     // luu vao sesssion
-                    $this->session->set_userdata("filterct", $filter);redirect('Chuongtrinh');
-                    case "reset"     :unset($_SESSION['filterct']);redirect('Chuongtrinh');
+                    $this->session->set_userdata("filterhc", $filter);redirect('hanhchinh');
+                    case "reset"     :unset($_SESSION['filterhc']);redirect('hanhchinh');
                 }
             };
             
-            if($Mact = $this->input->post('delete')){
-                $deletect      = $this->delete($Mact);
+            if($mahc = $this->input->post('delete')){
+                $deletect      = $this->delete($mahc);
             }
 
-            $filter = $this->session->userdata("filterct");
+            $filter = $this->session->userdata("filterhc");
             $temp = array(
-                'template'  => 'Vchuongtrinh',
+                'template'  => 'Vhanhchinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
+                    'tenhc' => $filter['tenhc'],
                     'mota' => $filter['mota'],
-                    'thoigianbd' => $filter['thoigianbd'],
-                    'thoigiankt' => $filter['thoigiankt'],
                     'session'   => $session
                 ),
             );
@@ -54,45 +50,32 @@
             $this->load->view('layout/Vcontent', $temp);
         }
 
-        public function addchuongtrinh(){
+        public function addhanhchinh(){
             $session = $this->session->userdata("user");
-            $tenct        = $this->input->post('tenct');
+            $tenhc        = $this->input->post('tenhc');
             $mota      = $this->input->post('mota');
-            $thoigianbd      = $this->input->post('thoigianbd');
-            $thoigiankt      = $this->input->post('thoigiankt');
-            if($thoigianbd == ''){
-                setMessages('warning','Vui lòng chọn thời gian bắt đầu!','Cảnh báo');
-                return redirect(current_url());
-            }
-            if($thoigiankt == ''){
-                setMessages('warning','Vui lòng chọn thời gian kết thúc!','Cảnh báo');
-                return redirect(current_url());
-            }
 
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
             $data = array(
-                'PK_sMaChuongTrinh'      => time().rand(1,1000),
-                'stenCT'              => $tenct,
-                'tMota'              => $mota,
-                'FK_sMaCB'              => $this->Mchuongtrinh->getmacb($session['taikhoan'])[0]['PK_sMaTK'],
-                'dThoiGIanBD'            => $thoigianbd,
-                'dThoiGIanKT'            => $thoigiankt  
+                'PK_sMaHanhChinh'      => time().rand(1,1000),
+                'sTenHanhChinh'        => $tenhc,
+                'tMota'                => $mota
             );
             // pr($data);
-        $row = $this->Mchuongtrinh->insertchuongtrinh($data);
+        $row = $this->Mhanhchinh->inserthanhchinh($data);
         
         if($row > 0){
             setMessages('success','Thêm thành công','Thông báo');
         }else{
             setMessages('danger','Thêm thất bại','Thông báo');
         }
-        redirect('Chuongtrinh');
+        redirect('hanhchinh');
         }//end insert
         
         //delete 
-        public function delete($Mact){
+        public function delete($mahc){
 
-            $row    = $this->Mchuongtrinh->deletechuongtrinh($Mact);
+            $row    = $this->Mhanhchinh->deletehanhchinh($mahc);
             
             if ($row>0){
                 setMessages('success','Xóa thành công','Thông báo');
@@ -100,43 +83,30 @@
             else{
                 setMessages('danger','Xóa thất bại','Thông báo');
             }
-            redirect('Chuongtrinh');
+            redirect('hanhchinh');
         } //end delete
 
         // update
         public function update(){
-            $Mact      = $this->input->post('mact');
-            $tenct        = $this->input->post('tenct');
+            $mahc      = $this->input->post('mahc');
+            $tenhc        = $this->input->post('tenhc');
             $mota      = $this->input->post('mota');
-            $thoigianbd      = $this->input->post('thoigianbd');
-            $thoigiankt      = $this->input->post('thoigiankt');
             $data = array(
-                'stenCT'              => $tenct,
+                'sTenHanhChinh'      => $tenhc,
                 'tMota'              => $mota,
-                'dThoiGIanBD'            => $thoigianbd,
-                'dThoiGIanKT'            => $thoigiankt  
             );
 
-            if($thoigianbd == ''){
-                setMessages('warning','Vui lòng chọn thời gian bắt đầu!','Cảnh báo');
-                return redirect(current_url());
-            }
-            if($thoigiankt == ''){
-                setMessages('warning','Vui lòng chọn thời gian kết thúc!','Cảnh báo');
-                return redirect(current_url());
-            }
-
-            $row = $this->Mchuongtrinh->updatechuongtrinh($Mact, $data);
+            $row = $this->Mhanhchinh->updatehanhchinh($mahc, $data);
             if($row > 0){
                 setMessages('success','Sửa thành công','Thông báo');
             }else{
                 setMessages('danger','Sửa thất bại','Thông báo');
             }
-            redirect('Chuongtrinh');
+            redirect('hanhchinh');
         }
 
         private function pagination(){
-            $filter     = $this->input->post("filterct");
+            $filter     = $this->input->post("filterhc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -154,14 +124,14 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $total_records = $this->Mchuongtrinh->getTotalRecord($dieukien);
+            $total_records = $this->Mhanhchinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['chuongtrinh']  = $this->Mchuongtrinh->getChuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['hanhchinh']  = $this->Mhanhchinh->gethanhchinh($limit_per_page, $page * $limit_per_page,$dieukien);
                 //pr($params);
-                $config['base_url']     = base_url().'Chuongtrinh';
+                $config['base_url']     = base_url().'hanhchinh';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;
