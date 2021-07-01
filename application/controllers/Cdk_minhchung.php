@@ -10,9 +10,8 @@ class Cdk_minhchung extends CI_Controller {
         $date = date("Y-m-d");
         $sinhvien['chuongtrinh'] 	= $this->Mdk_minhchung->getChuongtrinh($date);
         $sinhvien['thongtincanhan']= $this->Mdk_minhchung->getTTcanhan($session['taikhoan']);
-        foreach($sinhvien['chuongtrinh'] as $chimuc => $giatri){
-            $sinhvien['link'][$chimuc] 	= $this->Mdk_minhchung->getLink($session['taikhoan'],$giatri['PK_sMaChuongTrinh']);
-        };
+        $sinhvien['minhchung']= $this->Mdk_minhchung->getMinhchung($session['taikhoan']);
+        
         if($action=$this->input->post("action")){
             $session    = $this->session->userdata('user');
             $mact       = $this->input->post('chuongtrinh');
@@ -37,14 +36,17 @@ class Cdk_minhchung extends CI_Controller {
                 // exit();
                 $this->db->insert_batch("tbl_minhchung",$minhchung);
                 $data['sTrangthai']="Chưa duyệt";
-                $this->db->where('PK_sMaTK',$masv)
+                $res=$this->db->where('PK_sMaTK',$masv)
                         ->update("tbl_taikhoan",$data);
-				setMessages("success", "Đăng ký hồ sơ thành công");
+                if($res>0){
+                    setMessages("success", "Đăng ký hồ sơ thành công");
+                }
+				
 
             }else if($action=="update"){
                 for ($k=0; $k <count($duongdan) ; ++$k) {
 					//trường hợp mới thêm chương trình và chưa có minh chứng thì phải thêm minh chứng
-                    if(empty($sinhvien['link'][$k])){
+                    if(empty($sinhvien['minhchung'][$k])){
                         $minhchung=array(
                         'PK_sMaMC'  => time().rand(1,1000).$k,
                         'FK_sMaSV'  => $masv,
@@ -64,15 +66,14 @@ class Cdk_minhchung extends CI_Controller {
                     }
 					$this->db->where(array('FK_sMaSV'		=> $masv,
 										   'FK_sMaCT'	    => $mact[$k]));
-					$this->db->update("tbl_minhchung", $minhchung);
+					$res=$this->db->update("tbl_minhchung", $minhchung);
 				}
-                
-				setMessages("success", "Cập nhật hồ sơ thành công");
+                if($res>0){
+                    setMessages("success", "Cập nhật hồ sơ thành công");
+                }
             }
             return redirect("dk_minhchung");
         }
-        
-
         
         $temp = array(
             'template'  => 'Vdk_minhchung',

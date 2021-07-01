@@ -19,7 +19,7 @@ class Cdk_hanhchinh extends CI_Controller {
                         'FK_sMaCanbo'       => "admin",
                         'FK_sMaHanhChinh'   => $mahc,
                         'dTGThem'           =>$date,
-                        'iTrangThai'=>"Chưa duyệt"
+                        'iTrangThai'        =>"0"
 
                     ));
                 $this->db->insert_batch("tbl_dangkydon",$donhc);
@@ -27,6 +27,7 @@ class Cdk_hanhchinh extends CI_Controller {
             }else{
                 //action=deletehc - huy dang ky
                 $this->db->where('FK_sMaHanhChinh',$mahc)
+                        ->where('FK_sMaSV',$masv)
                         ->delete("tbl_dangkydon");
                 
             }
@@ -34,11 +35,9 @@ class Cdk_hanhchinh extends CI_Controller {
         }
         
         $sinhvien['thongtincanhan']= $this->Mdk_hanhchinh->getTTcanhan($session['taikhoan']);
-        $sinhvien['hanhchinh']= $this->Mdk_hanhchinh->getHanhchinh();
-        $sinhvien['don']= $this->Mdk_hanhchinh->getTrangthai($masv);
-        foreach($sinhvien['hanhchinh'] as $chimuc => $giatri){
-            $sinhvien['don'][$chimuc] 	= $this->Mdk_hanhchinh->checkMahc($giatri['PK_sMaHanhChinh']);
-        };
+        $sinhvien['hanhchinh']= $this->Mdk_hanhchinh->getHanhchinh($session['taikhoan']);
+        
+        $sinhvien['dondk']= $this->Mdk_hanhchinh->getDon($session['taikhoan']);
         
         $temp = array(
             'template'  => 'Vdk_hanhchinh',

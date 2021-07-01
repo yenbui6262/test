@@ -14,11 +14,12 @@
                         MINH CHỨNG</span></h4>
             </div>
             <div class="card-body">
+            {if (!empty($sinhvien))}
                 {foreach $sinhvien['chuongtrinh'] as $k => $val}
                 <div class="form-group">
                     <h5><strong>
                             <label class="checkbox-inline" for="{$val.PK_sMaChuongTrinh}">
-                                {$k+1}&nbsp;&nbsp;&nbsp;
+                                {$k+1}.&nbsp;&nbsp;&nbsp;
                                 <input type="hidden" name="chuongtrinh[]" value="{$val.PK_sMaChuongTrinh}"
                                     id="{$val.PK_sMaChuongTrinh}">
                                 {if !empty($val.sTenCT)}{$val.sTenCT}{/if}
@@ -28,11 +29,14 @@
                     <p>Link drive <small>(link minh chứng phải để chế độ chia sẻ để mọi người xem được):</small> 
 
                         <input type="text" class="form-control" name="duongdan[]"
-                            value="{if !empty($sinhvien['link'].$k.0.tLink)}{$sinhvien['link'].$k.0.tLink}{/if}"
+                            value="{if !empty($sinhvien['minhchung'].$k.tLink)}{$sinhvien['minhchung'].$k.tLink}{/if}"
                             placeholder="Link Google Drive" required>
                     </p>
                 </div>
                 {/foreach}
+                {else}
+                <div class="text-center"> Chưa có dữ liệu</div>
+            {/if}
 
             </div>
             <div class="text-center m-2">
