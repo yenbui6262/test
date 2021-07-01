@@ -5,10 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['dangnhap'] 		= 'Clogin'; 
 $route['dangxuat'] 		= 'Clogin/logout'; 
 $route['Home']          = 'CHome';
+
 $route['Chuongtrinh']   = 'Cchuongtrinh';
 $route['Chuongtrinh/(:num)']		= 'Cchuongtrinh/index/$1';
 $route['quanlyminhchung']   = 'Cquanlyminhchung';
 $route['quanlyminhchung/(:num)']		= 'Cquanlyminhchung/index/$1';
+$route['thongkeminhchung']   = 'Cthongkeminhchung';
+$route['thongkeminhchung/(:num)']		= 'Cthongkeminhchung/index/$1';
+
 $route['thongtincanhan']='Cthongtincanhan';
 $route['dk_minhchung']  ='Cdk_minhchung';
 $route['dk_hanhchinh']  ='Cdk_hanhchinh';

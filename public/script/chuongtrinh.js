@@ -10,11 +10,16 @@ function sua(key,  mact) {
     let thoigianbd = tds[3].textContent.trim();
     let thoigiankt = tds[4].textContent.trim();
 
+    from = thoigianbd.split("-");
+    tgbdmoi = from[2]+'-'+from[1]+'-'+from[0];
+    from = thoigiankt.split("-");
+    tgktmoi = from[2]+'-'+from[1]+'-'+from[0];
+    
     document.querySelector("input[name='mact']").value = mact;
     document.querySelector("input[name='tenct']").value = tenct;
     document.querySelector("input[name='mota']").value = mota;
-    document.querySelector("input[name='thoigianbd']").value = thoigianbd;
-    document.querySelector("input[name='thoigiankt']").value = thoigiankt;
+    document.querySelector("input[name='thoigianbd']").value = tgbdmoi;
+    document.querySelector("input[name='thoigiankt']").value = tgktmoi;
 
     document.getElementById("themct").style.display = 'none';
     document.getElementById("suact").style.display = 'inline-block';
