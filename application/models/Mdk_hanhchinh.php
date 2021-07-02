@@ -5,32 +5,26 @@ class Mdk_hanhchinh extends My_Model
     {
         parent::__construct();
     }
-    public function getTTcanhan($masv){
-        $this->db->select("*")
-                ->where('PK_sMaTK',$masv);
-        $res = $this->db->get("tbl_taikhoan")->row_array();
-        return $res;
-    }
     public function getHanhchinh(){
         $this->db->select("*")
                  ->order_by('PK_sMaHanhChinh');
         $res = $this->db->get("dm_hanhchinh")->result_array();
         return $res;
     }
-    public function getDon($masv){
-        $this->db->select("PK_sMaHanhChinh,sTenHanhChinh,dk.FK_sMaHanhChinh,dk.FK_sMaSV")
-                 ->order_by('PK_sMaHanhChinh')
-                 ->where('FK_sMaSV',$masv)
-                 ->join("tbl_dangkydon dk","FK_sMaHanhChinh=PK_sMaHanhChinh");
-        $res = $this->db->get("dm_hanhchinh")->result_array();
+    
+    public function checkMahc($masv,$mahc){
+        $this->db->where('FK_sMaSV',$masv)
+                ->where('FK_sMaHanhChinh',$mahc);
+        $res= $this->db->get("tbl_dangkydon")->result_array();
         return $res;
     }
     public function insertHanhchinh($donhc){
         $this->db->insert("tbl_dangkydon",$donhc);
         return $this->db->affected_rows();
     }
-    public function deleteHanhchinh($mahc){
+    public function deleteHanhchinh($mahc,$masv){
         $this->db->where('FK_sMaHanhChinh',$mahc)
+                ->where('FK_sMaSV',$masv)
                  ->delete("tbl_dangkydon");
         return $this->db->affected_rows();
     }

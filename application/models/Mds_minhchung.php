@@ -22,7 +22,7 @@
                 $this->db->like('sTenCT', $dieukien['tenct']);
             }
             if(!empty($dieukien['mota'])){
-                $this->db->where('tMota', $dieukien['mota']);
+                $this->db->like('tMota', $dieukien['mota']);
             }
             if(!empty($dieukien['thoigianbd'])){
                 $this->db->where('dThoiGIanBD >=', $dieukien['thoigianbd']);

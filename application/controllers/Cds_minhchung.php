@@ -25,6 +25,7 @@ class Cds_minhchung extends MY_Controller
                         'thoigiankt'      => $this->input->post('thoigiankt')
                     );
                     // luu vao sesssion
+                    $this->session->set_userdata("filterct", $filter);redirect('ds_minhchung');
                 }
             };
             

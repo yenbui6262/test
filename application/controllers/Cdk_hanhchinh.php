@@ -13,7 +13,7 @@ class Cdk_hanhchinh extends MY_Controller {
             $date = date("Y-m-d");
             if($action == "add"){
                     $donhc=array(
-                        'PK_sMaDangKy'      => time().rand(9999,9999),
+                        'PK_sMaDangKy'      => time().rand(1,10000),
                         'FK_sMaSV'          => $masv,
                         'FK_sMaCanbo'       => "admin",
                         'FK_sMaHanhChinh'   => $mahc,
@@ -24,7 +24,7 @@ class Cdk_hanhchinh extends MY_Controller {
                 $row=$this->Mdk_hanhchinh->insertHanhchinh($donhc);
             }else if($action == "deletehc"){
                 //action=deletehc - huy dang ky
-                $row=$this->Mdk_hanhchinh->deleteHanhchinh($mahc);
+                $row=$this->Mdk_hanhchinh->deleteHanhchinh($mahc,$session['taikhoan']);
                 
             }
             if($row>0){
@@ -33,10 +33,10 @@ class Cdk_hanhchinh extends MY_Controller {
             
         }
         
-        $sinhvien['thongtincanhan']= $this->Mdk_hanhchinh->getTTcanhan($session['taikhoan']);
         $sinhvien['hanhchinh']= $this->Mdk_hanhchinh->getHanhchinh($session['taikhoan']);
-        
-        $sinhvien['dondk']= $this->Mdk_hanhchinh->getDon($session['taikhoan']);
+        foreach($sinhvien['hanhchinh'] as $chimuc => $giatri){
+            $sinhvien['dondk'][$chimuc] 	= $this->Mdk_hanhchinh->checkMahc($session['taikhoan'],$giatri['PK_sMaHanhChinh']);
+        };
         
         $temp = array(
             'template'  => 'Vdk_hanhchinh',

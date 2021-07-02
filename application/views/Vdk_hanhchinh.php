@@ -6,14 +6,42 @@
 </nav>
 <br>
 <br>
-<div class="container-fluid">
-    <div class="card  mb-3 " style="margin:0 auto; max-width:80%" name="dk_hanhchinh">
+<div class="container">
+    <div class="card  mb-3 " style="margin:0 auto" name="dk_hanhchinh">
         <div class="card-header text-left" style="background-color: #2966a3;">
             <h4 style="color: #fff; margin: 0" class="text-center">Đăng ký đơn hành chính</h4>
         </div>
-        <div class="responsive">
+        <div class="card-body">
+            <form action="{$url}dk_hanhchinh" method="POST" class="insert" id="myForm">
+                <div class="row mt-3">
+                    <div style="display:none" class="col-12">
+                        <div class="input-group">
+                            <input type="text" name="mact">
+                        </div>
+                    </div>
+                    <div class="col-md-5 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên hành chính:</span>
+                        </div>
+                        <input type="text" id="tenct" name="tenct" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
+                    </div>
+                    <div class="col-md-5 input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
+                        </div>
+                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+                    </div>
+                    
+                    <div class="col-md-2 form-group buttonform text-center">
+                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        
+                    </div>
+                </div>
+            </form>
             <form action="">
-                <table  id="example" class="table table-hover table-striped table-bordered">
+                <div class="table-responsive">
+
+                <table id="example" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <td class="text-center" style="width: 3%">STT</td>
@@ -24,32 +52,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {if (!empty($sinhvien))}
-                    {foreach $sinhvien['hanhchinh'] as $k => $val}
+                        {if (!empty($sinhvien))}
+                        {foreach $sinhvien['hanhchinh'] as $k => $val}
                         <tr>
                             <td class="text-center">{$k+1}</td>
                             <td>{$val.sTenHanhChinh}</td>
                             <td>{$val.tMota}</td>
 
-                            {if (empty($sinhvien['dondk'][$k]))}
+                            {if (empty($sinhvien['dondk'].$k.0.FK_sMaHanhChinh))}
                             <td class="text-center"><span class="badge badge-warning">Chưa đăng ký</span></td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success check"  data-id="{$k}"  data-update="{$val.PK_sMaHanhChinh}" title="Đăng ký"><i class="fa fa-key"></i></button></td>
+                                <button class="btn btn-sm btn-success check" data-id="{$k}"
+                                    data-update="{if !empty($val.PK_sMaHanhChinh)}{$val.PK_sMaHanhChinh}{/if}" title="Đăng ký"><i
+                                        class="fa fa-key"></i></button>
+                            </td>
                             {else}
                             <td class="text-center"><span class="badge badge-success">Đã đăng ký</span></td>
-                            <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$k}"  data-update="{$val.PK_sMaHanhChinh}" title="Huỷ đăng ký"><i class="fa fa-window-close"></i></button></td>
+                            <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$k}"
+                                    data-update="{if !empty($val.PK_sMaHanhChinh)}{$val.PK_sMaHanhChinh}{/if}" title="Huỷ đăng ký"><i
+                                        class="fa fa-window-close"></i></button></td>
                             {/if}
                         </tr>
-                    {/foreach}
-                    {else}
-                        <tr><td class="text-center" colspan="5"> Chưa có dữ liệu</td></tr>
-                    {/if}
+                        {/foreach}
+                        {else}
+                        <tr>
+                            <td class="text-center" colspan="5"> Chưa có dữ liệu</td>
+                        </tr>
+                        {/if}
                     </tbody>
                 </table>
+                </div>
                 <div class="text-center">
                     <input type="submit" class="btn btn-success text-center" value="Cập nhật">
                 </div>
-
             </form>
         </div>
     </div>
