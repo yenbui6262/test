@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <form action="{$url}dk_hanhchinh" method="POST" class="insert" id="myForm">
-                <div class="row mt-3">
+                <div class="row">
                     <div style="display:none" class="col-12">
                         <div class="input-group">
                             <input type="text" name="mact">
@@ -23,7 +23,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Tên hành chính:</span>
                         </div>
-                        <input type="text" id="tenct" name="tenct" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
+                        <input type="text" id="tenhc" name="tenhc" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-5 input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
@@ -31,11 +31,11 @@
                         </div>
                         <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                     </div>
-                    
                     <div class="col-md-2 form-group buttonform text-center">
                             <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
                         
                     </div>
+                    
                 </div>
             </form>
             <form action="">
@@ -52,14 +52,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {if (!empty($sinhvien))}
-                        {foreach $sinhvien['hanhchinh'] as $k => $val}
+                        {if !empty($params['hanhchinh'])}
+                        {foreach $params['hanhchinh'] as $k => $val}
                         <tr>
                             <td class="text-center">{$k+1}</td>
                             <td>{$val.sTenHanhChinh}</td>
                             <td>{$val.tMota}</td>
 
-                            {if (empty($sinhvien['dondk'].$k.0.FK_sMaHanhChinh))}
+                            {if (empty($params['dondk'].$k.0.FK_sMaHanhChinh))}
                             <td class="text-center"><span class="badge badge-warning">Chưa đăng ký</span></td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-success check" data-id="{$k}"
@@ -82,6 +82,10 @@
                     </tbody>
                 </table>
                 </div>
+                {if (isset($params['links']))}
+                <div style="text-align:center" id="pagination">{$params['links']}</div>
+                <hr>
+                {/if}
                 <div class="text-center">
                     <input type="submit" class="btn btn-success text-center" value="Cập nhật">
                 </div>
