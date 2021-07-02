@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cemail extends CI_Controller {
+class Cemail extends MY_Controller {
 
     public function __construct() {
         parent:: __construct();

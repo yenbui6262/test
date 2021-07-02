@@ -1,5 +1,5 @@
 <?php
-    class Cthongtincanhan extends CI_Controller {
+    class Cthongtincanhan extends MY_Controller {
         public function __construct() {
 	    	parent::__construct();
 	    	$this->load->model('Mthongtincanhan');

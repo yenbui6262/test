@@ -25,5 +25,14 @@ class Mdk_hanhchinh extends My_Model
         $res = $this->db->get("dm_hanhchinh")->result_array();
         return $res;
     }
+    public function insertHanhchinh($donhc){
+        $this->db->insert("tbl_dangkydon",$donhc);
+        return $this->db->affected_rows();
+    }
+    public function deleteHanhchinh($mahc){
+        $this->db->where('FK_sMaHanhChinh',$mahc)
+                 ->delete("tbl_dangkydon");
+        return $this->db->affected_rows();
+    }
 }
 ?>

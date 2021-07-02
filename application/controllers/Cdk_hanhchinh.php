@@ -1,5 +1,5 @@
 <?php 
-class Cdk_hanhchinh extends CI_Controller {
+class Cdk_hanhchinh extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Mdk_hanhchinh');
@@ -12,8 +12,7 @@ class Cdk_hanhchinh extends CI_Controller {
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $date = date("Y-m-d");
             if($action == "add"){
-                $donhc = array();
-                    array_push($donhc,array(
+                    $donhc=array(
                         'PK_sMaDangKy'      => time().rand(9999,9999),
                         'FK_sMaSV'          => $masv,
                         'FK_sMaCanbo'       => "admin",
@@ -21,17 +20,17 @@ class Cdk_hanhchinh extends CI_Controller {
                         'dTGThem'           =>$date,
                         'iTrangThai'        =>"0"
 
-                    ));
-                $this->db->insert_batch("tbl_dangkydon",$donhc);
-                // setMessages("success", "Đăng ký hồ sơ thành công");
-            }else{
+                    );
+                $row=$this->Mdk_hanhchinh->insertHanhchinh($donhc);
+            }else if($action == "deletehc"){
                 //action=deletehc - huy dang ky
-                $this->db->where('FK_sMaHanhChinh',$mahc)
-                        ->where('FK_sMaSV',$masv)
-                        ->delete("tbl_dangkydon");
+                $row=$this->Mdk_hanhchinh->deleteHanhchinh($mahc);
                 
             }
-            setMessages("success", "Cập nhật thành công");
+            if($row>0){
+                setMessages("success", "Cập nhật thành công");
+            }
+            
         }
         
         $sinhvien['thongtincanhan']= $this->Mdk_hanhchinh->getTTcanhan($session['taikhoan']);

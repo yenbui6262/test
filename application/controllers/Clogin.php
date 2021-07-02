@@ -1,6 +1,6 @@
 <?php 
 
-	class Clogin extends CI_Controller {
+	class Clogin extends MY_Controller {
 
 	    public function __construct() {
 	    	parent::__construct();

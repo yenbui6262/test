@@ -55,5 +55,3 @@
     </div>
 </div>
 <script type="text/javascript" src="{base_url()}public/script/dk_hanhchinh.js"></script>
-
-<script src="{base_url()}public/js/jquery.min.js"></script>

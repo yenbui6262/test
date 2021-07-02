@@ -8,7 +8,7 @@
 <br>
 <div class="container">
     <form method="post" enctype='multipart/form-data'>
-        <div class="card  mb-3" name="minhchung">
+        <div class="card  mb-3">
             <div class="card-header text-white text-left" style="background-color:#337ab7">
                 <h4 class="text-center"><i class="fas fa-user-edit"></i> <span style="color: white;">&nbsp;THÊM
                         MINH CHỨNG</span></h4>
@@ -26,12 +26,12 @@
                             </label><br>
                         </strong></h5>Mô tả:&nbsp;
                     {if !empty($val.tMota)}{$val.tMota}{/if} <br><br>
-                    <p>Link drive <small>(link minh chứng phải để chế độ chia sẻ để mọi người xem được):</small> 
-
+                    <p>Link drive <small>(link minh chứng phải để chế độ chia sẻ để mọi người xem được):</small> </p>
+                        <input type="hidden" name="minhchung[]" value="{if !empty($sinhvien['dieukien'].$k.0.PK_sMaMC)}{$sinhvien['dieukien'].$k.0.PK_sMaMC}{/if}">
                         <input type="text" class="form-control" name="duongdan[]"
-                            value="{if !empty($sinhvien['minhchung'].$k.tLink)}{$sinhvien['minhchung'].$k.tLink}{/if}"
+                            value="{if !empty($sinhvien['dieukien'].$k.0.tLink)}{$sinhvien['dieukien'].$k.0.tLink}{/if}"
                             placeholder="Link Google Drive" required>
-                    </p>
+                    
                 </div>
                 {/foreach}
                 {else}
@@ -40,15 +40,12 @@
 
             </div>
             <div class="text-center m-2">
-                {if empty($sinhvien['thongtincanhan'].sTrangThai)}
-                <button type="submit" name="action" value="addminhchung" class="btn btn-primary"><strong>Nộp minh
+                {if empty($sinhvien['dieukien'])}
+                <button type="submit" name="action" value="update" class="btn btn-primary"><strong>Nộp minh
                         chứng</strong></button>
-                {/if}
-                {if ($sinhvien['thongtincanhan'].sTrangThai == "Chưa duyệt")}
+                {else}
                 <button class="btn btn-success" type="submit" name="action" value="update">Cập nhật hồ sơ</button>
-                {/if}
-                {if !empty($sinhvien['thongtincanhan'].sTrangThai) && ($sinhvien['thongtincanhan'].sTrangThai == "Đã duyệt")}
-                <strong class="check-hoso">Minh chứng của bạn đã được duyệt</strong>
+                <a href="{$url}ds_minhchung" class="btn btn-primary">Xem danh sách</a>
                 {/if}
 
             </div>

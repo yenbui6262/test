@@ -16,14 +16,14 @@
                     self.html(`<img src="public/images/spinner.gif">`);
                     
                     var id = $(this).attr("data-id");
-                    var updatehc = $(this).attr("data-update");
+                    var update = $(this).attr("data-update");
                     $.ajax({
                         url: window.location.pathname,
                         type: 'POST',
                         dataType: 'html',
                         data: {
                             action: "add",
-                            id: updatehc,
+                            id: update,
                         }
                     }).done(function(data){
                         // alert(add);
@@ -42,14 +42,14 @@
                     $(this).attr("title","Đăng ký");
                     self.html(`<img src="public/images/spinner.gif">`);
                     var id = $(this).attr("data-id");
-                    var updatehc = $(this).attr("data-update");
+                    var update = $(this).attr("data-update");
                     $.ajax({
                         url: window.location.pathname,
                         type: 'POST',
                         dataType: 'html',
                         data: {
                             action: "deletehc",
-                            id: updatehc,
+                            id: update,
                         }
                     }).done(function(data){
                         // alert(deletehc);
