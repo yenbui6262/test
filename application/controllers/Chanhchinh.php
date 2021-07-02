@@ -1,73 +1,81 @@
 <?php
-    class Cquanlyminhchung extends MY_Controller
+    class Chanhchinh extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mquanlyminhchung');
+            $this->load->model('Mhanhchinh');
         }
 
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']!=3){
+            if($session['maquyen']!=1){
                 $this->session->sess_destroy();
                 return redirect(base_url().'403_Forbidden');
                 
             }
-
-            if(!empty($this->input->get('lop'))){
-                $filter = array(
-                    'tenct'           => $this->input->get('tenct'),
-                    'lop'             => $this->input->get('lop'),
-                    'sosinhvien'      => $this->Mquanlyminhchung->getsosinhvien($this->input->get('lop'))[0]['sosinhvien'],
-                    'sominhchung'     => $this->input->get('sominhchung')
-                );
-                 // luu vao sesssion
-                $this->session->set_userdata("filterqlmc", $filter);
-            }
-
-            if($Mamc = $this->input->post('delete')){
-                $deletect      = $this->delete($Mamc);
-            }
-
+            
             if($action = $this->input->post('action')){
-                if($action=='search'){
-                    $filtermc = $this->session->userdata("filterqlmc");
-                    $filtermc['hoten'] = $this->input->post('hoten');
+                switch($action){
+                    case 'insert'    : $this->addhanhchinh();redirect('hanhchinh');
+                    case 'edit'      : $this->update();redirect('hanhchinh');
+                    case "search"    : 
+                        $filter = array(
+                        'tenhc'           => $this->input->post('tenhc'),
+                        'mota'            => $this->input->post('mota')
+                    );
                     // luu vao sesssion
-                    $this->session->set_userdata("filterqlmc", $filtermc);
-                    redirect("quanlyminhchung");
+                    $this->session->set_userdata("filterhc", $filter);redirect('hanhchinh');
+                    case "reset"     :unset($_SESSION['filterhc']);redirect('hanhchinh');
                 }
             };
-            $filter = $this->session->userdata("filterqlmc");
-            if(empty($filter['hoten'])){
-                $filter['hoten']='';
+            
+            if($mahc = $this->input->post('delete')){
+                $deletect      = $this->delete($mahc);
             }
-            if(empty($filter['lop'])){
-                redirect("thongkeminhchung");
-            }
+
+            $filter = $this->session->userdata("filterhc");
             $temp = array(
-                'template'  => 'Vquanlyminhchung',
+                'template'  => 'Vhanhchinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
-                    'hoten' => $filter['hoten'],
-                    'lop' => $filter['lop'],
-                    'sominhchung' => $filter['sominhchung'],
-                    'sosinhvien' => $filter['sosinhvien'],
+                    'tenhc' => $filter['tenhc'],
+                    'mota' => $filter['mota'],
                     'session'   => $session
                 ),
             );
-            // pr($temp['data']['params']);
+            // pr($temp);
             $this->load->view('layout/Vcontent', $temp);
         }
+
+        public function addhanhchinh(){
+            $session = $this->session->userdata("user");
+            $tenhc        = $this->input->post('tenhc');
+            $mota      = $this->input->post('mota');
+
+            // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
+            $data = array(
+                'PK_sMaHanhChinh'      => time().rand(1,1000),
+                'sTenHanhChinh'        => $tenhc,
+                'tMota'                => $mota
+            );
+            // pr($data);
+        $row = $this->Mhanhchinh->inserthanhchinh($data);
+        
+        if($row > 0){
+            setMessages('success','Thêm thành công','Thông báo');
+        }else{
+            setMessages('danger','Thêm thất bại','Thông báo');
+        }
+        redirect('hanhchinh');
+        }//end insert
         
         //delete 
-        public function delete($Mamc){
+        public function delete($mahc){
 
-            $row    = $this->Mquanlyminhchung->deleteminhchung($Mamc);
+            $row    = $this->Mhanhchinh->deletehanhchinh($mahc);
             
             if ($row>0){
                 setMessages('success','Xóa thành công','Thông báo');
@@ -75,11 +83,30 @@
             else{
                 setMessages('danger','Xóa thất bại','Thông báo');
             }
-            redirect('quanlyminhchung');
+            redirect('hanhchinh');
         } //end delete
 
+        // update
+        public function update(){
+            $mahc      = $this->input->post('mahc');
+            $tenhc        = $this->input->post('tenhc');
+            $mota      = $this->input->post('mota');
+            $data = array(
+                'sTenHanhChinh'      => $tenhc,
+                'tMota'              => $mota,
+            );
+
+            $row = $this->Mhanhchinh->updatehanhchinh($mahc, $data);
+            if($row > 0){
+                setMessages('success','Sửa thành công','Thông báo');
+            }else{
+                setMessages('danger','Sửa thất bại','Thông báo');
+            }
+            redirect('hanhchinh');
+        }
+
         private function pagination(){
-            $filter     = $this->input->post("filterqlmc");
+            $filter     = $this->input->post("filterhc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -97,14 +124,14 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $total_records = $this->Mquanlyminhchung->getTotalRecord($dieukien);
+            $total_records = $this->Mhanhchinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mquanlyminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
-                // pr($params);
-                $config['base_url']     = base_url().'quanlyminhchung';
+                $params['hanhchinh']  = $this->Mhanhchinh->gethanhchinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                //pr($params);
+                $config['base_url']     = base_url().'hanhchinh';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

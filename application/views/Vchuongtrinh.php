@@ -75,8 +75,8 @@
                                 <td class="text-center">{$key+1}</td>
                                 <td>{$val.sTenCT}</td>
                                 <td>{$val.tMota}</td>
-                                <td class="text-center">{$val.dThoiGIanBD}</td>
-                                <td class="text-center">{$val.dThoiGIanKT}</td>
+                                <td class="text-center">{date("d-m-Y", strtotime($val.dThoiGIanBD))}</td>
+                                <td class="text-center">{date("d-m-Y", strtotime($val.dThoiGIanKT))}</td>
                                 <td class="text-center">
                                     <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-secondary btnEdit" style="color:white;"><i class="fas fa-user-edit"></i></a>
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaChuongTrinh']}" class="btn btn-danger btnDelete"

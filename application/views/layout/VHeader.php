@@ -43,17 +43,12 @@
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
                 {if ($session['maquyen'] == 1)}
-                <li class="nav-item"><a href="{$url}danhsachsinhvien" class="nav-link"><i class="fas fa-users"></i> Danh sách sinh viên</a></li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
                             <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
                             <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}huongdansinhvien"><i
-                                class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng dẫn xét duyệt</a>
                     </li>
                     {elseif ($session['maquyen'] == 2)}
                     <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
@@ -65,14 +60,14 @@
                             <a class="dropdown-item" href="{$url}dk_hanhchinh">Đơn hành chính</a>
                         </div>
                     </li> -->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="huongdansinhvien"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng
                             dẫn nộp hồ sơ</a>
-                    </li>
+                    </li> -->
                     {/if}
                     {if ($session['maquyen'] == 3)}
                     <li class="nav-item">
-                        <a class="nav-link" href="{$url}/quanlyminhchung"><i class="fas fa-users"></i>&nbsp;Quản lý minh chứng</a>
+                        <a class="nav-link" href="{$url}/thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
                     </li>
                     {/if}
                     {/if}

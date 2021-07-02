@@ -18,8 +18,8 @@
             
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $this->addchuongtrinh();break;
-                    case 'edit'      : $this->update();break;
+                    case 'insert'    : $this->addchuongtrinh();redirect('Chuongtrinh');
+                    case 'edit'      : $this->update();redirect('Chuongtrinh');
                     case "search"    : 
                         $filter = array(
                         'tenct'           => $this->input->post('tenct'),
@@ -28,8 +28,8 @@
                         'thoigiankt'      => $this->input->post('thoigiankt')
                     );
                     // luu vao sesssion
-                    $this->session->set_userdata("filterct", $filter);;break;
-                    case "reset"     :unset($_SESSION['filterct']);break;
+                    $this->session->set_userdata("filterct", $filter);redirect('Chuongtrinh');
+                    case "reset"     :unset($_SESSION['filterct']);redirect('Chuongtrinh');
                 }
             };
             
@@ -149,7 +149,7 @@
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 5;
+            $limit_per_page = 25;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;

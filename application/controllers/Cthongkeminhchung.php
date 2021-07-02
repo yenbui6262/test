@@ -1,10 +1,10 @@
 <?php
-    class Cquanlyminhchung extends MY_Controller
+    class Cthongkeminhchung extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mquanlyminhchung');
+            $this->load->model('Mthongkeminhchung');
         }
 
         public function index($page=1)
@@ -15,48 +15,34 @@
                 return redirect(base_url().'403_Forbidden');
                 
             }
-
-            if(!empty($this->input->get('lop'))){
-                $filter = array(
-                    'tenct'           => $this->input->get('tenct'),
-                    'lop'             => $this->input->get('lop'),
-                    'sosinhvien'      => $this->Mquanlyminhchung->getsosinhvien($this->input->get('lop'))[0]['sosinhvien'],
-                    'sominhchung'     => $this->input->get('sominhchung')
-                );
-                 // luu vao sesssion
-                $this->session->set_userdata("filterqlmc", $filter);
-            }
+            
+            if($action = $this->input->post('action')){
+                if($action=='search'){
+                    $filtermc = array(
+                        'tenct'           => $this->input->post('tenct'),
+                        'lop'      => $this->input->post('lop')
+                    );
+                    // luu vao sesssion
+                    $this->session->set_userdata("filtermc", $filtermc);
+                    redirect("thongkeminhchung");
+                }elseif ($action=='reset') {
+                    unset($_SESSION['filtermc']);
+                    redirect("thongkeminhchung");
+                }
+            };
 
             if($Mamc = $this->input->post('delete')){
                 $deletect      = $this->delete($Mamc);
             }
 
-            if($action = $this->input->post('action')){
-                if($action=='search'){
-                    $filtermc = $this->session->userdata("filterqlmc");
-                    $filtermc['hoten'] = $this->input->post('hoten');
-                    // luu vao sesssion
-                    $this->session->set_userdata("filterqlmc", $filtermc);
-                    redirect("quanlyminhchung");
-                }
-            };
-            $filter = $this->session->userdata("filterqlmc");
-            if(empty($filter['hoten'])){
-                $filter['hoten']='';
-            }
-            if(empty($filter['lop'])){
-                redirect("thongkeminhchung");
-            }
+            $filter = $this->session->userdata("filtermc");
             $temp = array(
-                'template'  => 'Vquanlyminhchung',
+                'template'  => 'Vthongkeminhchung',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
                     'tenct' => $filter['tenct'],
-                    'hoten' => $filter['hoten'],
                     'lop' => $filter['lop'],
-                    'sominhchung' => $filter['sominhchung'],
-                    'sosinhvien' => $filter['sosinhvien'],
                     'session'   => $session
                 ),
             );
@@ -64,22 +50,8 @@
             $this->load->view('layout/Vcontent', $temp);
         }
         
-        //delete 
-        public function delete($Mamc){
-
-            $row    = $this->Mquanlyminhchung->deleteminhchung($Mamc);
-            
-            if ($row>0){
-                setMessages('success','Xóa thành công','Thông báo');
-            }
-            else{
-                setMessages('danger','Xóa thất bại','Thông báo');
-            }
-            redirect('quanlyminhchung');
-        } //end delete
-
         private function pagination(){
-            $filter     = $this->input->post("filterqlmc");
+            $filter     = $this->input->post("filtermc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -97,14 +69,16 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $total_records = $this->Mquanlyminhchung->getTotalRecord($dieukien);
+            $params['tenct'] = $this->Mthongkeminhchung->getchuongtrinh();
+            $params['lop'] = $this->Mthongkeminhchung->getlop();
+            $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mquanlyminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
                 // pr($params);
-                $config['base_url']     = base_url().'quanlyminhchung';
+                $config['base_url']     = base_url().'thongkeminhchung';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;
