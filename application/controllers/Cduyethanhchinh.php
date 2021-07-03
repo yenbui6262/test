@@ -69,7 +69,7 @@
             else{
                 setMessages('danger','Xóa thất bại','Thông báo');
             }
-            redirect('duyethanhchinh');
+            redirect('quanlyhanhchinh');
         } //end delete
 
         //edit 
