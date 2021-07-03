@@ -47,8 +47,8 @@
                     <div class="col-md-5 form-group">
                         <div class="row buttonform">
                             <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button id="suact" type="submit" name="action" value="edit" class="btn btn-primary" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
-                            <button id="themct"  type="submit" name="action" value="insert" class="btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
+                            <button id="suact" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
+                            <button id="themct"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
                             <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                 <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                 <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                 <td class="text-center">
-                                    <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-secondary btnEdit" style="color:white;"><i class="fas fa-user-edit"></i></a>
+                                    <a  onclick="sua({$key},'{$val.PK_sMaChuongTrinh}');" class="btn btn-warning btnEdit"><i class="fas fa-tools"></i></a>
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaChuongTrinh']}" class="btn btn-danger btnDelete"
                                      onclick="return confirm('Bạn có muốn xóa chương trình này không?');"><i class="fas fa-trash"></i></button>
                                 </td>

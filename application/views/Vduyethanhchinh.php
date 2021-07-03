@@ -29,13 +29,13 @@
                 <h4 style="color: #fff; margin: 0" class="text-center"><span>Quản lý hành chính</span</h4>
             </div>
             <br>
-            <form action="{$url}duyethanhchinh" method="POST" class="insert" id="myForm">
+            <form action="{$url}quanlyhanhchinh" method="POST" class="insert" id="myForm">
                 <div class="row">
                     <div class="col-md-5 input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Họ tên:</span>
                         </div>
-                        <input type="text" id="hoten" name="hoten" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($hoten)}{$hoten}{/if}" placeholder="Nhập nội dung">
+                        <input type="text" id="hoten" name="hoten" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if isset($hoten)}{$hoten}{/if}" placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-3 input-group input-group-sm mb-3 lophoc">
                         <div class="input-group-prepend" style="width: 46px !important;">
@@ -56,8 +56,8 @@
                         </div>
                         <select class="form-control select2 no-search-select2" name="trangthai"  aria-label="Small" aria-describedby="trangthai">
                             <option selected value="tatca">Tất cả</option>
-                            <option value="1" {if !empty($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
-                            <option value="0" {if !empty($trangthai) && $trangthai==0}selected{/if}>Chưa duyệt</option>
+                            <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
+                            <option value="0" {if isset($trangthai) && $trangthai=='0'}selected{/if}>Chưa duyệt</option>
                         </select>
                     </div>
                     <div class="col-md-6 input-group input-group-sm mb-3 chuongtrinh">
@@ -68,7 +68,7 @@
                             <option selected value="tatca">Tất cả</option>
                             {if !empty($params['tenhc'])}
                                 {foreach $params['tenhc'] as $v}
-                                    <option value="{$v.sTenHanhChinh}" {if !empty($tenhc) && $tenhc==$v.sTenHanhChinh}selected{/if}>{$v.sTenHanhChinh}</option>
+                                    <option value="{$v.sTenHanhChinh}" {if isset($tenhc) && $tenhc==$v.sTenHanhChinh}selected{/if}>{$v.sTenHanhChinh}</option>
                                 {/foreach}
                             {/if}
                         </select>
@@ -105,15 +105,15 @@
                                 <td>{$val.sTenHanhChinh}</td>
                                 {if ($val.iTrangThai == 0)}
                                 <td class="text-center">
-                                    <span class="badge badge-warning">Chưa duyệt hồ sơ</span>
+                                    <span class="badge badge-warning">Chưa duyệt</span>
                                 </td>
                                 {else}
                                 <td class="text-center">
-                                    <span class="badge badge-success">Đã duyệt hồ sơ</span>
+                                    <span class="badge badge-success">Đã duyệt</span>
                                 </td>
                                 {/if}
                                 <td class="text-center">
-                                    <button  type="submit"  name="edit"value="{$val['PK_sMaDangKy']}" class="btn btn-secondary btnDelete"><i class="fas fa-edit"></i></button>
+                                    <button  type="submit"  name="edit"value="{$val['PK_sMaDangKy']}" class="btn btn-warning btnDelete"><i class="fas fa-edit"></i></button>
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaDangKy']}" class="btn btn-danger btnDelete"
                                      onclick="return confirm('Bạn có muốn xóa minh chứng này không?');"><i class="fas fa-trash"></i></button>
                                 </td>

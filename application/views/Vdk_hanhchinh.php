@@ -1,3 +1,8 @@
+<style>
+.dangky .select2-container--default {
+    width:465px !important;
+}
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
@@ -16,10 +21,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body dangky">
      
         <label for="Ma">Đăng ký :</label><br>
-        <select name="hanhchinh[Ma]" id="Ma" class="form-control ">
+        <select name="hanhchinh[Ma]" id="Ma" class="form-control select2 no-search-select2">
             <option value="0" readonly hidden>--Chọn đơn hành chính--</option>
             {if !empty ($params['hanhchinh'])}
             {foreach $params['hanhchinh'] as $k => $val}

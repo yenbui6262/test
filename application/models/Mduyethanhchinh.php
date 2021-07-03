@@ -27,7 +27,7 @@
             if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
-            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+            if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('dky.iTrangThai', $dieukien['trangthai']);
             }
             

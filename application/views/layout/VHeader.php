@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="{$url}public/sweetalert2/sweetalert2.min.js"></script>
 	<script type="text/javascript" src="{$url}public/sweetalert2/firealert.js?ver=1.0"></script>
     <!-- styling -->
-    <link rel="stylesheet" type="text/css" href="{$url}public/style/sinhvien5tot.css?ver=1.0">
+    <link rel="stylesheet" type="text/css" href="{$url}public/style/tuvan_minhchung.css?ver=1.0">
 	<!-- animation css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
@@ -42,53 +42,48 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
+                {if ($session['maquyen'] == 3)||($session['maquyen'] == 1)}
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý hành chính</a>
+                </li>
+                {/if}
                 {if ($session['maquyen'] == 1)}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}Chuongtrinh"></i>&nbsp;Chương trình</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}hanhchinh"></i>&nbsp;Hành chính</a>
-                    </li>
-                    {elseif ($session['maquyen'] == 2)}
-                    <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
-                    <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Đăng ký hành chính</a></li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"><i class="fas fa-info"></i> Thông tin xét duyệt</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{$url}dk_minhchung">Minh chứng</a>
-                            <a class="dropdown-item" href="{$url}dk_hanhchinh">Đơn hành chính</a>
-                        </div>
-                    </li> -->
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{$url}Chuongtrinh">Danh sách chương trình</a>
+                        <a class="dropdown-item" href="{$url}hanhchinh">Danh sách hành chính</a>
+                    </div>
+                </li>
+                {elseif ($session['maquyen'] == 2)}
+                <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
+                <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Đăng ký hành chính</a></li>
+                
+                {/if}
+            {/if}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {if (!empty($session['maquyen']))}
+            {if ($session['maquyen'] <=4)} <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                    <i class="fas fa-user"></i>&nbsp;&nbsp;{if
+                    !empty($session['sHoten'])}{$session['sHoten']}{else}Tài khoản{/if}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    {if ($session['maquyen'] == 2)}
+                    <a class="dropdown-item" href="{$url}thongtincanhan">Thông tin cá nhân</a>
                     {/if}
-                    {if ($session['maquyen'] == 3)||($session['maquyen'] == 1)}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý hành chính</a>
-                    </li>
-                    {/if}
-                    {/if}
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    {if (!empty($session['maquyen']))}
-                    {if ($session['maquyen'] <=4)} <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                            <i class="fas fa-user"></i>&nbsp;&nbsp;{if
-                            !empty($session['sHoten'])}{$session['sHoten']}{else}Tài khoản{/if}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            {if ($session['maquyen'] == 2)}
-                            <a class="dropdown-item" href="{$url}thongtincanhan">Thông tin cá nhân</a>
-                            {/if}
-                            <a class="dropdown-item" href="{$url}dangxuat">Đăng xuất</a>
-                        </div>
-                        </li>
-                        {else}
-                        <li class="nav-item"><a class="nav-link" href="{$url}dangnhap"><i
-                                    class="fas fa-sign-in-alt"></i>&nbsp;Đăng nhập</a></li>
-                        {/if}
-                        {/if}
-                </ul>
-            </div>
-        </nav>
+                    <a class="dropdown-item" href="{$url}dangxuat">Đăng xuất</a>
+                </div>
+                </li>
+                {else}
+                <li class="nav-item"><a class="nav-link" href="{$url}dangnhap"><i
+                            class="fas fa-sign-in-alt"></i>&nbsp;Đăng nhập</a></li>
+                {/if}
+                {/if}
+        </ul>
+    </div>
+</nav>
