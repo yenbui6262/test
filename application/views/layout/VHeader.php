@@ -12,6 +12,7 @@
     <script src="{$url}public/bootstrap-4.3.1/js/bootstrap.min.js"></script>
     <!-- select2 -->
     <link rel="stylesheet" type="text/css" href="{$url}public/select2/dist/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="{$url}public/select2-bootstrap4-theme/css/select2-bootstrap4.css">
 	<!-- fontawsome -->
 	<link rel="stylesheet" type="text/css" href="{$url}public/fontawsome-5.15.1/css/all.min.css">
 	<script type="text/javascript" src="{$url}public/fontawsome-5.15.1/js/all.min.js"></script>

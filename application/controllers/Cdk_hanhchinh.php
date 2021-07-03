@@ -6,8 +6,8 @@ class Cdk_hanhchinh extends MY_Controller {
     }
     public function index($page=1){
         $session = $this->session->userdata("user");
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date = date("Y-m-d");
+        $hanhchinh  = $this->Mdk_hanhchinh->getHanhchinh();
         if($this->input->post("hanhchinh")){
             $post_data = $this->input->post('hanhchinh');
             if($post_data['type'] == "submit"){
@@ -58,10 +58,10 @@ class Cdk_hanhchinh extends MY_Controller {
                 'tenhc'     => $filter['tenhc'],
                 'mota'      => $filter['mota'],
                 'trangthai' => $filter['trangthai'],
+                'hanhchinh' => $hanhchinh,
             ),
         );
         
-        // pr($temp);
         $this->load->view('layout/VContent',$temp);
     }
     private function pagination(){

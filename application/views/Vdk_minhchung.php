@@ -16,9 +16,9 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-4 dangky">
+                <div class="form-group col-xl-4">
                     <label for="chuongtrinh">Chương trình lưu minh chứng:</label>
-                    <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control select2 ">
+                    <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control select2">
                         <option value="0" readonly hidden>--Chọn chương trình--</option>
                         {foreach $sinhvien['chuongtrinh'] as $k => $v}
                         <option value="{$v.PK_sMaChuongTrinh}">{$v.sTenCT}</option>
@@ -39,21 +39,21 @@
     </div>
     <div class="card my-3">
         <div class="card-header text-center text-white bg-darkblue">
-            <h4 class="m-0">Danh mục minh chứng</h4>
+            <h4 class="m-0">Danh sách minh chứng</h4>
         </div>
         <div class="card-body">
            <div class="row">
-                <div class="form-group col-xl-4">
+                <div class="form-group col-xl-6">
                     <label for="tenhc">Thời gian bắt đầu:</label>
                     <input type="date" id="thoigianbd" name="thoigianbd" class="form-control"  value="{if !empty($thoigianbd)}{$thoigianbd}{/if}" >
                 </div>
-                <div class="form-group col-xl-4">
+                <div class="form-group col-xl-6">
                     <label for="mota">Thời gian kết thúc:</label>
                     <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
                 </div>
-                <div class="form-group col-xl-2 text-center" style="margin-top:30px">
+                <div class="form-group col-12 text-right">
+                    <button class="btn btn-success" type="button"><i class="fas fa-plus"></i> Bổ sung minh chứng</button>
                     <button type="submit" class="btn btn-secondary" name="minhchung[type]" value="search" id="search" title="Tìm kiếm minh chứng theo thời gian"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                        
                 </div>
             </div>
             <div class="table-responsive">
@@ -74,9 +74,9 @@
                         <td>{$v.tMota}</td>
                         <td>{$v.tLink}</td>
                         <td class="text-center">
-                            <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');" name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit" title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
-                            <a  onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');" class="btn btn-secondary btnEdit" style="color:white;" title="Sửa minh chứng"><i class="fas fa-user-edit"></i></a>
+                            <button type="button" class="btn btn-secondary btnEdit" style="color:white;" title="Sửa minh chứng" value="masinhvien"><i class="fas fa-user-edit"></i></button>
                             <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
+                            <button disabled onclick="return confirm('Bạn có muốn minh chứng này không này không?');" name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit" title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                     {/foreach}
@@ -95,3 +95,8 @@
 </form>
 
 <script defer type="text/javascript" src="{base_url()}public/script/dk_minhchung.js"></script>
+<script>
+    $(document).ready(function(){
+        getInfo();        
+    })
+</script>

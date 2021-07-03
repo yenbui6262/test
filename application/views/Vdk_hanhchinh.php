@@ -1,15 +1,10 @@
-<style>
-.dangky .select2-container--default {
-    width:465px !important;
-}
-</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
         <li class="breadcrumb-item active" aria-current="page">Đăng ký đơn hành chính</li>
     </ol>
 </nav>
-<form class="container" method="post">
+<form class="container-fluid" method="post">
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -21,21 +16,22 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body dangky">
-     
-        <label for="Ma">Đăng ký :</label><br>
-        <select name="hanhchinh[Ma]" id="Ma" class="form-control select2 no-search-select2">
-            <option value="0" readonly hidden>--Chọn đơn hành chính--</option>
-            {if !empty ($params['hanhchinh'])}
-            {foreach $params['hanhchinh'] as $k => $val}
-            <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
-            {/foreach}
-            {/if}
-        </select>
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="Ma">Đăng ký :</label>
+            <select name="hanhchinh[Ma]" id="Ma" class="form-control select2">
+                <option value="0" readonly hidden>--Chọn đơn hành chính--</option>
+                {if !empty ($hanhchinh)}
+                {foreach $hanhchinh as $k => $val}
+                <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
+                {/foreach}
+                {/if}
+            </select>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button class="btn btn-success" type="submit" name="hanhchinh[type]"value="submit" id="them" >Đăng ký</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+        <button class="btn btn-secondary" type="submit" name="hanhchinh[type]"value="submit" id="them" >Đăng ký</button>
       </div>
     </div>
   </div>
@@ -45,11 +41,8 @@
             <h4 class="m-0">ĐĂNG KÝ HÀNH CHÍNH</h4>
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">+ Đăng ký thêm</button>
-        
-            <h3 class="mt-3" style="color: #337ab7;">Danh sách các đơn đã đăng ký</h3>
             <div class="row">
-                <div class="form-group col-xl-3">
+                <div class="form-group col-xl-5">
                     <label for="tenhc">Tên hành chính:</label>
                     <input type="text" id="tenhc" name="tenhc" class="form-control"  value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                 </div>
@@ -57,16 +50,17 @@
                     <label for="mota">Mô tả:</label>
                     <input type="text" id="mota" class="form-control" name="mota"  value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-xl-2">
                     <label for="trangthai">Trạng thái</label>
                     <select class="form-control form-group select2 no-search-select2" name="trangthai"  >
                         <option selected value="tatca">Tất cả</option>
                         <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
                         <option value="'0'" {if isset($trangthai) && $trangthai=='0'}selected{/if}>Chưa duyệt</option>
-                    </select></div>
-                <div class="form-group col-xl-2 text-center" style="margin-top:30px">
+                    </select>
+                </div>
+                <div class="col-12 form-group text-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i> Đăng ký thêm</button>
                     <button type="submit" class="btn btn-secondary" name="hanhchinh[type]" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                        
                 </div>
             </div>
             <div class="table-responsive">
@@ -96,7 +90,6 @@
                             {/if}
                         <td class="text-center">
                             <button name="delete" value="{$val.PK_sMaDangKy}"  class="btn btn-danger" type="submit" title="Hủy đơn"onclick="return confirm('Bạn có muốn hủy đăng ký đơn hành chính này không này không?');"{if ($val.iTrangThai == 1)}disabled {/if}><i class="fas fa-trash"></i></button>
-                            
                         </td>
                     </tr>
                     {/foreach}
@@ -109,3 +102,8 @@
         </div>
     </div>
 </form>
+<style>
+.select2{
+    width: auto!important;
+}
+</style>

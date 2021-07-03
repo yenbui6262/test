@@ -28,7 +28,7 @@
 <script type="text/javascript" src="{$url}public/script/backtotop/main.js"></script>
 <!-- style cho button backtotop --> 
 <link rel="stylesheet" type="text/css" href="{$url}public/style/backtotop.css">    
-<script src="{$url}public/select2/dist/js/select2.js"></script>
+<script src="{$url}public/select2/dist/js/select2.full.min.js"></script>
 <script type="text/javascript">
 
     function loading(){
@@ -57,7 +57,9 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.select2').select2({
+                theme: 'bootstrap4',
+        });
     });
 </script>
 
