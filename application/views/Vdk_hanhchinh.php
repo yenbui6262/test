@@ -44,11 +44,11 @@
                 <table id="example" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td class="text-center" style="width: 3%">STT</td>
-                            <td class="text-center" style="width: 10%">Tên hành chính</td>
-                            <td class="text-center" style="width: 20%">Mô tả</td>
-                            <td class="text-center" style="width: 7%">Trạng thái</td>
-                            <td class="text-center" style="width: 5%">Tác vụ</td>
+                            <th class="text-center" style="width: 3%">STT</th>
+                            <th class="text-center" style="width: 10%">Tên hành chính</th>
+                            <th class="text-center" style="width: 20%">Mô tả</th>
+                            <th class="text-center" style="width: 7%">Trạng thái</th>
+                            <th class="text-center" style="width: 5%">Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -19,7 +19,8 @@ $route['dk_minhchung']  ='Cdk_minhchung';
 $route['ds_minhchung']  ='Cds_minhchung';
 $route['ds_minhchung/(:num)']		= 'Cds_minhchung/index/$1';
 $route['dk_hanhchinh']  ='Cdk_hanhchinh';
-$route['duyet_minhchung']  ='Cduyet_minhchung';
+$route['quanlyhanhchinh']  ='Cduyethanhchinh';
+$route['quanlyhanhchinh/(:num)']		= 'Cduyethanhchinh/index/$1';
 $route['mail'] 						= 'Cemail';
 $route['sendmail'] 					= 'Cemail/sending_email';
 

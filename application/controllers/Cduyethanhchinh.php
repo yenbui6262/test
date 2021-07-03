@@ -1,10 +1,10 @@
 <?php
-    class Cthongkeminhchung extends MY_Controller
+    class Cduyethanhchinh extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mthongkeminhchung');
+            $this->load->model('Mduyethanhchinh');
         }
 
         public function index($page=1)
@@ -16,34 +16,41 @@
                 $this->session->sess_destroy();
                 return redirect(base_url().'403_Forbidden');
             }
-            
+
+            if($Mamc = $this->input->post('delete')){
+                $deletehc      = $this->delete($Mamc);
+            }
+            if($Mamc = $this->input->post('edit')){
+                $duyethc      = $this->editduyet($Mamc);
+            }
+
             if($action = $this->input->post('action')){
                 if($action=='search'){
-                    $filtermc = array(
-                        'tenct'           => $this->input->post('tenct'),
+                    $filterqlhc = array(
+                        'hoten'    => $this->input->post('hoten'),
+                        'tenhc'    => $this->input->post('tenhc'),
+                        'trangthai'=> $this->input->post('trangthai'),
                         'lop'      => $this->input->post('lop')
                     );
                     // luu vao sesssion
-                    $this->session->set_userdata("filtermc", $filtermc);
-                    redirect("thongkeminhchung");
-                }elseif ($action=='reset') {
-                    unset($_SESSION['filtermc']);
-                    redirect("thongkeminhchung");
+                    $this->session->set_userdata("filterqlhc", $filterqlhc);
+                    redirect("quanlyhanhchinh");
+                }elseif($action=='reset'){
+                    unset($_SESSION['filterqlhc']);
+                    redirect("quanlyhanhchinh");
                 }
             };
-
-            if($Mamc = $this->input->post('delete')){
-                $deletect      = $this->delete($Mamc);
-            }
-
-            $filter = $this->session->userdata("filtermc");
+            $filter = $this->session->userdata("filterqlhc");
+            
             $temp = array(
-                'template'  => 'Vthongkeminhchung',
+                'template'  => 'Vduyethanhchinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
+                    'hoten' => $filter['hoten'],
                     'lop' => $filter['lop'],
+                    'trangthai' => $filter['trangthai'],
+                    'tenhc' => $filter['tenhc'],
                     'session'   => $session
                 ),
             );
@@ -51,8 +58,45 @@
             $this->load->view('layout/Vcontent', $temp);
         }
         
+        //delete 
+        public function delete($Madon){
+
+            $row    = $this->Mduyethanhchinh->deletedondangky($Madon);
+            
+            if ($row>0){
+                setMessages('success','Xóa thành công','Thông báo');
+            }
+            else{
+                setMessages('danger','Xóa thất bại','Thông báo');
+            }
+            redirect('duyethanhchinh');
+        } //end delete
+
+        //edit 
+        public function editduyet($Madon){
+
+            $trangthai    = $this->Mduyethanhchinh->gettrangthai($Madon);
+            if($trangthai==0){
+                $trangthai=1;
+            }else{
+                $trangthai=0;
+            }
+            $row    = $this->Mduyethanhchinh->edittrangthai($Madon,$trangthai);
+            
+            if ($row>0&&$trangthai==1){
+                setMessages('success','Duyệt thành công','Thông báo');
+            }elseif ($row>0&&$trangthai==0) {
+                setMessages('success','Hủy duyệt thành công','Thông báo');
+            }elseif($row=0&&$trangthai==1){
+                setMessages('danger','Duyệt thất bại','Thông báo');
+            }else{
+                setMessages('danger','Hủy duyệt thất bại','Thông báo');
+            }
+            redirect('quanlyhanhchinh');
+        } //end edit
+
         private function pagination(){
-            $filter     = $this->input->post("filtermc");
+            $filter     = $this->input->post("filterqlhc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -70,16 +114,16 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $params['tenct'] = $this->Mthongkeminhchung->getchuongtrinh();
-            $params['lop'] = $this->Mthongkeminhchung->getlop();
-            $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+            $params['tenhc'] = $this->Mduyethanhchinh->gethanhchinh();
+            $params['lop'] = $this->Mduyethanhchinh->getlop();
+            $total_records = $this->Mduyethanhchinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['hanhchinh']  = $this->Mduyethanhchinh->getdondangky($limit_per_page, $page * $limit_per_page,$dieukien);
                 // pr($params);
-                $config['base_url']     = base_url().'thongkeminhchung';
+                $config['base_url']     = base_url().'quanlyhanhchinh';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

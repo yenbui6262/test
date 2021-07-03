@@ -43,12 +43,11 @@
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
                 {if ($session['maquyen'] == 1)}
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
-                    <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{$url}Chuongtrinh">Chương trình</a>
-                            <a class="dropdown-item" href="{$url}hanhchinh">Hành chính</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$url}Chuongtrinh"></i>&nbsp;Chương trình</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$url}hanhchinh"></i>&nbsp;Hành chính</a>
                     </li>
                     {elseif ($session['maquyen'] == 2)}
                     <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
@@ -60,14 +59,13 @@
                             <a class="dropdown-item" href="{$url}dk_hanhchinh">Đơn hành chính</a>
                         </div>
                     </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="huongdansinhvien"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Hướng
-                            dẫn nộp hồ sơ</a>
-                    </li> -->
                     {/if}
-                    {if ($session['maquyen'] == 3)}
+                    {if ($session['maquyen'] == 3)||($session['maquyen'] == 1)}
                     <li class="nav-item">
-                        <a class="nav-link" href="{$url}/thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
+                        <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý hành chính</a>
                     </li>
                     {/if}
                     {/if}
