@@ -89,7 +89,7 @@
                                 <td>{$val.sTenCT}</td>
                                 <td>{$val.sominhchung}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-secondary btnDelete" title="Chi tiết" href="quanlyminhchung?lop={$val.sTenLop}&tenct={$val.sTenCT}&sominhchung={$val.sominhchung}"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-info btnDelete" title="Chi tiết" href="quanlyminhchung?lop={$val.sTenLop}&tenct={$val.sTenCT}&sominhchung={$val.sominhchung}"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                             {/foreach}

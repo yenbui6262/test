@@ -105,11 +105,11 @@
                                 <td>{$val.sTenHanhChinh}</td>
                                 {if ($val.iTrangThai == 0)}
                                 <td class="text-center">
-                                    <span class="badge badge-warning">Chưa duyệt hồ sơ</span>
+                                    <span class="badge badge-warning">Chưa duyệt</span>
                                 </td>
                                 {else}
                                 <td class="text-center">
-                                    <span class="badge badge-success">Đã duyệt hồ sơ</span>
+                                    <span class="badge badge-success">Đã duyệt</span>
                                 </td>
                                 {/if}
                                 <td class="text-center">

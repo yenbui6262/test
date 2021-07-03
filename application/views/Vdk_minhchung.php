@@ -1,3 +1,8 @@
+<style>
+    .dangky .select2-selection--single{
+        height:calc(1.5em + .75rem + 2px) !important;
+    }
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
@@ -11,9 +16,9 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-4">
+                <div class="form-group col-xl-4 dangky">
                     <label for="chuongtrinh">Chương trình lưu minh chứng:</label>
-                    <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control">
+                    <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control select2 ">
                         <option value="0" readonly hidden>--Chọn chương trình--</option>
                         {foreach $sinhvien['chuongtrinh'] as $k => $v}
                         <option value="{$v.PK_sMaChuongTrinh}">{$v.sTenCT}</option>
@@ -72,7 +77,7 @@
                         <td>{date("d/m/Y", strtotime($v.dThoiGIanKT))}</td>
                         <td class="text-center">
                             <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');" name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit" title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
-                            <a  onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');" class="btn btn-secondary btnEdit" style="color:white;"><i class="fas fa-user-edit"></i></a>
+                            <a  onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');" class="btn btn-warning btnEdit"><i class="fas fa-tools"></i></a>
                             <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
                         </td>
                     </tr>

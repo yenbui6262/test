@@ -1,3 +1,8 @@
+<style>
+.dangky .select2-container--default {
+    width:465px !important;
+}
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
@@ -16,10 +21,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body dangky">
      
         <label for="Ma">Đăng ký :</label><br>
-        <select name="hanhchinh[Ma]" id="Ma" class="form-control ">
+        <select name="hanhchinh[Ma]" id="Ma" class="form-control select2 no-search-select2">
             <option value="0" readonly hidden>--Chọn đơn hành chính--</option>
             {foreach $params['hanhchinh'] as $k => $val}
             <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
@@ -70,7 +75,15 @@
                         <td class="text-center">{$k+1}</td>
                         <td>{$val.sTenHanhChinh}</td>
                         <td>{$val.tMota}</td>
-                        <td class="text-center">{$val.iTrangThai}</td>
+                        {if ($val.iTrangThai == 0)}
+                        <td class="text-center">
+                            <span class="badge badge-warning">Chưa duyệt</span>
+                        </td>
+                        {else}
+                        <td class="text-center">
+                            <span class="badge badge-success">Đã duyệt</span>
+                        </td>
+                        {/if}
                         <td class="text-center">
                             <button name="hanhchinh[type]" value="delete"  class="btn btn-danger" type="submit" title="Hủy đơn"onclick="return confirm('Bạn có muốn hủy đăng ký đơn hành chính này không này không?');"><i class="fas fa-trash"></i></button>
                             <input type="hidden" name="madon" value="{$val.PK_sMaDangKy}">
