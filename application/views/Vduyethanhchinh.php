@@ -113,7 +113,7 @@
                                 </td>
                                 {/if}
                                 <td class="text-center">
-                                    <button  type="submit"  name="edit"value="{$val['PK_sMaDangKy']}" class="btn btn-secondary btnDelete"><i class="fas fa-edit"></i></button>
+                                    <button  type="submit"  name="edit"value="{$val['PK_sMaDangKy']}" class="btn btn-warning btnDelete"><i class="fas fa-edit"></i></button>
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaDangKy']}" class="btn btn-danger btnDelete"
                                      onclick="return confirm('Bạn có muốn xóa minh chứng này không?');"><i class="fas fa-trash"></i></button>
                                 </td>
