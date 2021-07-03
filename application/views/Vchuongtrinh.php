@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-3 input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2">Thời gian kết thúc:</span>
+                            <span class="input-group-text" id="basic-addon2">Thời gian bắt đầu:</span>
                         </div>
                         <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  aria-label="Small" aria-describedby="basic-addon2" value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
                     </div>

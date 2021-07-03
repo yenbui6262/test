@@ -16,11 +16,13 @@ $route['thongkeminhchung/(:num)']		= 'Cthongkeminhchung/index/$1';
 
 $route['thongtincanhan']='Cthongtincanhan';
 $route['dk_minhchung']  ='Cdk_minhchung';
-$route['ds_minhchung']  ='Cds_minhchung';
-$route['ds_minhchung/(:num)']		= 'Cds_minhchung/index/$1';
+$route['dk_minhchung/(:num)']		= 'Cdk_minhchung/index/$1';
 $route['dk_hanhchinh']  ='Cdk_hanhchinh';
+<<<<<<< HEAD
+=======
 $route['quanlyhanhchinh']  ='Cduyethanhchinh';
 $route['quanlyhanhchinh/(:num)']		= 'Cduyethanhchinh/index/$1';
+>>>>>>> 716fb09fd2b7c19f31aa8adda9863d741fbb3b00
 $route['mail'] 						= 'Cemail';
 $route['sendmail'] 					= 'Cemail/sending_email';
 

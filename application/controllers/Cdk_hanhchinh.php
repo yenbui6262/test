@@ -6,32 +6,40 @@ class Cdk_hanhchinh extends MY_Controller {
     }
     public function index($page=1){
         $session = $this->session->userdata("user");
-        $masv = $session['taikhoan'];
-        $mahc = $this->input->post("id");
-        if($action = $this->input->post("action")){
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $date = date("Y-m-d");
-            if($action == "add"){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date("Y-m-d");
+        if($this->input->post("hanhchinh")){
+            $post_data = $this->input->post('hanhchinh');
+            if($post_data['type'] == "submit"){
                     $donhc=array(
-                        'PK_sMaDangKy'      => time().rand(1,10000),
-                        'FK_sMaSV'          => $masv,
-                        'FK_sMaCanbo'       => "admin",
-                        'FK_sMaHanhChinh'   => $mahc,
+                        'PK_sMaDangKy'      => time().$session['taikhoan'],
+                        'FK_sMaSV'          => $session['taikhoan'],
+                        'FK_sMaCanbo'       => null,
+                        'FK_sMaHanhChinh'   => $post_data['Ma'],
                         'dTGThem'           =>$date,
                         'iTrangThai'        =>"0"
 
                     );
+                if($this->Mdk_hanhchinh->findDon($donhc)){
+                    setMessages("warning", "Đã Đăng ký đơn");
+                    return redirect(current_url());
+                }
                 $row=$this->Mdk_hanhchinh->insertHanhchinh($donhc);
-            }else if($action == "deletehc"){
+                if($row>0){
+                    setMessages("success", "Cập nhật thành công");
+                } return redirect(current_url());
+            }else if($post_data['type'] == "delete"){
                 //action=deletehc - huy dang ky
-                $row=$this->Mdk_hanhchinh->deleteHanhchinh($mahc,$session['taikhoan']);
-                
-            }
-            if($row>0){
-                setMessages("success", "Cập nhật thành công");
+                $madk=$this->input->post("madon");
+
+                $row=$this->Mdk_hanhchinh->deleteHanhchinh($madk);
+                if($row>0){
+                    setMessages("success", "Xóa thành công");
+                } return redirect(current_url());
             }
             
-            if($action == "search"){
+            
+            if($post_data['type'] == "search"){
                 $filter = array(
                     'tenhc'           => $this->input->post('tenhc'),
                     'mota'            => $this->input->post('mota'),
@@ -78,15 +86,14 @@ class Cdk_hanhchinh extends MY_Controller {
         /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
         $page = $page;
         $params['stt'] = $limit_per_page * $page + 1;
-        $total_records = $this->Mdk_hanhchinh->getTotalRecord($dieukien);
+        $total_records = $this->Mdk_hanhchinh->getTotalRecord($dieukien,$session['taikhoan']);
         if ($total_records > 0){
             // get current page records
             // ($page * $limit_per_page) vi tri ban ghi dau tien
             // $limit_per_page la so luong ban ghi lay ra
-            $params['hanhchinh']  = $this->Mdk_hanhchinh->getHanhchinh($limit_per_page, $page * $limit_per_page,$dieukien);
-            foreach($params['hanhchinh'] as $chimuc => $giatri){
-                $params['dondk'][$chimuc] 	= $this->Mdk_hanhchinh->checkMahc($session['taikhoan'],$giatri['PK_sMaHanhChinh']);
-            };
+            $params['hanhchinh']  = $this->Mdk_hanhchinh->getHanhchinh();
+            $params['dondk'] 	= $this->Mdk_hanhchinh->getDon($limit_per_page, $page * $limit_per_page,$dieukien,$session['taikhoan']);
+            
             //pr($params);
             $config['base_url']     = base_url().'dk_hanhchinh';
             $config['total_rows']   = $total_records;
