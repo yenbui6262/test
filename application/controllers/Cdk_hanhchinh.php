@@ -28,18 +28,7 @@ class Cdk_hanhchinh extends MY_Controller {
                 if($row>0){
                     setMessages("success", "Cập nhật thành công");
                 } return redirect(current_url());
-            }else if($post_data['type'] == "delete"){
-                //action=deletehc - huy dang ky
-                $madk=$this->input->post("madon");
-
-                $row=$this->Mdk_hanhchinh->deleteHanhchinh($madk);
-                if($row>0){
-                    setMessages("success", "Xóa thành công");
-                } return redirect(current_url());
-            }
-            
-            
-            if($post_data['type'] == "search"){
+            }else if($post_data['type'] == "search"){
                 $filter = array(
                     'tenhc'           => $this->input->post('tenhc'),
                     'mota'            => $this->input->post('mota'),
@@ -49,6 +38,15 @@ class Cdk_hanhchinh extends MY_Controller {
                 $this->session->set_userdata("filterct", $filter);redirect('dk_hanhchinh');
             }
         }
+        if($this->input->post("delete")){
+            //action=deletehc - huy dang ky
+            $madk=$this->input->post("delete");
+
+            $row=$this->Mdk_hanhchinh->deleteHanhchinh($madk);
+            if($row>0){
+                setMessages("success", "Xóa thành công");
+            } return redirect(current_url());
+        }
         
         $filter = $this->session->userdata("filterct");
         $temp = array(
@@ -57,8 +55,8 @@ class Cdk_hanhchinh extends MY_Controller {
                 'session'   => $session,
                 'message' 	=> getMessages(),
                 'params'    => $this->get_params($page-1, $filter),
-                'tenhc' => $filter['tenhc'],
-                'mota' => $filter['mota'],
+                'tenhc'     => $filter['tenhc'],
+                'mota'      => $filter['mota'],
                 'trangthai' => $filter['trangthai'],
             ),
         );

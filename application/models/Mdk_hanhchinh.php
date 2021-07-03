@@ -22,9 +22,9 @@ class Mdk_hanhchinh extends My_Model
         if(!empty($dieukien['mota'])){
             $this->db->where('tMota', $dieukien['mota']);
         }
-        // if(!empty($dieukien['trangthai'])){
-        //     $this->db->where('dThoiGIanBD >=', $dieukien['thoigianbd']);
-        // }
+        if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+                $this->db->where('iTrangThai', $dieukien['trangthai']);
+            }
         
     }
     public function getHanhchinh(){

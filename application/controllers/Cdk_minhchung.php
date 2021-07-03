@@ -73,7 +73,6 @@ class Cdk_minhchung extends MY_Controller
                 'params'    => $this->get_params($page-1, $filter),
                 'thoigianbd' => $filter['thoigianbd'],
                 'thoigiankt' => $filter['thoigiankt'],
-
                 'sinhvien'  => $sinhvien,
             ),
         );
