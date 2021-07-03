@@ -1,17 +1,8 @@
-function sua(key,  mact, mamc) {
+function sua(k,  mact, link) {
     //  
-    let btnEdit = document.getElementsByClassName('btnEdit')[key];
-    let tr = btnEdit.parentElement.parentElement;
-    let tds = tr.children;
-    // 1 + ind*2 
+    document.getElementById("chuongtrinh").value = mact;
+    document.getElementById("linkdrive").value = link;
 
-    // let tenct = tds[1].textContent.trim();
-    let duongdan = tds[2].textContent.trim();
-
-    document.querySelector("input[name='mact']").value = mact;
-    document.querySelector("input[name='mamc']").value = mamc;
-    document.querySelector("input[name='duongdan']").value = duongdan;
-
-    document.getElementById("themct").style.display = 'none';
-    document.getElementById("suact").style.display = 'inline-block';
+    document.getElementById("them").style.display = 'none';
+    document.getElementById("sua").style.display = 'inline-block';
 }

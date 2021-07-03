@@ -6,10 +6,12 @@ class Mdk_hanhchinh extends My_Model
         parent::__construct();
         $this->load->database();
     }
-    public function getTotalRecord($dieukien){
+    public function getTotalRecord($dieukien,$masv){
         $this->dieukien($dieukien);
         $this->db->select("PK_sMaHanhChinh")
-                 ->from('dm_hanhchinh');
+                ->where('FK_sMaSV',$masv)
+                ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
+                 ->from('tbl_dangkydon');
         $count = $this->db->count_all_results();
         return $count;
     }
@@ -25,19 +27,21 @@ class Mdk_hanhchinh extends My_Model
         // }
         
     }
-    public function getHanhchinh($limit, $start,$dieukien){
-        $this->dieukien($dieukien);
+    public function getHanhchinh(){
         $this->db->select("*")
-                 ->order_by('PK_sMaHanhChinh')
-                 ->limit($limit, $start);
+                 ->order_by('PK_sMaHanhChinh');
         $res = $this->db->get("dm_hanhchinh")->result_array();
         return $res;
     }
     
-    public function checkMahc($masv,$mahc){
-        $this->db->where('FK_sMaSV',$masv)
-                ->where('FK_sMaHanhChinh',$mahc)
-                ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh");
+    
+    public function getDon($limit, $start,$dieukien,$masv){
+        $this->dieukien($dieukien);
+        $this->db->select("*")
+                ->where('FK_sMaSV',$masv)
+                ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
+                ->order_by('PK_sMaHanhChinh')
+                ->limit($limit, $start);
         $res= $this->db->get("tbl_dangkydon")->result_array();
         return $res;
     }
@@ -45,11 +49,16 @@ class Mdk_hanhchinh extends My_Model
         $this->db->insert("tbl_dangkydon",$donhc);
         return $this->db->affected_rows();
     }
-    public function deleteHanhchinh($mahc,$masv){
-        $this->db->where('FK_sMaHanhChinh',$mahc)
-                ->where('FK_sMaSV',$masv)
+    public function deleteHanhchinh($madk){
+        $this->db->where('PK_sMaDangKy',$madk)
                  ->delete("tbl_dangkydon");
         return $this->db->affected_rows();
     }
+    public function findDon($data)
+        {
+            $res = $this->db->where('FK_sMaHanhChinh',$data['FK_sMaHanhChinh'])
+                    ->get('tbl_dangkydon')->result_array();
+                    return count($res);
+        }
 }
 ?>

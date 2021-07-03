@@ -4,93 +4,82 @@
         <li class="breadcrumb-item active" aria-current="page">Đăng ký đơn hành chính</li>
     </ol>
 </nav>
-<br>
-<br>
-<div class="container">
-    <div class="card  mb-3 " style="margin:0 auto" name="dk_hanhchinh">
-        <div class="card-header text-left" style="background-color: #2966a3;">
-            <h4 style="color: #fff; margin: 0" class="text-center">Đăng ký đơn hành chính</h4>
+<form class="container" method="post">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     
+        <label for="Ma">Đăng ký :</label><br>
+        <select name="hanhchinh[Ma]" id="Ma" class="form-control ">
+            <option value="0" readonly hidden>--Chọn đơn hành chính--</option>
+            {foreach $params['hanhchinh'] as $k => $val}
+            <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
+            {/foreach}
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success" type="submit" name="hanhchinh[type]"value="submit" id="them" >Đăng ký</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="card my-3">
+        <div class="card-header text-center text-white bg-darkblue">
+            <h4 class="m-0">ĐĂNG KÝ HÀNH CHÍNH</h4>
         </div>
         <div class="card-body">
-            <form action="{$url}dk_hanhchinh" method="POST" class="insert" id="myForm">
-                <div class="row">
-                    <div style="display:none" class="col-12">
-                        <div class="input-group">
-                            <input type="text" name="mact">
-                        </div>
-                    </div>
-                    <div class="col-md-5 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên hành chính:</span>
-                        </div>
-                        <input type="text" id="tenhc" name="tenhc" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
-                    </div>
-                    <div class="col-md-5 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
-                        </div>
-                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
-                    </div>
-                    <div class="col-md-2 form-group buttonform text-center">
-                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                        
-                    </div>
-                    
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">+ Đăng ký thêm</button>
+        
+            <h3 class="mt-3" style="color: #337ab7;">Danh sách các đơn đã đăng ký</h3>
+            <div class="row">
+                <div class="form-group col-xl-4">
+                    <label for="tenhc">Tên hành chính:</label>
+                    <input type="text" id="tenhc" name="tenhc" class="form-control"  value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                 </div>
-            </form>
-            <form action="">
-                <div class="table-responsive">
-
-                <table id="example" class="table table-hover table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <td class="text-center" style="width: 3%">STT</td>
-                            <td class="text-center" style="width: 10%">Tên hành chính</td>
-                            <td class="text-center" style="width: 20%">Mô tả</td>
-                            <td class="text-center" style="width: 7%">Trạng thái</td>
-                            <td class="text-center" style="width: 5%">Tác vụ</td>
-                        </tr>
+                <div class="form-group col-xl-6">
+                    <label for="mota">Mô tả:</label>
+                    <input type="text" id="mota" class="form-control" name="mota"  value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+                </div>
+                <div class="form-group col-xl-2 text-center" style="margin-top:30px">
+                    <button type="submit" class="btn btn-secondary" name="hanhchinh[type]" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="text-center">
+                        <th width="10px">STT</th>
+                        <th width="20%">Tên chương trình</th>
+                        <th >Mô tả</th>
+                        <th width="120px">Trạng thái</th>
+                        <th width="120px">Tác vụ</th>
                     </thead>
                     <tbody>
-                        {if !empty($params['hanhchinh'])}
-                        {foreach $params['hanhchinh'] as $k => $val}
-                        <tr>
-                            <td class="text-center">{$k+1}</td>
-                            <td>{$val.sTenHanhChinh}</td>
-                            <td>{$val.tMota}</td>
-
-                            {if (empty($params['dondk'].$k.0.FK_sMaHanhChinh))}
-                            <td class="text-center"><span class="badge badge-warning">Chưa đăng ký</span></td>
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-success check" data-id="{$k}"
-                                    data-update="{if !empty($val.PK_sMaHanhChinh)}{$val.PK_sMaHanhChinh}{/if}" title="Đăng ký"><i
-                                        class="fa fa-key"></i></button>
-                            </td>
-                            {else}
-                            <td class="text-center"><span class="badge badge-success">Đã đăng ký</span></td>
-                            <td class="text-center"><button class="btn btn-sm btn-danger check" data-id="{$k}"
-                                    data-update="{if !empty($val.PK_sMaHanhChinh)}{$val.PK_sMaHanhChinh}{/if}" title="Huỷ đăng ký"><i
-                                        class="fa fa-window-close"></i></button></td>
-                            {/if}
-                        </tr>
-                        {/foreach}
-                        {else}
-                        <tr>
-                            <td class="text-center" colspan="5"> Chưa có dữ liệu</td>
-                        </tr>
-                        {/if}
+                    {foreach $params['dondk'] as $k => $val}
+                    <tr>
+                        <td class="text-center">{$k+1}</td>
+                        <td>{$val.sTenHanhChinh}</td>
+                        <td>{$val.tMota}</td>
+                        <td class="text-center">{$val.iTrangThai}</td>
+                        <td class="text-center">
+                            <button name="hanhchinh[type]" value="delete"  class="btn btn-danger" type="submit" title="Hủy đơn"onclick="return confirm('Bạn có muốn hủy đăng ký đơn hành chính này không này không?');"><i class="fas fa-trash"></i></button>
+                            <input type="hidden" name="madon" value="{$val.PK_sMaDangKy}">
+                        </td>
+                    </tr>
+                    {/foreach}
                     </tbody>
                 </table>
-                </div>
-                {if (isset($params['links']))}
-                <div style="text-align:center" id="pagination">{$params['links']}</div>
-                <hr>
-                {/if}
-                <div class="text-center">
-                    <input type="submit" class="btn btn-success text-center" value="Cập nhật">
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="{base_url()}public/script/dk_hanhchinh.js"></script>
+</form>
