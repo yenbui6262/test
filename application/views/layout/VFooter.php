@@ -22,19 +22,6 @@
     </div>
 </div>
 <img src="{$url}public/images/backtotop.png" class="js cd-top text-replace js-cd-top">
-    	<!-- <script type="text/javascript">
-    		$(document).ready(function() {
-    	        $('.select2').select2();
-                $('.datepicker').datepicker({
-                    autoclose: true,
-                    format: 'dd/mm/yyyy'
-                });
-                $(".buiding").on("click", e=>{
-                    e.preventDefault();
-                    showToast("info","Chức năng đang được xây dựng");
-                })
-    	     });
-    	</script> -->
 </body>
 <!-- BACK TO TOP -->
 <script type="text/javascript" src="{$url}public/script/backtotop/util.js"></script>
