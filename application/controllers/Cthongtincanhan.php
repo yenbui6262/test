@@ -12,10 +12,6 @@
         $sinhvien['lop'] 	= $this->Mthongtincanhan->getLop();
 
         if($this->input->post("action")){
-            $hoten = $this->input->post("sHoten");
-            $ngaysinh = $this->input->post("sNgaysinh");
-            $gioitinh = $this->input->post("sGioiTinh");
-            $lop = $this->input->post("sTenLop");
             $email= $this->input->post("sEmail");
             $acc=$session['taikhoan'];
             
@@ -40,25 +36,15 @@
                 $thongTinCapNhat = array(
                     //ko thay đổi mật khẩu
                     'PK_sMaTK' 	    => $acc,
-                    'sHoten'        =>$hoten,
-                    'dNgaySinh'     =>$ngaysinh,
-                    'iGioiTinh'     =>$gioitinh,
-                    'sFK_Lop'       =>$lop,
                     'tEmail'        =>$email,
                 );
             }else{
                 $thongTinCapNhat = array(
                     'PK_sMaTK' 	    => $acc,
-                    'sHoten'        =>$hoten,
-                    'dNgaySinh'     =>$ngaysinh,
-                    'iGioiTinh'     =>$gioitinh,
-                    'sFK_Lop'       =>$lop,
                     'tEmail'        =>$email,
                     'sMatkhau'      => $newPass,
                 );
             }
-            // pr($thongTinCapNhat);
-            // exit();
             $row = $this->Mthongtincanhan->capnhat($thongTinCapNhat,$acc );
             if($row > 0){
 				setMessages('success','Cập nhật thành công','Thông báo');

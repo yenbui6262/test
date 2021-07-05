@@ -20,7 +20,7 @@ class Mdk_hanhchinh extends My_Model
             $this->db->like('sTenHanhChinh', $dieukien['tenhc']);
         }
         if(!empty($dieukien['mota'])){
-            $this->db->where('tMota', $dieukien['mota']);
+            $this->db->like('tMota', $dieukien['mota']);
         }
         if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('iTrangThai', $dieukien['trangthai']);
@@ -57,7 +57,8 @@ class Mdk_hanhchinh extends My_Model
     public function findDon($data)
         {
             $res = $this->db->where('FK_sMaHanhChinh',$data['FK_sMaHanhChinh'])
-                    ->get('tbl_dangkydon')->result_array();
+                            ->where('FK_sMaSV',$data['FK_sMaSV'])
+                            ->get('tbl_dangkydon')->result_array();
                     return count($res);
         }
 }

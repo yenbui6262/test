@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hệ thống minh chứng kinh tể - HOU</title>
+	<title>Hệ thống minh chứng kinh tế - HOU</title>
 	<meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="shortcut icon" type="image/png" href="{$url}public/images/DV11.png" />
@@ -34,7 +34,7 @@
         <div id="text">Loading ...</div>
     </div>
 </div>
-<img src="{$url}public/images/banner.jpg" class="img-fluid">
+<!-- <img src="{$url}public/images/banner.jpg" class="img-fluid"> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-info header-1">
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon" style="color:white !important;"></span>
@@ -61,7 +61,7 @@
                 </li>
                 {elseif ($session['maquyen'] == 2)}
                 <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
-                <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Đăng ký hành chính</a></li>
+                <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Thủ tục hành chính</a></li>
                 
                 {/if}
             {/if}

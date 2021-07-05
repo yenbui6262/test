@@ -15,7 +15,7 @@
 {$mlop = $sinhvien['thongtincoban'].sFK_Lop}
 <div class="container">
 
-    <div class="card mb-5">
+    <div class="card mb-5 p-0">
 
         <div class="card-header text-white text-left" style="background-color:#337ab7">
             <h4 class="text-center"><i class="fas fa-user-edit"></i> <span style="color: white;">&nbsp;THÔNG
@@ -31,13 +31,13 @@
                             <div class="col-md-12 form-group">
                                 <label>Họ tên</label>
                                 <input type="text" name="sHoten" value="{if !empty($hoten)}{$hoten}{/if}"
-                                    class="form-control required" autocomplete="off" id="hoten">
+                                    class="form-control required" autocomplete="off" id="hoten" readonly>
 
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Ngày sinh</label>
                                 <input type="date" aria-label="Small" aria-describedby="basic-addon2" name="sNgaysinh" class="form-control datepicker required"
-                                    value="{if !empty($ngaysinh)}{$ngaysinh}{/if}" id="ngaysinh" autocomplete="off">
+                                    value="{if !empty($ngaysinh)}{$ngaysinh}{/if}" id="ngaysinh" autocomplete="off" readonly>
 
                             </div>
                             <div class="col-md-6 form-group">
@@ -47,28 +47,25 @@
                                     <input type="radio" class="form-check-input" name="sGioiTinh" checked value="1"
                                         style="line-height: 24px; font-size: 13px;"> <span>Nam</span>&nbsp;&nbsp;
                                     <input type="radio" class="form-check-input" name="sGioiTinh" value="2"
-                                        style="line-height: 24px; font-size: 13px;"> <span>Nữ</span>
+                                        style="line-height: 24px; font-size: 13px;" disabled="disabled"> <span>Nữ</span>
                                     {else}
                                     <input type="radio" class="form-check-input" name="sGioiTinh" value="1"
-                                        style="line-height: 24px; font-size: 13px;"> <span>Nam</span>&nbsp;&nbsp;
+                                        style="line-height: 24px; font-size: 13px;" disabled="disabled"> <span>Nam</span>&nbsp;&nbsp;
                                     <input type="radio" class="form-check-input" name="sGioiTinh" checked value="2"
-                                        style="line-height: 24px; font-size: 13px;"> <span>Nữ</span>
+                                        style="line-height: 24px; font-size: 13px;" readonly> <span>Nữ</span>
                                     {/if}
 
                                 </div>
                             </div>
                             <div class="col-md-12 form-group " style="margin-top: -8px;">
                                 <label>Lớp</label>
-                                <select class="form-control  required" name="sTenLop" id="sTenLop">
-                                {foreach $sinhvien['lop'] as $k => $val}
-                                    <option value="{if !empty($val.PK_sMaLop)}{$val.PK_sMaLop}{/if}" {if !empty($mlop) && $mlop == $val.PK_sMaLop }selected{/if}>{$val.sTenLop}
-                                    </option>
-                                {/foreach}
-                                </select>
+                                <input type="text" name="sTenLop" value="{if !empty($tlop)}{$tlop}{/if}"
+                                    class="form-control required" autocomplete="off" id="lop" readonly>
+
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Email</label>
-                                <input type="text" name="sEmail" class="form-control required"
+                                <input type="email" name="sEmail" class="form-control required"
                                     value="{if !empty($email)}{$email}{/if}" id="email">
                                 <span class="help-block"></span>
                             </div>

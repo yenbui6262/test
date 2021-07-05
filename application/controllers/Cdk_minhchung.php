@@ -14,10 +14,10 @@ class Cdk_minhchung extends MY_Controller
             $post_data = $this->input->post('minhchung');
             if($post_data['type'] == "submit"){
                 $data_insert = array(
-                    'PK_sMaMC'  => $post_data['chuongtrinh'].$session['taikhoan'],  
+                    'PK_sMaMC'  => $post_data['ichuongtrinh'].$session['taikhoan'],  
                     'FK_sMaSV'  => $session['taikhoan'],
-                    'FK_sMaCT'  => $post_data['chuongtrinh'],
-                    'tLink'     => $post_data['linkdrive']
+                    'FK_sMaCT'  => $post_data['ichuongtrinh'],
+                    'tLink'     => $post_data['ilinkdrive']
                 );
                 // pr($data_insert);exit();
                 if($this->Mdk_minhchung->findMC($data_insert)){

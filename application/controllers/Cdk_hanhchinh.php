@@ -89,7 +89,7 @@ class Cdk_hanhchinh extends MY_Controller {
             // get current page records
             // ($page * $limit_per_page) vi tri ban ghi dau tien
             // $limit_per_page la so luong ban ghi lay ra
-            $params['hanhchinh']  = $this->Mdk_hanhchinh->getHanhchinh();
+            // $params['hanhchinh']  = $this->Mdk_hanhchinh->getHanhchinh();
             $params['dondk'] 	= $this->Mdk_hanhchinh->getDon($limit_per_page, $page * $limit_per_page,$dieukien,$session['taikhoan']);
             
             //pr($params);
