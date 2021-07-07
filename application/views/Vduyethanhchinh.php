@@ -72,7 +72,7 @@
                         {if !empty($params['hanhchinh'])}
                             {foreach $params['hanhchinh'] as $key => $val}
                             <tr>
-                                <td class="text-center">{$key+1}</td>
+                                <td class="text-center">{$params['stt']++}</td>
                                 <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.PK_sMaTK}</td>
                                 <td>{$val.sTenLop}</td>

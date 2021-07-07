@@ -27,7 +27,7 @@ $(document).ready(function(){
         if(tenct=='tatca'){
             tenct=''
         }
-        console.log(tenct);
+
         if (sinhvien=='sinhvien') {
         $.ajax({
             type: 'POST',

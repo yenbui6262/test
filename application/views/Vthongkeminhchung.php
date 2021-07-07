@@ -49,7 +49,7 @@
         <div>
             <div class="table-responsive">
                 <form  action="{$url}quanlyminhchung" method="POST" id='ds'>
-                    <table class="table table-hover table-striped table-bordered" id="example">
+                    <table class="table table-hover table-striped table-bordered border-dark" id="example">
                     {if empty($action)||$action=='get_dstheolop'}
                             <thead>
                             <tr>

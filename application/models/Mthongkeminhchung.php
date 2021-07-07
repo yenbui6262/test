@@ -24,7 +24,7 @@
                 $this->db->like('ct.sTenCT', $dieukien['tenct']);
             }
             
-            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
+            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'&&$dieukien['action']!='get_dstheochuongtrinh'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
            
@@ -79,7 +79,7 @@
         }
 
         public function getlistchuongtrinh($limit, $start,$dieukien){
-            // $this->dieukien($dieukien);
+            $this->dieukien($dieukien);
             $this->db->group_by("ct.PK_sMaChuongTrinh")
                      ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
@@ -89,7 +89,7 @@
         }
 
         public function getTotalchuongtrinh($dieukien=null){
-            // $this->dieukien($dieukien);
+            $this->dieukien($dieukien);
             $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
                             ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
                             ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
