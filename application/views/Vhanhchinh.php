@@ -8,37 +8,31 @@
 <div class="container-fluid">
     <div class="panel panel-default">
             <div class="panel-heading text-left">
-                <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách hành chính</span</h4>
+                <h4 style="color: #fff; margin: 0" class="text-center">Danh sách hành chính</h4>
             </div>
             <br>
             <form action="{$url}hanhchinh" method="POST" id="myForm">
                 <div class="row">
                     <div style="display:none" class="col-12">
-                        <div class="input-group">
+                        <div class="form-group">
                             <input type="text" name="mahc">
                         </div>
                     </div>
-                    <div class="col-md-4 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên hành chính:</span>
-                        </div>
+                    <div class="col-md-4 form-group">
+                        <label id="inputGroup-sizing-sm">Tên hành chính:</label>
                         <input type="text" id="tenhc" name="tenhc" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                     </div>
 
-                    <div class="col-md-8 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
-                        </div>
+                    <div class="col-md-8 form-group">
+                        <label id="basic-addon3">Mô tả:</label>
                         <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                     </div>
                     
-                    <div class="col-md-5 form-group">
-                        <div class="row buttonform">
-                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button id="suahc" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
-                            <button id="themhc"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
-                        </div>
+                    <div class="col-12 form-group text-right">
+                        <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        <button id="suahc" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
+                        <button id="themhc"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
                     </div>
                 </div>
             </form>

@@ -1,21 +1,3 @@
-<style>
-    .select2-container .select2-selection--single {
-    height: 31px !important;
-    }
-    .select2-container--default .select2-selection--single {
-    border: 1px solid #d5d5da;
-    border-radius: 0 4px 4px 0 !important;
-    }
-    .lophoc .select2-container--default{
-        width: calc(100% - 46px) !important;
-    }
-    .chuongtrinh .select2-container--default{
-        width: calc(100% - 116px) !important;
-    }
-    .trangthai .select2-container--default{
-        width: calc(100% - 85px) !important;
-    }
-</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
@@ -26,21 +8,17 @@
 <div class="container-fluid">
     <div class="panel panel-default">
             <div class="panel-heading text-left">
-                <h4 style="color: #fff; margin: 0" class="text-center"><span>Quản lý hành chính</span</h4>
+                <h4 style="color: #fff; margin: 0" class="text-center">Quản lý hành chính</h4>
             </div>
             <br>
             <form action="{$url}quanlyhanhchinh" method="POST" class="insert" id="myForm">
                 <div class="row">
-                    <div class="col-md-5 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Họ tên:</span>
-                        </div>
+                    <div class="col-md-3 form-group">
+                        <label id="inputGroup-sizing-sm">Họ tên:</label>
                         <input type="text" id="hoten" name="hoten" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if isset($hoten)}{$hoten}{/if}" placeholder="Nhập nội dung">
                     </div>
-                    <div class="col-md-3 input-group input-group-sm mb-3 lophoc">
-                        <div class="input-group-prepend" style="width: 46px !important;">
-                            <span id="tenlop" class="input-group-text">Lớp:</span>                                
-                        </div>
+                    <div class="col-md-3 form-group lophoc">
+                        <label id="tenlop">Lớp:</label>
                         <select class="form-control select2" name="lop"  aria-label="Small" aria-describedby="tenlop">
                             <option selected value="tatca">Tất cả</option>
                             {if !empty($params['lop'])}
@@ -50,20 +28,16 @@
                             {/if}
                         </select>
                     </div>
-                    <div class="col-md-4 input-group input-group-sm mb-3 trangthai">
-                        <div class="input-group-prepend" style="width: 85px !important;">
-                            <span id="trangthai" class="input-group-text">Trạng thái:</span>                                
-                        </div>
+                    <div class="col-md-3 form-group trangthai">
+                        <label id="trangthai" >Trạng thái:</label>                                
                         <select class="form-control select2 no-search-select2" name="trangthai"  aria-label="Small" aria-describedby="trangthai">
                             <option selected value="tatca">Tất cả</option>
                             <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
                             <option value="0" {if isset($trangthai) && $trangthai=='0'}selected{/if}>Chưa duyệt</option>
                         </select>
                     </div>
-                    <div class="col-md-6 input-group input-group-sm mb-3 chuongtrinh">
-                        <div class="input-group-prepend" style="width: 116px !important;">
-                            <span id="hanhchinh" class="input-group-text">Tên hành chính:</span>                                
-                        </div>
+                    <div class="col-md-3 form-group chuongtrinh">
+                        <label id="hanhchinh">Tên hành chính:</label>
                         <select class="form-control select2" name="tenhc"  aria-label="Small" aria-describedby="hanhchinh">
                             <option selected value="tatca">Tất cả</option>
                             {if !empty($params['tenhc'])}
@@ -73,11 +47,9 @@
                             {/if}
                         </select>
                     </div>
-                    <div class="col-md-5 form-group">
-                        <div class="row buttonform">
-                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
-                        </div>
+                    <div class="col-12 form-group text-right">
+                        <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i> qTìm kiếm</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-undo" aria-hidden="true"></i> Đặt lại</button>
                     </div>
                 </div>
             </form>

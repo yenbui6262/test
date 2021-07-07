@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group col-xl-2">
                     <label for="trangthai">Trạng thái</label>
-                    <select class="form-control form-group select2 no-search-select2" name="trangthai"  >
+                    <select class="form-control form-group select2" name="trangthai"  >
                         <option selected value="tatca">Tất cả</option>
                         <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
                         <option value="'0'" {if isset($trangthai) && $trangthai=='0'}selected{/if}>Chưa duyệt</option>
@@ -69,6 +69,7 @@
                         <th width="10px">STT</th>
                         <th width="20%">Tên thủ tục</th>
                         <th >Mô tả</th>
+                        <th width="150px">Thời gian đăng ký</th>
                         <th width="120px">Trạng thái</th>
                         <th width="120px">Tác vụ</th>
                     </thead>
@@ -79,6 +80,7 @@
                         <td class="text-center">{$k+1}</td>
                         <td>{$val.sTenHanhChinh}</td>
                         <td>{$val.tMota}</td>
+                        <td></td>
                         {if ($val.iTrangThai == '0')}
                             <td class="text-center">
                                 <span class="badge badge-warning">Chưa duyệt</span>

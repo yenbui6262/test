@@ -1,8 +1,3 @@
-<style>
-.dangky .select2-selection--single {
-    height: calc(1.5em + .75rem + 2px) !important;
-}
-</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
@@ -24,7 +19,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ichuongtrinh">Chương trình lưu minh chứng:</label>
-                        <select name="minhchung[ichuongtrinh]" id="ichuongtrinh" class="form-control ">
+                        <select name="minhchung[ichuongtrinh]" id="ichuongtrinh" class="form-control select2">
                             <option value="0" readonly hidden>--Chọn chương trình--</option>
                             {foreach $sinhvien['chuongtrinh'] as $k => $v}
                             <option value="{$v.PK_sMaChuongTrinh}">{$v.sTenCT}</option>
@@ -60,7 +55,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="chuongtrinh">Chương trình lưu minh chứng:</label>
-                        <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control ">
+                        <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control select2">
                             <option value="0" readonly hidden>--Chọn chương trình--</option>
                             {foreach $sinhvien['chuongtrinh'] as $k => $v}
                             <option value="{$v.PK_sMaChuongTrinh}">{$v.sTenCT}</option>
@@ -88,12 +83,16 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-6">
+                <div class="form-group col-xl-4">
+                    <label for="chuongtrinh">Tên chương trình:</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-xl-4">
                     <label for="tenhc">Thời gian bắt đầu:</label>
                     <input type="date" id="thoigianbd" name="thoigianbd" class="form-control"
                         value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
                 </div>
-                <div class="form-group col-xl-6">
+                <div class="form-group col-xl-4">
                     <label for="mota">Thời gian kết thúc:</label>
                     <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"
                         value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
@@ -123,8 +122,8 @@
                             <td class="text-center">{$k+1}</td>
                             <td>{$v.sTenCT}</td>
                             <td>{$v.tMota}</td>
-                            <td>{date("d/m/Y", strtotime($v.dThoiGIanBD))}</td>
-                            <td>{date("d/m/Y", strtotime($v.dThoiGIanKT))}</td>
+                            <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanBD))}</td>
+                            <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanKT))}</td>
                             <td class="text-center">
                                 <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i
                                         class="fas fa-eye"></i></a>
@@ -160,6 +159,11 @@
 </form>
 
 <script defer type="text/javascript" src="{base_url()}public/script/dk_minhchung.js"></script>
+<style>
+    .select2{
+        width: auto!important;
+    }
+</style>
 <!-- <script>
     $(document).ready(function(){
         getInfo();        
