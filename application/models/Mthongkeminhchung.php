@@ -56,5 +56,47 @@
             return $res;
         }
         
+        public function getlistsinhvien($limit, $start,$dieukien){
+            $this->dieukien($dieukien);
+            $this->db->group_by("tk.PK_sMaTK")
+                     ->select("count('mc.FK_sMaCT') as sochuongtrinh,tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
+                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                     ->limit($limit, $start);
+            return $this->db->get("tbl_taikhoan tk")->result_array();
+        }
+
+        public function getTotalsinhvien($dieukien=null){
+            $this->dieukien($dieukien);
+            $res = $this->db->group_by("tk.PK_sMaTK")
+                            ->select("count('mc.FK_sMaCT') as sochuongtrinh,tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
+                            ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                            ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                            ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                            ->from("tbl_taikhoan tk")->count_all_results();
+            return $res;
+        }
+
+        public function getlistchuongtrinh($limit, $start,$dieukien){
+            // $this->dieukien($dieukien);
+            $this->db->group_by("ct.PK_sMaChuongTrinh")
+                     ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
+                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->limit($limit, $start);
+            return $this->db->get("tbl_taikhoan tk")->result_array();
+        }
+
+        public function getTotalchuongtrinh($dieukien=null){
+            // $this->dieukien($dieukien);
+            $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
+                            ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
+                            ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                            ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                            ->from("tbl_taikhoan tk")->count_all_results();
+            return $res;
+        }
+
     }
 ?>

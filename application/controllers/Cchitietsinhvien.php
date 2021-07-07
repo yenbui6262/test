@@ -1,10 +1,10 @@
 <?php
-    class Cduyethanhchinh extends MY_Controller
+    class Cchitietsinhvien extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mduyethanhchinh');
+            $this->load->model('Mchitietsinhvien');
         }
 
         public function index($page=1)
@@ -17,72 +17,70 @@
                 return redirect(base_url().'403_Forbidden');
             }
 
-            if($Mamc = $this->input->post('delete')){
-                $deletehc      = $this->delete($Mamc);
+            if(!empty($this->input->get('lop'))){
+                $filter = array(
+                    'tenct'           => $this->input->get('tenct'),
+                    'lop'             => $this->input->get('lop'),
+                    'sosinhvien'      => $this->Mchitietsinhvien->getsosinhvien($this->input->get('lop'))[0]['sosinhvien'],
+                    'sominhchung'     => $this->input->get('sominhchung')
+                );
+                 // luu vao sesssion
+                $this->session->set_userdata("filterqlmc", $filter);
             }
-            if($Mamc = $this->input->post('edit')){
-                $duyethc      = $this->editduyet($Mamc);
+
+            if($Mamc = $this->input->post('delete')){
+                $deletect      = $this->delete($Mamc);
             }
 
             if($action = $this->input->post('action')){
                 if($action=='search'){
-                    $filterqlhc = array(
-                        'hoten'    => $this->input->post('hoten'),
-                        'tenhc'    => $this->input->post('tenhc'),
-                        'trangthai'=> $this->input->post('trangthai'),
-                        'lop'      => $this->input->post('lop')
-                    );
+                    $filtermc = $this->session->userdata("filterqlmc");
+                    $filtermc['hoten'] = $this->input->post('hoten');
                     // luu vao sesssion
-                    $this->session->set_userdata("filterqlhc", $filterqlhc);
-                    redirect("quanlyhanhchinh");
-                }elseif($action=='reset'){
-                    unset($_SESSION['filterqlhc']);
-                    redirect("quanlyhanhchinh");
+                    $this->session->set_userdata("filterqlmc", $filtermc);
+                    redirect("quanlyminhchung");
                 }
             };
-            $filter = $this->session->userdata("filterqlhc");
-            
+            $filter = $this->session->userdata("filterqlmc");
+            if(empty($filter['hoten'])){
+                $filter['hoten']='';
+            }
+            if(empty($filter['lop'])){
+                redirect("thongkeminhchung");
+            }
             $temp = array(
-                'template'  => 'Vduyethanhchinh',
+                'template'  => 'Vquanlyminhchung',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
+                    'tenct' => $filter['tenct'],
                     'hoten' => $filter['hoten'],
                     'lop' => $filter['lop'],
-                    'trangthai' => $filter['trangthai'],
-                    'tenhc' => $filter['tenhc'],
+                    'sominhchung' => $filter['sominhchung'],
+                    'sosinhvien' => $filter['sosinhvien'],
                     'session'   => $session
                 ),
             );
             // pr($temp['data']['params']);
             $this->load->view('layout/Vcontent', $temp);
         }
+        
+        //delete 
+        public function delete($Mamc){
 
-        //edit 
-        public function editduyet($Madon){
-
-            $trangthai    = $this->Mduyethanhchinh->gettrangthai($Madon);
-            if($trangthai==0){
-                $trangthai=1;
-            }else{
-                $trangthai=0;
-            }
-            $row    = $this->Mduyethanhchinh->edittrangthai($Madon,$trangthai);
+            $row    = $this->Mchitietsinhvien->deleteminhchung($Mamc);
             
-            if ($row>0&&$trangthai==1){
-                setMessages('success','Duyệt thành công','Thông báo');
-            }elseif ($row>0&&$trangthai==0) {
-                setMessages('success','Hủy duyệt thành công','Thông báo');
-            }elseif($row=0&&$trangthai==1){
-                setMessages('danger','Duyệt thất bại','Thông báo');
-            }else{
-                setMessages('danger','Hủy duyệt thất bại','Thông báo');
+            if ($row>0){
+                setMessages('success','Xóa thành công','Thông báo');
             }
-            redirect('quanlyhanhchinh');
-        } //end edit
+            else{
+                setMessages('danger','Xóa thất bại','Thông báo');
+            }
+            redirect('quanlyminhchung');
+        } //end delete
 
         private function pagination(){
-            $filter     = $this->input->post("filterqlhc");
+            $filter     = $this->input->post("filterqlmc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -100,16 +98,14 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $params['tenhc'] = $this->Mduyethanhchinh->gethanhchinh();
-            $params['lop'] = $this->Mduyethanhchinh->getlop();
-            $total_records = $this->Mduyethanhchinh->getTotalRecord($dieukien);
+            $total_records = $this->Mchitietsinhvien->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['hanhchinh']  = $this->Mduyethanhchinh->getdondangky($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['minhchung']  = $this->Mchitietsinhvien->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
                 // pr($params);
-                $config['base_url']     = base_url().'quanlyhanhchinh';
+                $config['base_url']     = base_url().'quanlyminhchung';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

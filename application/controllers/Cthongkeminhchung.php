@@ -17,26 +17,48 @@
                 return redirect(base_url().'403_Forbidden');
             }
             
-            if($action = $this->input->post('action')){
-                if($action=='search'){
-                    $filtermc = array(
-                        'tenct'           => $this->input->post('tenct'),
-                        'lop'      => $this->input->post('lop')
+            if($data2 = $this->input->post('giatri')){
+                pr($data2);
+            }
+            $action = $this->input->post('action');
+            switch($action){
+                case 'get_dstheosinhvien':{
+                    $filter = array(
+                        'action'           => 'get_dstheosinhvien',
+                        'lop'      => $this->input->post('lop'),
+                        'tenct'      => ''
                     );
                     // luu vao sesssion
-                    $this->session->set_userdata("filtermc", $filtermc);
-                    redirect("thongkeminhchung");
-                }elseif ($action=='reset') {
-                    unset($_SESSION['filtermc']);
-                    redirect("thongkeminhchung");
+                    $this->session->set_userdata("filterthongke", $filter);
+                    $this->get_dstheosinhvien($page,$filter);
+                    break;
                 }
-            };
-
-            if($Mamc = $this->input->post('delete')){
-                $deletect      = $this->delete($Mamc);
+                case 'get_dstheolop':{
+                    $filter = array(
+                        'action'           => 'get_dstheolop',
+                        'lop'      => $this->input->post('lop'),
+                        'tenct'      => $this->input->post('tenct')
+                    );
+                    // luu vao sesssion
+                    $this->session->set_userdata("filterthongke", $filter);
+                    $this->get_dstheolop($page,$filter);
+                    break;
+                }
+                case 'get_dstheochuongtrinh':{
+                    $filter = array(
+                        'action'           => 'get_dstheochuongtrinh',
+                        'lop'      => '',
+                        'tenct'      => $this->input->post('tenct')
+                    );
+                    // luu vao sesssion
+                    $this->session->set_userdata("filterthongke", $filter);
+                    $this->get_dstheochuongtrinh($page,$filter);
+                    break;
+                }
             }
 
-            $filter = $this->session->userdata("filtermc");
+            $filter = $this->session->userdata("filterthongke");
+            
             $temp = array(
                 'template'  => 'Vthongkeminhchung',
                 'data'      => array(
@@ -44,11 +66,34 @@
                     'message' => getMessages(),
                     'tenct' => $filter['tenct'],
                     'lop' => $filter['lop'],
+                    'action' => $filter['action'],
                     'session'   => $session
                 ),
             );
             // pr($temp['data']['params']);
             $this->load->view('layout/Vcontent', $temp);
+        }
+
+
+        public function get_dstheosinhvien($page,$filter){
+            $data1 = $this->get_params($page-1, $filter);
+            // pr($data1);
+            echo json_encode($data1);
+            exit();
+        }
+
+        public function get_dstheolop($page,$filter){
+            $data1 = $this->get_params($page-1, $filter);
+            // pr($data1);
+            echo json_encode($data1);
+            exit();
+        }
+
+        public function get_dstheochuongtrinh($page,$filter){
+            $data1 = $this->get_params($page-1, $filter);
+            // pr($data1);
+            echo json_encode($data1);
+            exit();
         }
         
         private function pagination(){
@@ -65,19 +110,35 @@
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 25;
+            $limit_per_page = 5;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
             $params['tenct'] = $this->Mthongkeminhchung->getchuongtrinh();
             $params['lop'] = $this->Mthongkeminhchung->getlop();
-            $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+            if(!empty($dieukien['action'])&&$dieukien['action']=='get_dstheosinhvien'){
+                $total_records = $this->Mthongkeminhchung->getTotalsinhvien($dieukien);
+            }elseif($dieukien['action']=='get_dstheolop'){
+                $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+            }elseif($dieukien['action']=='get_dstheochuongtrinh'){
+                $total_records = $this->Mthongkeminhchung->getTotalchuongtrinh($dieukien);
+            }else{
+                $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+            }
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                if($dieukien['action']=='get_dstheosinhvien'){
+                    $params['minhchung']  = $this->Mthongkeminhchung->getlistsinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                }elseif($dieukien['action']=='get_dstheolop'){
+                    $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                }elseif($dieukien['action']=='get_dstheochuongtrinh'){
+                    $params['minhchung'] = $this->Mthongkeminhchung->getlistchuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                }else{
+                    $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                }
                 // pr($params);
                 $config['base_url']     = base_url().'thongkeminhchung';
                 $config['total_rows']   = $total_records;

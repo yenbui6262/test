@@ -1,14 +1,14 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Danh sách hành chính</li>
+        <li class="breadcrumb-item active" aria-current="page">Danh sách thủ tục hành chính</li>
     </ol>
 </nav>
 <br>
 <div class="container-fluid">
     <div class="panel panel-default">
             <div class="panel-heading text-left">
-                <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách hành chính</span</h4>
+                <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách thủ tục hành chính</span</h4>
             </div>
             <br>
             <form action="{$url}hanhchinh" method="POST" id="myForm">
@@ -18,27 +18,20 @@
                             <input type="text" name="mahc">
                         </div>
                     </div>
-                    <div class="col-md-4 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên hành chính:</span>
-                        </div>
-                        <input type="text" id="tenhc" name="tenhc" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
+                    <div class="form-group col-xl-4">
+                        <label for="tenhc">Tên thủ tục:</label>
+                        <input type="text" id="tenhc" class="form-control" name="tenhc"  value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                     </div>
-
-                    <div class="col-md-8 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
-                        </div>
-                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+                    <div class="form-group col-xl-8">
+                        <label for="mota">Mô tả:</label>
+                        <input type="text" id="mota" class="form-control" name="mota"  value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                     </div>
                     
-                    <div class="col-md-5 form-group">
-                        <div class="row buttonform">
-                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button id="suahc" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
-                            <button id="themhc"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
-                        </div>
+                    <div class="col-12 form-group text-right">
+                        <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        <button id="suahc" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
+                        <button id="themhc"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
                     </div>
                 </div>
             </form>
@@ -49,7 +42,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 3%">STT</th>
-                                <th class="text-center" style="width: 15%">Tên hành chính</th>
+                                <th class="text-center" style="width: 15%">Tên thủ tục</th>
                                 <th class="text-center" style="width: 42%">Mô tả</th>
                                 <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>

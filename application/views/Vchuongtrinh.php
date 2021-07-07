@@ -18,40 +18,29 @@
                             <input type="text" name="mact">
                         </div>
                     </div>
-                    <div class="col-md-6 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">Tên chương trình:</span>
-                        </div>
-                        <input type="text" id="tenct" name="tenct" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
+                    <div class="form-group col-xl-3">
+                        <label for="tenct">Tên chương trình:</label>
+                        <input type="text" id="tenct" class="form-control" name="tenct"  value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
                     </div>
-
-                    <div class="col-md-3 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Thời gian bắt đầu:</span>
-                        </div>
-                        <input type="date" id="thoigianbd" class="form-control" name="thoigianbd"  aria-label="Small" aria-describedby="basic-addon1" value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
+                    <div class="form-group col-xl-5">
+                        <label for="mota">Mô tả:</label>
+                        <input type="text" id="mota" class="form-control" name="mota"  value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                     </div>
-                    <div class="col-md-3 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2">Thời gian bắt đầu:</span>
-                        </div>
-                        <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  aria-label="Small" aria-describedby="basic-addon2" value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
+                    <div class="form-group col-xl-2">
+                        <label for="thoigianbd">Thời gian bắt đầu:</label>
+                        <input type="date" id="thoigianbd" class="form-control" name="thoigianbd"  value="{if !empty($thoigianbd)}{$thoigianbd}{/if}" placeholder="Nhập nội dung">
                     </div>
-                    <div class="col-md-7 input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Mô tả:</span>
-                        </div>
-                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+                    <div class="form-group col-xl-2">
+                        <label for="thoigiankt">Thời gian kết thúc:</label>
+                        <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  value="{if !empty($thoigiankt)}{$thoigiankt}{/if}" placeholder="Nhập nội dung">
+                    </div>
+                    <div class="col-12 form-group text-right">
+                        <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        <button id="suact" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
+                        <button id="themct"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
                     </div>
                     
-                    <div class="col-md-5 form-group">
-                        <div class="row buttonform">
-                            <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
-                            <button id="suact" type="submit" name="action" value="edit" class="btn btn-warning" style="display:none;"><i class="fas fa-tools" aria-hidden="true"></i>&nbsp;Sửa</button>
-                            <button id="themct"  type="submit" name="action" value="insert" class="btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i class="fas fa-spinner" aria-hidden="true"></i>&nbsp;Reset</button>
-                        </div>
-                    </div>
                 </div>
             </form>
         <div>
@@ -72,7 +61,7 @@
                         {if !empty($params['chuongtrinh'])}
                             {foreach $params['chuongtrinh'] as $key => $val}
                             <tr>
-                                <td class="text-center">{$key+1}</td>
+                                <td class="text-center">{$params['stt']++}</td>
                                 <td>{$val.sTenCT}</td>
                                 <td>{$val.tMota}</td>
                                 <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>

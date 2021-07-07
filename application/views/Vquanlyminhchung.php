@@ -63,7 +63,6 @@
                                 <th class="text-center" style="width: 3%">STT</th>
                                 <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 42%">Link minh chứng</th>
-                                <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
@@ -73,10 +72,10 @@
                                 <td class="text-center">{$key+1}</td>
                                 <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.tLink}</td>
-                                <td class="text-center">
+                                <!-- <td class="text-center">
                                     <button  type="submit"  name="delete"value="{$val['PK_sMaMC']}" class="btn btn-danger btnDelete"
                                      onclick="return confirm('Bạn có muốn xóa minh chứng này không?');"><i class="fas fa-trash"></i></button>
-                                </td>
+                                </td> -->
                             </tr>
                             {/foreach}
                         {else}

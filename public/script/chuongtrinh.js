@@ -10,9 +10,9 @@ function sua(key,  mact) {
     let thoigianbd = tds[3].textContent.trim();
     let thoigiankt = tds[4].textContent.trim();
 
-    from = thoigianbd.split("-");
+    from = thoigianbd.split("/");
     tgbdmoi = from[2]+'-'+from[1]+'-'+from[0];
-    from = thoigiankt.split("-");
+    from = thoigiankt.split("/");
     tgktmoi = from[2]+'-'+from[1]+'-'+from[0];
     
     document.querySelector("input[name='mact']").value = mact;

@@ -23,6 +23,9 @@
     <link rel="stylesheet" type="text/css" href="{$url}public/style/tuvan_minhchung.css?ver=1.0">
 	<!-- animation css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script>
+        link_url='{$url}';
+    </script>
 </head>
 <body>
 <div class="container-fluid p-0">
@@ -56,7 +59,7 @@
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{$url}Chuongtrinh">Danh sách chương trình</a>
-                        <a class="dropdown-item" href="{$url}hanhchinh">Danh sách hành chính</a>
+                        <a class="dropdown-item" href="{$url}hanhchinh">Danh sách thủ tục hành chính</a>
                     </div>
                 </li>
                 {elseif ($session['maquyen'] == 2)}

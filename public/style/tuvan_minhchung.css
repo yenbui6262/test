@@ -182,7 +182,7 @@ textarea {
 /* PAGINATION */
 
 .pagination {
-    margin: 0 50%;
+    justify-content: center !important;
 }
 
 .pagination li a {

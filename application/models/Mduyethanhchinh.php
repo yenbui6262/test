@@ -37,7 +37,7 @@
         {
             $this->dieukien($dieukien);
             $res = $this->db->order_by("dky.iTrangThai,tk.sHoTen")
-                        -> select("dky.PK_sMaDangKy, tk.sHoTen, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai")
+                        -> select("dky.PK_sMaDangKy, tk.sHoTen, tk.PK_sMaTK, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
                         -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -68,13 +68,6 @@
             $this->db->where('PK_sMaDangKy', $Madon);
             $this->db->update('tbl_dangkydon',array('iTrangThai' => $Trangthai));
     		return $this->db->affected_rows();
-        }
-
-        public function deletedondangky($Madon){
-            $this->db->where('PK_sMaDangKy', $Madon);
-            $this->db->delete('tbl_dangkydon');
-            return $this->db->affected_rows();
-            
         }
         
     }

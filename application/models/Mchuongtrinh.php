@@ -34,7 +34,8 @@
         public function getChuongtrinh($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("sTenCT")
+            $res = $this->db->order_by("dThoiGIanKT",'DESC')
+                        ->order_by("sTenCT")
                         ->select("*")
                         ->limit($limit, $start)
                         ->get("tbl_chuongtrinh")->result_array();
