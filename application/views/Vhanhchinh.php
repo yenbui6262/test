@@ -8,23 +8,24 @@
 <div class="container-fluid">
     <div class="panel panel-default">
             <div class="panel-heading text-left">
-                <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách thủ tục hành chính</span</h4>
+                <h4 style="color: #fff; margin: 0" class="text-center">Danh sách hành chính</h4>
             </div>
             <br>
             <form action="{$url}hanhchinh" method="POST" id="myForm">
                 <div class="row">
                     <div style="display:none" class="col-12">
-                        <div class="input-group">
+                        <div class="form-group">
                             <input type="text" name="mahc">
                         </div>
                     </div>
-                    <div class="form-group col-xl-4">
-                        <label for="tenhc">Tên thủ tục:</label>
-                        <input type="text" id="tenhc" class="form-control" name="tenhc"  value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
+                    <div class="col-md-4 form-group">
+                        <label id="inputGroup-sizing-sm">Tên hành chính:</label>
+                        <input type="text" id="tenhc" name="tenhc" class="form-control"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                     </div>
-                    <div class="form-group col-xl-8">
-                        <label for="mota">Mô tả:</label>
-                        <input type="text" id="mota" class="form-control" name="mota"  value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
+
+                    <div class="col-md-8 form-group">
+                        <label id="basic-addon3">Mô tả:</label>
+                        <input type="text" id="mota" class="form-control" name="mota"  aria-label="Small" aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}" placeholder="Nhập nội dung">
                     </div>
                     
                     <div class="col-12 form-group text-right">

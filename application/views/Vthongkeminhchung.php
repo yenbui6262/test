@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="panel panel-default">
             <div class="panel-heading text-left">
-                <h4 style="color: #fff; margin: 0" class="text-center"><span>Thống kê minh chứng</span</h4>
+                <h4 style="color: #fff; margin: 0" class="text-center">Thống kê minh chứng</h4>
             </div>
             <br>
             <form action="{$url}thongkeminhchung" method="POST" class="insert" id="myForm">

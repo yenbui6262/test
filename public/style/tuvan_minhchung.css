@@ -375,31 +375,6 @@ thead>tr>th {
     border-bottom: 2px solid yellow;
 }
 
-.input-group-sm input {
-    border: 1px solid rgb(185, 185, 185) !important;
-    border-radius: 0px 10px 10px 0px;
-    font-size: 14px;
-    padding-left: 10px;
-}
-
-.input-group-sm div .input-group-text {
-    color: black !important;
-    font-weight: 600;
-}
-
-.input-group-sm input:focus {
-    border: 1px solid #1670BE;
-    box-shadow: 0 0 3px #1670BE;
-    outline-offset: 0px;
-    outline: none;
-}
-
-.buttonform button {
-    padding: 2px 5px !important;
-    font-size: 16px !important;
-    margin-left: 10px !important;
-}
-
 .btn-secondary {
     background-color: #2e9e92 !important;
     border-color: #367fa9 !important;
@@ -546,35 +521,6 @@ table,
     margin: 0px !important;
 }
 
-.table-bordered>thead>tr>th,
-.table-bordered>tbody>tr>th,
-.table-bordered>tfoot>tr>th,
-.table-bordered>thead>tr>td,
-.table-bordered>tbody>tr>td,
-.table-bordered>tfoot>tr>td,
-.table-bordered {
-    border-color: #ccc !important;
-}
-
-.table-bordered>thead>tr>th,
-.table-bordered>thead>tr>td {
-    border-width: 1px;
-}
-
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
-    vertical-align: middle !important;
-}
-
-.table-striped>tbody>tr:hover,
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #ecf5f9;
-}
-
 .sidebar-form {
     border: none !important;
 }
@@ -585,52 +531,12 @@ table,
     border-color: #d2d6de !important;
 } */
 
-.badge {
-    border-radius: 4px;
-}
-
-.badge-warning {
-    color: #000;
-    background-color: #ffc107;
-}
-
-.badge-warning:hover {
-    background-color: #c67605;
-}
-
-.badge-success {
-    color: #fff;
-    background-color: #28a745;
-}
-
-.badge-success:hover {
-    background-color: #356635;
-}
-
-.badge-danger {
-    color: #fff;
-    background-color: #dc3545;
-}
-
-.badge-danger:hover {
-    background-color: #d04754;
-}
-
 
 /* ========================== */
 
 .content-wrapper,
 .main-footer {
     margin-left: 0 !important;
-}
-
-.select2-container--default .select2-selection--single,
-.select2-selection .select2-selection--single {
-    border-radius: 4px;
-}
-
-.buttonform {
-    padding-left: 5px;
 }
 
 
@@ -664,4 +570,8 @@ table,
 
 .bg-darkblue {
     background-color: #337ab7;
+}
+
+td {
+    vertical-align: middle!important;
 }
