@@ -52,7 +52,7 @@
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterthongke", $filter);
-                    pr($filter);
+                    // pr($filter);
                     $this->get_dstheochuongtrinh($page,$filter);
                     break;
                 }
