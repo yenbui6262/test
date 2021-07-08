@@ -48,7 +48,7 @@
             </form>
         <div>
             <div class="table-responsive">
-                <form  action="{$url}quanlyminhchung" method="POST" id='ds'>
+                <form  action="{$url}chitietminhchung" method="POST" id='ds'>
                     <table class="table table-hover table-striped table-bordered border-dark" id="example">
                     {if empty($action)||$action=='get_dstheolop'}
                             <thead>
@@ -68,9 +68,7 @@
                                 <td class="text-center">{$val.sTenLop}</td>
                                 <td>{$val.sTenCT}</td>
                                 <td class="text-center">{$val.sominhchung}</td>
-                                <td class="text-center">
-                                    <a class="btn btn-info btnDelete" title="Chi tiết" href="quanlyminhchung?lop={$val.sTenLop}&tenct={$val.sTenCT}&sominhchung={$val.sominhchung}"><i class="fas fa-eye"></i></a>
-                                </td>
+                                <td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop' class='btn btn-sm btn-primary' value='{$val["PK_sMaLop"]},{$val["PK_sMaChuongTrinh"]}'><span class='fas fa-eye'></span></button></td>
                             </tr>
                             {/foreach}
                         {else}
@@ -96,7 +94,7 @@
                                 <td class='text-center'>{$val["PK_sMaTK"]}</td>
                                 <td class='text-center'>{$val["sTenLop"]}</td>
                                 <td class='text-center'>{$val['sochuongtrinh']}</td>
-                                <td class='text-center'><button type='button' title='Chi tiết'  class='btn btn-sm btn-primary' value='{$val["PK_sMaTK"]}'><span class='fas fa-eye'></span></button></td>
+                                <td class='text-center'><button type='submit' name='chitietsinhvien' title='Chi tiết'  class='btn btn-sm btn-primary' value='{$val["PK_sMaTK"]}'><span class='fas fa-eye'></span></button></td>
                             </tr>
                             {/foreach}
                         {else}
@@ -118,7 +116,7 @@
                                 <td class='text-center'>{$params['stt']++}</td>
                                 <td >{$val['sTenCT']}</td>
                                 <td class='text-center'>{$val["soluong"]}</td>
-                                <td class='text-center'><button type='button' title='Chi tiết' name='chitiettbdv' class='btn btn-sm btn-primary chitiettbdv' value='0'><span class='fas fa-eye'></span></button></td>
+                                <td class='text-center'><button type='submit' title='Chi tiết' name='chitietct' class='btn btn-sm btn-primary' value='{$val["PK_sMaChuongTrinh"]}'><span class='fas fa-eye'></span></button></td>
                             </tr>
                             {/foreach}
                         {else}

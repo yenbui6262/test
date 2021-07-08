@@ -177,8 +177,15 @@ textarea {
     resize: none !important;
     height: 200px !important;
 }
+.timkiem{
+    padding-top:32px;
+}
 
-
+@media only screen and (max-width: 992px) {
+    .timkiem{
+        padding-top:0;
+    }
+}
 /* PAGINATION */
 
 .pagination {

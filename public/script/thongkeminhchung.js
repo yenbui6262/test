@@ -51,7 +51,7 @@ $(document).ready(function(){
                             option+="<td class='text-center'>"+array['minhchung'][i]["PK_sMaTK"]+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]["sTenLop"]+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]['sochuongtrinh']+"</td>";
-                            option+="<td class='text-center'><button type='submit' title='Chi tiết' class='btn btn-sm btn-primary' value='"+ array['minhchung'][i]["PK_sMaTK"] +"'><span class='fas fa-eye'></span></button></td>";
+                            option+="<td class='text-center'><button type='submit' name='chitietsinhvien' title='Chi tiết'  class='btn btn-sm btn-primary' value='"+array['minhchung'][i]['PK_sMaTK']+"'><span class='fas fa-eye'></span></button></td>";
                             option+="</tr>";
                             
                             }
@@ -97,7 +97,7 @@ $(document).ready(function(){
                                 option+="<td class='text-center'>"+array['minhchung'][i]['sTenLop']+"</td>";
                                 option+="<td >"+array['minhchung'][i]['sTenCT']+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['sominhchung']+"</td>";
-                                option+="<td class='text-center'><button type='button' title='Chi tiết' name='chitiettbdv' class='btn btn-sm btn-primary chitiettbdv' value='0'><span class='fas fa-eye'></span></button></td>";
+                                option+="<td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop' class='btn btn-sm btn-primary' value='"+array['minhchung'][i]['PK_sMaLop']+","+array['minhchung'][i]['PK_sMaChuongTrinh']+"'><span class='fas fa-eye'></span></button></td>";
                                 option+="</tr>";
                                 
                             }
@@ -137,7 +137,7 @@ $(document).ready(function(){
                                 option+="<tr><td class='text-center'>"+ array['stt']++ +"</td>";
                                 option+="<td >"+array['minhchung'][i]['sTenCT']+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['soluong']+"</td>";
-                                option+="<td class='text-center'><button type='button' title='Chi tiết' name='chitiettbdv' class='btn btn-sm btn-primary chitiettbdv' value='0'><span class='fas fa-eye'></span></button></td>";
+                                option+="<td class='text-center'><button type='submit' title='Chi tiết' name='chitietct' class='btn btn-sm btn-primary' value='"+array['minhchung'][i]['PK_sMaChuongTrinh']+"'><span class='fas fa-eye'></span></button></td>";
                                 option+="</tr>";
                                 
                                 }

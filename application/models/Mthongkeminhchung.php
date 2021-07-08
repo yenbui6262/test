@@ -11,7 +11,7 @@
             $this->dieukien($dieukien);
             $res = $this->db->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         ->order_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
-                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung")
+                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung,ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -36,7 +36,7 @@
             $this->dieukien($dieukien);
             $res = $this->db->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         ->order_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
-                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung")
+                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung,ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -81,7 +81,7 @@
         public function getlistchuongtrinh($limit, $start,$dieukien){
             $this->dieukien($dieukien);
             $this->db->group_by("ct.PK_sMaChuongTrinh")
-                     ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
+                     ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                      ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
@@ -91,7 +91,7 @@
         public function getTotalchuongtrinh($dieukien=null){
             $this->dieukien($dieukien);
             $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
-                            ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT")
+                            ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh")
                             ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                             ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                             ->from("tbl_taikhoan tk")->count_all_results();

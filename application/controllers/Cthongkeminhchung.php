@@ -17,9 +17,6 @@
                 return redirect(base_url().'403_Forbidden');
             }
             
-            if($data2 = $this->input->post('giatri')){
-                pr($data2);
-            }
             $action = $this->input->post('action');
             switch($action){
                 case 'get_dstheosinhvien':{
