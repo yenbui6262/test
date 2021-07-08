@@ -6,6 +6,7 @@ class Mdk_minhchung extends My_Model
             $res = $this->db-> select("PK_sMaChuongTrinh")
                         ->join("tbl_chuongtrinh","FK_sMaCT=PK_sMaChuongTrinh")
                         ->where('FK_sMaSV ', $masv)
+                        ->limit(50)
                         ->from('tbl_minhchung');
             $count = $this->db->count_all_results();
             return $count;
@@ -31,7 +32,7 @@ class Mdk_minhchung extends My_Model
             $res=$this->db->select("*")
                     ->where('FK_sMaSV',$masv)
                     ->join("tbl_chuongtrinh","PK_sMaChuongTrinh=FK_sMaCT")
-                    ->order_by("PK_sMaChuongTrinh asc")
+                    ->order_by("dThoiGIanKT desc,PK_sMaChuongTrinh ")
                     ->limit($limit, $start);
             return $this->db->get("tbl_minhchung")->result_array();
 

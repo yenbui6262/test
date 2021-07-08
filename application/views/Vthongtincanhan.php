@@ -15,7 +15,7 @@
 {$mlop = $sinhvien['thongtincoban'].sFK_Lop}
 <div class="container">
 
-    <div class="card mb-5 p-0">
+    <div class="card mb-3" style="margin-top: -25px;">
 
         <div class="card-header text-white text-left" style="background-color:#337ab7">
             <h4 class="text-center"><i class="fas fa-user-edit"></i> <span style="color: white;">&nbsp;THÔNG
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" name="action" value="update" class="btn btn-primary capnhat">Cập nhật thông tin</button>
+                    <button type="submit" name="action" value="update" class="btn btn-success capnhat">Cập nhật thông tin</button>
                 </div>
             </form>
         </div>

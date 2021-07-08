@@ -20,6 +20,11 @@ class Cdk_hanhchinh extends MY_Controller {
                         'iTrangThai'        =>"0"
 
                     );
+                    // pr($donhc);exit();
+                if($post_data['Ma'] == 0 ){
+                    setMessages("warning", "Thông tin không được để trống");
+                    return redirect(current_url());
+                }
                 if($this->Mdk_hanhchinh->findDon($donhc)){
                     setMessages("warning", "Đã Đăng ký đơn");
                     return redirect(current_url());

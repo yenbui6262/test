@@ -55,7 +55,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="chuongtrinh">Chương trình lưu minh chứng:</label>
-                        <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control select2">
+                        <select name="minhchung[chuongtrinh]" id="chuongtrinh" class="form-control ">
                             <option value="0" readonly hidden>--Chọn chương trình--</option>
                             {foreach $sinhvien['chuongtrinh'] as $k => $v}
                             <option value="{$v.PK_sMaChuongTrinh}">{$v.sTenCT}</option>
@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="form-group col-xl-4">
                     <label for="chuongtrinh">Tên chương trình:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" placeholder="Tên chương trình">
                 </div>
                 <div class="form-group col-xl-4">
                     <label for="tenhc">Thời gian bắt đầu:</label>
@@ -119,7 +119,7 @@
                         {if (!empty($params['minhchung']))}
                         {foreach $params['minhchung'] as $k => $v}
                         <tr>
-                            <td class="text-center">{$k+1}</td>
+                            <td class="text-center">{$params['stt']++}</td>
                             <td>{$v.sTenCT}</td>
                             <td>{$v.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanBD))}</td>
@@ -131,9 +131,9 @@
                                 {foreach $sinhvien['chuongtrinh'] as $key => $val}
                                 {if !empty($val.PK_sMaChuongTrinh) && $val.PK_sMaChuongTrinh==$v.FK_sMaCT }
                                 <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
-                                    class="btn btn-secondary btnEdit" style="color:white;" title="Sửa minh chứng"
+                                    class="btn btn-warning btnEdit" title="Sửa minh chứng"
                                     data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i
-                                        class="fas fa-user-edit"></i></a>
+                                        class="fas fa-tools"></i></a>
                                 <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');"
                                     name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
                                     title="Xóa minh chứng"><i class="fas fa-trash"></i></button>

@@ -11,6 +11,7 @@ class Mdk_hanhchinh extends My_Model
         $this->db->select("PK_sMaHanhChinh")
                 ->where('FK_sMaSV',$masv)
                 ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
+                ->limit(25)
                  ->from('tbl_dangkydon');
         $count = $this->db->count_all_results();
         return $count;
@@ -40,7 +41,7 @@ class Mdk_hanhchinh extends My_Model
         $this->db->select("*")
                 ->where('FK_sMaSV',$masv)
                 ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
-                ->order_by('PK_sMaHanhChinh')
+                ->order_by('dTGThem desc,PK_sMaHanhChinh')
                 ->limit($limit, $start);
         $res= $this->db->get("tbl_dangkydon")->result_array();
         return $res;

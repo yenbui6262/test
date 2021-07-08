@@ -51,7 +51,7 @@
                     <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý hành chính</a>
+                    <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý thủ tục</a>
                 </li>
                 {/if}
                 {if ($session['maquyen'] == 1)}

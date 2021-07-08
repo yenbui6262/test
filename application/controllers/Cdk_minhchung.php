@@ -20,6 +20,10 @@ class Cdk_minhchung extends MY_Controller
                     'tLink'     => $post_data['ilinkdrive']
                 );
                 // pr($data_insert);exit();
+                if($post_data['ichuongtrinh'] == 0 || $post_data['ilinkdrive'] == null ){
+                    setMessages("warning", "Thông tin không được để trống");
+                    return redirect(current_url());
+                }
                 if($this->Mdk_minhchung->findMC($data_insert)){
                     setMessages("warning", "Đã tồn tại minh chứng");
                     return redirect(current_url());
@@ -36,7 +40,11 @@ class Cdk_minhchung extends MY_Controller
                 $data_insert = array(
                     'tLink'     => $post_data['linkdrive']
                 );
-                // pr($mamc);exit();
+                // pr($data_insert);exit();
+                if($mamc == 0 || $post_data['linkdrive'] == null ){
+                    setMessages("warning", "Thông tin không được để trống");
+                    return redirect(current_url());
+                }
                 $res = $this->Mdk_minhchung->updateMinhchung($mamc,$data_insert);
                 if($res > 0){
                     setMessages("success", "Sửa minh chứng thành công");
