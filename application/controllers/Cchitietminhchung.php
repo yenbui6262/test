@@ -44,24 +44,28 @@
             }
 
 
+            $filter = $this->session->userdata("filterqlmc");
             if($action = $this->input->post('action')){
                 if($action=='search'){
-                    $filtermc = $this->session->userdata("filterqlmc");
-                    $filtermc['hoten'] = $this->input->post('hoten');
-                    // luu vao sesssion
-                    $this->session->set_userdata("filterqlmc", $filtermc);
-                    redirect("chitietminhchung");
+                    $dob = date("Y-m-d", strtotime($this->input->post('dob'))); 
+                    $filter['filterhoten'] = $this->input->post('hoten');
+                    $filter['filtermasv'] = $this->input->post('masv');
+                    $filter['filterdob'] = $this->input->post('dob');
                 }
+            }else{
+                $filter['filterhoten'] = '';
+                    $filter['filtermasv'] = '';
+                    $filter['filterdob'] = '';
             };
-
-            $filter = $this->session->userdata("filterqlmc");
-
             $temp = array(
                 'template'  => 'Vchitietminhchung',
                 'data'      => array(
-                    'params'    => $this->get_params($page-1, $filter),
-                    'message' => getMessages(),
-                    'session'   => $session
+                    'params'        => $this->get_params($page-1, $filter),
+                    'filterhoten'   => $filter['filterhoten'],
+                    'filtermasv'    => $filter['filtermasv'],
+                    'filterdob'     => $filter['filterdob'],
+                    'message'       => getMessages(),
+                    'session'       => $session
                 ),
             );
             // pr($temp['data']['params']);

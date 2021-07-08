@@ -46,6 +46,15 @@
             if(!empty($dieukien['masv'])){
                 $this->db->where('tk.PK_sMaTK', $dieukien['masv']);
             }
+            if(!empty($dieukien['filtermasv'])){
+                $this->db->where('tk.PK_sMaTK', $dieukien['filtermasv']);
+            }
+            if(!empty($dieukien['filterhoten'])){
+                $this->db->like('tk.sHoTen', $dieukien['filterhoten']);
+            }
+            if(!empty($dieukien['filterdob'])){
+                $this->db->where('tk.dNgaySinh', $dieukien['filterdob']);
+            }
             
         }
 

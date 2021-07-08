@@ -122,7 +122,7 @@
             }elseif($dieukien['action']=='get_dstheochuongtrinh'){
                 $total_records = $this->Mthongkeminhchung->getTotalchuongtrinh($dieukien);
             }else{
-                $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+                $total_records = 0;
             }
             if ($total_records > 0){
                 // get current page records
@@ -134,8 +134,6 @@
                     $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
                 }elseif($dieukien['action']=='get_dstheochuongtrinh'){
                     $params['minhchung'] = $this->Mthongkeminhchung->getlistchuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
-                }else{
-                    $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
                 }
                 // pr($params);
                 $config['base_url']     = base_url().'thongkeminhchung';

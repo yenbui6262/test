@@ -57,7 +57,7 @@
             <div class="table-responsive">
                 <form action="{$url}chitietminhchung" method="POST" id='ds'>
                     <table class="table table-hover table-striped table-bordered border-dark" id="example">
-                        {if empty($action)||$action=='get_dstheolop'}
+                        {if $action=='get_dstheolop'}
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 3%">STT</th>

@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="thongkeminhchung">Trang chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Quản lý minh chứng</li>
+        <li class="breadcrumb-item active" aria-current="page">Chi tiết minh chứng</li>
     </ol>
 </nav>
 <br>
@@ -45,25 +45,25 @@
                     {/if}
                 </div>
             </div>
-            <form action="{$url}quanlyminhchung" method="POST" class="insert" id="myForm">
+            <form action="" method="POST" class="insert" id="myForm">
                 <div class="row">
                     <div class="col-md-4 form-group" {if !empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label id="inputGroup-sizing-sm">Họ tên:</label>
                         <input type="text" id="hoten" name="hoten" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if !empty($hoten)}{$hoten}{/if}"
+                            aria-describedby="inputGroup-sizing-sm" value="{if !empty($filterhoten)}{$filterhoten}{/if}"
                             placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-4 form-group" {if !empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="masv">Mã sinh viên:</label>
-                        <input type="text" id="masv" class="form-control">
+                        <input type="text" id="masv" name="masv" class="form-control" aria-label="Small" value="{if !empty($filtermasv)}{$filtermasv}{/if}" placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-4 form-group" {if !empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="dob">Ngày sinh:</label>
-                        <input type="date" id="dob" class="form-control">
+                        <input type="date" id="dob" name="dob" class="form-control" value="{if !empty($filterdob)}{$filterdob}{/if}">
                     </div>
                     <div class="col-md-4 form-group" {if empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="tenct">Tên chương trình:</label>
-                        <input type="text" id="tenct" class="form-control" aria-label="Small"
+                        <input type="text" id="tenct" name="tenct" class="form-control" aria-label="Small"
                             placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-4 form-group" {if empty($params['thongtinsv'])}style="display:none" {/if}>
