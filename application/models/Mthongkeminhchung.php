@@ -27,7 +27,12 @@
             if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'&&$dieukien['action']!='get_dstheochuongtrinh'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
-           
+            if(!empty($dieukien['thoigianbd'])){
+                $this->db->where('ct.dThoiGIanBD >=', $dieukien['thoigianbd']);
+            }
+            if(!empty($dieukien['thoigiankt'])){
+                $this->db->where('ct.dThoiGIanKT <=', $dieukien['thoigiankt']);
+            }
             
         }
 

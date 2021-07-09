@@ -16,14 +16,22 @@
                 $this->session->sess_destroy();
                 return redirect(base_url().'403_Forbidden');
             }
-            
+
+            if($reset = $this->input->post('reset')){
+                if($reset=='reset'){
+                    unset($_SESSION['filterthongke']);
+                    redirect("thongkeminhchung");
+                }
+            };
             $action = $this->input->post('action');
             switch($action){
                 case 'get_dstheosinhvien':{
                     $filter = array(
                         'action'           => 'get_dstheosinhvien',
                         'lop'      => $this->input->post('lop'),
-                        'tenct'      => ''
+                        'tenct'      => '',
+                        'thoigianbd'      => '',
+                        'thoigiankt'      => ''
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterthongke", $filter);
@@ -34,7 +42,9 @@
                     $filter = array(
                         'action'           => 'get_dstheolop',
                         'lop'      => $this->input->post('lop'),
-                        'tenct'      => $this->input->post('tenct')
+                        'tenct'      => $this->input->post('tenct'),
+                        'thoigianbd'      => $this->input->post('thoigianbd'),
+                        'thoigiankt'      => $this->input->post('thoigiankt')
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterthongke", $filter);
@@ -45,7 +55,9 @@
                     $filter = array(
                         'action'           => 'get_dstheochuongtrinh',
                         'lop'      => '',
-                        'tenct'      => $this->input->post('tenct')
+                        'tenct'      => $this->input->post('tenct'),
+                        'thoigianbd'      => $this->input->post('thoigianbd'),
+                        'thoigiankt'      => $this->input->post('thoigiankt')
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterthongke", $filter);
@@ -64,11 +76,13 @@
                     'message' => getMessages(),
                     'tenct' => $filter['tenct'],
                     'lop' => $filter['lop'],
+                    'thoigianbd'      => $filter['thoigianbd'],
+                    'thoigiankt'      => $filter['thoigiankt'],
                     'action' => $filter['action'],
                     'session'   => $session
                 ),
             );
-            // pr($temp['data']['params']);
+            // pr($temp['data']);
             $this->load->view('layout/Vcontent', $temp);
         }
 

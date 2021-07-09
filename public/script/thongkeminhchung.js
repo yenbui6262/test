@@ -1,16 +1,29 @@
 $(document).on('change','#thongke',function(){
-    if (document.getElementById("thongke").value == "sinhvien") {
-        document.getElementById("chonct").style.display = "none";
-        document.getElementById("chonlop").style.display = "inline-block";
+    if ($("#thongke").val() == "sinhvien") {
+        $("#chonlop").css('display','inline-block');
+        $("#chonct").css('display','none');
+        $("#chonthoigianbd").css('display','none');
+        $("#chonthoigiankt").css('display','none');
 	}
-    if (document.getElementById("thongke").value == "lop") {
-        document.getElementById("chonlop").style.display = "inline-block";
-        document.getElementById("chonct").style.display = "inline-block";
+    if ($("#thongke").val() == "lop") {
+        $("#chonlop").css('display','inline-block');
+        $("#chonct").css('display','inline-block');
+        $("#chonthoigianbd").css('display','inline-block');
+        $("#chonthoigiankt").css('display','inline-block');
 	}
-    if (document.getElementById("thongke").value == "chuongtrinh") {
-        document.getElementById("chonlop").style.display = "none";
-        document.getElementById("chonct").style.display = "inline-block";
+    if ($("#thongke").val() == "chuongtrinh") {
+        $("#chonlop").css('display','none');
+        $("#chonct").css('display','inline-block');
+        $("#chonthoigianbd").css('display','inline-block');
+        $("#chonthoigiankt").css('display','inline-block');
 	}
+    if ($("#thongke").val() == "tatca") {
+        $("#chonlop").css('display','none');
+        $("#chonct").css('display','none');
+        $("#chonthoigianbd").css('display','none');
+        $("#chonthoigiankt").css('display','none');
+	}
+    
 });
 $(document).ready(function(){
     $url=link_url;
@@ -20,12 +33,14 @@ $(document).ready(function(){
 
         sinhvien = $("#thongke").val();
         lop = $("#lop").val();
+        thoigianbd = $("#thoigianbd").val();
+        thoigiankt = $("#thoigiankt").val();
         if(lop=='tatca'){
-            lop=''
+            lop='';
         }
         tenct = $("#tenct").val();
         if(tenct=='tatca'){
-            tenct=''
+            tenct='';
         }
 
         if (sinhvien=='sinhvien') {
@@ -78,7 +93,7 @@ $(document).ready(function(){
             $.ajax({
                 type: 'POST',
                 url: $url+'thongkeminhchung',
-                data: {'action':'get_dstheolop','lop':lop,'tenct':tenct},
+                data: {'action':'get_dstheolop','lop':lop,'tenct':tenct,'thoigianbd':thoigianbd,'thoigiankt':thoigiankt},
                 success: function(data){
 
                     option = '';
@@ -122,7 +137,7 @@ $(document).ready(function(){
             $.ajax({
                 type: 'POST',
                 url: $url+'thongkeminhchung',
-                data: {'action':'get_dstheochuongtrinh','tenct':tenct},
+                data: {'action':'get_dstheochuongtrinh','tenct':tenct,'thoigianbd':thoigianbd,'thoigiankt':thoigiankt},
                 success: function(data){
                     option = '';
                     option +="<table class='table table-hover table-striped table-bordered' id='example'><thead><tr><th class='text-center' style='width: 3%'>STT</th>";
@@ -161,14 +176,14 @@ $(document).ready(function(){
         }
     }
 
-    $(document).on('change','#chonct',function(){
+    $(document).on('click','#search',function(){
         getDSthongke();
     });
-    $(document).on('change','#chonlop',function(){
-        getDSthongke();
-    });
-    $(document).on('change','#thongke',function(){
-        getDSthongke();
-    });
+    // $(document).on('change','#chonlop',function(){
+    //     getDSthongke();
+    // });
+    // $(document).on('change','#thongke',function(){
+    //     getDSthongke();
+    // });
 
 });

@@ -25,6 +25,20 @@
                             </option>
                         </select>
                     </div>
+                    <div id="chonthoigianbd" class="col-md-4 form-group" {if empty($tenct)&&$action!='get_dstheolop'
+                        &&$action!='get_dstheochuongtrinh' } style='display:none' {/if}>
+                        <label for="thoigianbd">Thời gian bắt đầu:</label>
+                        <input type="date" id="thoigianbd" name="thoigianbd"
+                            value="{if !empty($thoigianbd)}{$thoigianbd}{/if}" class="form-control" aria-label="Small"
+                            placeholder="Nhập nội dung">
+                    </div>
+                    <div id="chonthoigiankt" class="col-md-4 form-group" {if empty($tenct)&&$action!='get_dstheolop'
+                        &&$action!='get_dstheochuongtrinh' } style='display:none' {/if}>
+                        <label for="thoigiankt">Thời gian kết thúc:</label>
+                        <input type="date" id="thoigiankt" name="thoigiankt"
+                            value="{if !empty($thoigiankt)}{$thoigiankt}{/if}" class="form-control" aria-label="Small"
+                            placeholder="Nhập nội dung">
+                    </div>
                     <div class="form-group col-xl-3" id='chonlop' {if empty($lop)&&$action!='get_dstheolop'
                         &&$action!='get_dstheosinhvien' }style='display:none' {/if}>
                         <label for="lop">Lớp:</label>
@@ -50,6 +64,14 @@
                             {/foreach}
                             {/if}
                         </select>
+                    </div>
+                    <div class="col-md-2 form-group timkiem">
+                        <button type="button" class="btn btn-info timkiemchild"><i
+                            class="fa fa-search" aria-hidden="true" id="search"></i>&nbsp;Lọc</button>
+                        <button type="button" class="btn btn-primary" style="opacity:0">Đặt lại1</button>
+                        <button type="submit" class="btn btn-primary timkiemchild" name="reset" value="reset" id="reset"><i
+                            class="fas fa-undo" aria-hidden="true"></i> Đặt lại</button>
+                        
                     </div>
                 </div>
             </form><br>
