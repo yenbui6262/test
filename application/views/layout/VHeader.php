@@ -38,7 +38,7 @@
     </div>
 </div>
 <!-- <img src="{$url}public/images/banner.jpg" class="img-fluid"> -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-info header-1">
+<nav class="navbar navbar-expand-lg navbar-dark bg-darkblue">
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon" style="color:white !important;"></span>
     </button>

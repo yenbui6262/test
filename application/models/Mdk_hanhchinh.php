@@ -11,7 +11,7 @@ class Mdk_hanhchinh extends My_Model
         $this->db->select("PK_sMaHanhChinh")
                 ->where('FK_sMaSV',$masv)
                 ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
-                ->limit(25)
+                ->limit(50)
                  ->from('tbl_dangkydon');
         $count = $this->db->count_all_results();
         return $count;

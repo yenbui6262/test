@@ -78,7 +78,7 @@
                             <label>Tên đăng nhập</label>
                             <input type="text" class="form-control" name="acc" id="acc" value="{$taikhoan}" disabled>
                         </div>
-                        <div class="mt-3 mb-4"><b> * Thay đổi mật khẩu</b><br><small> (để trống nếu không thay đổi mật
+                        <div class="mb-4" style="margin-top: 13px;"><b> * Thay đổi mật khẩu</b><br><small> (để trống nếu không thay đổi mật
                                 khẩu)</small>
                         </div>
                         <div class="form-group">
