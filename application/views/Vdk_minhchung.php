@@ -27,9 +27,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="linkdrive">Link Drive<small> (link minh chứng phải để chế độ chia sẻ để mọi người
+                        <label for="ilinkdrive">Link Drive<small> (link minh chứng phải để chế độ chia sẻ để mọi người
                                 xem được):</small> </label>
-                        <input type="text" name="minhchung[ilinkdrive]" id="ilinkdrive" class="form-control">
+                        <input type="url" name="minhchung[ilinkdrive]" id="ilinkdrive" class="form-control" placeholder="https://drive.google.com" >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label for="linkdrive">Link Drive <small>(link minh chứng phải để chế độ chia sẻ để mọi người
                                 xem được):</small> </label>
-                        <input type="text" name="minhchung[linkdrive]" id="linkdrive" class="form-control">
+                        <input type="url" name="minhchung[linkdrive]" id="linkdrive" class="form-control"placeholder="https://drive.google.com" >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -152,7 +152,6 @@
             </div>
             {if (isset($params['links']))}
             <div style="text-align:center" id="pagination">{$params['links']}</div>
-            <hr>
             {/if}
         </div>
     </div>

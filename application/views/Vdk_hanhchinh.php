@@ -86,7 +86,7 @@
                             <td class="text-center">{$params['stt']++}</td>
                             <td>{$val.sTenHanhChinh}</td>
                             <td>{$val.tMota}</td>
-                            <td>{date("d/m/Y", strtotime($val.dTGThem))}</td>
+                            <td class="text-center">{date("d/m/Y", strtotime($val.dTGThem))}</td>
                             {if ($val.iTrangThai == '0')}
                             <td class="text-center">
                                 <span class="badge badge-warning">Chưa duyệt</span>
