@@ -84,8 +84,10 @@
                             <tr>
                                 <th class="text-center" style="width: 3%">STT</th>
                                 <th class="text-center" style="width: 10%">Lớp</th>
-                                <th class="text-center" style="width: 42%">Tên chương trình</th>
-                                <th class="text-center" style="width: 15%">Số minh chứng</th>
+                                <th class="text-center" style="width: 32%">Tên chương trình</th>
+                                <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
+                                <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
+                                <th class="text-center" style="width: 10%">Số minh chứng</th>
                                 <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>
                         </thead>
@@ -96,6 +98,8 @@
                                 <td class="text-center">{$params['stt']++}</td>
                                 <td class="text-center">{$val.sTenLop}</td>
                                 <td>{$val.sTenCT}</td>
+                                <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
+                                <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                 <td class="text-center">{$val.sominhchung}</td>
                                 <td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop'
                                         class='btn btn-sm btn-primary'
@@ -146,7 +150,9 @@
                                 <thead>
                                     <tr>
                                         <th class='text-center' style='width: 3%'>STT</th>
-                                        <th class='text-center' style='width: 10%'>Tên chương trình</th>
+                                        <th class='text-center' style='width: 25%'>Tên chương trình</th>
+                                        <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
+                                        <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
                                         <th class='text-center' style='width: 10%'>Số lượng tham gia</th>
                                         <th class='text-center' style='width: 5%'>Chi tiết</th>
                                     </tr>
@@ -157,6 +163,8 @@
                                     <tr>
                                         <td class='text-center'>{$params['stt']++}</td>
                                         <td>{$val['sTenCT']}</td>
+                                        <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
+                                        <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                         <td class='text-center'>{$val["soluong"]}</td>
                                         <td class='text-center'><button type='submit' title='Chi tiết' name='chitietct'
                                                 class='btn btn-sm btn-primary' value='{$val["PK_sMaChuongTrinh"]}'><span

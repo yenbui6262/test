@@ -39,9 +39,10 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
-                        ->order_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
-                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung,ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
+            $res = $this->db->order_by("dThoiGIanKT",'DESC')
+                        ->order_by("lop.sTenLop")
+                        ->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
+                        -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung,ct.PK_sMaChuongTrinh,lop.PK_sMaLop,ct.dThoiGIanBD,ct.dThoiGIanKT")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -85,8 +86,9 @@
 
         public function getlistchuongtrinh($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->group_by("ct.PK_sMaChuongTrinh")
-                     ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh")
+            $this->db->order_by("dThoiGIanKT",'DESC')
+                     ->group_by("ct.PK_sMaChuongTrinh")
+                     ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh,ct.dThoiGIanBD,ct.dThoiGIanKT")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                      ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);

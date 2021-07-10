@@ -99,8 +99,10 @@ $(document).ready(function(){
                     option = '';
                     option +=`<table class='table table-hover table-striped table-bordered' id='example'><thead><tr><th class='text-center' style='width: 3%'>STT</th>
                         <th class="text-center" style="width: 10%">Lớp</th>
-                        <th class="text-center" style="width: 42%">Tên chương trình</th>
-                        <th class="text-center" style="width: 15%">Số minh chứng</th>
+                        <th class="text-center" style="width: 32%">Tên chương trình</th>
+                        <th class='text-center' style='width: 10%'>Thời gian bắt đầu</th>
+                        <th class='text-center' style='width: 10%'>Thời gian kết thúc</th>
+                        <th class="text-center" style="width: 10%">Số minh chứng</th>
                         <th class="text-center" style="width: 10%">Tác vụ</th>
                     </tr>
                     </thead><tbody>`
@@ -111,6 +113,8 @@ $(document).ready(function(){
                                 option+="<tr><td class='text-center'>"+ array['stt']++ +"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['sTenLop']+"</td>";
                                 option+="<td >"+array['minhchung'][i]['sTenCT']+"</td>";
+                                option+="<td class='text-center'>"+array['minhchung'][i]['dThoiGIanBD']+"</td>";
+                                option+="<td class='text-center'>"+array['minhchung'][i]['dThoiGIanKT']+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['sominhchung']+"</td>";
                                 option+="<td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop' class='btn btn-sm btn-primary' value='"+array['minhchung'][i]['PK_sMaLop']+","+array['minhchung'][i]['PK_sMaChuongTrinh']+"'><span class='fas fa-eye'></span></button></td>";
                                 option+="</tr>";
@@ -143,8 +147,10 @@ $(document).ready(function(){
                 success: function(data){
                     option = '';
                     option +="<table class='table table-hover table-striped table-bordered' id='example'><thead><tr><th class='text-center' style='width: 3%'>STT</th>";
-                    option +="<th class='text-center' style='width: 10%'>Tên chương trình</th>";
+                    option +="<th class='text-center' style='width: 25%'>Tên chương trình</th>";
                     option +="<th class='text-center' style='width: 10%'>Số lượng tham gia</th>";
+                    option +="<th class='text-center' style='width: 10%'>Thời gian bắt đầu</th>";
+                    option +="<th class='text-center' style='width: 10%'>Thời gian kết thúc</th>";
                     option +="<th class='text-center' style='width: 5%'>Chi tiết</th>";
                     option +="</tr></thead><tbody>";
                     if(data!=false){
@@ -153,6 +159,8 @@ $(document).ready(function(){
                             for(i=0;i<array['minhchung'].length;i++){
                                 option+="<tr><td class='text-center'>"+ array['stt']++ +"</td>";
                                 option+="<td >"+array['minhchung'][i]['sTenCT']+"</td>";
+                                option+="<td class='text-center'>"+array['minhchung'][i]['dThoiGIanBD']+"</td>";
+                                option+="<td class='text-center'>"+array['minhchung'][i]['dThoiGIanKT']+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['soluong']+"</td>";
                                 option+="<td class='text-center'><button type='submit' title='Chi tiết' name='chitietct' class='btn btn-sm btn-primary' value='"+array['minhchung'][i]['PK_sMaChuongTrinh']+"'><span class='fas fa-eye'></span></button></td>";
                                 option+="</tr>";
