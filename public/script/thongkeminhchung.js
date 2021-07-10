@@ -27,7 +27,6 @@ $(document).on('change','#thongke',function(){
 });
 $(document).ready(function(){
     $url=link_url;
-
     function getDSthongke()
     {   let option;
 
@@ -42,8 +41,8 @@ $(document).ready(function(){
         if(tenct=='tatca'){
             tenct='';
         }
-
         if (sinhvien=='sinhvien') {
+        $("#overlay").css('display','inline-block');
         $.ajax({
             type: 'POST',
             url: $url+'thongkeminhchung',
@@ -85,11 +84,12 @@ $(document).ready(function(){
                     <hr>`
                     $("#params").html(params);
                 }
+                $("#overlay").css('display','none');
             }
         });
         }
         if (sinhvien=='lop') {
-
+            $("#overlay").css('display','inline-block');
             $.ajax({
                 type: 'POST',
                 url: $url+'thongkeminhchung',
@@ -130,10 +130,12 @@ $(document).ready(function(){
                         <hr>`
                         $("#params").html(params);
                     }
+                    $("#overlay").css('display','none');
                 }
             });
         }
         if (sinhvien=='chuongtrinh') {
+            $("#overlay").css('display','inline-block');
             $.ajax({
                 type: 'POST',
                 url: $url+'thongkeminhchung',
@@ -171,6 +173,7 @@ $(document).ready(function(){
                         <hr>`
                         $("#params").html(params);
                     }
+                    $("#overlay").css('display','none');
                 }
             });
         }

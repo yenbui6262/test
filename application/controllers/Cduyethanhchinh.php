@@ -17,13 +17,6 @@
                 return redirect(base_url().'403_Forbidden');
             }
 
-            if($Mamc = $this->input->post('delete')){
-                $deletehc      = $this->delete($Mamc);
-            }
-            if($Mamc = $this->input->post('edit')){
-                $duyethc      = $this->editduyet($Mamc);
-            }
-
             if($action = $this->input->post('action')){
                 if($action=='search'){
                     $filterqlhc = array(
@@ -38,6 +31,12 @@
                 }elseif($action=='reset'){
                     unset($_SESSION['filterqlhc']);
                     redirect("quanlyhanhchinh");
+                }elseif($action=='update'){
+                     /*CAp nhat khi admin an duyet */
+                    $id 	   = $this->input->post("id");
+	    			$trangthai = $this->input->post("trangthai");
+	    			$this->Mduyethanhchinh->updatehanhchinh($id, $trangthai);
+	    			echo $this->db->affected_rows();
                 }
             };
             $filter = $this->session->userdata("filterqlhc");
@@ -57,29 +56,6 @@
             // pr($temp['data']['params']);
             $this->load->view('layout/Vcontent', $temp);
         }
-
-        //edit 
-        public function editduyet($Madon){
-
-            $trangthai    = $this->Mduyethanhchinh->gettrangthai($Madon);
-            if($trangthai==0){
-                $trangthai=1;
-            }else{
-                $trangthai=0;
-            }
-            $row    = $this->Mduyethanhchinh->edittrangthai($Madon,$trangthai);
-            
-            if ($row>0&&$trangthai==1){
-                setMessages('success','Duyệt thành công','Thông báo');
-            }elseif ($row>0&&$trangthai==0) {
-                setMessages('success','Hủy duyệt thành công','Thông báo');
-            }elseif($row=0&&$trangthai==1){
-                setMessages('danger','Duyệt thất bại','Thông báo');
-            }else{
-                setMessages('danger','Hủy duyệt thất bại','Thông báo');
-            }
-            redirect('quanlyhanhchinh');
-        } //end edit
 
         private function pagination(){
             $filter     = $this->input->post("filterqlhc");

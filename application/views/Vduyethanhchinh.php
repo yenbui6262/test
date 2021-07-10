@@ -72,9 +72,9 @@
                                 <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 10%">Mã Sinh viên</th>
                                 <th class="text-center" style="width: 15%">Tên lớp</th>
-                                <th class="text-center" style="width: 42%">Tên thủ tục</th>
-                                <th class="text-center" style="width: 15%">Trạng thái</th>
-                                <th class="text-center" style="width: 10%">Tác vụ</th>
+                                <th class="text-center" style="width: 37%">Tên thủ tục</th>
+                                <th class="text-center" style="width: 10%">Trạng thái</th>
+                                <th class="text-center" style="width: 100px !important;">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
@@ -96,9 +96,17 @@
                                 </td>
                                 {/if}
                                 <td class="text-center">
+                                    {if ($val.iTrangThai == '0')}
+                                        <button class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaDangKy}"><i class="fa fa-user-check"></i></button>
+                                    {else}
+                                        <button class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaDangKy}"><i class="fa fa-user-slash"></i></button>
+                                    {/if}
+                                    <!-- <button type="button" class="btn btn-default notifier" data-toggle="modal" data-target="#modal-default" title="Gửi thông báo" value="{$val.PK_sMaminhchung}"><i class="far fa-envelope fa-lg"></i></button> -->
+                                </td>
+                                <!-- <td class="text-center">
                                     <button type="submit" name="edit" value="{$val['PK_sMaDangKy']}"
                                         class="btn btn-warning btnDelete"><i class="fas fa-edit"></i></button>
-                                </td>
+                                </td> -->
                             </tr>
                             {/foreach}
                             {else}
@@ -116,3 +124,4 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{$url}public/script/duyethanhchinh.js"></script>

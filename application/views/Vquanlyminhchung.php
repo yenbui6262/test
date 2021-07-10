@@ -88,3 +88,4 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{$url}public/script/duyethanhchinh.js"></script>

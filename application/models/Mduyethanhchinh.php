@@ -57,17 +57,9 @@
             return $res;
         }
 
-        public function gettrangthai($Madon){
-            $this->db->where('PK_sMaDangKy', $Madon);
-            $res = $this->db->select('iTrangThai')
-                        ->get('tbl_dangkydon')->result_array();
-            return $res[0]['iTrangThai'];
-        }
-
-        public function edittrangthai($Madon,$Trangthai){
-            $this->db->where('PK_sMaDangKy', $Madon);
-            $this->db->update('tbl_dangkydon',array('iTrangThai' => $Trangthai));
-    		return $this->db->affected_rows();
+        public function updatehanhchinh($id, $iTrangthai){
+            $this->db->where("PK_sMaDangKy", $id);
+            $this->db->update("tbl_dangkydon", array('iTrangThai' => $iTrangthai));
         }
         
     }
