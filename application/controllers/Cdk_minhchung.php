@@ -17,7 +17,8 @@ class Cdk_minhchung extends MY_Controller
                     'PK_sMaMC'  => $post_data['ichuongtrinh'].$session['taikhoan'],  
                     'FK_sMaSV'  => $session['taikhoan'],
                     'FK_sMaCT'  => $post_data['ichuongtrinh'],
-                    'tLink'     => $post_data['ilinkdrive']
+                    'tLink'     => $post_data['ilinkdrive'],
+                    'iTrangThai'=> 1,
                 );
                 // pr($data_insert);exit();
                 if($post_data['ichuongtrinh'] == 0 || $post_data['ilinkdrive'] == null ){
@@ -55,7 +56,9 @@ class Cdk_minhchung extends MY_Controller
             }else if($post_data['type'] =='search'){
                 $filter = array(
                     'thoigianbd'      => $this->input->post('thoigianbd'),
-                    'thoigiankt'      => $this->input->post('thoigiankt')
+                    'thoigiankt'      => $this->input->post('thoigiankt'),
+                    'trangthai'       => $this->input->post('trangthai'),
+                    'tenchuongtrinh'  => $this->input->post('tenchuongtrinh')
                 );
                 $this->session->set_userdata("filterct", $filter);redirect('dk_minhchung');
             }
@@ -72,16 +75,20 @@ class Cdk_minhchung extends MY_Controller
             return redirect(current_url());
         }
         $sinhvien['chuongtrinh'] = $this->Mdk_minhchung->getChuongTrinh($date);
+        $sinhvien['canbo'] = $this->Mdk_minhchung->getCanBo();
         $filter = $this->session->userdata("filterct");
         $temp = array(
             'template'  => 'Vdk_minhchung',
             'data'     	=> array(
-                'session'   => $session,
-                'message' 	=> getMessages(),
-                'params'    => $this->get_params($page-1, $filter),
-                'thoigianbd' => $filter['thoigianbd'],
-                'thoigiankt' => $filter['thoigiankt'],
-                'sinhvien'  => $sinhvien,
+                'session'       => $session,
+                'message' 	    => getMessages(),
+                'params'        => $this->get_params($page-1, $filter),
+                'thoigianbd'    => $filter['thoigianbd'],
+                'thoigiankt'    => $filter['thoigiankt'],
+                'trangthai'     => $filter['trangthai'],
+                'tenchuongtrinh'=> $filter['tenchuongtrinh'],
+                'sinhvien'      => $sinhvien,
+                'dTGDuyet'      => $this->Mdk_minhchung->getTGduyet($session['taikhoan']),
             ),
         );
         

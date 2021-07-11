@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="card my-3">
         <div class="card-header text-center text-white bg-darkblue">
             <h4 class="m-0">Danh sách minh chứng</h4>
@@ -85,17 +85,26 @@
             <div class="row">
                 <div class="form-group col-xl-4">
                     <label for="chuongtrinh">Tên chương trình:</label>
-                    <input type="text" class="form-control" placeholder="Tên chương trình">
+                    <input type="text" class="form-control" name="tenchuongtrinh" placeholder="Tên chương trình" value="{if !empty($tenchuongtrinh)}{$tenchuongtrinh}{/if}">
                 </div>
-                <div class="form-group col-xl-4">
+                <div class="form-group col-xl-3">
                     <label for="tenhc">Thời gian bắt đầu:</label>
                     <input type="date" id="thoigianbd" name="thoigianbd" class="form-control"
                         value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
                 </div>
-                <div class="form-group col-xl-4">
+                <div class="form-group col-xl-3">
                     <label for="mota">Thời gian kết thúc:</label>
                     <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"
                         value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
+                </div>
+                <div class="form-group col-xl-2">
+                <label for="trangthai">Trạng thái</label>
+                    <select class="form-control form-group select2" name="trangthai">
+                        <option selected value="tatca">Tất cả</option>
+                        <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Chưa duyệt</option>
+                        <option value="2" {if isset($trangthai) && $trangthai==2}selected{/if}>Đã duyệt</option>
+                        <option value="3" {if isset($trangthai) && $trangthai==3}selected{/if}>Không duyệt</option>
+                    </select>
                 </div>
                 <div class="form-group col-12 text-right">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal"
@@ -105,14 +114,17 @@
                             aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
                 </div>
             </div>
+            <div class="text-right">Lần duyệt gần nhất: {date("d/m/Y", strtotime($dTGDuyet['dTGDuyet']))}</div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="text-center">
-                        <th width="5%">STT</th>
+                        <th width="3px">STT</th>
                         <th width="15%">Tên chương trình</th>
                         <th>Mô tả</th>
-                        <th width="15%">Thời gian bắt đầu</th>
-                        <th width="15%">Thời gian kết thúc</th>
+                        <th width="12%">Ngày bắt đầu</th>
+                        <th width="12%">Ngày kết thúc</th>
+                        <th width="10%">Trạng thái</th>
+                        <th width="9%">Người duyệt</th>
                         <th width="15%">Tác vụ</th>
                     </thead>
                     <tbody>
@@ -124,19 +136,31 @@
                             <td>{$v.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanBD))}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanKT))}</td>
+                            <!-- <td> {if !empty($v.PK_sMaTK)}{$v.PK_sMaTK}{/if}</td> -->
                             <td class="text-center">
-                                <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i
-                                        class="fas fa-eye"></i></a>
-
+                            {if ($v.iTrangThai == 1)}
+                                <span class="badge badge-warning">Chưa duyệt</span>
+                            
+                            {else if ($v.iTrangThai == 2)}
+                                <span class="badge badge-success">Đã duyệt</span>
+                            {else}
+                                <span class="badge badge-danger">Không duyệt</span>
+                            {/if}
+                            </td>
+                            <td>{if !empty($v.FK_sMaCB)}{$v.FK_sMaCB}{else}Đang đợi duyệt{/if}</td>
+                            <td class="text-center">
+                                <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
                                 {foreach $sinhvien['chuongtrinh'] as $key => $val}
                                 {if !empty($val.PK_sMaChuongTrinh) && $val.PK_sMaChuongTrinh==$v.FK_sMaCT }
-                                <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
-                                    class="btn btn-warning btnEdit" title="Sửa minh chứng"
-                                    data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i
-                                        class="fas fa-tools"></i></a>
-                                <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');"
-                                    name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
-                                    title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
+                                    {if ($v.iTrangThai != 2)}
+                                    
+                                        <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
+                                            class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
+                                            data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
+                                        <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');"
+                                            name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
+                                            title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
+                                    {/if}
                                 {/if}
                                 {/foreach}
                             </td>
@@ -144,7 +168,7 @@
                         {/foreach}
                         {else}
                         <tr class="text-center">
-                            <td colspan="6">Chưa có dữ liệu</td>
+                            <td colspan="8">Chưa có dữ liệu</td>
                         </tr>
                         {/if}
                     </tbody>

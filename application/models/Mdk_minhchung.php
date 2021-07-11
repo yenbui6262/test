@@ -12,13 +12,18 @@ class Mdk_minhchung extends My_Model
             return $count;
         }
         private function dieukien($dieukien=null){
+            if(!empty($dieukien['tenchuongtrinh'])){
+                $this->db->like('sTenCT', $dieukien['tenchuongtrinh']);
+            }
             if(!empty($dieukien['thoigianbd'])){
                 $this->db->where('dThoiGIanBD >=', $dieukien['thoigianbd']);
             }
             if(!empty($dieukien['thoigiankt'])){
                 $this->db->where('dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
-            
+            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+                $this->db->where('iTrangThai', $dieukien['trangthai']);
+            }
         }
         public function getChuongTrinh($date){
             $this->db->select("*")
@@ -29,12 +34,24 @@ class Mdk_minhchung extends My_Model
         }
         public function getMinhchung($limit, $start,$dieukien,$masv){
             $this->dieukien($dieukien);
-            $res=$this->db->select("*")
+            $res=$this->db->select("PK_sMaMC, ct.PK_sMaChuongTrinh,FK_sMaCT,ct.sTenCT, ct.tMota, tLink, mc.FK_sMaCB,iTrangThai,dThoiGIanBD,dThoiGIanKT")
                     ->where('FK_sMaSV',$masv)
-                    ->join("tbl_chuongtrinh","PK_sMaChuongTrinh=FK_sMaCT")
+                    ->join("tbl_chuongtrinh ct","ct.PK_sMaChuongTrinh=mc.FK_sMaCT")
                     ->order_by("dThoiGIanKT desc,PK_sMaChuongTrinh ")
                     ->limit($limit, $start);
-            return $this->db->get("tbl_minhchung")->result_array();
+            return $this->db->get("tbl_minhchung mc")->result_array();
+
+        }
+        public function getCanBo(){
+            $res=$this->db->select("*");
+            return $this->db->get("tbl_quyen")->result_array();
+
+        }
+        public function getTGduyet($masv){
+            $res=$this->db->select("dTGDuyet")
+                    ->where('FK_sMaSV',$masv)
+                    ->order_by("dTGDuyet desc");
+            return $this->db->get("tbl_minhchung",1)->row_array();
 
         }
         public function insertMinhChung($data)
