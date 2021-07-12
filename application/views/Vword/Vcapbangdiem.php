@@ -23,7 +23,7 @@
         <br>
         <p style="text-align:left;">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>Kính gửi: </u></i></b>
-            &nbsp;- Ban Chủ nhiệm khoa Công nghệ thông tin - Trường Đại học Mở Hà Nội 
+            &nbsp;- Ban Chủ nhiệm khoa Kinh tế - Trường Đại học Mở Hà Nội 
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             - Cố vấn học tập khối .....................
         </p>
