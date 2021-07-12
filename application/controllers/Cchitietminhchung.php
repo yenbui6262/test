@@ -54,21 +54,30 @@
                     $filter['filterhoten'] = $this->input->post('hoten');
                     $filter['filtermasv'] = $this->input->post('masv');
                     $filter['filterdob'] = $this->input->post('dob');
+                    $filter['filtertenct'] = $this->input->post('tenct');
+                    $filter['filterthoigianbd'] = $this->input->post('thoigianbd');
+                    $filter['filterthoigiankt'] = $this->input->post('thoigiankt');
                 }elseif($action=='update'){
                     /*CAp nhat khi admin an duyet */
-                   date_default_timezone_set('Asia/Ho_Chi_Minh');
-                   $now = date('Y-m-d');
-                   $id 	   = $this->input->post("id");
-                   $trangthai = $this->input->post("trangthai");
-                   $macb = $session['taikhoan'];
-                   $this->Mchitietminhchung->updateminhchung($id, $trangthai,$macb,$now);
-                   echo $this->db->affected_rows();
+                //    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                //    $now = date('Y-m-d');
+                //    $id 	   = $this->input->post("id");
+                //    $trangthai = $this->input->post("trangthai");
+                //    $macb = $session['taikhoan'];
+                //    $this->Mchitietminhchung->updateminhchung($id, $trangthai,$macb,$now);
+                //    echo $this->db->affected_rows();
                }
             }else{
                 $filter['filterhoten'] = '';
-                    $filter['filtermasv'] = '';
-                    $filter['filterdob'] = '';
+                $filter['filtermasv'] = '';
+                $filter['filterdob'] = '';
+                $filter['filtertenct'] = '';
+                $filter['filterthoigianbd'] = '';
+                $filter['filterthoigiankt'] = '';
             };
+            if(!empty($filter['filterhoten'])){
+                pr($filter);
+            }
             $temp = array(
                 'template'  => 'Vchitietminhchung',
                 'data'      => array(
@@ -76,11 +85,14 @@
                     'filterhoten'   => $filter['filterhoten'],
                     'filtermasv'    => $filter['filtermasv'],
                     'filterdob'     => $filter['filterdob'],
+                    'filtertenct'   => $filter['filtertenct'],
+                    'filterthoigianbd'    => $filter['filterthoigianbd'],
+                    'filterthoigiankt'     => $filter['filterthoigiankt'],
                     'message'       => getMessages(),
                     'session'       => $session
                 ),
             );
-            // pr($temp['data']['params']);
+            // pr($temp['data']['filtertenct']);
             $this->load->view('layout/Vcontent', $temp);
         }
         

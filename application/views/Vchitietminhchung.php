@@ -61,18 +61,18 @@
                     <div class="col-md-4 form-group" {if empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="tenct">Tên chương trình:</label>
                         <input type="text" id="tenct" name="tenct" class="form-control" aria-label="Small"
-                            placeholder="Nhập nội dung">
+                            placeholder="Nhập nội dung" value="{if !empty($filtertenct)}{$filtertenct}{/if}">
                     </div>
                     <div class="col-md-4 form-group" {if empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="thoigianbd">Thời gian bắt đầu:</label>
                         <input type="date" id="thoigianbd" name="thoigianbd"
-                            value="{if !empty($thoigianbd)}{$thoigianbd}{/if}" class="form-control" aria-label="Small"
+                            value="{if !empty($filterthoigianbd)}{$filterthoigianbd}{/if}" class="form-control" aria-label="Small"
                             placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-4 form-group" {if empty($params['thongtinsv'])}style="display:none" {/if}>
                         <label for="thoigiankt">Thời gian kết thúc:</label>
                         <input type="date" id="thoigiankt" name="thoigiankt"
-                            value="{if !empty($thoigiankt)}{$thoigiankt}{/if}" class="form-control" aria-label="Small"
+                            value="{if !empty($filterthoigiankt)}{$filterthoigiankt}{/if}" class="form-control" aria-label="Small"
                             placeholder="Nhập nội dung">
                     </div>
                     <div class="col-12 form-group text-right">
@@ -93,7 +93,6 @@
                                     <th class="text-center" style="width: 15%">Họ tên</th>
                                     <th class="text-center" width="10%">Ngày sinh</th>
                                     <th class="text-center" width="7%">Lớp</th>
-                                    <th class="text-center" width="10%">Link minh chứng</th>
                                     <th class="text-center" width="10%">Trạng thái</th>
                                     <th class="text-center" style="width: 10%">Tác vụ</th>
                                 </tr>
@@ -108,10 +107,6 @@
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
                                     <td class="text-center">{$val.sTenLop}</td>
                                     <td class="text-center">
-                                        <a href="{$val.tLink}" class="btn btn-info"><i class="fas fa-eye"
-                                        title="Link minh chứng"></i></a>
-                                    </td>
-                                    <td class="text-center">
                                     {if ($val.iTrangThai == 1)}
                                         <span class="badge badge-warning">Chưa duyệt</span>
                                     {else if ($val.iTrangThai == 2)}
@@ -121,7 +116,7 @@
                                     {/if}
                                     </td>
                                     <td class="text-center">
-                                        {if $val.dThoiGIanKT >= date('Y-m-d')}
+                                        <!-- {if $val.dThoiGIanKT >= date('Y-m-d')}
                                             {if ($val.iTrangThai == 1)||($val.iTrangThai == 3)}
                                                 <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
                                             {else if ($val.iTrangThai == 2)}
@@ -130,7 +125,9 @@
                                                 <button title="Không duyệt" class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
                                         {else}
                                             Hết hạn
-                                        {/if}
+                                        {/if} -->
+                                        <a href="{$val.tLink}" class="btn btn-info"><i class="fas fa-eye"
+                                        title="Link minh chứng"></i></a>
                                     </td>
                                 </tr>
                                 {/foreach}
@@ -147,7 +144,6 @@
                                     <th class="text-center" width="15%">Tên chương trình</th>
                                     <th class='text-center' style='width: 10%'>Thời gian bắt đầu</th>
                                     <th class='text-center' style='width: 10%'>Thời gian kết thúc</th>
-                                    <th class="text-center" style="width: 10%">Link minh chứng</th>
                                     <th class="text-center" style="width: 10%">Trạng thái</th>
                                     <th class="text-center" style="width: 10%">Tác vụ</th>
                                 </tr>
@@ -160,7 +156,6 @@
                                     <td>{$val.sTenCT}</td>
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
-                                    <td><a href="{$val.tLink}">{$val.tLink}</a></td>
                                     <td class="text-center">
                                     {if ($val.iTrangThai == 1)}
                                         <span class="badge badge-warning">Chưa duyệt</span>
@@ -171,7 +166,7 @@
                                     {/if}
                                     </td>
                                     <td class="text-center">
-                                        {if $val.dThoiGIanKT >= date('Y-m-d')}
+                                        <!-- {if $val.dThoiGIanKT >= date('Y-m-d')}
                                             {if ($val.iTrangThai == 1)||($val.iTrangThai == 3)}
                                                 <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
                                             {else if ($val.iTrangThai == 2)}
@@ -180,7 +175,9 @@
                                                 <button title="Không duyệt" class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
                                         {else}
                                             Hết hạn
-                                        {/if}
+                                        {/if} -->
+                                        <a href="{$val.tLink}" class="btn btn-info"><i class="fas fa-eye"
+                                        title="Link minh chứng"></i></a>
                                     </td>
                                 </tr>
                                 {/foreach}
@@ -200,4 +197,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="{$url}public/script/chitietminhchung.js"></script>
+<!-- <script type="text/javascript" src="{$url}public/script/chitietminhchung.js"></script> -->

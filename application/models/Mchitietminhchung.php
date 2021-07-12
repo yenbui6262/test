@@ -9,8 +9,7 @@
         }
         public function getTotalRecord($dieukien){
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("mc.PK_sMaMC")
-                        -> select("mc.PK_sMaMC, tk.sHoTen, mc.tLink, lop.sTenLop")
+            $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, mc.tLink, lop.sTenLop")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -20,7 +19,7 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("ct.dThoiGIanKT")
+            $res = $this->db->order_by("ct.dThoiGIanKT",'DESC')
                         -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,ct.dThoiGIanKT")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
@@ -47,7 +46,8 @@
                 $this->db->where('tk.PK_sMaTK', $dieukien['masv']);
             }
             if(!empty($dieukien['filtermasv'])){
-                $this->db->where('tk.PK_sMaTK', $dieukien['filtermasv']);
+                $this->db->like('tk.PK_sMaTK', $dieukien['filtermasv']);
+                pr($dieukien);
             }
             if(!empty($dieukien['filterhoten'])){
                 $this->db->like('tk.sHoTen', $dieukien['filterhoten']);
@@ -55,6 +55,16 @@
             if(!empty($dieukien['filterdob'])){
                 $this->db->where('tk.dNgaySinh', $dieukien['filterdob']);
             }
+            if(!empty($dieukien['filtertenct'])){
+                $this->db->like('ct.sTenCT', $dieukien['filtertenct']);
+            }
+            if(!empty($dieukien['filterthoigianbd'])){
+                $this->db->where('ct.dThoiGIanBD >=', $dieukien['filterthoigianbd']);
+            }
+            if(!empty($dieukien['filterthoigiankt'])){
+                $this->db->where('ct.dThoiGIanKT >=', $dieukien['filterthoigiankt']);
+            }
+
             
         }
 
@@ -119,7 +129,7 @@
 
         public function getlistsinhvien($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->order_by("ct.dThoiGIanKT")
+            $this->db->order_by("ct.dThoiGIanKT",'DESC')
                     ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("ct.sTenCT,mc.tLink,ct.dThoiGIanBD,ct.dThoiGIanKT,mc.iTrangThai,mc.PK_sMaMC")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")

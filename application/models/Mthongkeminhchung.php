@@ -125,7 +125,7 @@
 
         public function getlistchuongtrinh($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->order_by("dThoiGIanKT",'DESC')
+            $this->db->order_by("ct.dThoiGIanKT",'DESC')
                      ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh,ct.dThoiGIanBD,ct.dThoiGIanKT")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")

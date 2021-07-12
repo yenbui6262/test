@@ -48,10 +48,13 @@
             {if (!empty($session['maquyen']))}
                 {if ($session['maquyen'] == 3)||($session['maquyen'] == 1)}
                 <li class="nav-item">
-                    <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-users"></i>&nbsp;Thống kê minh chứng</a>
+                    <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-chart-bar"></i>&nbsp;Thống kê minh chứng</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý thủ tục</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}quanlyminhchung"><i class="fas fa-users"></i>&nbsp;Quản lý minh chứng</a>
                 </li>
                 {/if}
                 {if ($session['maquyen'] == 1)}
