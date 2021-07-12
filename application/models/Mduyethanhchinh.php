@@ -57,9 +57,9 @@
             return $res;
         }
 
-        public function updatehanhchinh($id, $iTrangthai){
+        public function updatehanhchinh($id, $iTrangthai,$macb,$now){
             $this->db->where("PK_sMaDangKy", $id);
-            $this->db->update("tbl_dangkydon", array('iTrangThai' => $iTrangthai));
+            $this->db->update("tbl_dangkydon", array('iTrangThai' => $iTrangthai,'FK_sMaCanbo' => $macb,'dTGDuyet' => $now));
         }
         
     }

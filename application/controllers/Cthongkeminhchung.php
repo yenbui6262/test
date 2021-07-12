@@ -144,10 +144,14 @@
                 // $limit_per_page la so luong ban ghi lay ra
                 if($dieukien['action']=='get_dstheosinhvien'){
                     $params['minhchung']  = $this->Mthongkeminhchung->getlistsinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheosinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                    // pr( $params['soluongdaduyet']);
                 }elseif($dieukien['action']=='get_dstheolop'){
                     $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheolop($limit_per_page, $page * $limit_per_page,$dieukien);
                 }elseif($dieukien['action']=='get_dstheochuongtrinh'){
                     $params['minhchung'] = $this->Mthongkeminhchung->getlistchuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheochuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
                 }
                 // pr($params);
                 $config['base_url']     = base_url().'thongkeminhchung';

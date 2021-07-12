@@ -24,6 +24,7 @@
                     'sominhchung'      => $this->Mchitietminhchung->getsosinhvienthamgia($this->input->post('chitietct'))[0]['sosinhvien'], 
                 );
                 $this->session->set_userdata("filterqlmc", $filtertkmc);
+                redirect('chitietminhchung');
             }elseif($this->input->post('chitietlop')){
                 $ma = explode(",", $this->input->post('chitietlop'));
                 $filtertkmc=array(
@@ -36,11 +37,13 @@
                 );
                 // pr($filtertkmc);
                 $this->session->set_userdata("filterqlmc", $filtertkmc);
+                redirect('chitietminhchung');
             }elseif($this->input->post('chitietsinhvien')){
                 $filtertkmc=array(
                     'masv'             => $this->input->post('chitietsinhvien'),
                 );
                 $this->session->set_userdata("filterqlmc", $filtertkmc);
+                redirect('chitietminhchung');
             }
 
 
@@ -51,7 +54,16 @@
                     $filter['filterhoten'] = $this->input->post('hoten');
                     $filter['filtermasv'] = $this->input->post('masv');
                     $filter['filterdob'] = $this->input->post('dob');
-                }
+                }elseif($action=='update'){
+                    /*CAp nhat khi admin an duyet */
+                   date_default_timezone_set('Asia/Ho_Chi_Minh');
+                   $now = date('Y-m-d');
+                   $id 	   = $this->input->post("id");
+                   $trangthai = $this->input->post("trangthai");
+                   $macb = $session['taikhoan'];
+                   $this->Mchitietminhchung->updateminhchung($id, $trangthai,$macb,$now);
+                   echo $this->db->affected_rows();
+               }
             }else{
                 $filter['filterhoten'] = '';
                     $filter['filtermasv'] = '';

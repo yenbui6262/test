@@ -20,8 +20,8 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("mc.PK_sMaMC")
-                        -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink")
+            $res = $this->db->order_by("ct.dThoiGIanKT")
+                        -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,ct.dThoiGIanKT")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -119,8 +119,9 @@
 
         public function getlistsinhvien($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->group_by("ct.PK_sMaChuongTrinh")
-                     ->select("ct.sTenCT,mc.tLink")
+            $this->db->order_by("ct.dThoiGIanKT")
+                    ->group_by("ct.PK_sMaChuongTrinh")
+                     ->select("ct.sTenCT,mc.tLink,ct.dThoiGIanBD,ct.dThoiGIanKT,mc.iTrangThai,mc.PK_sMaMC")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                      ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
@@ -133,6 +134,22 @@
                             ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                             ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                             ->from("tbl_taikhoan tk")->count_all_results();
+            return $res;
+        }
+
+        public function updateminhchung($id, $iTrangthai,$macb,$now){
+            $this->db->where("PK_sMaMC", $id);
+            $this->db->update("tbl_minhchung", array('iTrangThai' => $iTrangthai,'FK_sMaCB' => $macb,'dTGDuyet' => $now));
+        }
+
+        public function getsosinhviendaduyet($dieukien)
+        {
+            $this->db->where('PK_sMaLop', $dieukien);
+            $this->db->where('iTrangThai', '2');
+            $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
+                        -> select("count(mc.PK_sMaMC) as sosinhvien")
+                        -> join("tbl_minhchung mc", "mc.FK_sMaCT = ct.PK_sMaChuongTrinh")
+                        -> get("tbl_chuongtrinh ct")->result_array();
             return $res;
         }
     }

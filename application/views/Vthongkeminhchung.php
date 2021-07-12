@@ -87,7 +87,8 @@
                                 <th class="text-center" style="width: 32%">Tên chương trình</th>
                                 <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
                                 <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
-                                <th class="text-center" style="width: 10%">Số minh chứng</th>
+                                <th class="text-center" style="width: 10%">Số lượng minh chứng</th>
+                                <th class="text-center" style="width: 10%">Số lượng đã duyệt</th>
                                 <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>
                         </thead>
@@ -101,6 +102,19 @@
                                 <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                 <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                 <td class="text-center">{$val.sominhchung}</td>
+                                <td class="text-center">
+                                    {if !empty($params['soluongdaduyet'])}
+                                        {foreach $params['soluongdaduyet'] as $k => $v}
+                                            {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh && $v.PK_sMaLop==$val.PK_sMaLop}
+                                                {$v.sodaduyet}
+                                            {else}
+                                                0
+                                            {/if}
+                                        {/foreach}
+                                    {else}
+                                    0
+                                    {/if}
+                                </td>
                                 <td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop'
                                         class='btn btn-sm btn-primary'
                                         value='{$val["PK_sMaLop"]},{$val["PK_sMaChuongTrinh"]}'><span
@@ -122,6 +136,7 @@
                                     <th class='text-center' style='width: 7%'>Mã sinh viên</th>
                                     <th class='text-center' style='width: 6%'>Lớp</th>
                                     <th class='text-center' style='width: 10%'>Số chương trình tham gia</th>
+                                    <th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>
                                     <th class='text-center' style='width: 5%'>Chi tiết</th>
                                 </tr>
                             </thead>
@@ -134,6 +149,19 @@
                                     <td class='text-center'>{$val["PK_sMaTK"]}</td>
                                     <td class='text-center'>{$val["sTenLop"]}</td>
                                     <td class='text-center'>{$val['sochuongtrinh']}</td>
+                                    <td class='text-center'>
+                                    {if !empty($params['soluongdaduyet'])}
+                                        {foreach $params['soluongdaduyet'] as $k => $v}
+                                            {if $v.PK_sMaTK==$val.PK_sMaTK}
+                                                {$v.sodaduyet}
+                                            {else}
+                                                0
+                                            {/if}
+                                        {/foreach}
+                                    {else}
+                                        0
+                                    {/if}
+                                    </td>
                                     <td class='text-center'><button type='submit' name='chitietsinhvien'
                                             title='Chi tiết' class='btn btn-sm btn-primary'
                                             value='{$val["PK_sMaTK"]}'><span class='fas fa-eye'></span></button></td>
@@ -154,6 +182,7 @@
                                         <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
                                         <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
                                         <th class='text-center' style='width: 10%'>Số lượng tham gia</th>
+                                        <th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>
                                         <th class='text-center' style='width: 5%'>Chi tiết</th>
                                     </tr>
                                 </thead>
@@ -166,6 +195,19 @@
                                         <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                         <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                         <td class='text-center'>{$val["soluong"]}</td>
+                                        <td class='text-center'>
+                                        {if !empty($params['soluongdaduyet'])}
+                                            {foreach $params['soluongdaduyet'] as $k => $v}
+                                                {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                    {$v.sodaduyet}
+                                                {else}
+                                                    0
+                                                {/if}
+                                            {/foreach}
+                                        {else}
+                                            0
+                                        {/if}
+                                        </td>
                                         <td class='text-center'><button type='submit' title='Chi tiết' name='chitietct'
                                                 class='btn btn-sm btn-primary' value='{$val["PK_sMaChuongTrinh"]}'><span
                                                     class='fas fa-eye'></span></button></td>

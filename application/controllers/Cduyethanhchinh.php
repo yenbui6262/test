@@ -32,11 +32,14 @@
                     unset($_SESSION['filterqlhc']);
                     redirect("quanlyhanhchinh");
                 }elseif($action=='update'){
-                     /*CAp nhat khi admin an duyet */
-                    $id 	   = $this->input->post("id");
-	    			$trangthai = $this->input->post("trangthai");
-	    			$this->Mduyethanhchinh->updatehanhchinh($id, $trangthai);
-	    			echo $this->db->affected_rows();
+                    /*CAp nhat khi admin an duyet */
+                   date_default_timezone_set('Asia/Ho_Chi_Minh');
+                   $now = date('Y-m-d');
+                   $id 	   = $this->input->post("id");
+                   $trangthai = $this->input->post("trangthai");
+                   $macb = $session['taikhoan'];
+                   $this->Mduyethanhchinh->updatehanhchinh($id, $trangthai,$macb,$now);
+                   echo $this->db->affected_rows();
                 }
             };
             $filter = $this->session->userdata("filterqlhc");
