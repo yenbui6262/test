@@ -380,7 +380,8 @@ thead>tr>th {
 }
 
 .thongtinlop {
-    padding: 10px 0px;
+    padding:5px 20px;
+    border:1px solid rgb(97, 97, 97);
 }
 
 .thongtinlop div span {

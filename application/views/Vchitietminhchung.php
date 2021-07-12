@@ -10,41 +10,38 @@
         <div class="card-header text-center text-white bg-darkblue">
             <h4 class="m-0">{if !empty($params['tenct'])}{$params['tenct']}{/if}</h4>
         </div>
-        <div class="card-body">
+        <div class="col-12 thongtinlop">
+            <div class=row>
             {if !empty($params['thongtinsv'])}
-            <div class="col-12 thongtinlop">
-                <div class=row>
-                    <div class="col-md-4">
-                        Mã sinh viên:&nbsp;{$params['thongtinsv']['PK_sMaTK']}
-                    </div>
-                    <div class="col-md-3">
-                        Lớp:&nbsp;{$params['thongtinsv']['sTenLop']}
-                    </div>
-                    <div class="col-md-4">
-                        Số chương trình tham gia:&nbsp;{$params['thongtinsv']['sochuongtrinh']}
-                    </div>
+                <div class="col-md-4">
+                    Mã sinh viên:&nbsp;{$params['thongtinsv']['PK_sMaTK']}
                 </div>
-            </div>
+                <div class="col-md-3">
+                    Lớp:&nbsp;{$params['thongtinsv']['sTenLop']}
+                </div>
+                <div class="col-md-4">
+                    Số chương trình tham gia:&nbsp;{$params['thongtinsv']['sochuongtrinh']}
+                </div>
             {/if}
-            <div class="col-12 thongtinlop">
-                <div class=row>
-                    {if !empty($params['lop'])}
-                    <div class="col-md-4">
-                        Lớp:&nbsp;{$params['lop']}
-                    </div>
-                    {/if}
-                    {if !empty($params['sosinhvienlop'])}
-                    <div class="col-md-4">
-                        Số sinh viên lớp:&nbsp;{$params['sosinhvienlop']}
-                    </div>
-                    {/if}
-                    {if !empty($params['sominhchung'])}
-                    <div class="col-md-4">
-                        Số minh chứng:&nbsp;{$params['sominhchung']}
-                    </div>
-                    {/if}
+            {if !empty($params['lop'])}
+                <div class="col-md-4">
+                    Lớp:&nbsp;{$params['lop']}
                 </div>
+            {/if}
+            {if !empty($params['sosinhvienlop'])}
+                <div class="col-md-4">
+                    Số sinh viên lớp:&nbsp;{$params['sosinhvienlop']}
+                </div>
+            {/if}
+            {if !empty($params['sominhchung'])}
+                <div class="col-md-4">
+                    Số minh chứng:&nbsp;{$params['sominhchung']}
+                </div>
+            {/if}
             </div>
+        </div>
+        <div class="card-body">
+            
             <form action="" method="POST" class="insert" id="myForm">
                 <div class="row">
                     <div class="col-md-4 form-group" {if !empty($params['thongtinsv'])}style="display:none" {/if}>
@@ -124,7 +121,7 @@
                                     {/if}
                                     </td>
                                     <td class="text-center">
-                                        {if $val.dThoiGIanKT <= date('Y-m-d')}
+                                        {if $val.dThoiGIanKT >= date('Y-m-d')}
                                             {if ($val.iTrangThai == 1)||($val.iTrangThai == 3)}
                                                 <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
                                             {else if ($val.iTrangThai == 2)}
@@ -174,7 +171,7 @@
                                     {/if}
                                     </td>
                                     <td class="text-center">
-                                        {if $val.dThoiGIanKT <= date('Y-m-d')}
+                                        {if $val.dThoiGIanKT >= date('Y-m-d')}
                                             {if ($val.iTrangThai == 1)||($val.iTrangThai == 3)}
                                                 <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
                                             {else if ($val.iTrangThai == 2)}
