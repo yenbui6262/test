@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{$url}Home">Trang chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Đăng ký thủ tục hành chính</li>
+        <li class="breadcrumb-item active" aria-current="page">Thủ tục hành chính</li>
     </ol>
 </nav>
 <form class="container-fluid" method="post">
@@ -97,10 +97,10 @@
                             </td>
                             {/if}
                             <td class="text-center">
-                                {if ($val.iTrangThai == 1)}
-                                <a class="btn btn-info" target="_" href="{$url}huymonhoc" title="Xem biểu mẫu"><i
+                            <a class="btn btn-info" target="_" href="{$url}huymonhoc" title="Xem biểu mẫu"><i
                                         class="fas fa-eye"></i></a>
-                                {else}
+                                {if ($val.iTrangThai != 1)}
+                                
                                 <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"
                                     title="Hủy đơn"
                                     onclick="return confirm('Bạn có muốn hủy đăng ký đơn hành chính này không này không?');"><i
