@@ -22,6 +22,9 @@ $route['dk_minhchung/(:num)']           = 'Cdk_minhchung/index/$1';
 $route['dk_hanhchinh']                  = 'Cdk_hanhchinh';
 $route['quanlyhanhchinh']               = 'Cduyethanhchinh';
 $route['quanlyhanhchinh/(:num)']		= 'Cduyethanhchinh/index/$1';
+$route['capbangdiem']                   = 'Cword/capbangdiem';
+$route['huymonhoc']                     = 'Cword/huymonhoc';
+$route['vayvonnganhang']                = 'Cword/vayvonnganhang';
 $route['mail'] 						    = 'Cemail';
 $route['sendmail'] 					    = 'Cemail/sending_email';
 

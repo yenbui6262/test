@@ -98,7 +98,7 @@
                             {/if}
                             <td class="text-center">
                                 {if ($val.iTrangThai == 1)}
-                                <a class="btn btn-info" target="_" href="#" title="Xem biểu mẫu"><i
+                                <a class="btn btn-info" target="_" href="{$url}huymonhoc" title="Xem biểu mẫu"><i
                                         class="fas fa-eye"></i></a>
                                 {else}
                                 <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"
@@ -111,7 +111,7 @@
                         {/foreach}
                         {else}
                         <tr>
-                            <td colspan="5" class="text-center">Không có dữ liệu</td>
+                            <td colspan="6" class="text-center">Không có dữ liệu</td>
                         </tr>
                         {/if}
                     </tbody>
