@@ -1,6 +1,6 @@
 <?php
 
-    class Mquanlyminhchung extends MY_Model
+    class Mduyetminhchung extends MY_Model
     {
         public function __construct()
         {

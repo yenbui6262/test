@@ -1,20 +1,17 @@
 <?php
-    class Cquanlyminhchung extends MY_Controller
+    class Cduyetminhchung extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mquanlyminhchung');
+            $this->load->model('Mduyetminhchung');
         }
 
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']==3||$session['maquyen']==1){
-                
-            }else{
-                $this->session->sess_destroy();
-                return redirect(base_url().'403_Forbidden');
+            if($session['maquyen']!=3 && $session['maquyen']!=1){
+                return redirect(base_url().'403_Forbidden');   
             }
 
             if($action = $this->input->post('action')){
@@ -56,7 +53,7 @@
             $filter = $this->session->userdata("filterqlm");
             
             $temp = array(
-                'template'  => 'Vquanlyminhchung',
+                'template'  => 'Vduyetminhchung',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),

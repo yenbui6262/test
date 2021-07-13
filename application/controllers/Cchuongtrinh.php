@@ -10,10 +10,8 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']!=1){
-                $this->session->sess_destroy();
+            if($session['maquyen']!=1 && $session['maquyen'] !=3){
                 return redirect(base_url().'403_Forbidden');
-                
             }
             
             if($action = $this->input->post('action')){
