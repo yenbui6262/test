@@ -45,7 +45,7 @@
                 }elseif($action=='update'){
                     /*CAp nhat khi admin an duyet */
                    date_default_timezone_set('Asia/Ho_Chi_Minh');
-                   $now = date('Y-m-d');
+                   $now = date('Y-m-d H:i:s');
                    $id 	   = $this->input->post("id");
                    $trangthai = $this->input->post("trangthai");
                    $macb = $session['taikhoan'];
