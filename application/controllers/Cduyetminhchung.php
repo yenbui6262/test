@@ -1,20 +1,17 @@
 <?php
-    class Cquanlyminhchung extends MY_Controller
+    class Cduyetminhchung extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mquanlyminhchung');
+            $this->load->model('Mduyetminhchung');
         }
 
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']==3||$session['maquyen']==1){
-                
-            }else{
-                $this->session->sess_destroy();
-                return redirect(base_url().'403_Forbidden');
+            if($session['maquyen']!=3 && $session['maquyen']!=1){
+                return redirect(base_url().'403_Forbidden');   
             }
 
             if($action = $this->input->post('action')){
@@ -38,10 +35,10 @@
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterqlm", $filterqlm);
-                    redirect("quanlyminhchung");
+                    redirect("duyetminhchung");
                 }elseif($action=='reset'){
                     unset($_SESSION['filterqlm']);
-                    redirect("quanlyminhchung");
+                    redirect("duyetminhchung");
                 }elseif($action=='update'){
                     /*CAp nhat khi admin an duyet */
                    date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -49,14 +46,14 @@
                    $id 	   = $this->input->post("id");
                    $trangthai = $this->input->post("trangthai");
                    $macb = $session['taikhoan'];
-                   $this->Mquanlyminhchung->updateminhchung($id, $trangthai,$macb,$now);
+                   $this->Mduyetminhchung->updateminhchung($id, $trangthai,$macb,$now);
                    echo $this->db->affected_rows();
                 }
             };
             $filter = $this->session->userdata("filterqlm");
             
             $temp = array(
-                'template'  => 'Vquanlyminhchung',
+                'template'  => 'Vduyetminhchung',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
@@ -87,17 +84,17 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $params['tenct'] = $this->Mquanlyminhchung->getchuongtrinh();
-            $params['lop'] = $this->Mquanlyminhchung->getlop();
-            $total_records = $this->Mquanlyminhchung->getTotalRecord($dieukien);
+            $params['tenct'] = $this->Mduyetminhchung->getchuongtrinh();
+            $params['lop'] = $this->Mduyetminhchung->getlop();
+            $total_records = $this->Mduyetminhchung->getTotalRecord($dieukien);
             
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mquanlyminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['minhchung']  = $this->Mduyetminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
                 // pr($params);
-                $config['base_url']     = base_url().'quanlyminhchung';
+                $config['base_url']     = base_url().'duyetminhchung';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

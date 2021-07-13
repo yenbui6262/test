@@ -51,18 +51,24 @@
                     <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-chart-bar"></i>&nbsp;Thống kê minh chứng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Quản lý thủ tục</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{$url}quanlyminhchung"><i class="fas fa-users"></i>&nbsp;Quản lý minh chứng</a>
+                    <a class="nav-link" href="{$url}duyetminhchung"><i class="fas fa-users"></i>&nbsp;Xét duyệt minh chứng</a>
                 </li>
                 {/if}
-                {if ($session['maquyen'] == 1)}
+                {if ($session['maquyen'] == 4)||($session['maquyen'] == 1)}
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Xác nhận hành chính</a>
+                </li>
+                {/if}
+                {if ($session['maquyen'] == 1 || $session['maquyen'] == 3 || $session['maquyen'] == 4)}
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Danh mục</a>
                     <div class="dropdown-menu">
+                        {if ($session['maquyen'] == 1 || $session['maquyen'] == 3)}
                         <a class="dropdown-item" href="{$url}Chuongtrinh">Danh sách chương trình</a>
+                        {/if}
+                        {if ($session['maquyen'] == 1 || $session['maquyen'] == 4)}
                         <a class="dropdown-item" href="{$url}hanhchinh">Danh sách thủ tục hành chính</a>
+                        {/if}
                     </div>
                 </li>
                 {elseif ($session['maquyen'] == 2)}

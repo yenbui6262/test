@@ -178,7 +178,7 @@ textarea {
     height: 200px !important;
 }
 
-.timkiemchild{
+.timkiemchild {
     position: absolute;
     bottom: 0;
 }
@@ -380,8 +380,8 @@ thead>tr>th {
 }
 
 .thongtinlop {
-    padding:5px 20px;
-    border:1px solid rgb(97, 97, 97);
+    padding: 5px 20px;
+    border: 1px solid rgb(97, 97, 97);
 }
 
 .thongtinlop div span {

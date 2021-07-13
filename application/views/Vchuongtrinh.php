@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header text-center text-white bg-darkblue">
-            <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách chương trình</span< /h4>
+            <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách chương trình</span></h4>
         </div>
         <div class="card-body">
             <form action="{$url}Chuongtrinh" method="POST" class="insert" id="myForm">

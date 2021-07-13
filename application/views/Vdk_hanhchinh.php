@@ -98,7 +98,7 @@
                             {/if}
                             <td class="text-center">
                             <a class="btn btn-info" target="_" href="{$url}huymonhoc" title="Xem biểu mẫu"><i
-                                        class="fas fa-eye"></i></a>
+                                        class="fas fa-download"></i></a>
                                 {if ($val.iTrangThai != 1)}
                                 
                                 <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"
