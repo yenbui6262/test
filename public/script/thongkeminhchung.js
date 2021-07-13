@@ -137,8 +137,6 @@ $(document).ready(function(){
                                     for(j=0;j<array['soluongdaduyet'].length;j++){
                                         if(array['soluongdaduyet'][j]['PK_sMaLop']==array['minhchung'][i]['PK_sMaLop']&&array['soluongdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
-                                        }else{
-                                            option+="<td class='text-center'>0</td>";
                                         }
                                     }
                                 }else{

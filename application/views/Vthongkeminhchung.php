@@ -107,8 +107,6 @@
                                         {foreach $params['soluongdaduyet'] as $k => $v}
                                             {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh && $v.PK_sMaLop==$val.PK_sMaLop}
                                                 {$v.sodaduyet}
-                                            {else}
-                                                0
                                             {/if}
                                         {/foreach}
                                     {else}
