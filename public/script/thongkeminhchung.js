@@ -67,9 +67,14 @@ $(document).ready(function(){
                             option+="<td class='text-center'>"+array['minhchung'][i]["sTenLop"]+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]['sochuongtrinh']+"</td>";
                             if(typeof array['soluongdaduyet']!="undefined"&&array['soluongdaduyet'].length!=0){
+                                dem=0;
                                 for(j=0;j<array['soluongdaduyet'].length;j++){
                                     if(array['soluongdaduyet'][j]['PK_sMaTK']==array['minhchung'][i]['PK_sMaTK']){
+                                        dem=1;
                                         option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                    }
+                                    if(dem==0){
+                                        option+="<td class='text-center'>0</td>";
                                     }
                                 }
                             }else{
@@ -132,9 +137,14 @@ $(document).ready(function(){
                                 option+="<td class='text-center'>"+tgktmoi+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['sominhchung']+"</td>";
                                 if(typeof array['soluongdaduyet']!="undefined"&&array['soluongdaduyet'].length!=0){
+                                    dem=0;
                                     for(j=0;j<array['soluongdaduyet'].length;j++){
                                         if(array['soluongdaduyet'][j]['PK_sMaLop']==array['minhchung'][i]['PK_sMaLop']&&array['soluongdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
+                                            dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                        }
+                                        if(dem==0){
+                                            option+="<td class='text-center'>0</td>";
                                         }
                                     }
                                 }else{
@@ -192,9 +202,14 @@ $(document).ready(function(){
                                 option+="<td class='text-center'>"+tgktmoi+"</td>";
                                 option+="<td class='text-center'>"+array['minhchung'][i]['soluong']+"</td>";
                                 if(typeof array['soluongdaduyet']!="undefined"&&array['soluongdaduyet'].length!=0){
+                                    dem=0;
                                     for(j=0;j<array['soluongdaduyet'].length;j++){
                                         if(array['soluongdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
+                                            dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                        }
+                                        if(dem==0){
+                                            option+="<td class='text-center'>0</td>";
                                         }
                                     }
                                 }else{

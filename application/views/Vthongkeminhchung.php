@@ -104,9 +104,14 @@
                                 <td class="text-center">{$val.sominhchung}</td>
                                 <td class="text-center">
                                     {if !empty($params['soluongdaduyet'])}
+                                        {$dem=0}
                                         {foreach $params['soluongdaduyet'] as $k => $v}
                                             {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh && $v.PK_sMaLop==$val.PK_sMaLop}
+                                                {$dem=1}
                                                 {$v.sodaduyet}
+                                            {/if}
+                                            {if $dem==0}
+                                                0
                                             {/if}
                                         {/foreach}
                                     {else}0
@@ -148,11 +153,16 @@
                                     <td class='text-center'>{$val['sochuongtrinh']}</td>
                                     <td class='text-center'>
                                     {if !empty($params['soluongdaduyet'])}
+                                        {$dem=0}
                                         {foreach $params['soluongdaduyet'] as $k => $v}
                                             {if $v.PK_sMaTK==$val.PK_sMaTK}
+                                                {$dem=1}
                                                 {$v.sodaduyet}
                                             {/if}
                                         {/foreach}
+                                        {if $dem==0}
+                                            0
+                                        {/if}
                                     {else}
                                         0
                                     {/if}
@@ -192,13 +202,16 @@
                                         <td class='text-center'>{$val["soluong"]}</td>
                                         <td class='text-center'>
                                         {if !empty($params['soluongdaduyet'])}
+                                            {$dem=0}
                                             {foreach $params['soluongdaduyet'] as $k => $v}
                                                 {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                    {$dem=1}
                                                     {$v.sodaduyet}
-                                                {else}
-                                                    0
                                                 {/if}
                                             {/foreach}
+                                            {if $dem==0}
+                                                    0
+                                            {/if}
                                         {else}
                                             0
                                         {/if}
