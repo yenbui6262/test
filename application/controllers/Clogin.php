@@ -51,6 +51,9 @@
     		}elseif ($session['maquyen'] == 3) {
 				// la lcd-lch
 				return redirect('duyetminhchung');
+			}elseif ($session['maquyen'] == 4){
+				//la can bo hanh chinh
+				return redirect('quanlyhanhchinh');
 			}
 	    }
 
