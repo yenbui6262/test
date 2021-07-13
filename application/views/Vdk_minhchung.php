@@ -88,12 +88,12 @@
                     <input type="text" class="form-control" name="tenchuongtrinh" placeholder="Tên chương trình" value="{if !empty($tenchuongtrinh)}{$tenchuongtrinh}{/if}">
                 </div>
                 <div class="form-group col-xl-3">
-                    <label for="tenhc">Thời gian bắt đầu:</label>
+                    <label for="thoigianbd">Thời gian bắt đầu:</label>
                     <input type="date" id="thoigianbd" name="thoigianbd" class="form-control"
                         value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
                 </div>
                 <div class="form-group col-xl-3">
-                    <label for="mota">Thời gian kết thúc:</label>
+                    <label for="thoigiankt">Thời gian kết thúc:</label>
                     <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"
                         value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
                 </div>
@@ -114,7 +114,7 @@
                             aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
                 </div>
             </div>
-            <div class="text-right">Lần duyệt gần nhất: {date("d/m/Y", strtotime($dTGDuyet['dTGDuyet']))}</div>
+            <div class="text-right">{if (!empty($dTGDuyet['dTGDuyet']))}Lần duyệt gần nhất: {date("d/m/Y h:i:s", strtotime($dTGDuyet['dTGDuyet']))} {/if}</div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="text-center">

@@ -9,7 +9,7 @@ class Cdk_minhchung extends MY_Controller
     public function index($page=1){
         $session = $this->session->userdata("user");
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $date = date("Y-m-d");
+        $date = date("Y-m-d H:i:s");
         if($this->input->post('minhchung')){
             $post_data = $this->input->post('minhchung');
             if($post_data['type'] == "submit"){
@@ -39,7 +39,10 @@ class Cdk_minhchung extends MY_Controller
             }else if($post_data['type'] =='fix'){
                 $mamc=$post_data['chuongtrinh'].$session['taikhoan'];
                 $data_insert = array(
-                    'tLink'     => $post_data['linkdrive']
+                    'tLink'     => $post_data['linkdrive'],
+                    'iTrangThai'=> 1,
+                    'dTGDuyet'  => null,
+                    'FK_sMaCB'  => null
                 );
                 // pr($data_insert);exit();
                 if($mamc == 0 || $post_data['linkdrive'] == null ){
@@ -54,13 +57,13 @@ class Cdk_minhchung extends MY_Controller
                 setMessages("danger", "Sửa minh chứng thất bại");
                 return redirect(current_url());
             }else if($post_data['type'] =='search'){
-                $filter = array(
+                $filtermc = array(
                     'thoigianbd'      => $this->input->post('thoigianbd'),
                     'thoigiankt'      => $this->input->post('thoigiankt'),
                     'trangthai'       => $this->input->post('trangthai'),
                     'tenchuongtrinh'  => $this->input->post('tenchuongtrinh')
                 );
-                $this->session->set_userdata("filterct", $filter);redirect('dk_minhchung');
+                $this->session->set_userdata("filtermc", $filtermc);redirect('dk_minhchung');
             }
         }
         if($this->input->post('delete')){
@@ -76,17 +79,17 @@ class Cdk_minhchung extends MY_Controller
         }
         $sinhvien['chuongtrinh'] = $this->Mdk_minhchung->getChuongTrinh($date);
         $sinhvien['canbo'] = $this->Mdk_minhchung->getCanBo();
-        $filter = $this->session->userdata("filterct");
+        $filtermc = $this->session->userdata("filtermc");
         $temp = array(
             'template'  => 'Vdk_minhchung',
             'data'     	=> array(
                 'session'       => $session,
                 'message' 	    => getMessages(),
-                'params'        => $this->get_params($page-1, $filter),
-                'thoigianbd'    => $filter['thoigianbd'],
-                'thoigiankt'    => $filter['thoigiankt'],
-                'trangthai'     => $filter['trangthai'],
-                'tenchuongtrinh'=> $filter['tenchuongtrinh'],
+                'params'        => $this->get_params($page-1, $filtermc),
+                'thoigianbd'    => $filtermc['thoigianbd'],
+                'thoigiankt'    => $filtermc['thoigiankt'],
+                'trangthai'     => $filtermc['trangthai'],
+                'tenchuongtrinh'=> $filtermc['tenchuongtrinh'],
                 'sinhvien'      => $sinhvien,
                 'dTGDuyet'      => $this->Mdk_minhchung->getTGduyet($session['taikhoan']),
             ),
@@ -97,10 +100,10 @@ class Cdk_minhchung extends MY_Controller
        
     }
     private function pagination(){
-        $filter     = $this->input->post("filterct");
+        $filtermc     = $this->input->post("filtermc");
 
         $pageX      = $this->input->post("page");
-        $res        = $this->get_params($pageX-1, $filter);
+        $res        = $this->get_params($pageX-1, $filtermc);
         if(!empty($res)){
             echo json_encode($res);
         }

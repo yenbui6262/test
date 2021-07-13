@@ -6,7 +6,7 @@ class Cdk_hanhchinh extends MY_Controller {
     }
     public function index($page=1){
         $session = $this->session->userdata("user");
-        $date = date("Y-m-d");
+        $date = date("Y-m-d H:i:s");
         $hanhchinh  = $this->Mdk_hanhchinh->getHanhchinh();
         if($this->input->post("hanhchinh")){
             $post_data = $this->input->post('hanhchinh');
@@ -34,13 +34,13 @@ class Cdk_hanhchinh extends MY_Controller {
                     setMessages("success", "Cập nhật thành công");
                 } return redirect(current_url());
             }else if($post_data['type'] == "search"){
-                $filter = array(
+                $filterhc = array(
                     'tenhc'           => $this->input->post('tenhc'),
                     'mota'            => $this->input->post('mota'),
                     'trangthai'      => $this->input->post('trangthai'),
                 );
                 // luu vao sesssion
-                $this->session->set_userdata("filterct", $filter);redirect('dk_hanhchinh');
+                $this->session->set_userdata("filterhc", $filterhc);redirect('dk_hanhchinh');
             }
         }
         if($this->input->post("delete")){
@@ -53,16 +53,16 @@ class Cdk_hanhchinh extends MY_Controller {
             } return redirect(current_url());
         }
         
-        $filter = $this->session->userdata("filterct");
+        $filterhc = $this->session->userdata("filterhc");
         $temp = array(
             'template'  => 'Vdk_hanhchinh',
             'data'     	=> array(
                 'session'   => $session,
                 'message' 	=> getMessages(),
-                'params'    => $this->get_params($page-1, $filter),
-                'tenhc'     => $filter['tenhc'],
-                'mota'      => $filter['mota'],
-                'trangthai' => $filter['trangthai'],
+                'params'    => $this->get_params($page-1, $filterhc),
+                'tenhc'     => $filterhc['tenhc'],
+                'mota'      => $filterhc['mota'],
+                'trangthai' => $filterhc['trangthai'],
                 'hanhchinh' => $hanhchinh,
             ),
         );
@@ -70,10 +70,10 @@ class Cdk_hanhchinh extends MY_Controller {
         $this->load->view('layout/VContent',$temp);
     }
     private function pagination(){
-        $filter     = $this->input->post("filterct");
+        $filterhc     = $this->input->post("filterhc");
 
         $pageX      = $this->input->post("page");
-        $res        = $this->get_params($pageX-1, $filter);
+        $res        = $this->get_params($pageX-1, $filterhc);
         if(!empty($res)){
             echo json_encode($res);
         }
