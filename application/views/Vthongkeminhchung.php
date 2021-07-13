@@ -152,9 +152,6 @@
                                         {foreach $params['soluongdaduyet'] as $k => $v}
                                             {if $v.PK_sMaTK==$val.PK_sMaTK}
                                                 {$v.sodaduyet}
-                                            {else}
-                                                0
-                                            {/if}
                                         {/foreach}
                                     {else}
                                         0
@@ -198,8 +195,6 @@
                                             {foreach $params['soluongdaduyet'] as $k => $v}
                                                 {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
                                                     {$v.sodaduyet}
-                                                {else}
-                                                    0
                                                 {/if}
                                             {/foreach}
                                         {else}
