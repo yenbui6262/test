@@ -109,6 +109,7 @@
                                                 {$v.sodaduyet}
                                             {/if}
                                         {/foreach}
+                                    {else}0
                                     {/if}
                                 </td>
                                 <td class='text-center'><button type='submit' title='Chi tiết' name='chitietlop'
