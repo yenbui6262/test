@@ -19,7 +19,8 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("ct.dThoiGIanKT",'DESC')
+            $res = $this->db->order_by("mc.iTrangThai")
+                        ->order_by("ct.dThoiGIanKT",'DESC')
                         -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,ct.dThoiGIanKT")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
@@ -129,7 +130,8 @@
 
         public function getlistsinhvien($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->order_by("ct.dThoiGIanKT",'DESC')
+            $this->db->order_by("mc.iTrangThai")
+                    ->order_by("ct.dThoiGIanKT",'DESC')
                     ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("ct.sTenCT,mc.tLink,ct.dThoiGIanBD,ct.dThoiGIanKT,mc.iTrangThai,mc.PK_sMaMC")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")

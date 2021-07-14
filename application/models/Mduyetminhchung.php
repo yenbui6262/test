@@ -49,7 +49,8 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("ct.dThoiGIanKT",'DESC')
+            $res = $this->db->order_by("mc.iTrangThai")
+                        ->order_by("ct.dThoiGIanKT",'DESC')
                         -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,ct.dThoiGIanKT,ct.sTenCT,ct.dThoiGIanBD")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
