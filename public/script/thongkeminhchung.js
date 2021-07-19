@@ -73,9 +73,9 @@ $(document).ready(function(){
                                         dem=1;
                                         option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
                                     }
-                                    if(dem==0){
-                                        option+="<td class='text-center'>0</td>";
-                                    }
+                                }
+                                if(dem==0){
+                                    option+="<td class='text-center'>0</td>";
                                 }
                             }else{
                                 option+='<td class="text-center">0</td>';
@@ -143,9 +143,9 @@ $(document).ready(function(){
                                             dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
                                         }
-                                        if(dem==0){
-                                            option+="<td class='text-center'>0</td>";
-                                        }
+                                    }
+                                    if(dem==0){
+                                        option+="<td class='text-center'>0</td>";
                                     }
                                 }else{
                                     option+='<td class="text-center">0</td>';
@@ -208,9 +208,9 @@ $(document).ready(function(){
                                             dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
                                         }
-                                        if(dem==0){
-                                            option+="<td class='text-center'>0</td>";
-                                        }
+                                    }
+                                    if(dem==0){
+                                        option+="<td class='text-center'>0</td>";
                                     }
                                 }else{
                                     option+='<td class="text-center">0</td>';

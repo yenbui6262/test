@@ -110,10 +110,10 @@
                                                 {$dem=1}
                                                 {$v.sodaduyet}
                                             {/if}
-                                            {if $dem==0}
-                                                0
-                                            {/if}
                                         {/foreach}
+                                        {if $dem==0}
+                                                0
+                                        {/if}
                                     {else}0
                                     {/if}
                                 </td>
