@@ -29,13 +29,13 @@
                     redirect("quanlyhanhchinh");
                 }elseif($action=='update'){
                     /*CAp nhat khi admin an duyet */
-                   date_default_timezone_set('Asia/Ho_Chi_Minh');
-                   $now = date('Y-m-d');
-                   $id 	   = $this->input->post("id");
-                   $trangthai = $this->input->post("trangthai");
-                   $macb = $session['taikhoan'];
-                   $this->Mduyethanhchinh->updatehanhchinh($id, $trangthai,$macb,$now);
-                   echo $this->db->affected_rows();
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $now        = date('Y-m-d H:i:s');
+                    $id 	    = $this->input->post("id");
+                    $trangthai  = $this->input->post("trangthai");
+                    $macb       = $session['taikhoan'];
+                    $this->Mduyethanhchinh->updatehanhchinh($id, $trangthai,$macb,$now);
+                    echo $this->db->affected_rows();
                 }
             };
             $filter = $this->session->userdata("filterqlhc");
@@ -44,11 +44,11 @@
                 'template'  => 'Vduyethanhchinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
-                    'message' => getMessages(),
-                    'hoten' => $filter['hoten'],
-                    'lop' => $filter['lop'],
+                    'message'   => getMessages(),
+                    'hoten'     => $filter['hoten'],
+                    'lop'       => $filter['lop'],
                     'trangthai' => $filter['trangthai'],
-                    'tenhc' => $filter['tenhc'],
+                    'tenhc'     => $filter['tenhc'],
                     'session'   => $session
                 ),
             );

@@ -71,8 +71,8 @@
                                 <th class="text-center" style="width: 3%">STT</th>
                                 <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 10%">Mã Sinh viên</th>
-                                <th class="text-center" style="width: 15%">Tên lớp</th>
-                                <th class="text-center" style="width: 37%">Tên thủ tục</th>
+                                <th class="text-center" style="width: 18%">Tên thủ tục</th>
+                                <th class="text-center" style="width: 37%">Lý do</th>
                                 <th class="text-center" style="width: 10%">Trạng thái</th>
                                 <th class="text-center" style="width: 100px !important;">Tác vụ</th>
                             </tr>
@@ -84,8 +84,8 @@
                                 <td class="text-center">{$params['stt']++}</td>
                                 <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.PK_sMaTK}</td>
-                                <td>{$val.sTenLop}</td>
                                 <td>{$val.sTenHanhChinh}</td>
+                                <td>{$val.tLydo}</td>
                                 {if ($val.iTrangThai == 0)}
                                 <td class="text-center">
                                     <span class="badge badge-warning">Chưa duyệt</span>

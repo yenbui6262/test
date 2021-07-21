@@ -5,10 +5,12 @@
 		{
 			parent::__construct();
 		}
-		public function getThongtincoban($masv){
+		public function getThongtincoban($masv, $madk){
             
             $this->db->select("*")
                     ->where("PK_sMaTK", $masv)
+                    ->where("dkd.PK_sMaDangKy", $madk)
+                    ->join("tbl_dangkydon dkd", "FK_sMaSV = PK_sMaTK")
                     ->join("tbl_lop", "PK_sMaLop = sFK_Lop");
             $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;

@@ -24,7 +24,7 @@
                     $kiemTraMatKhauTrung = false;
                 }
             }
-            if($this->input->post("oldPass") != ''&& $kiemTraMatKhauTrung = true ){
+            if($this->input->post("oldPass") != ''&& $kiemTraMatKhauTrung == true ){
                 $oldPass = sha1($this->input->post("oldPass"));
                 $acc=$session['taikhoan'];
 

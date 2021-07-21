@@ -22,38 +22,33 @@
         </b>
         <br>
         <p style="text-align:left;line-height:30px">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>Kính gửi: </u></i></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>Kính gửi: </u></i></b>
             &nbsp;- Ban Chủ nhiệm khoa Kinh tế - Trường Đại học Mở Hà Nội 
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             - Cố vấn học tập khối .....................
         </p>
         <table>
             <tr>
                 <td width="70%"colspan="2">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Em tên là:&nbsp;...{$thongtin['sHoTen']}...
                 </td>
                 <td  style="line-height:30px">Sinh ngày:&nbsp;...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...</td>
             </tr>
             <tr>
-                <td style="width:35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td style="width:35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Lớp:&nbsp;...{$thongtin['sTenLop']}...</td>
                 <td style="width:35%">MSSV:&nbsp;...{$thongtin['PK_sMaTK']}...</td>
                 <td>SĐT:...................................</td>
             </tr>
         </table>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em có nguyện vọng hủy môn .............................................................................................</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Lý do hủy môn học phần:...................................................................................................
-        ......................................................................................................................................................
-        ......................................................................................................................................................
-        ......................................................................................................................................................
-        ......................................................................................................................................................
-        ......................................................................................................................................................
-        ......................................................................................................................................................</p>
-
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kính mong Ban Chủ nhiệm Khoa xem xét và giải quyết.</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em xin chân thành cảm ơn!</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em có nguyện vọng hủy môn .............................................................................................</p>
+        <p style="text-align:left;line-height:30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do hủy môn học phần: {$thongtin['tLydo']}
+        {if empty($thongtin['tLydo'])}......................................................................................................................................................
+        <br>......................................................................................................................................................
+        {/if}
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kính mong Ban Chủ nhiệm Khoa xem xét và giải quyết.</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em xin chân thành cảm ơn!</p>
         <table width="100%"style="text-align:center;">
             <tr>
                 <td width="50%"><b>Xác nhận của Cố vấn học tập</b></td>

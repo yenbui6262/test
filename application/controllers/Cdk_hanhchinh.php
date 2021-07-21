@@ -16,8 +16,9 @@ class Cdk_hanhchinh extends MY_Controller {
                         'FK_sMaSV'          => $session['taikhoan'],
                         'FK_sMaCanbo'       => null,
                         'FK_sMaHanhChinh'   => $post_data['Ma'],
-                        'dTGThem'           =>$date,
-                        'iTrangThai'        =>"0"
+                        'dTGThem'           => $date,
+                        'iTrangThai'        => "0",
+                        'tLydo'             => $post_data['lydo'],
 
                     );
                     // pr($donhc);exit();
@@ -25,14 +26,30 @@ class Cdk_hanhchinh extends MY_Controller {
                     setMessages("warning", "Thông tin không được để trống");
                     return redirect(current_url());
                 }
-                if($this->Mdk_hanhchinh->findDon($donhc)){
+                if($this->Mdk_hanhchinh->findDon($donhc) > 0){
                     setMessages("warning", "Đã Đăng ký đơn");
                     return redirect(current_url());
                 }
                 $row=$this->Mdk_hanhchinh->insertHanhchinh($donhc);
                 if($row>0){
-                    setMessages("success", "Cập nhật thành công");
+                    setMessages("success", "Đăng ký thành công");
                 } return redirect(current_url());
+                
+            }else if($post_data['type'] == "update"){
+                    $Madk = $post_data['madangky'];
+                    $donhc=array(
+                        'FK_sMaHanhChinh'   => $post_data['suaMa'],
+                        'dTGThem'           => $date,
+                        'tLydo'             => $post_data['sualydo'],
+
+                    );
+                    // pr($donhc);exit();
+                
+                $row=$this->Mdk_hanhchinh->updateHanhchinh($Madk, $donhc);
+                if($row>0){
+                    setMessages("success", "Sửa thành công");
+                } return redirect(current_url());
+
             }else if($post_data['type'] == "search"){
                 $filterhc = array(
                     'tenhc'           => $this->input->post('tenhc'),
@@ -66,7 +83,7 @@ class Cdk_hanhchinh extends MY_Controller {
                 'hanhchinh' => $hanhchinh,
             ),
         );
-        
+        // pr($temp);exit();
         $this->load->view('layout/VContent',$temp);
     }
     private function pagination(){

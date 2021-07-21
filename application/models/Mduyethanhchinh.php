@@ -37,7 +37,7 @@
         {
             $this->dieukien($dieukien);
             $res = $this->db->order_by("dky.iTrangThai,tk.sHoTen")
-                        -> select("dky.PK_sMaDangKy, tk.sHoTen, tk.PK_sMaTK, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai")
+                        -> select("dky.PK_sMaDangKy, tk.sHoTen, tk.PK_sMaTK, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai, dky.tLydo")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
                         -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")

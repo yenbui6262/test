@@ -27,13 +27,13 @@ class Cword extends MY_Controller {
 	}
     public function capbangdiem(){
         $session = $this->session->userdata("user");
-
-            $data     	= array(
-                'session'	=> $session,
-                'message' 	=> getMessages(),
-                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'])
-            );
-        $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        $madangky= $this->input->get('madangky');
+        $data     	= array(
+            'session'	=> $session,
+            'message' 	=> getMessages(),
+            'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+        );
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxincapbangdiem.doc");
@@ -41,32 +41,32 @@ class Cword extends MY_Controller {
     }
     public function huymonhoc(){
         $session = $this->session->userdata("user");
-
+        $madangky= $this->input->get('madangky');
             $data     	= array(
                 'session'	=> $session,
                 'message' 	=> getMessages(),
-                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'])
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxinhuymonhoc.doc");
-        $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        // pr($data);exit();
         $this->parser->parse('Vword/Vhuymonhoc',$data);
 
     }
     
     public function vayvonnganhang(){
         $session = $this->session->userdata("user");
-
+        $madangky= $this->input->get('madangky');
             $data     	= array(
                 'session'	=> $session,
                 'message' 	=> getMessages(),
-                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'])
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donvayvonnganhang.doc");
-        $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vvayvonnganhang',$data);
 
     }

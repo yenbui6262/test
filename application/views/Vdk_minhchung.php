@@ -157,7 +157,7 @@
                                         <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
                                             class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
                                             data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
-                                        <button onclick="return confirm('Bạn có muốn minh chứng này không này không?');"
+                                        <button onclick="return confirm('Bạn có muốn xóa minh chứng này không này không?');"
                                             name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
                                             title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
                                     {/if}

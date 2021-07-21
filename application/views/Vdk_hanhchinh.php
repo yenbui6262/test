@@ -6,7 +6,7 @@
 </nav>
 <form class="container-fluid" method="post">
 
-    <!-- Modal -->
+    <!--insert Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -29,10 +29,50 @@
                             {/if}
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="lydo">Lý do:</label>
+                        <textarea name="hanhchinh[lydo]" id="lydo" class="form-control"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success" type="submit" name="hanhchinh[type]" value="submit" id="them">Đăng
                         ký</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="editModalLabel">SỬA LÝ DO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="hanhchinh[madangky]" id="madangky">
+                        <label for="suaMa">Tên thủ tục hành chính:</label>
+                        <select name="hanhchinh[suaMa]" id="suaMa" class="form-control">
+                            <option value="0" readonly hidden>--Chọn tên thủ tục--</option>
+                            {if !empty ($hanhchinh)}
+                            {foreach $hanhchinh as $k => $val}
+                            <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
+                            {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sualydo">Lý do:</label>
+                        <textarea name="hanhchinh[sualydo]" id="sualydo" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit" name="hanhchinh[type]" value="update" id="sua">Lưu</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
                 </div>
             </div>
@@ -77,7 +117,7 @@
                         <th>Mô tả</th>
                         <th width="150px">Thời gian đăng ký</th>
                         <th width="120px">Trạng thái</th>
-                        <th width="120px">Tác vụ</th>
+                        <th width="12%">Tác vụ</th>
                     </thead>
                     <tbody>
                         {if !empty($params['dondk'])}
@@ -97,9 +137,12 @@
                             </td>
                             {/if}
                             <td class="text-center">
-                            <a class="btn btn-info" target="_" href="{$url}huymonhoc" title="Xem biểu mẫu"><i
+                            <a class="btn btn-info" target="_" href="{$url}huymonhoc?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
                                         class="fas fa-download"></i></a>
                                 {if ($val.iTrangThai != 1)}
+                                <a onclick="sua('{$val.FK_sMaHanhChinh}','{$val.tLydo}','{$val.PK_sMaDangKy}')"
+                                            class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
+                                            data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
                                 
                                 <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"
                                     title="Hủy đơn"
@@ -120,6 +163,7 @@
         </div>
     </div>
 </form>
+<script defer type="text/javascript" src="{base_url()}public/script/dk_hanhchinh.js"></script>
 <style>
 .select2 {
     width: auto !important;

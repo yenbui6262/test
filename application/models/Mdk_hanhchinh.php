@@ -55,10 +55,16 @@ class Mdk_hanhchinh extends My_Model
                  ->delete("tbl_dangkydon");
         return $this->db->affected_rows();
     }
+    public function updateHanhchinh($madk, $donhc){
+        $this->db->where('PK_sMaDangKy',$madk)
+                 ->update("tbl_dangkydon", $donhc);
+        return $this->db->affected_rows();
+    }
     public function findDon($data)
         {
             $res = $this->db->where('FK_sMaHanhChinh',$data['FK_sMaHanhChinh'])
                             ->where('FK_sMaSV',$data['FK_sMaSV'])
+                            ->where('iTrangThai','0')
                             ->get('tbl_dangkydon')->result_array();
                     return count($res);
         }
