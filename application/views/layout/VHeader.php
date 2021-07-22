@@ -53,6 +53,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{$url}duyetminhchung"><i class="fas fa-users"></i>&nbsp;Xét duyệt minh chứng</a>
                 </li>
+                {elseif $session['sChucVu']!=''}
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}duyetminhchung"><i class="fas fa-users"></i>&nbsp;Xét duyệt minh chứng</a>
+                </li>
                 {/if}
                 {if ($session['maquyen'] == 4)||($session['maquyen'] == 1)}
                 <li class="nav-item">

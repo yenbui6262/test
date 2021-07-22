@@ -36,6 +36,7 @@
     			'maquyen' 		=> $check_user[0]['FK_sMaQuyen'],
                 'sHoten' 		=> $check_user[0]['sHoTen'],
 				'sMatKhau'		=> $check_user[0]['sMatKhau'],
+				'sChucVu'		=> $check_user[0]['sChucvu'],
     		);
 
 
