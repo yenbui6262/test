@@ -10,7 +10,8 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']!=3 && $session['maquyen']!=1){
+            $chucvu = $this->Mduyetminhchung->getchucvu($session['taikhoan'])[0]['sChucvu'];
+            if($session['maquyen']!=3 && $session['maquyen']!=1&&$chucvu!='Lớp phó'&&$chucvu!='Bí thư'&&$chucvu!='Lớp trưởng'){
                 return redirect(base_url().'403_Forbidden');   
             }
 
@@ -46,8 +47,11 @@
                    $id 	   = $this->input->post("id");
                    $trangthai = $this->input->post("trangthai");
                    $macb = $session['taikhoan'];
-                   $this->Mduyetminhchung->updateminhchung($id, $trangthai,$macb,$now);
-                   echo $this->db->affected_rows();
+                   if($session['maquyen']==3||$session['maquyen']==1){
+                    $this->Mduyetminhchung->updateminhchungcb($id, $trangthai,$macb,$now);
+                   }else{
+                    $this->Mduyetminhchung->updateminhchung($id, $trangthai,$macb,$now);
+                   }
                 }
             };
             $filter = $this->session->userdata("filterqlm");
@@ -76,6 +80,8 @@
         }
 
         public function get_params($page, $dieukien){
+            $session = $this->session->userdata("user");
+            $lop = $this->Mduyetminhchung->getchucvu($session['taikhoan'])[0]['sFK_lop'];
             // init params
             $params = array();
             // So trang tren 1 page
@@ -86,13 +92,13 @@
             $params['stt'] = $limit_per_page * $page + 1;
             $params['tenct'] = $this->Mduyetminhchung->getchuongtrinh();
             $params['lop'] = $this->Mduyetminhchung->getlop();
-            $total_records = $this->Mduyetminhchung->getTotalRecord($dieukien);
+            $total_records = $this->Mduyetminhchung->getTotalRecord($dieukien,$session['maquyen'],$lop);
             
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['minhchung']  = $this->Mduyetminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['minhchung']  = $this->Mduyetminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien,$session['maquyen'],$lop);
                 // pr($params);
                 $config['base_url']     = base_url().'duyetminhchung';
                 $config['total_rows']   = $total_records;

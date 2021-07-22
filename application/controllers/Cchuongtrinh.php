@@ -5,6 +5,7 @@
         {
             parent::__construct();
             $this->load->model('Mchuongtrinh');
+            $this->load->library('form_validation');
         }
 
         public function index($page=1)
@@ -13,10 +14,10 @@
             if($session['maquyen']!=1 && $session['maquyen'] !=3){
                 return redirect(base_url().'403_Forbidden');
             }
-            
+            $check='';
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $this->addchuongtrinh();redirect('Chuongtrinh');
+                    case 'insert'    : $check = $this->addchuongtrinh();break;
                     case 'edit'      : $this->update();redirect('Chuongtrinh');
                     case "search"    : 
                         $filter = array(
@@ -34,7 +35,7 @@
             if($Mact = $this->input->post('delete')){
                 $deletect      = $this->delete($Mact);
             }
-
+            
             $filter = $this->session->userdata("filterct");
             $temp = array(
                 'template'  => 'Vchuongtrinh',
@@ -45,7 +46,8 @@
                     'mota' => $filter['mota'],
                     'thoigianbd' => $filter['thoigianbd'],
                     'thoigiankt' => $filter['thoigiankt'],
-                    'session'   => $session
+                    'session'   => $session,
+                    'check'     => $check
                 ),
             );
             // pr($temp);
@@ -53,20 +55,20 @@
         }
 
         public function addchuongtrinh(){
-            $session = $this->session->userdata("user");
-            $tenct        = $this->input->post('tenct');
-            $mota      = $this->input->post('mota');
+            $session         = $this->session->userdata("user");
+            $tenct           = $this->input->post('tenct');
+            $mota            = $this->input->post('mota');
             $thoigianbd      = $this->input->post('thoigianbd');
             $thoigiankt      = $this->input->post('thoigiankt');
-            if($thoigianbd == ''){
-                setMessages('warning','Vui lòng chọn thời gian bắt đầu!','Cảnh báo');
-                return redirect(current_url());
-            }
-            if($thoigiankt == ''){
-                setMessages('warning','Vui lòng chọn thời gian kết thúc!','Cảnh báo');
-                return redirect(current_url());
-            }
 
+            if(empty($tenct))
+				return 'Nhập tên chương trình';
+            if(empty($mota))
+                return 'Nhập mô tả';
+            if(empty($thoigianbd))
+                return 'Nhập thời gian bắt đầu';
+            if(empty($thoigiankt))
+                return 'Nhập thời gian kết thúc';
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
             $data = array(
                 'PK_sMaChuongTrinh'      => time().rand(1,1000),

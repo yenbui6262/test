@@ -21,17 +21,21 @@
                     <div class="col-md-4 form-group">
                         <label id="inputGroup-sizing-sm">Tên thủ tục:</label>
                         <input type="text" id="tenhc" name="tenhc" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenhc)}{$tenhc}{/if}"
+                            aria-describedby="inputGroup-sizing-sm" value="{(set_value('tenhc')) ? set_value('tenhc') : {(!empty($tenhc)) ? $tenhc : null}}"
                             placeholder="Nhập nội dung">
                     </div>
 
                     <div class="col-md-8 form-group">
                         <label id="basic-addon3">Mô tả:</label>
                         <input type="text" id="mota" class="form-control" name="mota" aria-label="Small"
-                            aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}"
+                            aria-describedby="basic-addon3" value="{(set_value('mota')) ? set_value('mota') : {(!empty($mota)) ? $mota : null}}"
                             placeholder="Nhập nội dung">
                     </div>
-
+                    {if (!empty($check))}
+                        <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
+                            {$check}
+                        </div>
+                    {/if}
                     <div class="col-12 form-group text-right">
                         <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i
                                 class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>

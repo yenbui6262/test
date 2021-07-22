@@ -5,6 +5,7 @@
         {
             parent::__construct();
             $this->load->model('Mhanhchinh');
+            $this->load->library('form_validation');
         }
 
         public function index($page=1)
@@ -13,10 +14,10 @@
             if($session['maquyen']!=1 && $session['maquyen']!=4){
                 return redirect(base_url().'403_Forbidden');
             }
-            
+            $check='';
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $this->addhanhchinh();redirect('hanhchinh');
+                    case 'insert'    : $check = $this->addhanhchinh();break;
                     case 'edit'      : $this->update();redirect('hanhchinh');
                     case "search"    : 
                         $filter = array(
@@ -41,7 +42,8 @@
                     'message' => getMessages(),
                     'tenhc' => $filter['tenhc'],
                     'mota' => $filter['mota'],
-                    'session'   => $session
+                    'session'   => $session,
+                    'check'     => $check
                 ),
             );
             // pr($temp);
@@ -52,6 +54,11 @@
             $session = $this->session->userdata("user");
             $tenhc        = $this->input->post('tenhc');
             $mota      = $this->input->post('mota');
+
+            if(empty($tenhc))
+				return 'Nhập tên thủ tục';
+            if(empty($mota))
+                return 'Nhập mô tả';
 
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
             $data = array(

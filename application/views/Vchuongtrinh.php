@@ -21,27 +21,31 @@
                     <div class="col-md-3 form-group">
                         <label id="inputGroup-sizing-sm">Tên chương trình:</label>
                         <input type="text" id="tenct" name="tenct" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if !empty($tenct)}{$tenct}{/if}"
+                            aria-describedby="inputGroup-sizing-sm" value="{(set_value('tenct')) ? set_value('tenct') : {(!empty($tenct)) ? $tenct : null}}"
                             placeholder="Nhập nội dung">
                     </div>
 
                     <div class="col-md-3 form-group">
                         <label id="basic-addon1">Thời gian bắt đầu:</label>
                         <input type="date" id="thoigianbd" class="form-control" name="thoigianbd" aria-label="Small"
-                            aria-describedby="basic-addon1" value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
+                            aria-describedby="basic-addon1" value="{(set_value('thoigianbd')) ? set_value('thoigianbd') : {(!empty($thoigianbd)) ? $thoigianbd : null}}">
                     </div>
                     <div class="col-md-3 form-group">
                         <label id="basic-addon2">Thời gian kết thúc:</label>
                         <input type="date" id="thoigiankt" class="form-control" name="thoigiankt" aria-label="Small"
-                            aria-describedby="basic-addon2" value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
+                            aria-describedby="basic-addon2" value="{(set_value('thoigiankt')) ? set_value('thoigiankt') : {(!empty($thoigiankt)) ? $thoigiankt : null}}">
                     </div>
                     <div class="col-md-3 form-group">
                         <label id="basic-addon3">Mô tả:</label>
                         <input type="text" id="mota" class="form-control" name="mota" aria-label="Small"
-                            aria-describedby="basic-addon3" value="{if !empty($mota)}{$mota}{/if}"
+                            aria-describedby="basic-addon3" value="{(set_value('mota')) ? set_value('mota') : {(!empty($mota)) ? $mota : null}}"
                             placeholder="Nhập nội dung">
                     </div>
-
+                    {if (!empty($check))}
+                        <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
+                            {$check}
+                        </div>
+                    {/if}
                     <div class="col-12 form-group text-right">
                         <button type="submit" class="btn btn-info" name="action" value="search" id="search"><i
                                 class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>

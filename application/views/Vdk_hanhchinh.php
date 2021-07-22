@@ -117,7 +117,7 @@
                         <th>Mô tả</th>
                         <th width="150px">Thời gian đăng ký</th>
                         <th width="120px">Trạng thái</th>
-                        <th width="12%">Tác vụ</th>
+                        <th width="15%">Tác vụ</th>
                     </thead>
                     <tbody>
                         {if !empty($params['dondk'])}
