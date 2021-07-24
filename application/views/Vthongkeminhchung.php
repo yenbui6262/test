@@ -19,12 +19,17 @@
                             <option selected value="tatca">--Chọn tiêu chí--</option>
                             <option value="sinhvien" {if !empty($action)&&$action=='get_dstheosinhvien' }selected{/if}>
                                 Sinh viên</option>
-                            <option value="chuongtrinh" {if !empty($action)&&$action=='get_dstheochuongtrinh'
+                            {if $session['maquyen']==1||$session['maquyen']==3}<option value="chuongtrinh" {if !empty($action)&&$action=='get_dstheochuongtrinh'
                                 }selected{/if}>Chương trình</option>
-                            <option value="lop" {if !empty($action)&&$action=='get_dstheolop' }selected{/if}>Lớp
-                            </option>
+                                <option value="lop" {if !empty($action)&&$action=='get_dstheolop' }selected{/if}>Lớp
+                                </option>
+                            {else}
+                            <option value="lop" {if !empty($action)&&$action=='get_dstheolop' }selected{/if}>Chương trình
+                                </option>
+                            {/if}
                         </select>
                     </div>
+                    {if $session['maquyen']==1||$session['maquyen']==3}
                     <div class="form-group col-xl-3" id='chonlop' {if empty($lop)&&$action!='get_dstheolop'
                         &&$action!='get_dstheosinhvien' }style='display:none' {/if}>
                         <label for="lop">Lớp:</label>
@@ -38,6 +43,7 @@
                             {/if}
                         </select>
                     </div>
+                    {/if}
                     <div class="form-group col-xl-5" id='chonct' {if empty($tenct)&&$action!='get_dstheolop'
                         &&$action!='get_dstheochuongtrinh' } style='display:none' {/if}>
                         <label for="tenct">Tên chương trình:</label>
@@ -65,7 +71,7 @@
                             value="{if !empty($thoigiankt)}{$thoigiankt}{/if}" class="form-control" aria-label="Small"
                             placeholder="Nhập nội dung">
                     </div>
-                    <div class="col-md-2 form-group timkiem">
+                    <div class="col-md-4 form-group timkiem">
                         <button type="button" class="btn btn-info timkiemchild" id="search"><i
                             class="fa fa-search" aria-hidden="true"></i>&nbsp;Thống kê</button>
                         <button type="button" class="btn btn-primary" style="opacity:0">Đặt lại2322 1</button>
@@ -84,10 +90,11 @@
                             <tr>
                                 <th class="text-center" style="width: 3%">STT</th>
                                 <th class="text-center" style="width: 10%">Lớp</th>
-                                <th class="text-center" style="width: 32%">Tên chương trình</th>
+                                <th class="text-center" style="width: 22%">Tên chương trình</th>
                                 <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
                                 <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
                                 <th class="text-center" style="width: 10%">Số lượng minh chứng</th>
+                                <th class="text-center" style="width: 10%">Số lượng cán bộ lớp đã duyệt</th>
                                 <th class="text-center" style="width: 10%">Số lượng đã duyệt</th>
                                 <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>
@@ -106,6 +113,21 @@
                                     {if !empty($params['soluongdaduyet'])}
                                         {$dem=0}
                                         {foreach $params['soluongdaduyet'] as $k => $v}
+                                            {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh && $v.PK_sMaLop==$val.PK_sMaLop}
+                                                {$dem=1}
+                                                {$v.sodaduyet}
+                                            {/if}
+                                        {/foreach}
+                                        {if $dem==0}
+                                                0
+                                        {/if}
+                                    {else}0
+                                    {/if}
+                                </td>
+                                <td class="text-center">
+                                    {if !empty($params['soluongcbdaduyet'])}
+                                        {$dem=0}
+                                        {foreach $params['soluongcbdaduyet'] as $k => $v}
                                             {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh && $v.PK_sMaLop==$val.PK_sMaLop}
                                                 {$dem=1}
                                                 {$v.sodaduyet}
@@ -137,7 +159,8 @@
                                     <th class='text-center' style='width: 10%'>Họ tên</th>
                                     <th class='text-center' style='width: 7%'>Mã sinh viên</th>
                                     <th class='text-center' style='width: 6%'>Lớp</th>
-                                    <th class='text-center' style='width: 10%'>Số chương trình tham gia</th>
+                                    <th class='text-center' style='width: 12%'>Số chương trình tham gia</th>
+                                    <th class='text-center' style='width: 13%'>Số lượng cán bộ lớp đã duyệt</th>
                                     <th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>
                                     <th class='text-center' style='width: 5%'>Chi tiết</th>
                                 </tr>
@@ -155,6 +178,22 @@
                                     {if !empty($params['soluongdaduyet'])}
                                         {$dem=0}
                                         {foreach $params['soluongdaduyet'] as $k => $v}
+                                            {if $v.PK_sMaTK==$val.PK_sMaTK}
+                                                {$dem=1}
+                                                {$v.sodaduyet}
+                                            {/if}
+                                        {/foreach}
+                                        {if $dem==0}
+                                            0
+                                        {/if}
+                                    {else}
+                                        0
+                                    {/if}
+                                    </td>
+                                    <td class='text-center'>
+                                    {if !empty($params['soluongcbdaduyet'])}
+                                        {$dem=0}
+                                        {foreach $params['soluongcbdaduyet'] as $k => $v}
                                             {if $v.PK_sMaTK==$val.PK_sMaTK}
                                                 {$dem=1}
                                                 {$v.sodaduyet}
@@ -187,6 +226,7 @@
                                         <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
                                         <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
                                         <th class='text-center' style='width: 10%'>Số lượng tham gia</th>
+                                        <th class='text-center' style='width: 10%'>Số lượng cán bộ lớp đã duyệt</th>
                                         <th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>
                                         <th class='text-center' style='width: 5%'>Chi tiết</th>
                                     </tr>
@@ -204,6 +244,22 @@
                                         {if !empty($params['soluongdaduyet'])}
                                             {$dem=0}
                                             {foreach $params['soluongdaduyet'] as $k => $v}
+                                                {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                    {$dem=1}
+                                                    {$v.sodaduyet}
+                                                {/if}
+                                            {/foreach}
+                                            {if $dem==0}
+                                                    0
+                                            {/if}
+                                        {else}
+                                            0
+                                        {/if}
+                                        </td>
+                                        <td class='text-center'>
+                                        {if !empty($params['soluongcbdaduyet'])}
+                                            {$dem=0}
+                                            {foreach $params['soluongcbdaduyet'] as $k => $v}
                                                 {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
                                                     {$dem=1}
                                                     {$v.sodaduyet}

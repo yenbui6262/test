@@ -107,11 +107,11 @@
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
                                     <td class="text-center">{$val.sTenLop}</td>
                                     <td class="text-center">
-                                    {if ($val.iTrangThai == 1)}
+                                    {if ($val.iTrangThaiCD == 1||$val.iTrangThaiCD == '')}
                                         <span class="badge badge-warning">Chưa duyệt</span>
-                                    {else if ($val.iTrangThai == 2)}
+                                    {else if ($val.iTrangThaiCD == 2)}
                                         <span class="badge badge-success">Đã duyệt</span>
-                                    {else if ($val.iTrangThai == 3)}
+                                    {else if ($val.iTrangThaiCD == 3)}
                                         <span class="badge badge-danger">Không duyệt</span>
                                     {/if}
                                     </td>
@@ -157,11 +157,11 @@
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
                                     <td class="text-center">
-                                    {if ($val.iTrangThai == 1)}
+                                    {if  ($val.iTrangThaiCD == 1||$val.iTrangThaiCD == '')}
                                         <span class="badge badge-warning">Chưa duyệt</span>
-                                    {else if ($val.iTrangThai == 2)}
+                                    {else if ($val.iTrangThaiCD == 2)}
                                         <span class="badge badge-success">Đã duyệt</span>
-                                    {else if ($val.iTrangThai == 3)}
+                                    {else if ($val.iTrangThaiCD == 3)}
                                         <span class="badge badge-danger">Không duyệt</span>
                                     {/if}
                                     </td>

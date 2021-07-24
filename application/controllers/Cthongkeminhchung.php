@@ -10,7 +10,8 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']==3||$session['maquyen']==1){
+            // pr($session);
+            if($session['maquyen']==3||$session['maquyen']==1||$session['sChucVu']!=''){
                 
             }else{
                 $this->session->sess_destroy();
@@ -119,6 +120,8 @@
         }
 
         public function get_params($page, $dieukien){
+            $session = $this->session->userdata("user");
+            $lop = $this->Mthongkeminhchung->getchucvu($session['taikhoan'])[0]['sFK_lop'];
             // init params
             $params = array();
             // So trang tren 1 page
@@ -130,11 +133,11 @@
             $params['tenct'] = $this->Mthongkeminhchung->getchuongtrinh();
             $params['lop'] = $this->Mthongkeminhchung->getlop();
             if(!empty($dieukien['action'])&&$dieukien['action']=='get_dstheosinhvien'){
-                $total_records = $this->Mthongkeminhchung->getTotalsinhvien($dieukien);
+                $total_records = $this->Mthongkeminhchung->getTotalsinhvien($dieukien,$session['maquyen'],$lop);
             }elseif($dieukien['action']=='get_dstheolop'){
-                $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien);
+                $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien,$session['maquyen'],$lop);
             }elseif($dieukien['action']=='get_dstheochuongtrinh'){
-                $total_records = $this->Mthongkeminhchung->getTotalchuongtrinh($dieukien);
+                $total_records = $this->Mthongkeminhchung->getTotalchuongtrinh($dieukien,$session['maquyen'],$lop);
             }else{
                 $total_records = 0;
             }
@@ -143,15 +146,18 @@
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
                 if($dieukien['action']=='get_dstheosinhvien'){
-                    $params['minhchung']  = $this->Mthongkeminhchung->getlistsinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['minhchung']  = $this->Mthongkeminhchung->getlistsinhvien($limit_per_page, $page * $limit_per_page,$dieukien,$session['maquyen'],$lop);
                     $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheosinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongcbdaduyet']  = $this->Mthongkeminhchung->socbdaduyettheosinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
                     // pr( $params['soluongdaduyet']);
                 }elseif($dieukien['action']=='get_dstheolop'){
-                    $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['minhchung']  = $this->Mthongkeminhchung->getminhchung($limit_per_page, $page * $limit_per_page,$dieukien,$session['maquyen'],$lop);
                     $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheolop($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongcbdaduyet']  = $this->Mthongkeminhchung->socbdaduyettheolop($limit_per_page, $page * $limit_per_page,$dieukien);
                 }elseif($dieukien['action']=='get_dstheochuongtrinh'){
-                    $params['minhchung'] = $this->Mthongkeminhchung->getlistchuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['minhchung'] = $this->Mthongkeminhchung->getlistchuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien,$session['maquyen'],$lop);
                     $params['soluongdaduyet']  = $this->Mthongkeminhchung->sodaduyettheochuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                    $params['soluongcbdaduyet']  = $this->Mthongkeminhchung->socbdaduyettheochuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
                 }
                 // pr($params);
                 $config['base_url']     = base_url().'thongkeminhchung';

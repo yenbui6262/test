@@ -9,6 +9,7 @@
         }
         public function getTotalRecord($dieukien){
             $this->dieukien($dieukien);
+            $this->db->where('mc.iTrangThai', '2');
             $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, mc.tLink, lop.sTenLop")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
@@ -19,9 +20,10 @@
         public function getminhchung($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("mc.iTrangThai")
-                        ->order_by("ct.dThoiGIanKT",'DESC')
-                        -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,ct.dThoiGIanKT")
+            $this->db->where('mc.iTrangThai', '2');
+            $res = $this->db->order_by("mc.iTrangThaiCD")
+                        ->order_by("mc.dTGduyet",'DESC')
+                        -> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,mc.iTrangThaiCD,ct.dThoiGIanKT")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                         -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
@@ -130,10 +132,11 @@
 
         public function getlistsinhvien($limit, $start,$dieukien){
             $this->dieukien($dieukien);
-            $this->db->order_by("mc.iTrangThai")
-                    ->order_by("ct.dThoiGIanKT",'DESC')
+            $this->db->where('mc.iTrangThai', '2');
+            $this->db->order_by("mc.iTrangThaiCD")
+                    ->order_by("mc.dTGduyet",'DESC')
                     ->group_by("ct.PK_sMaChuongTrinh")
-                     ->select("ct.sTenCT,mc.tLink,ct.dThoiGIanBD,ct.dThoiGIanKT,mc.iTrangThai,mc.PK_sMaMC")
+                     ->select("ct.sTenCT,mc.tLink,ct.dThoiGIanBD,ct.dThoiGIanKT,mc.iTrangThai,mc.iTrangThaiCD,mc.PK_sMaMC")
                      ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
                      ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
@@ -141,6 +144,7 @@
         }
         public function getTotalsinhvien($dieukien=null){
             $this->dieukien($dieukien);
+            $this->db->where('mc.iTrangThai', '2');
             $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
                             ->select("ct.sTenCT,mc.tLink")
                             ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
@@ -162,6 +166,13 @@
                         -> select("count(mc.PK_sMaMC) as sosinhvien")
                         -> join("tbl_minhchung mc", "mc.FK_sMaCT = ct.PK_sMaChuongTrinh")
                         -> get("tbl_chuongtrinh ct")->result_array();
+            return $res;
+        }
+
+        public function getchucvu($ma){
+            $this->db->where('PK_sMaTK',$ma);
+            $res = $this->db->select('sFK_lop')
+                        ->get('tbl_taikhoan')->result_array();
             return $res;
         }
     }

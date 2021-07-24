@@ -53,7 +53,8 @@ $(document).ready(function(){
                 option +="<th class='text-center' style='width: 10%'>Họ tên</th>";
                 option +="<th class='text-center' style='width: 7%'>Mã sinh viên</th>";
                 option +="<th class='text-center' style='width: 6%'>Lớp</th>";
-                option +="<th class='text-center' style='width: 10%'>Số chương trình tham gia</th>";
+                option +="<th class='text-center' style='width: 12%'>Số chương trình tham gia</th>";
+                option +="<th class='text-center' style='width: 13%'>Số lượng cán bộ lớp đã duyệt</th>";
                 option +="<th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>";
                 option +="<th class='text-center' style='width: 5%'>Chi tiết</th>";
                 option +="</tr></thead><tbody>";
@@ -72,6 +73,20 @@ $(document).ready(function(){
                                     if(array['soluongdaduyet'][j]['PK_sMaTK']==array['minhchung'][i]['PK_sMaTK']){
                                         dem=1;
                                         option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                    }
+                                }
+                                if(dem==0){
+                                    option+="<td class='text-center'>0</td>";
+                                }
+                            }else{
+                                option+='<td class="text-center">0</td>';
+                            }
+                            if(typeof array['soluongcbdaduyet']!="undefined"&&array['soluongcbdaduyet'].length!=0){
+                                dem=0;
+                                for(j=0;j<array['soluongcbdaduyet'].length;j++){
+                                    if(array['soluongcbdaduyet'][j]['PK_sMaTK']==array['minhchung'][i]['PK_sMaTK']){
+                                        dem=1;
+                                        option+="<td class='text-center'>"+array['soluongcbdaduyet'][j]['sodaduyet']+"</td>";
                                     }
                                 }
                                 if(dem==0){
@@ -114,10 +129,11 @@ $(document).ready(function(){
                     option = '';
                     option +=`<table class='table table-hover table-striped table-bordered' id='example'><thead><tr><th class='text-center' style='width: 3%'>STT</th>
                         <th class="text-center" style="width: 10%">Lớp</th>
-                        <th class="text-center" style="width: 32%">Tên chương trình</th>
+                        <th class="text-center" style="width: 22%">Tên chương trình</th>
                         <th class='text-center' style='width: 10%'>Thời gian bắt đầu</th>
                         <th class='text-center' style='width: 10%'>Thời gian kết thúc</th>
                         <th class="text-center" style="width: 10%">Số lượng minh chứng</th>
+                        <th class="text-center" style="width: 10%">Số lượng cán bộ lớp đã duyệt</th>
                         <th class="text-center" style="width: 10%">Số lượng đã duyệt</th>
                         <th class="text-center" style="width: 10%">Tác vụ</th>
                     </tr>
@@ -142,6 +158,20 @@ $(document).ready(function(){
                                         if(array['soluongdaduyet'][j]['PK_sMaLop']==array['minhchung'][i]['PK_sMaLop']&&array['soluongdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
                                             dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                        }
+                                    }
+                                    if(dem==0){
+                                        option+="<td class='text-center'>0</td>";
+                                    }
+                                }else{
+                                    option+='<td class="text-center">0</td>';
+                                }
+                                if(typeof array['soluongcbdaduyet']!="undefined"&&array['soluongcbdaduyet'].length!=0){
+                                    dem=0;
+                                    for(j=0;j<array['soluongcbdaduyet'].length;j++){
+                                        if(array['soluongcbdaduyet'][j]['PK_sMaLop']==array['minhchung'][i]['PK_sMaLop']&&array['soluongcbdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
+                                            dem=1;
+                                            option+="<td class='text-center'>"+array['soluongcbdaduyet'][j]['sodaduyet']+"</td>";
                                         }
                                     }
                                     if(dem==0){
@@ -185,6 +215,7 @@ $(document).ready(function(){
                     option +="<th class='text-center' style='width: 10%'>Thời gian bắt đầu</th>";
                     option +="<th class='text-center' style='width: 10%'>Thời gian kết thúc</th>";
                     option +="<th class='text-center' style='width: 10%'>Số lượng tham gia</th>";
+                    option +="<th class='text-center' style='width: 10%'>Số lượng cán bộ lớp đã duyệt</th>";
                     option +="<th class='text-center' style='width: 10%'>Số lượng đã duyệt</th>";
                     option +="<th class='text-center' style='width: 5%'>Chi tiết</th>";
                     option +="</tr></thead><tbody>";
@@ -207,6 +238,20 @@ $(document).ready(function(){
                                         if(array['soluongdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
                                             dem=1;
                                             option+="<td class='text-center'>"+array['soluongdaduyet'][j]['sodaduyet']+"</td>";
+                                        }
+                                    }
+                                    if(dem==0){
+                                        option+="<td class='text-center'>0</td>";
+                                    }
+                                }else{
+                                    option+='<td class="text-center">0</td>';
+                                }
+                                if(typeof array['soluongcbdaduyet']!="undefined"&&array['soluongcbdaduyet'].length!=0){
+                                    dem=0;
+                                    for(j=0;j<array['soluongcbdaduyet'].length;j++){
+                                        if(array['soluongcbdaduyet'][j]['PK_sMaChuongTrinh']==array['minhchung'][i]['PK_sMaChuongTrinh']){
+                                            dem=1;
+                                            option+="<td class='text-center'>"+array['soluongcbdaduyet'][j]['sodaduyet']+"</td>";
                                         }
                                     }
                                     if(dem==0){

@@ -10,7 +10,7 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']==3||$session['maquyen']==1){
+            if($session['maquyen']==3||$session['maquyen']==1||$session['sChucVu']!=''){
                 
             }else{
                 $this->session->sess_destroy();
