@@ -4,8 +4,6 @@
         <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
     </ol>
 </nav>
-<br>
-<br>
 {$taikhoan = $sinhvien['thongtincoban'].PK_sMaTK}
 {$hoten = $sinhvien['thongtincoban'].sHoTen}
 {$ngaysinh = $sinhvien['thongtincoban'].dNgaySinh}
@@ -14,12 +12,10 @@
 {$tlop = $sinhvien['thongtincoban'].sTenLop}
 {$mlop = $sinhvien['thongtincoban'].sFK_Lop}
 <div class="container">
-
-    <div class="card mb-3" style="margin-top: -25px;">
-
-        <div class="card-header text-white text-left" style="background-color:#337ab7">
-            <h4 class="text-center"><i class="fas fa-user-edit"></i> <span style="color: white;">&nbsp;THÔNG
-                    TIN CÁ NHÂN</span></h4>
+<div class="card my-3">
+        <div class="card-header text-center text-white bg-darkblue">
+            <h4 class="m-0"><span style="color: white;">&nbsp;THÔNG
+                    TIN CÁ NHÂN</h4>
         </div>
         <div class="card-body">
             <form method="POST">
