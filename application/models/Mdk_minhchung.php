@@ -22,7 +22,7 @@ class Mdk_minhchung extends My_Model
                 $this->db->where('dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
             if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
-                $this->db->where('iTrangThai', $dieukien['trangthai']);
+                $this->db->where('iTrangThaiCD', $dieukien['trangthai']);
             }
         }
         public function getChuongTrinh($date){
@@ -34,7 +34,7 @@ class Mdk_minhchung extends My_Model
         }
         public function getMinhchung($limit, $start,$dieukien,$masv){
             $this->dieukien($dieukien);
-            $res=$this->db->select("PK_sMaMC, ct.PK_sMaChuongTrinh,FK_sMaCT,ct.sTenCT, ct.tMota, tLink, mc.FK_sMaCB,iTrangThai,dThoiGIanBD,dThoiGIanKT")
+            $res=$this->db->select("PK_sMaMC, ct.PK_sMaChuongTrinh,FK_sMaCT,ct.sTenCT, ct.tMota, tLink, mc.FK_sMaCBCD,mc.FK_sMaCB,iTrangThai, iTrangThaiCD,dThoiGIanBD,dThoiGIanKT")
                     ->where('FK_sMaSV',$masv)
                     ->join("tbl_chuongtrinh ct","ct.PK_sMaChuongTrinh=mc.FK_sMaCT")
                     ->order_by("dThoiGIanKT desc,PK_sMaChuongTrinh ")
@@ -48,9 +48,9 @@ class Mdk_minhchung extends My_Model
 
         }
         public function getTGduyet($masv){
-            $res=$this->db->select("dTGDuyet")
+            $res=$this->db->select("dTGDuyetCD,dTGDuyet")
                     ->where('FK_sMaSV',$masv)
-                    ->order_by("dTGDuyet desc");
+                    ->order_by("dTGDuyetCD desc");
             return $this->db->get("tbl_minhchung",1)->row_array();
 
         }

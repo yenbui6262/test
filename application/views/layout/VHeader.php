@@ -99,7 +99,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     {if ($session['maquyen'] == 2)}
-                    <a class="dropdown-item" href="{$url}thongtincanhan">Thông tin cá nhân</a>
+                    <a class="dropdown-item" href="{$url}hososinhvien">Hồ sơ sinh viên</a>
+                    <a class="dropdown-item" href="{$url}thongtincanhan">Tài khoản</a>
                     {/if}
                     <a class="dropdown-item" href="{$url}dangxuat">Đăng xuất</a>
                 </div>

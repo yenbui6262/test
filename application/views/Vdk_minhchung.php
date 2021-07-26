@@ -114,7 +114,8 @@
                             aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
                 </div>
             </div>
-            <div class="text-right">{if (!empty($dTGDuyet['dTGDuyet']))}Lần duyệt gần nhất: {date("d/m/Y h:i:s", strtotime($dTGDuyet['dTGDuyet']))} {/if}</div>
+            <!-- <div class="text-right">{if ($dTGDuyet['dTGDuyetCD'] > $dTGDuyet['dTGDuyet'])} {date("d/m/Y H:i:s", strtotime($dTGDuyet['dTGDuyetCD']))}
+                {else}Lần duyệt gần nhất:{date("d/m/Y H:i:s", strtotime($dTGDuyet['dTGDuyet']))} {/if}</div> -->
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="text-center">
@@ -136,23 +137,22 @@
                             <td>{$v.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanBD))}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($v.dThoiGIanKT))}</td>
-                            <!-- <td> {if !empty($v.PK_sMaTK)}{$v.PK_sMaTK}{/if}</td> -->
                             <td class="text-center">
-                            {if ($v.iTrangThai == 1)}
-                                <span class="badge badge-warning">Chưa duyệt</span>
+                            {if ($v.iTrangThai == 3 || $v.iTrangThaiCD == 3)}
+                                <span class="badge badge-danger">Không duyệt</span>
                             
-                            {else if ($v.iTrangThai == 2)}
+                            {else if ($v.iTrangThaiCD == 2)}
                                 <span class="badge badge-success">Đã duyệt</span>
                             {else}
-                                <span class="badge badge-danger">Không duyệt</span>
+                                <span class="badge badge-warning">Chưa duyệt</span>
                             {/if}
                             </td>
-                            <td>{if !empty($v.FK_sMaCB)}{$v.FK_sMaCB}{else}Đang đợi duyệt{/if}</td>
+                            <td>{if !empty($v.FK_sMaCBCD)}{$v.FK_sMaCBCD}{else}{if (!empty($v.FK_sMaCB) && $v.iTrangThai==3)}Cán bộ lớp{else}Đang đợi duyệt{/if}{/if}</td>
                             <td class="text-center">
                                 <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
                                 {foreach $sinhvien['chuongtrinh'] as $key => $val}
                                 {if !empty($val.PK_sMaChuongTrinh) && $val.PK_sMaChuongTrinh==$v.FK_sMaCT }
-                                    {if ($v.iTrangThai != 2)}
+                                    {if ($v.iTrangThaiCD != 2)}
                                     
                                         <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
                                             class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"

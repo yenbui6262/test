@@ -42,7 +42,10 @@ class Cdk_minhchung extends MY_Controller
                     'tLink'     => $post_data['linkdrive'],
                     'iTrangThai'=> 1,
                     'dTGDuyet'  => null,
-                    'FK_sMaCB'  => null
+                    'FK_sMaCB'  => null,
+                    'iTrangThaiCD'=> null,
+                    'dTGDuyetCD'  => null,
+                    'FK_sMaCBCD'  => null
                 );
                 // pr($data_insert);exit();
                 if($mamc == 0 || $post_data['linkdrive'] == null ){
