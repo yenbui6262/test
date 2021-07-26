@@ -152,7 +152,6 @@
                             {/if}
                         </tbody>
                         {elseif $action=='get_dstheosinhvien'}
-                        <table class='table table-hover table-striped table-bordered' id='example'>
                             <thead>
                                 <tr>
                                     <th class='text-center' style='width: 3%'>STT</th>
@@ -218,7 +217,6 @@
                                 {/if}
                             </tbody>
                             {elseif $action=='get_dstheochuongtrinh'}
-                            <table class='table table-hover table-striped table-bordered' id='example'>
                                 <thead>
                                     <tr>
                                         <th class='text-center' style='width: 3%'>STT</th>

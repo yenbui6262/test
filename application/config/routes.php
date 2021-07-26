@@ -15,6 +15,8 @@ $route['chitietminhchung']              = 'Cchitietminhchung';
 $route['chitietminhchung/(:num)']		= 'Cchitietminhchung/index/$1';
 $route['thongkeminhchung']              = 'Cthongkeminhchung';
 $route['thongkeminhchung/(:num)']		= 'Cthongkeminhchung/index/$1';
+$route['thongkesinhvien']              = 'Cthongkesinhvien';
+$route['thongkesinhvien/(:num)']		= 'Cthongkesinhvien/index/$1';
 
 $route['thongtincanhan']                = 'Cthongtincanhan';
 $route['dk_minhchung']                  = 'Cdk_minhchung';
