@@ -99,7 +99,8 @@
                     $data1 = array(
                         'sMaDS'      => $data['PK_sMaChuongTrinh'].$value,
                         'sMaCT'      => $data['PK_sMaChuongTrinh'],
-                        'sMaTK'      => $value
+                        'sMaTK'      => $value,
+                        'iTrangThai' => '1'
                     );
                     $row = $this->Mthemchuongtrinh->insertthamgia($data1);
                 }

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{$url}public/style/themchuongtrinh.css">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
@@ -98,7 +99,7 @@
                                         class="fa fa-plus" aria-hidden="true"></i>&nbsp;Thêm</button>
                             </div>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive tableWrap2">
                                 <table class="table table-hover table-striped table-bordered" id="example1">
                                     <thead>
                                         <tr>
@@ -147,7 +148,7 @@
                                         class="fa fa-minus" aria-hidden="true"></i>&nbsp;Xóa</button>
                             </div>
                         </div>
-                        <div class="table-responsive">
+                        <div class="table-responsive tableWrap">
                                 <table class="table table-hover table-striped table-bordered" id="example">
                                     <thead>
                                         <tr>
@@ -201,13 +202,13 @@
                     </div>
                     {if $action=='them'}
                         <!-- end trang thai -->
-                        <div class="col-12 form-group text-center">
+                        <div class="col-12 form-group text-center" style="padding-top:25px;">
                             <button type="submit" class="btn btn-success" name="action" value="taoct" id="taoct"><i
                                     class="fa fa-plus" aria-hidden="true"></i>&nbsp;Tạo chương trình</button>
                         </div>
                     {elseif $action=='sua'}
                         <!-- end trang thai -->
-                        <div class="col-12 form-group text-center">
+                        <div class="col-12 form-group text-center"style="padding-top:25px;">
                             <button type="submit" class="btn btn-success" name="action" value="suact" id="suact"><i
                                     class="fa fa-tools" aria-hidden="true"></i>&nbsp;Lưu những thay đổi</button>
                         </div>
@@ -217,73 +218,4 @@
     </div>
 </div>
 </form>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 2px solid #222;
-    }
-
-    #example tr th {
-        background: #0e4b90;
-        color: #eee;
-    }
-
-    #example tr:nth-child(odd) td {
-        background: #ececec;
-    }
-
-    .checkbox {
-        position: relative;
-    }
-
-    .checkbox [type="checkbox"] {
-        position: absolute;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    .checkbox [type="checkbox"] + label {
-        position: relative;
-        display: block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid;
-        cursor: pointer;
-        border-radius: 2px;
-        will-change: color;
-        transition: .2s color ease-in-out;
-    }
-
-    table thead .checkbox [type="checkbox"] + label:hover,
-    table thead .checkbox [type="checkbox"] + label:hover:after {
-        color: #d80;
-    }
-
-    table tbody .checkbox [type="checkbox"] + label:hover,
-    table tbody .checkbox [type="checkbox"] + label:hover:after {
-        color: #8d0;
-    }
-
-    .checkbox [type="checkbox"] + label:after {
-        content: '';
-        position: absolute;
-        width: 5px;
-        height: 12px;
-        top: 50%;
-        left: 50%;
-        border-bottom: 2px solid;
-        border-right: 2px solid;
-        margin-top: -2px;
-        opacity: 0;
-        transform: translate(-50%, 0%) rotate(45deg) scale(.75);
-        will-change: opacity, transform, color;
-        transition: .17s opacity ease-in-out, .2s transform ease-in-out, .2s color ease-in-out;
-    }
-
-    .checkbox [type="checkbox"]:checked + label:after {
-        opacity: 1;
-        transform: translate(-50%, -50%) rotate(45deg) scale(1);
-    }
-</style>
 <script defer type="text/javascript" src="{base_url()}public/script/themchuongtrinh.js"></script>
