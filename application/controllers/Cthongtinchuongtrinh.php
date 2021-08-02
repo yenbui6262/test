@@ -1,11 +1,10 @@
 <?php
-    class Cchuongtrinh extends MY_Controller
+    class Cthongtinchuongtrinh extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mchuongtrinh');
-            $this->load->library('form_validation');
+            $this->load->model('Mthongtinchuongtrinh');
         }
 
         public function index($page=1)
@@ -14,42 +13,22 @@
             if($session['maquyen']!=1 && $session['maquyen'] !=3){
                 return redirect(base_url().'403_Forbidden');
             }
+
             if($action = $this->input->post('action')){
                 switch($action){
-                    case "search"    : 
-                        $filter = array(
-                        'tenct'           => $this->input->post('tenct'),
-                        'mota'            => $this->input->post('mota'),
-                        'thoigianbd'      => $this->input->post('thoigianbd'),
-                        'thoigiankt'      => $this->input->post('thoigiankt')
-                    );
-                    // luu vao sesssion
-                    $this->session->set_userdata("filterct", $filter);redirect('Chuongtrinh');
-                    case "reset"     :unset($_SESSION['filterct']);redirect('Chuongtrinh');
+                    case "search"   : $this->search();break;
                 }
+                return;
             };
-            
-            
-            if($Mact = $this->input->post('sua')){
-                $this->session->set_userdata("filtersua",  $Mact );
-                redirect('suachuongtrinh');
-            }
 
-            if($Mact = $this->input->post('chitiet')){
-                $this->session->set_userdata("filterthongtin",  $Mact );
-                redirect('thongtinchuongtrinh');
-            }
-            
-            $filter = $this->session->userdata("filterct");
+            $mact=$this->session->userdata("filterthongtin");
+
             $temp = array(
-                'template'  => 'Vchuongtrinh',
+                'template'  => 'Vthongtinchuongtrinh',
                 'data'      => array(
-                    'params'    => $this->get_params($page-1, $filter),
+                    'params'    => $this->get_params($page-1, ''),
+                    'thongtincb'    => $this->Mthongtinchuongtrinh->getthongtincb($mact),
                     'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
-                    'mota' => $filter['mota'],
-                    'thoigianbd' => $filter['thoigianbd'],
-                    'thoigiankt' => $filter['thoigiankt'],
                     'session'   => $session,
                 ),
             );
@@ -57,20 +36,6 @@
             $this->load->view('layout/Vcontent', $temp);
         }
 
-        
-        //delete 
-        public function delete($Mact){
-
-            $row    = $this->Mchuongtrinh->deletechuongtrinh($Mact);
-            
-            if ($row>0){
-                setMessages('success','Xóa thành công','Thông báo');
-            }
-            else{
-                setMessages('danger','Xóa thất bại','Thông báo');
-            }
-            redirect('Chuongtrinh');
-        } //end delete
 
         private function pagination(){
             $filter     = $this->input->post("filterct");
@@ -83,6 +48,8 @@
         }
 
         public function get_params($page, $dieukien){
+            
+            $dieukien['mact'] = $this->session->userdata("filterthongtin");
             // init params
             $params = array();
             // So trang tren 1 page
@@ -91,12 +58,12 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $total_records = $this->Mchuongtrinh->getTotalRecord($dieukien);
+            $total_records = $this->Mthongtinchuongtrinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['chuongtrinh']  = $this->Mchuongtrinh->getChuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
+                $params['sinhvienduocthamgia']  = $this->Mthongtinchuongtrinh->getsinhvienduocthamgia($limit_per_page, $page * $limit_per_page,$dieukien);
                 //pr($params);
                 $config['base_url']     = base_url().'Chuongtrinh';
                 $config['total_rows']   = $total_records;

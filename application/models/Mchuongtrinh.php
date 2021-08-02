@@ -49,25 +49,12 @@
             return $res;
         }
 
-        public function insertchuongtrinh($data)
-        {
-            $this->db->insert('tbl_chuongtrinh', $data);
-            return $this->db->affected_rows();
-        }
-
         public function deletechuongtrinh($Mact){
             $this->db->where('PK_sMaChuongTrinh', $Mact);
             $this->db->delete('tbl_chuongtrinh');
             return $this->db->affected_rows();
             
         }
-        
-        //cập nhật 
-        public function updatechuongtrinh($Mact, $data)
-        {
-            $this->db->where('PK_sMaChuongTrinh', $Mact);
-            $this->db->update('tbl_chuongtrinh', $data);
-            return $this->db->affected_rows();
-        }
+
     }
 ?>

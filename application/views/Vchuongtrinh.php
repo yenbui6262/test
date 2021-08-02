@@ -43,11 +43,6 @@
                                     aria-describedby="basic-addon3" value="{(set_value('mota')) ? set_value('mota') : {(!empty($mota)) ? $mota : null}}"
                                     placeholder="Nhập nội dung">
                             </div>
-                            {if (!empty($check))}
-                                <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
-                                    {$check}
-                                </div>
-                            {/if}
                             <div class="col-12 form-group text-right">
                                 <button type="submit" class="btn btn-info" name="action" value="search" id="search"><i
                                         class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
@@ -67,10 +62,11 @@
                                 <tr>
                                     <th class="text-center" style="width: 3%">STT</th>
                                     <th class="text-center" style="width: 15%">Tên chương trình</th>
-                                    <th class="text-center" style="width: 42%">Mô tả</th>
+                                    <th class="text-center" style="width: 37%">Mô tả</th>
                                     <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
                                     <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
-                                    <th class="text-center" style="width: 10%">Tác vụ</th>
+                                    <th class="text-center" style="width: 10%">Thời hạn xác nhận</th>
+                                    <th class="text-center" style="width: 13%">Tác vụ</th>
                                 </tr>
                             </thead>
                             <tbody id="table-body">
@@ -82,10 +78,12 @@
                                     <td>{$val.tMota}</td>
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
                                     <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
+                                    <td class="text-center">{if !empty($val.dThoiGianXN)}{date("d/m/Y", strtotime($val.dThoiGianXN))}{else}Không có hạn{/if}</td>
                                     <td class="text-center">
-                                        <button type="submit" name="sua" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-warning btnEdit"><i class="fas fa-tools"></i></button>
+                                        <button type="submit" name="chitiet" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-info btnEdit"><i class="fas fa-eye"></i></button>
+                                        <button type="submit" name="sua" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-warning btnEdit"><i class="fas fa-tools"></i></button>
                                         <button type="submit" name="delete" value="{$val['PK_sMaChuongTrinh']}"
-                                            class="btn btn-danger btnDelete"
+                                            class="btn btn-danger btnDelete btn-sm"
                                             onclick="return confirm('Bạn có muốn xóa chương trình này không?');"><i
                                                 class="fas fa-trash"></i></button>
                                     </td>
