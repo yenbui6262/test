@@ -570,7 +570,7 @@ td {
     width: 100%!important;
 }
 
-.table-bordered>thead>tr>th,
+/* .table-bordered>thead>tr>th,
 .table-bordered>tbody>tr>th,
 .table-bordered>tfoot>tr>th,
 .table-bordered>thead>tr>td,
@@ -578,7 +578,7 @@ td {
 .table-bordered>tfoot>tr>td,
 .table-bordered {
     border-color: #32383e !important;
-}
+} */
 
 .table-bordered>thead>tr>th,
 .table-bordered>thead>tr>td {

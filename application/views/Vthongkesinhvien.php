@@ -67,11 +67,11 @@
                     <thead>
                         <tr>
                             <th class='text-center' style='width: 3%'>STT</th>
+                            <th class='text-center' style='width: 5%'>Mã sinh viên</th>
                             <th class='text-center' style='width: 10%'>Họ tên</th>
-                            <th class='text-center' style='width: 7%'>Mã sinh viên</th>
-                            <th class='text-center' style='width: 6%'>Lớp</th>
-                            <th class='text-center' style='width: 6%'>Giới tính</th>
                             <th class='text-center' style='width: 6%'>Ngày sinh</th>
+                            <th class='text-center' style='width: 6%'>Giới tính</th>
+                            <th class='text-center' style='width: 6%'>Lớp</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -79,11 +79,11 @@
                         {foreach $params['sinhvien'] as $key => $val}
                         <tr>
                             <td class='text-center'>{$params['stt']++}</td>
-                            <td>{$val['sHoTen']}</td>
                             <td class='text-center'>{$val["PK_sMaTK"]}</td>
-                            <td class='text-center'>{$val["sTenLop"]}</td>
-                            <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
+                            <td>{$val['sHoTen']}</td>
                             <td class='text-center'>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
+                            <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
+                            <td class='text-center'>{$val["sTenLop"]}</td>
                         </tr>
                         {/foreach}
                         {else}

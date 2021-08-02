@@ -69,8 +69,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 3%">STT</th>
-                                <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 10%">Mã Sinh viên</th>
+                                <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 18%">Tên thủ tục</th>
                                 <th class="text-center" style="width: 37%">Lý do</th>
                                 <th class="text-center" style="width: 10%">Trạng thái</th>
@@ -82,8 +82,8 @@
                             {foreach $params['hanhchinh'] as $key => $val}
                             <tr>
                                 <td class="text-center">{$params['stt']++}</td>
-                                <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.PK_sMaTK}</td>
+                                <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.sTenHanhChinh}</td>
                                 <td>{$val.tLydo}</td>
                                 {if ($val.iTrangThai == 0)}

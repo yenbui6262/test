@@ -17,8 +17,7 @@
             $check='';
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'insert'    : $check = $this->addchuongtrinh();break;
-                    case 'edit'      : $this->update();redirect('Chuongtrinh');
+                    case 'insert'    : redirect('themchuongtrinh');break;
                     case "search"    : 
                         $filter = array(
                         'tenct'           => $this->input->post('tenct'),
@@ -34,6 +33,10 @@
             
             if($Mact = $this->input->post('delete')){
                 $deletect      = $this->delete($Mact);
+            }
+            if($Mact = $this->input->post('sua')){
+                $this->session->set_userdata("filtersua",  $Mact );
+                redirect('suachuongtrinh');
             }
             
             $filter = $this->session->userdata("filterct");

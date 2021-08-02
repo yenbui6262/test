@@ -30,6 +30,9 @@ $route['huymonhoc']                     = 'Cword/huymonhoc';
 $route['vayvonnganhang']                = 'Cword/vayvonnganhang';
 $route['mail'] 						    = 'Cemail';
 $route['sendmail'] 					    = 'Cemail/sending_email';
+$route['themchuongtrinh']               = 'Cthemchuongtrinh';
+$route['suachuongtrinh']               = 'Cthemchuongtrinh';
+
 
 $route['default_controller'] = 'Clogin';
 $route['404_override'] = '';
