@@ -83,6 +83,7 @@
         }
 
         public function get_params($page, $dieukien){
+
             // init params
             $params = array();
             // So trang tren 1 page
@@ -91,6 +92,11 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
+            
+            $params['khongthamgia'] = $this->Mchuongtrinh->khongthamgia($limit_per_page, $page * $limit_per_page,$dieukien);
+            $params['thamgia'] = $this->Mchuongtrinh->thamgia($limit_per_page, $page * $limit_per_page,$dieukien);
+            $params['tatca'] = $this->Mchuongtrinh->tatca($limit_per_page, $page * $limit_per_page,$dieukien);
+
             $total_records = $this->Mchuongtrinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records

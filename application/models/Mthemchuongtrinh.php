@@ -20,6 +20,7 @@
                 $this->db->where_not_in('tk.PK_sMaTK',$svdtg);
                 $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
                             ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
+                            ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
                             ->get("tbl_taikhoan tk")->result_array();
                 return $res;
             }else{
@@ -31,9 +32,10 @@
                 if(!empty($svdtg)){
                     $this->db->where_not_in('PK_sMaTK',$svdtg);
                 }
-                $res = $this->db->order_by("sHoTen,sTenTK")
-                                ->select("PK_sMaTK,sHoTen,sTenTK")
-                                ->get("tbl_taikhoan")->result_array();
+                $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
+                                ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
+                                ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
+                                ->get("tbl_taikhoan tk")->result_array();
                 return $res;
             }
         }

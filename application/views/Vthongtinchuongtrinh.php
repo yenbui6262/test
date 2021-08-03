@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <td class="text-center" style="width:30%; font-weight:600;">Trạng thái</td>
-                            <td>Chờ xác nhận: <span class="font-weight-bold" style="color: orange">2</span> sinh viên   &nbsp;&nbsp;&nbsp;&nbsp; Tham gia: <span class="text-success font-weight-bold">0</span> sinh viên  &nbsp;&nbsp;&nbsp;&nbsp;  Không tham gia: <span class="text-danger font-weight-bold">2</span> sinh viên &nbsp;&nbsp;&nbsp;&nbsp;   <button type="button" class="btn btn-success btn-ssm" style="font-size:13px;padding:2px 10px;font-weight:550;"><img src="{$url}public/images/icon-gmail.png"  style="width: 22px; height:20px;">&nbsp;Gửi Email</button></td>
+                            <td>Chờ xác nhận: <span class="font-weight-bold" style="color: orange">{if !empty($choxacnhan)}{$choxacnhan}{else}0{/if}</span> sinh viên   &nbsp;&nbsp;&nbsp;&nbsp; Tham gia: <span class="text-success font-weight-bold">{if !empty($thamgia)}{$thamgia}{else}0{/if}</span> sinh viên  &nbsp;&nbsp;&nbsp;&nbsp;  Không tham gia: <span class="text-danger font-weight-bold">{if !empty($khongthamgia)}{$khongthamgia}{else}0{/if}</span> sinh viên &nbsp;&nbsp;&nbsp;&nbsp;   <button type="button" class="btn btn-success btn-ssm" style="font-size:13px;padding:2px 10px;font-weight:550;"><img src="{$url}public/images/icon-gmail.png"  style="width: 22px; height:20px;">&nbsp;Gửi Email</button></td>
                         </tr>
                         {/foreach}
                         {else}
@@ -53,9 +53,36 @@
             <hr>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 form-group text-right">
-                        <button type="submit" class="btn btn-info btn-sm" name="action" value="search" id="search"><i
-                                class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                <div class="col-md-3 form-group">
+                        <label>Mã sinh viên / Họ tên:</label>
+                        <input type="text" id="hotenmasv" name="hotenmasv" class="form-control" placeholder="Nhập nội dung">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Lớp:</label>
+                        <select class="form-control select2" name="lop" id="lop">
+                            <option selected value="tatca">Tất cả</option>
+                            {if !empty($lop)}
+                            {foreach $lop as $v}
+                            <option value="{$v.sTenLop}">{$v.sTenLop}
+                            </option>
+                            {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Trạng thái:</label>
+                        <select class="form-control select2 no-search-select2" name="trangthai" id="trangthai">
+                            <option selected value="tatca">Tất cả</option>
+                            <option value="2">Tham gia</option>
+                            <option value="3">Không tham gia</option>
+                            <option value="1">Chờ xác nhận</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group timkiem">
+                        <button type="button" class="btn btn-primary" style="opacity:0">Tìm kiếm 1231</button>
+                        <button type="button" class="btn btn-info timkiemchild" style="left:15px;" id="search"><i
+                            class="fa fa-search" aria-hidden="true"></i>&nbsp;Tìm kiếm</button>
+                        
                     </div>
                 </div>
             <div>
@@ -70,13 +97,13 @@
                             <th class="text-center" style="width: 25%">Lý do</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-body">
                         {if !empty($params['sinhvienduocthamgia'])}
                         {foreach $params['sinhvienduocthamgia'] as $key => $val}
                         <tr>
                             <td class="text-center">{$params['stt']++}</td>
                             <td>{$val.sTenTK} - {$val.sHoTen}</td>
-                            <td>{$val.sHoTen}</td>
+                            <td>{$val.sTenLop}</td>
                             <td class="text-center">
                             {if ($val.iTrangThai == 1)}
                             <span class="badge badge-warning">Chờ xác nhận</span>
@@ -89,10 +116,6 @@
                             <td>{$val.tLydo}</td>
                         </tr>
                         {/foreach}
-                        {else}
-                        <tr>
-                            <td class="text-center" colspan="9">Không tìm thấy dữ liệu!</td>
-                        </tr>
                         {/if}
                     </tbody>
                 </table>
@@ -103,4 +126,4 @@
         </form>
     </div>
 </div>
-<script defer type="text/javascript" src="{base_url()}public/script/chuongtrinh.js"></script>
+<script defer type="text/javascript" src="{base_url()}public/script/thongtinchuongtrinh.js"></script>

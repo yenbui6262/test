@@ -22,12 +22,19 @@
             };
 
             $mact=$this->session->userdata("filterthongtin");
-
+            $khongthamgia = $this->Mthongtinchuongtrinh->khongthamgia($mact);
+            $thamgia = $this->Mthongtinchuongtrinh->thamgia($mact);
+            $tatca =$this->Mthongtinchuongtrinh->tatca($mact);
+            $choxacnhan = $tatca-$khongthamgia-$thamgia;
             $temp = array(
                 'template'  => 'Vthongtinchuongtrinh',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, ''),
                     'thongtincb'    => $this->Mthongtinchuongtrinh->getthongtincb($mact),
+                    'khongthamgia'    => $khongthamgia,
+                    'thamgia'    => $thamgia,
+                    'choxacnhan'    => $choxacnhan,
+                    'lop' => $this->Mthongtinchuongtrinh->getlop(),
                     'message' => getMessages(),
                     'session'   => $session,
                 ),
@@ -45,6 +52,14 @@
             if(!empty($res)){
                 echo json_encode($res);
             }
+        }
+
+        private function search(){
+            $filter = $this->input->post("filter");
+            // luu thong so vao session
+            $res = $this->get_params(0, $filter);
+            // pr($res);
+            echo json_encode($res);
         }
 
         public function get_params($page, $dieukien){

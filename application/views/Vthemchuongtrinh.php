@@ -19,6 +19,11 @@
                     <input type="text" name="mact">
                 </div>
             </div>
+            {if (!empty($check))}
+                <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
+                    Yêu cầu: {$check}
+                </div>
+            {/if}
             <div class="col-md-5 form-group">
                 <label>Tên chương trình:</label>
                 <textarea type="text" id="tenct" name="tenct" class="form-control" placeholder="Nhập nội dung">{(set_value('tenct')) ? set_value('tenct') : {(!empty($thongtincb)) ? $thongtincb[0].sTenCT : null}}</textarea>
@@ -39,11 +44,6 @@
                 <label id="basic-addon2">Thời hạn đăng ký:</label>
                 <input type="date" id="thoigiandk" class="form-control" name="thoigiandk" value="{(set_value('thoigiandk')) ? set_value('thoigiandk') : {(!empty($thongtincb[0].dThoiGianXN)) ? $thongtincb[0].dThoiGianXN : null}}">
             </div>
-            {if (!empty($check))}
-                <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
-                    {$check}
-                </div>
-            {/if}
             <div class="col-12 form-group">
                 <label id="basic-addon3" class="col-12" style="padding: 0 !important">Phạm vi sự kiện:</label>
                 <div class="form-check form-check-inline">

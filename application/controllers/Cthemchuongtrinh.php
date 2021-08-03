@@ -17,15 +17,15 @@
 
             if($themct = $this->input->post('themct')){
                 unset($_SESSION['filtersua']);
+                redirect('themchuongtrinh');
             }
-
+            $check = '';
             if($action = $this->input->post('action')){
                 switch($action){
-                    case 'taoct'    : $this->addchuongtrinh();break;
+                    case 'taoct'    : $check=$this->addchuongtrinh();break;
                     case 'suact'    : $this->updatechuongtrinh();break;
-                    case "search"   : $this->search();break;
+                    case "search"   : $this->search();return;
                 }
-                return;
             };
 
             if($sua=$this->session->userdata("filtersua")){
@@ -55,6 +55,7 @@
                     'filter' => $filter,
                     'session'   => $session,
                     'action'   => $action,
+                    'check'    =>$check
                 ),
             );
             // pr($temp);

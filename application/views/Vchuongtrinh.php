@@ -62,10 +62,11 @@
                                 <tr>
                                     <th class="text-center" style="width: 3%">STT</th>
                                     <th class="text-center" style="width: 15%">Tên chương trình</th>
-                                    <th class="text-center" style="width: 37%">Mô tả</th>
-                                    <th class="text-center" style="width: 10%">Thời gian bắt đầu</th>
-                                    <th class="text-center" style="width: 10%">Thời gian kết thúc</th>
-                                    <th class="text-center" style="width: 10%">Thời hạn xác nhận</th>
+                                    <th class="text-center" style="width: 30%">Mô tả</th>
+                                    <th class="text-center" style="width: 15%">Thời gian diễn ra</th>
+                                    <th class="text-center" style="width: 7%">Tất cả</th>
+                                    <th class="text-center" style="width: 7%">Tham gia</th>
+                                    <th class="text-center" style="width: 9%">Không tham gia</th>
                                     <th class="text-center" style="width: 13%">Tác vụ</th>
                                 </tr>
                             </thead>
@@ -76,9 +77,58 @@
                                     <td class="text-center">{$params['stt']++}</td>
                                     <td>{$val.sTenCT}</td>
                                     <td>{$val.tMota}</td>
-                                    <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))}</td>
-                                    <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanKT))}</td>
-                                    <td class="text-center">{if !empty($val.dThoiGianXN)}{date("d/m/Y", strtotime($val.dThoiGianXN))}{else}Không có hạn{/if}</td>
+                                    <td class="text-center">
+                                        {date("d/m/Y", strtotime($val.dThoiGIanBD))} - {date("d/m/Y", strtotime($val.dThoiGIanKT))}
+                                        <div>
+                                        {if !empty($val.dThoiGianXN)}(Hạn đk: {date("d/m/Y", strtotime($val.dThoiGianXN))}){/if}
+                                        </div>
+                                    </td>
+                                    <!-- <td class="text-center">{if !empty($val.dThoiGianXN)}{date("d/m/Y", strtotime($val.dThoiGianXN))}{else}Không có hạn{/if}</td> -->
+                                    <td class="text-center">
+                                    {if !empty($params['tatca'])}
+                                        {$dem=0}
+                                        {foreach $params['tatca'] as $k => $v}
+                                            {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                {$dem=1}
+                                                {$v.tatca}
+                                            {/if}
+                                        {/foreach}
+                                        {if $dem==0}
+                                                0
+                                        {/if}
+                                    {else}0
+                                    {/if}
+                                    </td>
+                                    <td class="text-center">
+                                    {if !empty($params['thamgia'])}
+                                        {$dem=0}
+                                        {foreach $params['thamgia'] as $k => $v}
+                                            {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                {$dem=1}
+                                                {$v.thamgia}
+                                            {/if}
+                                        {/foreach}
+                                        {if $dem==0}
+                                                0
+                                        {/if}
+                                    {else}0
+                                    {/if}
+                                    </td>
+                                    <td class="text-center">
+                                    {if !empty($params['khongthamgia'])}
+                                        {$dem=0}
+                                        {foreach $params['khongthamgia'] as $k => $v}
+                                            {if $v.PK_sMaChuongTrinh==$val.PK_sMaChuongTrinh}
+                                                {$dem=1}
+                                                {$v.khongthamgia}
+                                            {/if}
+                                        {/foreach}
+                                        {if $dem==0}
+                                                0
+                                        {/if}
+                                    {else}0
+                                    {/if}
+                                    </td>
                                     <td class="text-center">
                                         <button type="submit" name="chitiet" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-info btnEdit"><i class="fas fa-eye"></i></button>
                                         <button type="submit" name="sua" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-warning btnEdit"><i class="fas fa-tools"></i></button>

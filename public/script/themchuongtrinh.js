@@ -160,7 +160,6 @@ function tralai(){
           action: "search",
           filter: filter,
       }
-      console.log(result);
 
       $.ajax({
           url: window.location.pathname,
