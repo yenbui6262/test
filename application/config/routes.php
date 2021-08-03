@@ -18,6 +18,7 @@ $route['thongkeminhchung/(:num)']		= 'Cthongkeminhchung/index/$1';
 
 $route['thongtincanhan']                = 'Cthongtincanhan';
 $route['hososinhvien']                  = 'Chososinhvien';
+$route['xacnhanthamgia']                = 'Cxacnhanthamgia';
 $route['dk_minhchung']                  = 'Cdk_minhchung';
 $route['dk_minhchung/(:num)']           = 'Cdk_minhchung/index/$1';
 $route['dk_hanhchinh']                  = 'Cdk_hanhchinh';
