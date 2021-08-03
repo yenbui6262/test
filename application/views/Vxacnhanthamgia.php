@@ -58,21 +58,19 @@
                             <td>{$val.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGianXN))}</td>
                             
-                            {if ($val.iTrangThai == 1||$val.iTrangThai == 3)}
                                 {if ($val.iTrangThai == 1)}
                                 <td class="text-center">
                                     <span class="badge">Chờ xác nhận</span>
                                 </td>
-                                {else}
+                                {elseif ($val.iTrangThai == 3)}
                                 <td class="text-center">
                                     <span class="badge badge-danger">Không tham gia</span>
                                 </td>
+                                {else}
+                                <td class="text-center">
+                                    <span class="badge badge-success">Tham gia</span>
+                                </td>
                                 {/if}
-                            {else}
-                            <td class="text-center">
-                                <span class="badge badge-success">Tham gia</span>
-                            </td>
-                            {/if}
                             <td>
                                 <input type="text" value="{if !empty($val.tLyDo)}{$val.tLyDo}{/if}" id="lydo">
                             </td>
