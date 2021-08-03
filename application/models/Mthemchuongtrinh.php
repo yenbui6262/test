@@ -8,38 +8,6 @@
             $this->load->database();
         }
 
-
-        public function getsinhvien($mact=null,$svdtg=null,$filter=null)
-        {
-            if(!empty($mact)){
-                if(!empty($filter['masvhoten'])){
-                    $searchQuery = " (tk.sTenTK like '%".$filter['masvhoten']."%' or 
-                    tk.sHoTen like '%".$filter['masvhoten']."%') ";
-                    $this->db->where($searchQuery);
-                }
-                $this->db->where_not_in('tk.PK_sMaTK',$svdtg);
-                $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
-                            ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
-                            ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
-                            ->get("tbl_taikhoan tk")->result_array();
-                return $res;
-            }else{
-                if(!empty($filter['masvhoten'])){
-                    $searchQuery = " (tk.sTenTK like '%".$filter['masvhoten']."%' or 
-                    tk.sHoTen like '%".$filter['masvhoten']."%') ";
-                    $this->db->where($searchQuery);
-                }
-                if(!empty($svdtg)){
-                    $this->db->where_not_in('PK_sMaTK',$svdtg);
-                }
-                $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
-                                ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
-                                ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
-                                ->get("tbl_taikhoan tk")->result_array();
-                return $res;
-            }
-        }
-
         public function getthongtincb($mact)
         {
 
@@ -85,14 +53,14 @@
             $this->db->update('tbl_chuongtrinh', $data);
             return $this->db->count_all_results();
         }
-        public function updatethamgia($data)
-        {
-            $this->db->set('sMaDS', $data['sMaDS']);
-            $this->db->where('sMaTK', $data['sMaTK']);
-            $this->db->where('sMaCT', $data['sMaCT'])
-                     ->from('tbl_thamgia');
-            return $this->db->count_all_results();
-        }
+        // public function updatethamgia($data)
+        // {
+        //     $this->db->set('sMaDS', $data['sMaDS']);
+        //     $this->db->where('sMaTK', $data['sMaTK']);
+        //     $this->db->where('sMaCT', $data['sMaCT'])
+        //              ->from('tbl_thamgia');
+        //     return $this->db->count_all_results();
+        // }
         public function deletethamgia($mact,$masv)
         {
             $this->db->where_not_in('sMaTK',$masv);
@@ -108,6 +76,40 @@
                      ->from('tbl_thamgia');
             return  $this->db->count_all_results();
         }
-        
+        public function getlop(){
+            $res = $this->db->select('*')
+                        ->get('tbl_lop')->result_array();
+            return $res;
+        }
+
+
+        public function searchsinhvien($filter=null)
+        {
+            if(!empty($filter['phamvi'])){
+                if($filter['phamvi']=='toancanbo'){
+                    $searchQuery = " (tk.sChucvu != '' or 
+                    tk.FK_sMaQuyen = 3) ";
+                    $this->db->where($searchQuery);
+                }elseif($filter['phamvi']=='toancanbolop'){
+                    $this->db->where('tk.sChucvu !=','""');
+
+                }elseif($filter['phamvi']=='toancanbochidoan'){
+                    $this->db->where('tk.FK_sMaQuyen','3');
+                }
+            }
+            if($filter['masvdtg']){
+                $this->db->where_not_in('tk.PK_sMaTK',$filter['masvdtg']);
+            }
+            if($filter['lop']&&$filter['lop']!='tatca'){
+                $this->db->where('tk.sFK_Lop',$filter['lop']);
+            }
+            $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
+                        ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
+                        ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
+                        ->get("tbl_taikhoan tk")->result_array();
+            return $res;
+        }
+
+
     }
 ?>

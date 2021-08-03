@@ -138,41 +138,81 @@ function checkboxx() {
   });
 }
 
-// tra lai bang them sv
-function tralai(){
-      history.pushState(null, null, link_url + "themchuongtrinh");
+$('input[type=radio][name=phamvi]').change(function() {
+  var phamvi = this.value;
+  history.pushState(null, null, link_url + "themchuongtrinh");
     
-      // Khai báo tham số
-      var checkbox = $('#example1 tbody input:checkbox');
-      var result = new Array();
-      
-      // Lặp qua từng checkbox để lấy giá trị
-      for (var i = 0; i < checkbox.length; i++){
-        result[i] = checkbox[i].value;
-      }
-      // lay dieu kien filter
-      var filter = {
-        masvhoten       : $("#masvhoten").val(),
-        donvi       : $("#donvi1").val(),
-        masvcdtg        : result
-      };
-      var data = {
-          action: "search",
-          filter: filter,
-      }
+    // Khai báo tham số
+    var checkbox = $('#example tbody input:checkbox');
+    var result = new Array();
+    if(checkbox.length==0){
+      result='';
+    }
+    // Lặp qua từng checkbox để lấy giá trị
+    for (var i = 0; i < checkbox.length; i++){
+      result[i] = checkbox[i].value;
+    }
+    // lay dieu kien filter
+    var filter = {
+      phamvi       : phamvi,
+      lop        : $("#lop").val(),
+      masvdtg     : result
+    };
+    var data = {
+        action: "search",
+        filter: filter,
+    }
 
-      $.ajax({
-          url: window.location.pathname,
-          type: "post",
-          data: data,
-          beforeSend: loading(),
-      }).done(function(data){
-        data = JSON.parse(data);
-        renderTable(data);
-      }).always(function(e){
-          $("#overlay").hide();
-      });
-}
+    $.ajax({
+        url: window.location.pathname,
+        type: "post",
+        data: data,
+        beforeSend: loading(),
+    }).done(function(data){
+      data = JSON.parse(data);
+      renderTable(data);
+    }).always(function(e){
+        $("#overlay").hide();
+    });
+});
+
+$('#lop').change(function() {
+  var phamvi = this.value;
+  history.pushState(null, null, link_url + "themchuongtrinh");
+    
+    // Khai báo tham số
+    var checkbox = $('#example tbody input:checkbox');
+    var result = new Array();
+    if(checkbox.length==0){
+      result='';
+    }
+    // Lặp qua từng checkbox để lấy giá trị
+    for (var i = 0; i < checkbox.length; i++){
+      result[i] = checkbox[i].value;
+    }
+    // lay dieu kien filter
+    var filter = {
+      phamvi       : phamvi,
+      lop        : $("#lop").val(),
+      masvdtg     : result
+    };
+    var data = {
+        action: "search",
+        filter: filter,
+    }
+
+    $.ajax({
+        url: window.location.pathname,
+        type: "post",
+        data: data,
+        beforeSend: loading(),
+    }).done(function(data){
+      data = JSON.parse(data);
+      renderTable(data);
+    }).always(function(e){
+        $("#overlay").hide();
+    });
+});
 
 function renderTable(data){
   var html = "";

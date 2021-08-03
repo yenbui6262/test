@@ -36,12 +36,10 @@
                 foreach ($sinhvienduocthamgia as $key => $value){
                     $svdtg[] = $value['PK_sMaTK'];
                 }
-                $sinhvien=$this->Mthemchuongtrinh->getsinhvien($sua,$svdtg,'');
             }else{
                 $action = "them";
                 $sinhvienduocthamgia='';
                 $thongtincb='';
-                $sinhvien=$this->Mthemchuongtrinh->getsinhvien();
             }
 
             $filter = $this->session->userdata("filterct");
@@ -49,8 +47,8 @@
                 'template'  => 'Vthemchuongtrinh',
                 'data'      => array(
                     'sinhvienduocthamgia'    => $sinhvienduocthamgia,
-                    'sinhvien'    => $sinhvien,
                     'thongtincb'    => $thongtincb,
+                    'lop' => $this->Mthemchuongtrinh->getlop(),
                     'message' => getMessages(),
                     'filter' => $filter,
                     'session'   => $session,
@@ -157,7 +155,6 @@
                     );
                     $check  = $this->Mthemchuongtrinh->checkthamgia($data1);
                     if($check>0){
-                        $aaa    = $this->Mthemchuongtrinh->updatethamgia($data1);
                     }else{
                         $bbb    = $this->Mthemchuongtrinh->insertthamgia($data1);
                     }
@@ -170,10 +167,10 @@
         }
 
         private function search(){
-            $masv = $this->session->userdata("filtersua");
             $filter = $this->input->post("filter");
+            // pr($filter);
             // luu thong so vao session
-            $res['dssv'] = $this->Mthemchuongtrinh->getsinhvien($masv,$filter['masvcdtg'],$filter);
+            $res['dssv'] = $this->Mthemchuongtrinh->searchsinhvien($filter);
             echo json_encode($res);
         }
         
