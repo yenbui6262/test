@@ -50,8 +50,8 @@ $(document).ready(function(){
             success: function(data){
                 option = '';
                 option +="<table class='table table-hover table-striped table-bordered' id='example'><thead><tr><th class='text-center' style='width: 3%'>STT</th>";
-                option +="<th class='text-center' style='width: 10%'>Họ tên</th>";
                 option +="<th class='text-center' style='width: 7%'>Mã sinh viên</th>";
+                option +="<th class='text-center' style='width: 10%'>Họ tên</th>";
                 option +="<th class='text-center' style='width: 6%'>Lớp</th>";
                 option +="<th class='text-center' style='width: 12%'>Số chương trình tham gia</th>";
                 option +="<th class='text-center' style='width: 13%'>Số lượng cán bộ lớp đã duyệt</th>";
@@ -63,8 +63,8 @@ $(document).ready(function(){
                     if(typeof array['minhchung']!="undefined"){
                         for(i=0;i<array['minhchung'].length;i++){
                             option+="<tr><td class='text-center'>"+ array['stt']++ +"</td>";
-                            option+="<td >"+array['minhchung'][i]['sHoTen']+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]["PK_sMaTK"]+"</td>";
+                            option+="<td >"+array['minhchung'][i]['sHoTen']+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]["sTenLop"]+"</td>";
                             option+="<td class='text-center'>"+array['minhchung'][i]['sochuongtrinh']+"</td>";
                             if(typeof array['soluongdaduyet']!="undefined"&&array['soluongdaduyet'].length!=0){

@@ -1,79 +1,56 @@
 <?php
-    class Cchuongtrinh extends MY_Controller
+    class Cthongkesinhvien extends MY_Controller
     {
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('Mchuongtrinh');
-            $this->load->library('form_validation');
+            $this->load->model('Mthongkesinhvien');
         }
 
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']!=1 && $session['maquyen'] !=3){
+            // pr($session);
+            if($session['maquyen']==3||$session['maquyen']==1){
+                
+            }else{
+                $this->session->sess_destroy();
                 return redirect(base_url().'403_Forbidden');
             }
+
             if($action = $this->input->post('action')){
-                switch($action){
-                    case "search"    : 
-                        $filter = array(
-                        'tenct'           => $this->input->post('tenct'),
-                        'mota'            => $this->input->post('mota'),
-                        'thoigianbd'      => $this->input->post('thoigianbd'),
-                        'thoigiankt'      => $this->input->post('thoigiankt')
+                if($action=='search'){
+                    $filtertksv = array(
+                        'lop'      => $this->input->post('lop'),
+                        'ngaysinh'      => $this->input->post('ngaysinh'),
+                        'gioitinh'      => $this->input->post('gioitinh')
                     );
                     // luu vao sesssion
-                    $this->session->set_userdata("filterct", $filter);redirect('Chuongtrinh');
-                    case "reset"     :unset($_SESSION['filterct']);redirect('Chuongtrinh');
+                    $this->session->set_userdata("filtertksv", $filtertksv);
+                    redirect("thongkesinhvien");
+                }elseif($action=='reset'){
+                    unset($_SESSION['filtertksv']);
+                    redirect("thongkesinhvien");
                 }
-            };
-            
-            
-            if($Mact = $this->input->post('sua')){
-                $this->session->set_userdata("filtersua",  $Mact );
-                redirect('suachuongtrinh');
             }
 
-            if($Mact = $this->input->post('chitiet')){
-                $this->session->set_userdata("filterthongtin",  $Mact );
-                redirect('thongtinchuongtrinh');
-            }
+            $filter = $this->session->userdata("filtertksv");
             
-            $filter = $this->session->userdata("filterct");
             $temp = array(
-                'template'  => 'Vchuongtrinh',
+                'template'  => 'Vthongkesinhvien',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
-                    'tenct' => $filter['tenct'],
-                    'mota' => $filter['mota'],
-                    'thoigianbd' => $filter['thoigianbd'],
-                    'thoigiankt' => $filter['thoigiankt'],
-                    'session'   => $session,
+                    'filter' => $filter,
+                    'session'   => $session
                 ),
             );
-            // pr($temp);
+            // pr($temp['data']);
             $this->load->view('layout/Vcontent', $temp);
         }
 
-        
-        //delete 
-        public function delete($Mact){
-
-            $row    = $this->Mchuongtrinh->deletechuongtrinh($Mact);
-            
-            if ($row>0){
-                setMessages('success','Xóa thành công','Thông báo');
-            }
-            else{
-                setMessages('danger','Xóa thất bại','Thông báo');
-            }
-            redirect('Chuongtrinh');
-        } //end delete
-
         private function pagination(){
-            $filter     = $this->input->post("filterct");
+            $filter     = $this->input->post("filtermc");
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
@@ -83,28 +60,25 @@
         }
 
         public function get_params($page, $dieukien){
-
+            $session = $this->session->userdata("user");
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 25;
+            $limit_per_page = 5;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            
-            $params['khongthamgia'] = $this->Mchuongtrinh->khongthamgia($limit_per_page, $page * $limit_per_page,$dieukien);
-            $params['thamgia'] = $this->Mchuongtrinh->thamgia($limit_per_page, $page * $limit_per_page,$dieukien);
-            $params['tatca'] = $this->Mchuongtrinh->tatca($limit_per_page, $page * $limit_per_page,$dieukien);
+            $params['lop'] = $this->Mthongkesinhvien->getlop();
+            $total_records = $this->Mthongkesinhvien->getTotalsinhvien($dieukien);
 
-            $total_records = $this->Mchuongtrinh->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['chuongtrinh']  = $this->Mchuongtrinh->getChuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien);
-                //pr($params);
-                $config['base_url']     = base_url().'Chuongtrinh';
+                $params['sinhvien']  = $this->Mthongkesinhvien->getlistsinhvien($limit_per_page, $page * $limit_per_page,$dieukien);
+                // pr($params);
+                $config['base_url']     = base_url().'thongkesinhvien';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;

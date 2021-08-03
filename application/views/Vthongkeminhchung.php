@@ -152,12 +152,11 @@
                             {/if}
                         </tbody>
                         {elseif $action=='get_dstheosinhvien'}
-                        <table class='table table-hover table-striped table-bordered' id='example'>
                             <thead>
                                 <tr>
                                     <th class='text-center' style='width: 3%'>STT</th>
-                                    <th class='text-center' style='width: 10%'>Họ tên</th>
                                     <th class='text-center' style='width: 7%'>Mã sinh viên</th>
+                                    <th class='text-center' style='width: 10%'>Họ tên</th>
                                     <th class='text-center' style='width: 6%'>Lớp</th>
                                     <th class='text-center' style='width: 12%'>Số chương trình tham gia</th>
                                     <th class='text-center' style='width: 13%'>Số lượng cán bộ lớp đã duyệt</th>
@@ -170,8 +169,8 @@
                                 {foreach $params['minhchung'] as $key => $val}
                                 <tr>
                                     <td class='text-center'>{$params['stt']++}</td>
-                                    <td>{$val['sHoTen']}</td>
                                     <td class='text-center'>{$val["PK_sMaTK"]}</td>
+                                    <td>{$val['sHoTen']}</td>
                                     <td class='text-center'>{$val["sTenLop"]}</td>
                                     <td class='text-center'>{$val['sochuongtrinh']}</td>
                                     <td class='text-center'>
@@ -218,7 +217,6 @@
                                 {/if}
                             </tbody>
                             {elseif $action=='get_dstheochuongtrinh'}
-                            <table class='table table-hover table-striped table-bordered' id='example'>
                                 <thead>
                                     <tr>
                                         <th class='text-center' style='width: 3%'>STT</th>

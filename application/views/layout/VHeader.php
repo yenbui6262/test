@@ -46,6 +46,11 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
+                {if ($session['maquyen'] == 1)}
+                <li class="nav-item">
+                    <a class="nav-link" href="{$url}thongkesinhvien"><i class="fas fa-chart-bar"></i>&nbsp;Thống kê sinh viên</a>
+                </li>
+                {/if}
                 {if ($session['maquyen'] == 3)||($session['maquyen'] == 1)}
                 <li class="nav-item">
                     <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-chart-bar"></i>&nbsp;Thống kê minh chứng</a>

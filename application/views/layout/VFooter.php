@@ -1,4 +1,4 @@
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-top:30px;">
         <div class="row">
             <div class="col-md-10 col-sm-10 col-xs-12">
                 <div class="d-table">
@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12">
-                <a href="https://mail.google.com"><img src="{$url}public/images/icon-gmail.png" class="img-rounded" title="gmail hội sinh viên Trường đại học Mở Hà Nội" style="width: 36px; height:37px;"></a>&nbsp;&nbsp;
-                <a href="https://www.facebook.com/HoiSinhvienHOU/"><img src="{$url}public/images/icon-fb.png" class="img-rounded" style="width: 33px; height:33px;" title="facebook hội sinh viên Trường đại học Mở Hà Nội"></a>&nbsp;&nbsp;
+                <a href="https://mail.google.com"><img src="{$url}public/images/icon-gmail.png" class="img-rounded" title="Gmail khoa kinh tế Trường đại học Mở Hà Nội" style="width: 36px; height:37px;"></a>&nbsp;&nbsp;
+                <a href="#"><img src="{$url}public/images/icon-fb.png" class="img-rounded" style="width: 33px; height:33px;" title="facebook hội sinh viên Trường đại học Mở Hà Nội"></a>&nbsp;&nbsp;
             </div>
         </div>
     </div>
