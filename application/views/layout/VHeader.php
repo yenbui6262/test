@@ -84,6 +84,7 @@
                     </div>
                 </li>
                 {elseif ($session['maquyen'] == 2)}
+                <li class="nav-item"><a href="{$url}xacnhanthamgia" class="nav-link"><i class="fas fa-file"></i> Xác nhận tham gia</a></li>
                 <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
                 <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Thủ tục hành chính</a></li>
                 
