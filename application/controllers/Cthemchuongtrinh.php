@@ -23,7 +23,7 @@
             if($action = $this->input->post('action')){
                 switch($action){
                     case 'taoct'    : $check=$this->addchuongtrinh();break;
-                    case 'suact'    : $this->updatechuongtrinh();break;
+                    case 'suact'    : $check=$this->updatechuongtrinh();break;
                     case "search"   : $this->search();return;
                 }
             };

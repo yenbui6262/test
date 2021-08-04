@@ -20,7 +20,7 @@
                 </div>
             </div>
             {if (!empty($check))}
-                <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
+                <div id="checkerr" class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
                     Yêu cầu: {$check}
                 </div>
             {/if}

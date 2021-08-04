@@ -15,10 +15,11 @@
                 return redirect(base_url().'403_Forbidden');
             }
             $check='';
+            $action='';
             if($action = $this->input->post('action')){
                 switch($action){
                     case 'insert'    : $check = $this->addhanhchinh();break;
-                    case 'edit'      : $this->update();redirect('hanhchinh');
+                    case 'edit'      : $check = $this->update();$action=$this->input->post('mahc');break;
                     case "search"    : 
                         $filter = array(
                         'tenhc'           => $this->input->post('tenhc'),
@@ -43,7 +44,8 @@
                     'tenhc' => $filter['tenhc'],
                     'mota' => $filter['mota'],
                     'session'   => $session,
-                    'check'     => $check
+                    'check'     => $check,
+                    'action'    => $action
                 ),
             );
             // pr($temp);
@@ -100,7 +102,10 @@
                 'sTenHanhChinh'      => $tenhc,
                 'tMota'              => $mota,
             );
-
+            if(empty($tenhc))
+				return 'Nhập tên thủ tục';
+            if(empty($mota))
+                return 'Nhập mô tả';
             $row = $this->Mhanhchinh->updatehanhchinh($mahc, $data);
             if($row > 0){
                 setMessages('success','Sửa thành công','Thông báo');

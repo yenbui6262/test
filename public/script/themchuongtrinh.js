@@ -1,4 +1,13 @@
 $(document).ready(function() {
+  if ($('#checkerr').length !== 0) {
+    checkerr = $('#checkerr').html();
+    console.log(123);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: checkerr,
+    })
+  }
   checkboxx();
 
   // Xóa sv
@@ -17,7 +26,7 @@ $(document).ready(function() {
         $("#example tbody :checkbox:checked").each(function(i){
           arr_id[i] = $(this).val();
         })
-        if(arr_id.length == 0){
+        if(arr_id.length === 0){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -70,7 +79,7 @@ $(document).ready(function() {
         $("#example1 tbody :checkbox:checked").each(function(i){
           arr_id[i] = $(this).val();
         })
-        if(arr_id.length == 0){
+        if(arr_id.length === 0){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -173,7 +182,7 @@ $('input[type=radio][name=phamvi]').change(function() {
     // Khai báo tham số
     var checkbox = $('#example tbody input:checkbox');
     var result = new Array();
-    if(checkbox.length==0){
+    if(checkbox.length===0){
       result='';
     }
     // Lặp qua từng checkbox để lấy giá trị

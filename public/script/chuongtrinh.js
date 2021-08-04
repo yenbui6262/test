@@ -120,6 +120,11 @@ function xacnhanxoa(mact) {
             </td>
                     </tr>`;
         });
+        if(typeof data.links !== "undefined"){
+            $("#pagination").html(data.links);
+        }else{
+            $("#pagination").empty();
+        }
     }else{
         html+=`<tr>
                 <td class="text-center" colspan="10">Không tìm thấy dữ liệu!</td>
