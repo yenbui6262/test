@@ -15,6 +15,7 @@ $(document).ready(function() {
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
                 $(".b2").eq(id).hide();
+                // $(this).removeClass("b1").addClass("b2");
                 $.ajax({
                     url: window.location.pathname,
                     type: 'POST',
@@ -23,7 +24,6 @@ $(document).ready(function() {
                         action: "update",
                         id: update,
                         trangthai: "2",
-                        
                     }
                 }).done(function(data){
                     // alert("chuyển thành btn-danger");
@@ -36,44 +36,61 @@ $(document).ready(function() {
                             self.html("<i class='fa fa-user-slash'></i>");
                         });
                     });
+                    $(".lydo").eq(id).text("");
                 });
             }else{
-                
-                $(this).removeClass("btn-danger");
-                $(this).attr("title","Tham gia");
-                self.html('<img src="' + url + 'public/images/spinner.gif">');
-                var id = $(this).attr("data-id");
-                var update = $(this).attr("data-update");
-                var lydo = $("input[id=lydo]").eq(id).val();
-                $(".b1").eq(id).hide();
-                $.ajax({
-                    url: window.location.pathname,
-                    type: 'POST',
-                    dataType: 'html',
-                    data: {
-                        action: "update",
-                        id: update,
-                        trangthai: "3",
-                        lydo: lydo,
-                    }
-                }).done(function(data){
-                    // alert("chuyển thành btn-success");
-                    $(".badge").eq(id).toggle("slow", function(){
-                        $(".badge").eq(id).removeClass("badge-success").addClass("badge-danger");
-                        $(".badge").eq(id).text("Không tham gia");
-                        $(".badge").eq(id).toggle("slow", e =>{
-                            check = true;
-                            self.addClass("btn-success");
-                            self.html("<i class='fa fa-user-check'></i>");
+                Swal.fire({
+                    title: 'Lý do',
+                    input: 'text',
+                    inputAttributes: {
+                      autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Lưu',
+                    showLoaderOnConfirm: true,
+                    
+                  }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        $(this).removeClass("btn-danger");
+                        $(this).attr("title","Tham gia");
+                        self.html('<img src="' + url + 'public/images/spinner.gif">');
+                        var id = $(this).attr("data-id");
+                        var update = $(this).attr("data-update");
+                        var lydo = result.value;
+                        $(".b1").eq(id).hide();
+                        // $(this).removeClass("b2").addClass("b1");
+                        $.ajax({
+                            url: window.location.pathname,
+                            type: 'POST',
+                            dataType: 'html',
+                            data: {
+                                action: "update",
+                                id: update,
+                                trangthai: "3",
+                                lydo: lydo,
+                            }
+                        }).done(function(data){
+                            // alert("chuyển thành btn-success");
+                            // alert(lydo);
+                            $(".badge").eq(id).toggle("slow", function(){
+                                $(".badge").eq(id).removeClass("badge-success").addClass("badge-danger");
+                                $(".badge").eq(id).text("Không tham gia");
+                                $(".badge").eq(id).toggle("slow", e =>{
+                                    check = true;
+                                    self.addClass("btn-success");
+                                    self.html("<i class='fa fa-user-check'></i>");
+                                });
+                                
+                            });
+                            $(".lydo").eq(id).text(lydo);
                         });
-                        
-                    });
-                });
+                    }
+                  })
             }
+                
+            
         }/*end if*/
     });
-
-
-
 });
 

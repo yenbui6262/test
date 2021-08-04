@@ -25,12 +25,13 @@ class Mdk_minhchung extends My_Model
                 $this->db->where('iTrangThaiCD', $dieukien['trangthai']);
             }
         }
-        public function getChuongTrinh($date){
+        public function getChuongTrinh($date,$masv){
             $this->db->select("*")
                         ->join("tbl_chuongtrinh ct","ct.PK_sMaChuongTrinh=sMaCT")
                         ->where('dThoiGIanBD <=', $date)
                         ->where('dThoiGIanKT >=', $date)
-                        ->where('iTrangThai',2)
+                        ->where('iTrangThai', 2)
+                        ->where('sMaTK', $masv)
                         ->order_by("PK_sMaChuongTrinh asc");
             return $this->db->get("tbl_thamgia")->result_array();
         }

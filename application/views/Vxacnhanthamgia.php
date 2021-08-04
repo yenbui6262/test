@@ -39,12 +39,12 @@
                 <table class="table table-striped table-hover table-bordered" id="xacnhan">
                     <thead class="text-center">
                         <th width="10px">STT</th>
-                        <th width="20%">Tên chương trình</th>
-                        <th width="150px">Thời gian</th>
+                        <th width="17%">Tên chương trình</th>
                         <th>Mô tả</th>
-                        <th width="150px">Xác nhận trước</th>
+                        <th width="130px">Thời gian</th>
+                        <th width="130px">Xác nhận trước</th>
                         <th width="120px">Trạng thái</th>
-                        <th width="100px">Lý do</th>
+                        <th width="120px">Lý do</th>
                         <th width="9%">Tác vụ</th>
                     </thead>
                     <tbody>
@@ -53,37 +53,35 @@
                         <tr>
                             <td class="text-center">{$params['stt']++}</td>
                             <td>{$val.sTenCT}</td>
+                            <td>{$val.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGIanBD))} <br>{date("d/m/Y", strtotime($val.dThoiGIanKT))}
                             </td>
-                            <td>{$val.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGianXN))}</td>
                             
-                            {if ($val.iTrangThai == 1||$val.iTrangThai == 3)}
-                                {if ($val.iTrangThai == 1)}
+                            {if ($val.iTrangThai == 1)}
                                 <td class="text-center">
                                     <span class="badge">Chờ xác nhận</span>
                                 </td>
-                                {else}
+                                {elseif ($val.iTrangThai == 3)}
                                 <td class="text-center">
                                     <span class="badge badge-danger">Không tham gia</span>
                                 </td>
+                                {else}
+                                <td class="text-center">
+                                    <span class="badge badge-success">Tham gia</span>
+                                </td>
                                 {/if}
-                            {else}
-                            <td class="text-center">
-                                <span class="badge badge-success">Tham gia</span>
-                            </td>
-                            {/if}
-                            <td>
-                                <input type="text" value="{if !empty($val.tLyDo)}{$val.tLyDo}{/if}" id="lydo">
+                            <td class="lydo">
+                                {if !empty($val.tLyDo)}{$val.tLyDo}{/if}
                             </td>
                             <td class="text-center">
                                 {if ($val.iTrangThai == 3)}
-                                <button data-id="{$k}" data-update="{$val.sMaDS}" data-lydo="{if !empty($val.tLyDo)}{$val.tLyDo}{else}null{/if}" class="btn btn-success check" type="submit" title="Xác nhận tham gia" ><i class="fas fa-user-check"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}" class="btn btn-success check" type="submit" title="Xác nhận tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if} ><i class="fas fa-user-check"></i></button>
                                 {else if ($val.iTrangThai == 2)}
-                                <button data-id="{$k}" data-update="{$val.sMaDS}" data-lydo="{if !empty($val.tLyDo)}{$val.tLyDo}{else}null{/if}" class="btn btn-danger check" type="submit" title="Hủy xác nhận" ><i class="fas fa-user-slash"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-danger check" type="submit" title="Xác nhận không tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if}><i class="fas fa-user-slash"></i></button>
                                 {else}
-                                <button data-id="{$k}" data-update="{$val.sMaDS}" data-lydo="{if !empty($val.tLyDo)}{$val.tLyDo}{else}null{/if}"class="btn btn-success check b1" type="submit" title="Xác nhận tham gia" ><i class="fas fa-user-check"></i></button>
-                                <button data-id="{$k}" data-update="{$val.sMaDS}" data-lydo="{if !empty($val.tLyDo)}{$val.tLyDo}{else}null{/if}" class="btn btn-danger check b2" type="submit" title="Hủy xác nhận" ><i class="fas fa-user-slash"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-success check b1" type="submit" title="Xác nhận tham gia"{if ($val.dThoiGianXN< $date)}disabled{/if} ><i class="fas fa-user-check"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-danger check b2" type="submit" title="Xác nhận không tham gia"{if ($val.dThoiGianXN < $date)}disabled{/if} ><i class="fas fa-user-slash"></i></button>
                                 
                                 {/if}
                             </td>

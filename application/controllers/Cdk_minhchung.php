@@ -80,7 +80,7 @@ class Cdk_minhchung extends MY_Controller
             setMessages("danger", "Xóa minh chứng thất bại");
             return redirect(current_url());
         }
-        $sinhvien['chuongtrinh'] = $this->Mdk_minhchung->getChuongTrinh($date);
+        $sinhvien['chuongtrinh'] = $this->Mdk_minhchung->getChuongTrinh($date, $session['taikhoan']);
         $sinhvien['canbo'] = $this->Mdk_minhchung->getCanBo();
         $filtermc = $this->session->userdata("filtermc");
         $temp = array(

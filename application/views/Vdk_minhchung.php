@@ -150,19 +150,16 @@
                             <td>{if !empty($v.FK_sMaCBCD)}{$v.FK_sMaCBCD}{else}{if (!empty($v.FK_sMaCB) && $v.iTrangThai==3)}Cán bộ lớp{else}Đang đợi duyệt{/if}{/if}</td>
                             <td class="text-center">
                                 <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
-                                {foreach $sinhvien['chuongtrinh'] as $key => $val}
-                                {if !empty($val.PK_sMaChuongTrinh) && $val.PK_sMaChuongTrinh==$v.FK_sMaCT }
-                                    {if ($v.iTrangThaiCD != 2)}
-                                    
-                                        <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
-                                            class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
-                                            data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
-                                        <button onclick="return confirm('Bạn có muốn xóa minh chứng này không này không?');"
-                                            name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
-                                            title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
-                                    {/if}
+                                
+                                {if ($v.iTrangThaiCD != 2)}
+                                    <a onclick="sua({$k},'{$v.PK_sMaChuongTrinh}','{$v.tLink}');"
+                                        class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
+                                        data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
+                                    <button onclick="return confirm('Bạn có muốn xóa minh chứng này không này không?');"
+                                        name="delete" value="{$v.PK_sMaMC}" class="btn btn-danger" type="submit"
+                                        title="Xóa minh chứng"><i class="fas fa-trash"></i></button>
                                 {/if}
-                                {/foreach}
+                                
                             </td>
                         </tr>
                         {/foreach}

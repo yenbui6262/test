@@ -7,7 +7,6 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            $check='';
             if($action = $this->input->post('action')){
                 if($action=='search'){
                     $filterxn = array(
@@ -17,33 +16,31 @@
                     );
                     // luu vao sesssion
                     $this->session->set_userdata("filterxn", $filterxn);redirect('xacnhanthamgia');
-                }elseif($action=='reset'){
-                    unset($_SESSION['filterxn']);redirect('xacnhanthamgia');
                 }else if($action=='update'){
                     /*CAp nhat khi admin an duyet */
                     $id 	    = $this->input->post("id");
                     $trangthai  = $this->input->post("trangthai");
                     $lydo       = $this->input->post("lydo");
-                    $ttt = array(
-                        'id'=> $id,
-                        'trangthai'=>$trangthai,
-                        'lydo'=>$lydo,
-                    );
-                    // pr($ttt);exit();
+                    if($this->input->post("lydo") == 0 ){
+                        $lydo == "";
+                    }
                     $this->Mxacnhanthamgia->updatexn($id, $trangthai,$lydo);
                 }
             };
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $date = date("Y-m-d");
             
             $filterxn = $this->session->userdata("filterxn");
             $temp = array(
                 'template'  => 'Vxacnhanthamgia',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filterxn),
-                    'message' => getMessages(),
-                    'tenct' => $filterxn['tenct'],
-                    'mota' => $filterxn['mota'],
+                    'message'   => getMessages(),
+                    'tenct'     => $filterxn['tenct'],
+                    'mota'      => $filterxn['mota'],
                     'trangthai' => $filterxn['trangthai'],
                     'session'   => $session,
+                    'date'      => $date,
                 ),
             );
             // pr($temp);

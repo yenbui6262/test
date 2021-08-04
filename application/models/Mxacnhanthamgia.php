@@ -33,7 +33,7 @@
         {
             $this->dieukien($dieukien);
             $res = $this->db->order_by("dThoiGianXN",'DESC')
-                        ->order_by("sTenCT")
+                        ->order_by("dThoiGianKT")
                         ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = sMaCT")
                         ->select("*")
                         ->where('sMaTK',$masv)
