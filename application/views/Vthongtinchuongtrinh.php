@@ -21,6 +21,7 @@
                     <tbody>
                         {if !empty($thongtincb)}
                         {foreach $thongtincb as $key => $val}
+                        <input type="hidden" name="mact" value="{$val.PK_sMaChuongTrinh}" id="mact">
                         <tr>
                             <td class="text-center" style="width:30%; font-weight:600;">Tên chương trình</td>
                             <td>{$val.sTenCT}</td>
@@ -39,7 +40,8 @@
                         </tr>
                         <tr>
                             <td class="text-center" style="width:30%; font-weight:600;">Trạng thái</td>
-                            <td>Chờ xác nhận: <span class="font-weight-bold" style="color: orange">{if !empty($choxacnhan)}{$choxacnhan}{else}0{/if}</span> sinh viên   &nbsp;&nbsp;&nbsp;&nbsp; Tham gia: <span class="text-success font-weight-bold">{if !empty($thamgia)}{$thamgia}{else}0{/if}</span> sinh viên  &nbsp;&nbsp;&nbsp;&nbsp;  Không tham gia: <span class="text-danger font-weight-bold">{if !empty($khongthamgia)}{$khongthamgia}{else}0{/if}</span> sinh viên &nbsp;&nbsp;&nbsp;&nbsp;   <button type="button" class="btn btn-success btn-ssm" style="font-size:13px;padding:2px 10px;font-weight:550;"><img src="{$url}public/images/icon-gmail.png"  style="width: 22px; height:20px;">&nbsp;Gửi Email</button></td>
+                            <td>Chờ xác nhận: <span class="font-weight-bold" style="color: orange">{if !empty($choxacnhan)}{$choxacnhan}{else}0{/if}</span> sinh viên   &nbsp;&nbsp;&nbsp;&nbsp; Tham gia: <span class="text-success font-weight-bold">{if !empty($thamgia)}{$thamgia}{else}0{/if}</span> sinh viên  &nbsp;&nbsp;&nbsp;&nbsp;  Không tham gia: <span class="text-danger font-weight-bold">{if !empty($khongthamgia)}{$khongthamgia}{else}0{/if}</span> sinh viên &nbsp;&nbsp;&nbsp;&nbsp;   
+                            <button id="sendErr" type="button" class="btn btn-success btn-ssm" style="font-size:13px;padding:2px 10px;font-weight:550;"><img src="{$url}public/images/icon-gmail.png"  style="width: 22px; height:20px;">&nbsp;Gửi Email</button></td>
                         </tr>
                         {/foreach}
                         {else}
@@ -127,3 +129,28 @@
     </div>
 </div>
 <script defer type="text/javascript" src="{base_url()}public/script/thongtinchuongtrinh.js"></script>
+{if $session['maquyen'] == 1}
+<script type="text/javascript">
+
+    // Xu ly khi canbo gui phan hoi error cho sinh vien
+    $("#sendErr").on("click",function(e){
+        let mact = $("#mact").val();
+        console.log(mact);
+        $.ajax({
+            url: 'mail',
+            type: "post",
+            data: {
+                action: "notifierFail",
+                mact: mact,
+            }
+        }).done(function(e){
+            console.log(e);
+            // Toasr thong bao thanh cong
+            setTimeout(() => {
+                showToast("success", "Gửi phản hồi thành công")
+            }, 200);
+        });
+    });
+
+</script>
+{/if}

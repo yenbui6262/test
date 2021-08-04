@@ -26,6 +26,7 @@
                     // luu vao sesssion
                     $this->session->set_userdata("filterct", $filter);redirect('Chuongtrinh');
                     case "reset"     :unset($_SESSION['filterct']);redirect('Chuongtrinh');
+                    case "delete"    : $this->delete();return;
                 }
             };
             
@@ -59,17 +60,17 @@
 
         
         //delete 
-        public function delete($Mact){
-
-            $row    = $this->Mchuongtrinh->deletechuongtrinh($Mact);
-            
-            if ($row>0){
-                setMessages('success','Xóa thành công','Thông báo');
+        public function delete(){
+            $filter = $this->session->userdata("filterct");
+            $mact    = $this->input->post('filter');
+            $delete    = $this->Mchuongtrinh->deletethamgia($mact['mact']);
+            $row    = $this->Mchuongtrinh->deletechuongtrinh($mact['mact']);
+            if($row==1){
+                $row=$this->get_params(0, $filter);
+            }else{
+                $row=0;
             }
-            else{
-                setMessages('danger','Xóa thất bại','Thông báo');
-            }
-            redirect('Chuongtrinh');
+            echo json_encode($row);
         } //end delete
 
         private function pagination(){

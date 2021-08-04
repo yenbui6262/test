@@ -20,7 +20,7 @@
                 </div>
             </div>
             {if (!empty($check))}
-                <div class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
+                <div id="checkerr" class='col-md-12 form-group' style="color:red;margin-bottom:10px;">
                     Yêu cầu: {$check}
                 </div>
             {/if}
@@ -45,22 +45,22 @@
                 <input type="date" id="thoigiandk" class="form-control" name="thoigiandk" value="{(set_value('thoigiandk')) ? set_value('thoigiandk') : {(!empty($thongtincb[0].dThoiGianXN)) ? $thongtincb[0].dThoiGianXN : null}}">
             </div>
             <div class="col-12 form-group">
-                <label id="basic-addon3" class="col-12" style="padding: 0 !important">Phạm vi sự kiện:</label>
+                <label id="phamvi" class="col-12" style="padding: 0 !important">Phạm vi sự kiện:</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Toàn khoa</label>
+                    <input class="form-check-input" type="radio" name="phamvi" id="inlineRadio1" value="toankhoa">
+                    <label class="form-check-label" for="inlineRadio1">Toàn khoa</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Toàn cán bộ</label>
+                    <input class="form-check-input" type="radio" name="phamvi" id="inlineRadio2" value="toancanbo">
+                    <label class="form-check-label" for="inlineRadio2">Toàn cán bộ</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                    <label class="form-check-label" for="inlineCheckbox3">Toàn cán bộ lớp</label>
+                    <input class="form-check-input" type="radio" name="phamvi" id="inlineRadio3" value="toancanbolop">
+                    <label class="form-check-label" for="inlineRadio3">Toàn cán bộ lớp</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-                    <label class="form-check-label" for="inlineCheckbox4">Toàn cán bộ liên chi đoàn</label>
+                    <input class="form-check-input" type="radio" name="phamvi" id="inlineRadio4" value="toancanbochidoan">
+                    <label class="form-check-label" for="inlineRadio4">Toàn cán bộ liên chi đoàn</label>
                 </div>
             </div>
 
@@ -81,12 +81,15 @@
                         <div class="card-body" style="padding:0 !important;">
                             <div class="row">
                             <div class="col-md-12 form-group"style="padding:20px 20px 0px 20px !important;">
-                                <label id="donvi1">Đơn vị:</label>
-                                <select class="form-control select2 no-search-select2" name="donvi" aria-label="Small"
+                                <label id="donvi">Đơn vị:</label>
+                                <select id='lop' class="form-control select2 no-search-select2" name="donvi" aria-label="Small"
                                     aria-describedby="donvi">
                                     <option selected value="tatca">Tất cả</option>
-                                    <option value="1">Cán bộ lớp</option>
-                                    <option value="2">Cán bộ liên chi đoàn</option>
+                                    {if !empty($lop)}
+                                    {foreach $lop as $v}
+                                    <option value="{$v.sTenLop}">{$v.sTenLop}</option>
+                                    {/foreach}
+                                    {/if}
                                 </select>
                             </div>
 
@@ -113,19 +116,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="table-body1">
-                                        {if !empty($sinhvien)}
-                                        {foreach $sinhvien as $key => $val}
-                                        <tr>
-                                            <td class="text-center">
-                                                <div class="checkbox">
-                                                    <input  name="check[]" value="{$val.sTenTK}-{$val.sHoTen}-{$val.PK_sMaTK}" type="checkbox" id="tr-checkbox{$val.PK_sMaTK}">
-                                                    <label for="tr-checkbox{$val.PK_sMaTK}"></label>
-                                                </div>
-                                            </td>
-                                            <td>{$val.sTenTK} - {$val.sHoTen}</td>
-                                        </tr>
-                                        {/foreach}
-                                        {/if}
                                     </tbody>
                                 </table>
                             </div>

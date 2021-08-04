@@ -7,6 +7,7 @@ class Cemail extends MY_Controller {
     public function __construct() {
         parent:: __construct();
         $this->load->library('email');
+        $this->load->model('Memail');
         $this->init();
 
     }
@@ -32,6 +33,12 @@ class Cemail extends MY_Controller {
                     $this->sendPass($taikhoan, $email, $newPass);
                 }
                 echo $row;
+            }
+
+            if($action == "notifierFail"){
+                $mact      =   $this->input->post("mact");
+                $res        =   $this->sendMailError($mact);
+                return $res;
             }
         }
     }   
@@ -80,51 +87,44 @@ class Cemail extends MY_Controller {
 
 //     }
 
-//     /* Gui cac tieu chi chua dat cho sinh vien*/
-//     private function sendMailError($nguoinhan, $arrtieuchi) {
-//         $subject = "Thông báo";
-//         $noidungMail = "Các mục chưa đạt yêu cầu: ";
-//         for($i=0, $len = count($arrtieuchi); $i < $len; ++$i){
-//             if($i < $len - 1){
-//                 $noidungMail .= $arrtieuchi[$i].", ";
-//             }
-//             else{
-//                 $noidungMail .= $arrtieuchi[$i].'.';
-//             }
-//         }
-//         $this->email->from('PPTphamthao@gmail.com', 'Hệ thống Minh chứng kinh tế');
-//         // tiêu đề email
-//         $this->email->subject($subject);
-//         // nội dung email
-//         $this->email->message($noidungMail);
-//         // $this->email->message($noidungMail);
-//         // gửi email cho cả đơn vị và cá nhân
-//         $this->email->to($nguoinhan);
-//         /*
-//         *   ccemail cho 1 người thì sẽ thông báo cho người đó về cuộc trò chuyện, và người nhận mail cũng biết điều đó
-//         *   bcc cho 1 người thì giống với cc chỉ khác là người nhận mail ko biết người gửi đã cc cho người khác
-//         */
+    /* Gui cac tieu chi chua dat cho sinh vien*/
+    private function sendMailError($mact) {
+        $tenct = "tên chương trình";
+        $subject = "Thông báo";
+        $noidungMail = "Yêu cầu xác nhận tham gia chương trình: ".$tenct;
+        $dsnguoinhan = $this->Memail->getsinhvienduocthamgia($mact);
+        $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng kinh tế');
+        // tiêu đề email
+        $this->email->subject($subject);
+        // nội dung email
+        $this->email->message($noidungMail);
 
-//         // cc email cho ban giám hiệu
-// /*        if($typeBanGiamHieu == 'ccEmail'){
-//             $this->email->cc($banGiamHieu);
-//         }*/
-//         if ($this->email->send()) {
-//             return true;
-//         }else{
-//             show_error($this->email->print_debugger());
-//             return false;
-//         }
-//     }
+        // gửi email cho cả đơn vị và cá nhân
+        $this->email->to($dsnguoinhan);
+        /*
+        *   ccemail cho 1 người thì sẽ thông báo cho người đó về cuộc trò chuyện, và người nhận mail cũng biết điều đó
+        *   bcc cho 1 người thì giống với cc chỉ khác là người nhận mail ko biết người gửi đã cc cho người khác
+        */
+
+        // cc email cho ban giám hiệu
+/*        if($typeBanGiamHieu == 'ccEmail'){
+            $this->email->cc($banGiamHieu);
+        }*/
+        if ($this->email->send()) {
+            return true;
+        }else{
+            show_error($this->email->print_debugger());
+            return false;
+        }
+    }
 
     private function init(){
          //cấu hình chuẩn bị gửi email
         $config['protocol']     = "smtp";
         $config['smtp_host']    = "ssl://smtp.gmail.com";
         $config['smtp_port']    = 465;
-        // $config['smtp_user'] = "lichtuan.hou@gmail.com";
-        $config['smtp_user']    = "PPTphamthao@gmail.com";
-        $config['smtp_pass']    = "Couttaikhoan2";
+        $config['smtp_user']    = "kinhte.hou@.edu.vn";
+        $config['smtp_pass']    = "kinhtepass";
         $config['mailtype']     = 'html';
         $config['newline']      = "\r\n";
         $config['charset']      = "utf-8";

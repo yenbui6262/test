@@ -21,26 +21,22 @@
                      <form action="{$url}Chuongtrinh" method="POST" class="col-12 form-group">
                         <div class="row">
                             <div class="col-md-3 form-group">
-                                <label id="inputGroup-sizing-sm">Tên chương trình:</label>
-                                <input type="text" id="tenct" name="tenct" class="form-control" aria-label="Small"
-                                    aria-describedby="inputGroup-sizing-sm" value="{(set_value('tenct')) ? set_value('tenct') : {(!empty($tenct)) ? $tenct : null}}"
+                                <label>Tên chương trình:</label>
+                                <input type="text" id="tenct" name="tenct" class="form-control" value="{(set_value('tenct')) ? set_value('tenct') : {(!empty($tenct)) ? $tenct : null}}"
                                     placeholder="Nhập nội dung">
                             </div>
 
                             <div class="col-md-3 form-group">
-                                <label id="basic-addon1">Thời gian bắt đầu:</label>
-                                <input type="date" id="thoigianbd" class="form-control" name="thoigianbd" aria-label="Small"
-                                    aria-describedby="basic-addon1" value="{(set_value('thoigianbd')) ? set_value('thoigianbd') : {(!empty($thoigianbd)) ? $thoigianbd : null}}">
+                                <label>Thời gian bắt đầu:</label>
+                                <input type="date" id="thoigianbd" class="form-control" name="thoigianbd"  value="{(set_value('thoigianbd')) ? set_value('thoigianbd') : {(!empty($thoigianbd)) ? $thoigianbd : null}}">
                             </div>
                             <div class="col-md-3 form-group">
-                                <label id="basic-addon2">Thời gian kết thúc:</label>
-                                <input type="date" id="thoigiankt" class="form-control" name="thoigiankt" aria-label="Small"
-                                    aria-describedby="basic-addon2" value="{(set_value('thoigiankt')) ? set_value('thoigiankt') : {(!empty($thoigiankt)) ? $thoigiankt : null}}">
+                                <label>Thời gian kết thúc:</label>
+                                <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"  value="{(set_value('thoigiankt')) ? set_value('thoigiankt') : {(!empty($thoigiankt)) ? $thoigiankt : null}}">
                             </div>
                             <div class="col-md-3 form-group">
-                                <label id="basic-addon3">Mô tả:</label>
-                                <input type="text" id="mota" class="form-control" name="mota" aria-label="Small"
-                                    aria-describedby="basic-addon3" value="{(set_value('mota')) ? set_value('mota') : {(!empty($mota)) ? $mota : null}}"
+                                <label>Mô tả:</label>
+                                <input type="text" id="mota" class="form-control" name="mota" value="{(set_value('mota')) ? set_value('mota') : {(!empty($mota)) ? $mota : null}}"
                                     placeholder="Nhập nội dung">
                             </div>
                             <div class="col-12 form-group text-right">
@@ -132,16 +128,16 @@
                                     <td class="text-center">
                                         <button type="submit" name="chitiet" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-info btnEdit"><i class="fas fa-eye"></i></button>
                                         <button type="submit" name="sua" value="{$val['PK_sMaChuongTrinh']}" class="btn btn-sm btn-warning btnEdit"><i class="fas fa-tools"></i></button>
-                                        <button type="submit" name="delete" value="{$val['PK_sMaChuongTrinh']}"
+                                        <button type="button" name="delete"
                                             class="btn btn-danger btnDelete btn-sm"
-                                            onclick="return confirm('Bạn có muốn xóa chương trình này không?');"><i
+                                            onclick="xacnhanxoa({$val['PK_sMaChuongTrinh']});"><i
                                                 class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 {/foreach}
                                 {else}
                                 <tr>
-                                    <td class="text-center" colspan="6">Không tìm thấy dữ liệu!</td>
+                                    <td class="text-center" colspan="10">Không tìm thấy dữ liệu!</td>
                                 </tr>
                                 {/if}
                             </tbody>

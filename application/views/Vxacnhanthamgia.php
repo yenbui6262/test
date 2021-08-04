@@ -58,7 +58,7 @@
                             </td>
                             <td class="text-center">{date("d/m/Y", strtotime($val.dThoiGianXN))}</td>
                             
-                            {if ($val.iTrangThai == 1)}
+                                {if ($val.iTrangThai == 1)}
                                 <td class="text-center">
                                     <span class="badge">Chờ xác nhận</span>
                                 </td>
@@ -71,8 +71,13 @@
                                     <span class="badge badge-success">Tham gia</span>
                                 </td>
                                 {/if}
+<<<<<<< HEAD
                             <td class="lydo">
                                 {if !empty($val.tLyDo)}{$val.tLyDo}{/if}
+=======
+                            <td>
+                                <input type="text" value="{if !empty($val.tLyDo)}{$val.tLyDo}{/if}" id="lydo">
+>>>>>>> 0e937381c93425c11bc1796113c357d88d45557e
                             </td>
                             <td class="text-center">
                                 {if ($val.iTrangThai == 3)}
