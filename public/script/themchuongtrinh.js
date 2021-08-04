@@ -3,81 +3,109 @@ $(document).ready(function() {
 
   // Xóa sv
   $("#xoasv").click(function(){
-    if(confirm("Bạn có muốn xóa không"))
-    {
-      var arr_id = [];
+    Swal.fire({
+      title: 'Bạn có chắc muốn xóa?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Có, Xóa!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var arr_id = [];
       
-      $("#example tbody :checkbox:checked").each(function(i){
-        arr_id[i] = $(this).val();
-      })
-      if(arr_id.length == 0){
-        alert("Chọn ít nhất 1 sinh viên");
-      }else{
-        for(var i = 0;i<arr_id.length;i++){
-          var tbody1 = `<tr>
-              <td class="text-center">
-                <div class="checkbox">
-                  <input name="check[]" value="${arr_id[i]}-${arr_id[i]}-${arr_id[i]}" type="checkbox" id="tr-checkbox${arr_id[i]}">
-                  <label for="tr-checkbox${arr_id[i]}"></label>
-                </div>
-              </td>
-              <td>${arr_id[i]}</td>
-          </tr>`;
-          // tbodycu=$('#example tbody').html();
-          $('#example1 tbody').html(tbody1+$('#example1 tbody').html());
-          var tr =$('#tr1-checkbox'+arr_id[i]).parent().parent().parent();
-          $(tr).css({"cssText":"background:red !important"});
-          $(tr).fadeOut("slow");
-          $(tr).remove();
-  
+        $("#example tbody :checkbox:checked").each(function(i){
+          arr_id[i] = $(this).val();
+        })
+        if(arr_id.length == 0){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Cần chọn ít nhất 1 sinh viên!',
+          })        
+        }else{
+          for(var i = 0;i<arr_id.length;i++){
+            var tbody1 = `<tr>
+                <td class="text-center">
+                  <div class="checkbox">
+                    <input name="check[]" value="${arr_id[i]}-${arr_id[i]}-${arr_id[i]}" type="checkbox" id="tr-checkbox${arr_id[i]}">
+                    <label for="tr-checkbox${arr_id[i]}"></label>
+                  </div>
+                </td>
+                <td>${arr_id[i]}</td>
+            </tr>`;
+            // tbodycu=$('#example tbody').html();
+            $('#example1 tbody').html(tbody1+$('#example1 tbody').html());
+            var tr =$('#tr1-checkbox'+arr_id[i]).parent().parent().parent();
+            $(tr).css({"cssText":"background:red !important"});
+            $(tr).fadeOut("slow");
+            $(tr).remove();
+    
+          }
+          // tralai();
+          checkboxx();
+          Swal.fire(
+            'Đã xóa!',
+            'Bạn đã xóa thành công.',
+            'success'
+          )
         }
-        // tralai();
-        checkboxx();
       }
-      
-    }else{
-      return false;
-    }
+    })
   });
 
   // thêm sv
   $("#themsv").click(function(){
-    if(confirm("Bạn có xác nhận thêm"))
-    {
-      var arr_id = [];
+    Swal.fire({
+      title: 'Bạn có chắc muốn thêm?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Có, Thêm!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var arr_id = [];
       
-      $("#example1 tbody :checkbox:checked").each(function(i){
-        arr_id[i] = $(this).val();
-      })
-      if(arr_id.length == 0){
-        alert("Chọn ít nhất 1 sinh viên");
-      }else{
-        for(var i = arr_id.length-1;i>=0;i--){
-          arr = arr_id[i].split('-');
-          var tbody = `<tr>
-              <td class="text-center">
-                <div class="checkbox">
-                  <input name="checksv[]" value="${arr[2]}" type="checkbox" id="tr1-checkbox${arr[2]}">
-                  <label for="tr1-checkbox${arr[2]}"></label>
-                </div>
-              </td>
-              <td>${arr[0]}</td>
-              <td>${arr[1]}</td>
-              <td class="text-center"><span class="badge badge-warning">Chờ xác nhận</span></td>
-          </tr>`;
-          // tbodycu=$('#example tbody').html();
-          $('#example tbody').html(tbody+$('#example tbody').html());
-          var tr =$('#tr-checkbox'+arr[2]).parent().parent().parent();
-          $(tr).css({"cssText":"background:red !important"});
-          $(tr).fadeOut("slow");
-          $(tr).remove();          
+        $("#example1 tbody :checkbox:checked").each(function(i){
+          arr_id[i] = $(this).val();
+        })
+        if(arr_id.length == 0){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Cần chọn ít nhất 1 sinh viên!',
+          })      
+        }else{
+          for(var i = arr_id.length-1;i>=0;i--){
+            arr = arr_id[i].split('-');
+            var tbody = `<tr>
+                <td class="text-center">
+                  <div class="checkbox">
+                    <input name="checksv[]" value="${arr[2]}" type="checkbox" id="tr1-checkbox${arr[2]}">
+                    <label for="tr1-checkbox${arr[2]}"></label>
+                  </div>
+                </td>
+                <td>${arr[0]}</td>
+                <td>${arr[1]}</td>
+                <td class="text-center"><span class="badge badge-warning">Chờ xác nhận</span></td>
+            </tr>`;
+            // tbodycu=$('#example tbody').html();
+            $('#example tbody').html(tbody+$('#example tbody').html());
+            var tr =$('#tr-checkbox'+arr[2]).parent().parent().parent();
+            $(tr).css({"cssText":"background:red !important"});
+            $(tr).fadeOut("slow");
+            $(tr).remove();          
+          }
+          checkboxx();
+          Swal.fire(
+            'Đã thêm!',
+            'Bạn đã thêm thành công.',
+            'success'
+          )
         }
-        checkboxx();
       }
-      
-    }else{
-      return false;
-    }
+    })
   });
 
   $('#masvhoten').on('keyup', function(event) {

@@ -56,6 +56,13 @@
             
         }
 
+        public function deletethamgia($Mact){
+            $this->db->where('sMaCT', $Mact);
+            $this->db->delete('tbl_thamgia');
+            return $this->db->affected_rows();
+            
+        }
+
         public function tatca($limit, $start,$dieukien){
 
             $this->dieukien($dieukien);
