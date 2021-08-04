@@ -10,11 +10,11 @@ $(document).ready(function() {
             const self = $(this);
             if(self.hasClass("btn-success")){
                 $(this).removeClass("btn-success");
-                $(this).attr("title","Hủy xác nhận");
+                // $(this).attr("title","Hủy xác nhận");
                 self.html('<img src="' + url + 'public/images/spinner.gif">');
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
-                $(".b2").eq(id).hide();
+                $(".b1").eq(id).hide();
                 // $(this).removeClass("b1").addClass("b2");
                 $.ajax({
                     url: window.location.pathname,
@@ -87,6 +87,7 @@ $(document).ready(function() {
                         });
                     }
                   })
+                  check= true;
             }
                 
             
