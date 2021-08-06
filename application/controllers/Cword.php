@@ -70,4 +70,65 @@ class Cword extends MY_Controller {
         $this->parser->parse('Vword/Vvayvonnganhang',$data);
 
     }
+
+    public function phuckhaobaithi(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Donxinphuckhaobaithi.doc");
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        $this->parser->parse('Vword/Vphuckhaobaithi',$data);
+
+    }
+    public function miengiamhocphi(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Donxinmiengiamhocphi.doc");
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        $this->parser->parse('Vword/Vmiengiamhocphi',$data);
+
+    }
+    public function vethangxebuyt(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Donlamthevethangxebuyt.doc");
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        $this->parser->parse('Vword/Vvethangxebuyt',$data);
+
+    }
+    public function xacnhandansu(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Donxacnhandansu.doc");
+        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
+        $this->parser->parse('Vword/Vxacnhandansu',$data);
+
+    }
 }
