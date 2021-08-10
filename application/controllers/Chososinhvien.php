@@ -36,6 +36,8 @@
             'FK_sMaXaHT'    =>$xaht,
             'tChiTietHT'    =>$chitietht,
         );
+        
+        //ajax
         if($action = $this->input->post("action")){
             switch($action){
                 case "insert":
@@ -45,31 +47,50 @@
                     $this->updateTT($matk, $data, $Temail);
                     break;
                 case "gethuyen":
-                    $this->getHuyen();
+                    $matinh = $this->input->post("matinh");
+                    $res=$this->Mhososinhvien->gethuyen_theotinh($matinh);
+                    echo json_encode($res);
                     break;
                 case "getxa":
-                    $this->getxa();
+                    $mahuyen = $this->input->post("mahuyen");
+                    $res=$this->Mhososinhvien->getxa_theohuyen($mahuyen);
+                    echo json_encode($res);
                     break;
             }
             return;
         }
-        $sinhvien['thongtincoban'] 	= $this->Mhososinhvien->getThongtincoban($session['taikhoan']);
         $sinhvien['hoso'] 	= $this->Mhososinhvien->getHoso($session['taikhoan']);
         $sinhvien['lop'] 	= $this->Mhososinhvien->getLop();
-        $tinh	= $this->Mhososinhvien->gettinh();
-        $huyen 	= $this->Mhososinhvien->gethuyen();
-        $xa 	= $this->Mhososinhvien->getxa();
 
-       
+                //lấy mã tỉnh mà sinh vien đã cập nhật trước đó
+        $tinhtt	= $this->Mhososinhvien->gettinhtt($session['taikhoan']);
+        $tinhht	= $this->Mhososinhvien->gettinhht($session['taikhoan']);
+
+                //lấy mã huyện mà sinh vien đã cập nhật trước đó
+        $huyentt 	= $this->Mhososinhvien->gethuyentt($session['taikhoan']);
+        $huyenht 	= $this->Mhososinhvien->gethuyenht($session['taikhoan']);
+        
+        $tinh_list	    = $this->Mhososinhvien->getListtinh();
+
+                // Lấy danh sách huyện theo mã tỉnh trong hồ sơ
+        $huyentt_list 	= $this->Mhososinhvien->getListhuyen($tinhtt);      
+        $huyenht_list 	= $this->Mhososinhvien->getListhuyen($tinhht);  
+            
+                // Lấy danh sách xã theo mã huyện trong hồ sơ
+        $xatt_list 	    = $this->Mhososinhvien->getListxa($huyentt);
+        $xaht_list	    = $this->Mhososinhvien->getListxa($huyenht);
+
         $temp = array(
             'template'  => 'Vhososinhvien',
             'data'     	=> array(
                 'session'	=> $session,
                 'message' 	=> getMessages(),
                 'sinhvien'  => $sinhvien,
-                'tinh'      => $tinh,
-                'huyen'     => $huyen,
-                'xa'        => $xa,
+                'tinh'      => $tinh_list,
+                'huyentt'   => $huyentt_list,
+                'xatt'      => $xatt_list,
+                'huyenht'   => $huyenht_list,
+                'xaht'      => $xaht_list,
             ),
         );
         
@@ -78,8 +99,6 @@
 	    }
         public function insertTT($data){
             $session = $this->session->userdata("user");
-            $matk       =$session['taikhoan'];
-            $data['FK_sMaTK']     = $matk;
             $data['PK_sMaHoSo'] = time().$session['taikhoan'];
             
             // pr($data);exit();
@@ -103,17 +122,5 @@
             return redirect(current_url());
                 
         }
-        private function gethuyen(){
-	    	$matinh = $this->input->post("matinh");
-			$this->db->where('FK_sMaT',$matinh);
-			$res=$this->db->get("dm_huyen")->result_array();
-			echo json_encode($res);
-	    }
-        private function getxa(){
-	    	$mahuyen = $this->input->post("mahuyen");
-			$this->db->where('FK_sMaH',$mahuyen);
-			$res=$this->db->get("dm_xa")->result_array();
-			echo json_encode($res);
-	    }
     }
 ?>

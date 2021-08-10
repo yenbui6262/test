@@ -28,24 +28,20 @@
                 $acc=$session['taikhoan'];
 
                 $xacDinhMatKhau = $this->Mthongtincanhan->checkPass($oldPass, $acc );
-                  
+                if($xacDinhMatKhau == 1){        
+                    $thongTinCapNhat = array(
+                        'sMatkhau'      => $newPass,
+                    );
+                    $row = $this->Mthongtincanhan->capnhat($acc, $thongTinCapNhat );
+                    if($row > 0){
+                        setMessages('success','Cập nhật thành công','Thông báo');
+                        
+                    }else{
+                        setMessages('danger','cập nhật thất bại','Thông báo');
+                    }
+                    redirect('thongtincanhan');
+                }
             }
-            
-            if($xacDinhMatKhau == 1){        
-                
-                $thongTinCapNhat = array(
-                    'PK_sMaTK' 	    => $acc,
-                    'sMatkhau'      => $newPass,
-                );
-            }
-            $row = $this->Mthongtincanhan->capnhat($thongTinCapNhat,$acc );
-            if($row > 0){
-				setMessages('success','Cập nhật thành công','Thông báo');
-                
-			}else{
-				setMessages('danger','cập nhật thất bại','Thông báo');
-			}
-			redirect('thongtincanhan');
         }
        $temp = array(
             'template'  => 'Vthongtincanhan',

@@ -4,13 +4,13 @@
         <li class="breadcrumb-item active" aria-current="page">Hồ sơ sinh viên</li>
     </ol>
 </nav>
-{$taikhoan  = $sinhvien['thongtincoban'].PK_sMaTK}
-{$hoten     = $sinhvien['thongtincoban'].sHoTen}
-{$ngaysinh  = $sinhvien['thongtincoban'].dNgaySinh}
-{$gioitinh  = $sinhvien['thongtincoban'].iGioiTinh}
-{$email     = $sinhvien['thongtincoban'].tEmail}
-{$tlop      = $sinhvien['thongtincoban'].sTenLop}
-{$mlop      = $sinhvien['thongtincoban'].sFK_Lop}
+{$taikhoan  = $sinhvien['hoso'].PK_sMaTK}
+{$hoten     = $sinhvien['hoso'].sHoTen}
+{$ngaysinh  = $sinhvien['hoso'].dNgaySinh}
+{$gioitinh  = $sinhvien['hoso'].iGioiTinh}
+{$email     = $sinhvien['hoso'].tEmail}
+{$tlop      = $sinhvien['hoso'].sTenLop}
+{$mlop      = $sinhvien['hoso'].sFK_Lop}
 
 {$MaTinhTT  = $sinhvien['hoso'].FK_sMaTinhTT}
 {$MaHuyenTT = $sinhvien['hoso'].FK_sMaHuyenTT}
@@ -138,8 +138,8 @@
                                     <option selected disabled>Bạn chưa chọn tỉnh</option>
                                 {else}
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
-                                    {if !empty($huyen)}
-                                    {foreach $huyen as $v}
+                                    {if !empty($huyentt)}
+                                    {foreach $huyentt as $v}
                                     <option value="{$v.PK_sMaH}" {if !empty($MaHuyenTT) && $MaHuyenTT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
@@ -155,8 +155,8 @@
                                     <option selected disabled>Bạn chưa chọn huyện</option>
                                 {else}
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
-                                    {if !empty($xa)}
-                                    {foreach $xa as $v}
+                                    {if !empty($xatt)}
+                                    {foreach $xatt as $v}
                                     <option value="{$v.PK_sMaX}" {if !empty($MaXaTT) && $MaXaTT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
@@ -195,8 +195,8 @@
                                     <option selected disabled>Bạn chưa chọn tỉnh</option>
                                 {else}
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
-                                    {if !empty($huyen)}
-                                    {foreach $huyen as $v}
+                                    {if !empty($huyenht)}
+                                    {foreach $huyenht as $v}
                                     <option value="{$v.PK_sMaH}" {if !empty($MaHuyenHT) && $MaHuyenHT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
@@ -211,8 +211,8 @@
                                     <option selected disabled>Bạn chưa chọn huyện</option>
                                 {else}
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
-                                    {if !empty($xa)}
-                                    {foreach $xa as $v}
+                                    {if !empty($xaht)}
+                                    {foreach $xaht as $v}
                                     <option value="{$v.PK_sMaX}" {if !empty($MaXaHT) && $MaXaHT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
