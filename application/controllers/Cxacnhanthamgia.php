@@ -21,9 +21,6 @@
                     $id 	    = $this->input->post("id");
                     $trangthai  = $this->input->post("trangthai");
                     $lydo       = $this->input->post("lydo");
-                    if($this->input->post("lydo") == 0 ){
-                        $lydo == "";
-                    }
                     $this->Mxacnhanthamgia->updatexn($id, $trangthai,$lydo);
                 }
             };

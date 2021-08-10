@@ -45,7 +45,7 @@
 			setMessages('success','Đăng nhập thành công','Thông báo');
     		if($session['maquyen'] == 2){
     			//la sinh vien
-    			return redirect('thongtincanhan');
+    			return redirect('hososinhvien');
     		}elseif($session['maquyen'] == 1){
     			// la admin
     			return redirect('Chuongtrinh');

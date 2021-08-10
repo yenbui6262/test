@@ -76,9 +76,9 @@
                             </td>
                             <td class="text-center">
                                 {if ($val.iTrangThai == 3)}
-                                <button data-id="{$k}" data-update="{$val.sMaDS}" class="btn btn-sm btn-success check" type="submit" title="Xác nhận tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if} ><i class="fas fa-user-check"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}" class="btn btn-sm btn-success check a1" type="submit" title="Xác nhận tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if} ><i class="fas fa-user-check"></i></button>
                                 {else if ($val.iTrangThai == 2)}
-                                <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-sm btn-danger check" type="submit" title="Xác nhận không tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if}><i class="fas fa-user-slash"></i></button>
+                                <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-sm btn-danger check a2" type="submit" title="Xác nhận không tham gia" {if ($val.dThoiGianXN < $date)}disabled{/if}><i class="fas fa-user-slash"></i></button>
                                 {else}
                                 <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-sm btn-success check b1" type="submit" title="Xác nhận tham gia"{if ($val.dThoiGianXN< $date)}disabled{/if} ><i class="fas fa-user-check"></i></button>
                                 <button data-id="{$k}" data-update="{$val.sMaDS}"class="btn btn-sm btn-danger check b2" type="submit" title="Xác nhận không tham gia"{if ($val.dThoiGianXN < $date)}disabled{/if} ><i class="fas fa-user-slash"></i></button>

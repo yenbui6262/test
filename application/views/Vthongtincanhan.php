@@ -11,16 +11,15 @@
 {$email = $sinhvien['thongtincoban'].tEmail}
 {$tlop = $sinhvien['thongtincoban'].sTenLop}
 {$mlop = $sinhvien['thongtincoban'].sFK_Lop}
-<div class="container">
+<div class="container"style="width:40%">
 <div class="card my-3">
         <div class="card-header text-center text-white bg-darkblue">
-            <h4 class="m-0"><span style="color: white;">&nbsp;THÔNG
-                    TIN CÁ NHÂN</h4>
+            <h4 class="m-0"><span style="color: white;">&nbsp;ĐỔI MẬT KHẨU</h4>
         </div>
         <div class="card-body">
             <form method="POST">
                 <div class="row">
-                    <div class="col-md-6 ">
+                    <!-- <div class="col-md-6 ">
 
                         <div class="row">
 
@@ -66,17 +65,17 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-6" id="frmChangePass">
+                    <div class="col-md-12" id="frmChangePass">
 
                         <div class="form-group" style="display: none;">
                             <label>Tên đăng nhập</label>
                             <input type="text" class="form-control" name="acc" id="acc" value="{$taikhoan}" disabled>
                         </div>
-                        <div class="mb-4" style="margin-top: 13px;"><b> * Thay đổi mật khẩu</b><br><small> (để trống nếu không thay đổi mật
+                        <!-- <div class="mb-4" style="margin-top: 13px;"><b> * Thay đổi mật khẩu</b><br><small> (để trống nếu không thay đổi mật
                                 khẩu)</small>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label>Mật khẩu cũ</label>
                             <input type="password" class="form-control" name="oldPass" id="oldPass"
