@@ -188,7 +188,7 @@
                 <div class="col-md-6 form-group">
                     <label id="diachitt">Địa chỉ thường trú:</label>
                     <div>
-                        <button style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachittModal"
+                        <button id="buttondctt" style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachittModal"
                         data-whatever="@mdo">{if !empty($filter['tinhtt'])}
                             {if !empty($filter['huyentt'])}
                                 {if !empty($filter['xatt'])}
@@ -211,7 +211,7 @@
                 <div class="col-md-6 form-group">
                     <label id="diachiht">Địa chỉ hiện tại:</label>
                     <div>
-                        <button style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachihtModal"
+                        <button id="buttondcht" style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachihtModal"
                         data-whatever="@mdo">{if !empty($filter['tinhht'])}
                             {if !empty($filter['huyenht'])}
                                 {if !empty($filter['xaht'])}
@@ -244,14 +244,14 @@
                     <thead>
                         <tr>
                             <th class='text-center' style='width: 3%'>STT</th>
-                            <th class='text-center' style='width: 5%'>Mã sinh viên</th>
+                            <th class='text-center' style='width: 6%'>Mã sinh viên</th>
                             <th class='text-center' style='width: 10%'>Họ tên</th>
                             <th class='text-center' style='width: 6%'>Ngày sinh</th>
                             <th class='text-center' style='width: 6%'>Giới tính</th>
                             <th class='text-center' style='width: 6%'>Lớp</th>
                             <th class='text-center' style='width: 10%'>Địa chỉ thường trú</th>
                             <th class='text-center' style='width: 10%'>Địa chỉ hiện tại</th>
-                            <th class='text-center' style='width: 10%'>Ưu tiên</th>
+                            <th class='text-center' style='width: 6%'>Ưu tiên</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -271,7 +271,7 @@
                         {/foreach}
                         {else}
                         <tr>
-                            <td class="text-center" colspan="8">Không tìm thấy dữ liệu!</td>
+                            <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                         </tr>
                         {/if}
                     </tbody>
