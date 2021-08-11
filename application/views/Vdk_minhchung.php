@@ -83,21 +83,21 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-4">
+                <div class="form-group col-md-4">
                     <label for="chuongtrinh">Tên chương trình:</label>
                     <input type="text" class="form-control" name="tenchuongtrinh" placeholder="Tên chương trình" value="{if !empty($tenchuongtrinh)}{$tenchuongtrinh}{/if}">
                 </div>
-                <div class="form-group col-xl-3">
+                <div class="form-group col-md-3">
                     <label for="thoigianbd">Thời gian bắt đầu:</label>
                     <input type="date" id="thoigianbd" name="thoigianbd" class="form-control"
                         value="{if !empty($thoigianbd)}{$thoigianbd}{/if}">
                 </div>
-                <div class="form-group col-xl-3">
+                <div class="form-group col-md-3">
                     <label for="thoigiankt">Thời gian kết thúc:</label>
                     <input type="date" id="thoigiankt" class="form-control" name="thoigiankt"
                         value="{if !empty($thoigiankt)}{$thoigiankt}{/if}">
                 </div>
-                <div class="form-group col-xl-2">
+                <div class="form-group col-md-2">
                 <label for="trangthai">Trạng thái</label>
                     <select class="form-control form-group select2" name="trangthai">
                         <option selected value="tatca">Tất cả</option>

@@ -19,29 +19,81 @@
             }
 
             if($action = $this->input->post('action')){
-                if($action=='search'){
-                    $filtertksv = array(
-                        'lop'      => $this->input->post('lop'),
-                        'ngaysinh'      => $this->input->post('ngaysinh'),
-                        'gioitinh'      => $this->input->post('gioitinh')
-                    );
-                    // luu vao sesssion
-                    $this->session->set_userdata("filtertksv", $filtertksv);
-                    redirect("thongkesinhvien");
-                }elseif($action=='reset'){
-                    unset($_SESSION['filtertksv']);
-                    redirect("thongkesinhvien");
+                switch($action){
+                    case "search":
+                        $filtertksv = array(
+                            'lop'      => $this->input->post('lop'),
+                            'ngaysinh'      => $this->input->post('ngaysinh'),
+                            'gioitinh'      => $this->input->post('gioitinh'),
+                            'tinhtt'      => $this->input->post('tinhtt'),
+                            'huyentt'      => $this->input->post('huyentt'),
+                            'xatt'      => $this->input->post('xatt'),
+                            'tinhht'      => $this->input->post('tinhht'),
+                            'huyenht'      => $this->input->post('huyenht'),
+                            'xaht'      => $this->input->post('xaht'),
+                        );
+                        // pr($filtertksv);
+                        // luu vao sesssion
+                        $this->session->set_userdata("filtertksv", $filtertksv);
+                        redirect("thongkesinhvien");
+                    case "reset":
+                        unset($_SESSION['filtertksv']);
+                        redirect("thongkesinhvien");
+                    case "gethuyen":
+                        $matinh = $this->input->post("matinh");
+                        $res=$this->Mthongkesinhvien->gethuyen_theotinh($matinh);
+                        echo json_encode($res);
+                        break;
+                    case "getxa":
+                        $mahuyen = $this->input->post("mahuyen");
+                        $res=$this->Mthongkesinhvien->getxa_theohuyen($mahuyen);
+                        echo json_encode($res);
+                        break;
                 }
+                return;
             }
 
             $filter = $this->session->userdata("filtertksv");
-            
+
+            $huyentt_list = '';
+            $huyenht_list = '';
+            $xatt_list    = '';
+            $xaht_list    = '';
+
+            if(!empty($filter['tinhtt'])){
+                // lấy huyện
+                $huyentt_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhtt']);   
+
+            }
+            if(!empty($filter['huyentt'])){
+                // lấy xã
+                $xatt_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyentt']);
+            }
+            if(!empty($filter['tinhht'])){
+                // lấy huyện
+                $huyenht_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhht']);  
+            }
+            if(!empty($filter['huyenht'])){
+                // lấy xã
+                $xaht_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyenht']);
+            }
+
+            $uutien	= $this->Mthongkesinhvien->getListuutien();
+
+
+            $tinh_list	    = $this->Mthongkesinhvien->getListtinh();
             $temp = array(
                 'template'  => 'Vthongkesinhvien',
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message' => getMessages(),
                     'filter' => $filter,
+                    'tinh'      => $tinh_list,
+                    'uutien'    => $uutien,
+                    'huyentt'   => $huyentt_list,
+                    'xatt'      => $xatt_list,
+                    'huyenht'   => $huyenht_list,
+                    'xaht'      => $xaht_list,
                     'session'   => $session
                 ),
             );
