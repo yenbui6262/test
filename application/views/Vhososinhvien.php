@@ -4,25 +4,26 @@
         <li class="breadcrumb-item active" aria-current="page">Hồ sơ sinh viên</li>
     </ol>
 </nav>
-{$taikhoan  = $sinhvien['hoso'].PK_sMaTK}
-{$hoten     = $sinhvien['hoso'].sHoTen}
-{$ngaysinh  = $sinhvien['hoso'].dNgaySinh}
-{$gioitinh  = $sinhvien['hoso'].iGioiTinh}
-{$email     = $sinhvien['hoso'].tEmail}
-{$tlop      = $sinhvien['hoso'].sTenLop}
-{$mlop      = $sinhvien['hoso'].sFK_Lop}
+{$taikhoan = $sinhvien['thongtincoban'].PK_sMaTK}
+{$hoten = $sinhvien['thongtincoban'].sHoTen}
+{$ngaysinh = $sinhvien['thongtincoban'].dNgaySinh}
+{$gioitinh = $sinhvien['thongtincoban'].iGioiTinh}
+{$email = $sinhvien['thongtincoban'].tEmail}
+{$tlop = $sinhvien['thongtincoban'].sTenLop}
+{$mlop = $sinhvien['thongtincoban'].sFK_Lop}
 
-{$MaTinhTT  = $sinhvien['hoso'].FK_sMaTinhTT}
+{$MaTinhTT = $sinhvien['hoso'].FK_sMaTinhTT}
 {$MaHuyenTT = $sinhvien['hoso'].FK_sMaHuyenTT}
-{$MaXaTT    = $sinhvien['hoso'].FK_sMaXaTT}
+{$MaXaTT = $sinhvien['hoso'].FK_sMaXaTT}
 {$ChiTietTT = $sinhvien['hoso'].tChiTietTT}
-{$MaTinhHT  = $sinhvien['hoso'].FK_sMaTinhHT}
+{$MaTinhHT = $sinhvien['hoso'].FK_sMaTinhHT}
 {$MaHuyenHT = $sinhvien['hoso'].FK_sMaHuyenHT}
-{$MaXaHT    = $sinhvien['hoso'].FK_sMaXaHT}
+{$MaXaHT = $sinhvien['hoso'].FK_sMaXaHT}
 {$ChiTietHT = $sinhvien['hoso'].tChiTietHT}
-{$SDT       = $sinhvien['hoso'].sSDT}
-{$STK       = $sinhvien['hoso'].sSTK}
-{$ChiNhanh  = $sinhvien['hoso'].sChiNhanh}
+{$SDT = $sinhvien['hoso'].sSDT}
+{$STK = $sinhvien['hoso'].sSTK}
+{$ChiNhanh = $sinhvien['hoso'].sChiNhanh}
+
 <div class="container-fluid">
 
     <div class="card my-3">
@@ -33,7 +34,7 @@
             <form method="POST">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="mb-4" style="margin-top: 5px;"><b> * Thông tin cơ bản (Không thay đổi)</b><br></div>
+                        <div class="mb-4" style="margin-top: 5px;"><b> * Thông tin cá nhân</b><br></div>
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label>Họ tên:</label>
@@ -79,7 +80,6 @@
                                     class="form-control required" autocomplete="off" id="lop" readonly>
 
                             </div>
-
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -88,30 +88,110 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label>Email</label>
-                                <input type="email" name="email" class="form-control"required
+                                <input type="email" name="email" class="form-control" required
                                     value="{if !empty($email)}{$email}{/if}" id="email" placeholder="Email">
 
                             </div>
 
                             <div class="col-md-12 form-group">
                                 <label>Số điện thoại:</label>
-                                <input type="text" name="sdt" class="form-control " value="{if !empty($SDT)}{$SDT}{/if}"required
-                                    placeholder="Số điện thoại">
+                                <input type="text" name="sdt" class="form-control " value="{if !empty($SDT)}{$SDT}{/if}"
+                                    required placeholder="Số điện thoại">
 
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Tài khoản ngân hàng:</label>
-                                <input type="text" name="stk" class="form-control " value="{if !empty($STK)}{$STK}{/if}"required
-                                    placeholder="Số tài khoản">
+                                <input type="text" name="stk" class="form-control " value="{if !empty($STK)}{$STK}{/if}"
+                                    required placeholder="Số tài khoản">
 
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Chi nhánh</label>
-                                <input type="text" name="chinhanh" class="form-control "required
+                                <input type="text" name="chinhanh" class="form-control " required
                                     value="{if !empty($ChiNhanh)}{$ChiNhanh}{/if}" placeholder="Chi nhánh">
 
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-4" style="margin-top: 5px;"><b> * Thông tin liên hệ của người thân</b><br></div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {foreach $sinhvien['lienhe'] as $k => $val}
+                                {if ($val.sQuanHe != "Chủ trọ")}
+                                <input type="hidden" name="mads1"
+                                    value="{if !empty($val.PK_sMaDS)}{$val.PK_sMaDS}{/if}">
+                                {/if}
+                                {/foreach}
+                                <label>Họ tên người thân: </label>
+                                <input type="text" name="hotenngthan" class="form-control" 
+                                {foreach $sinhvien['lienhe'] as $k=> $val}
+                                {if ($val.sQuanHe != "Chủ trọ")}
+                                value="{if !empty($val.sHoTen)}{$val.sHoTen}{/if}"
+                                {/if}
+                                {/foreach}
+                                placeholder="Họ tên" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Số điện thoại:</label>
+                                <input type="text"maxlength="10" name="sdtngthan" class="form-control " 
+                                {foreach $sinhvien['lienhe'] as $k=> $val}
+                                {if ($val.sQuanHe != "Chủ trọ")}
+                                value="{if !empty($val.sSDT)}{$val.sSDT}{/if}"
+                                {/if}
+                                {/foreach}
+                                placeholder="Số điện thoại" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Quan hệ:</label>
+                                <input type="text" name="quanhe" class="form-control " 
+                                {foreach $sinhvien['lienhe'] as $k=> $val}
+                                {if ($val.sQuanHe != "Chủ trọ")}
+                                value="{if !empty($val.sQuanHe)}{$val.sQuanHe}{/if}"
+                                {/if}
+                                {/foreach}
+                                placeholder="Quan hệ" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-4" style="margin-top: 5px;"><b> * Thông tin liên hệ của chủ trọ (Ký túc
+                                xá)</b><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                {foreach $sinhvien['lienhe'] as $k => $val}
+                                {if ($val.sQuanHe == "Chủ trọ")}
+                                <input type="hidden" name="mads2"
+                                    value="{if !empty($val.PK_sMaDS)}{$val.PK_sMaDS}{/if}">
+                                {/if}
+                                {/foreach}
+                                <label>Họ tên người cho thuê:</label>
+                                <input type="text" name="hotenchutro" {foreach $sinhvien['lienhe'] as $k=> $val}
+                                {if ($val.sQuanHe == "Chủ trọ")}
+                                value="{if !empty($val.sHoTen)}{$val.sHoTen}{/if}"
+                                {/if}
+                                {/foreach}
+                                class="form-control" placeholder="Họ tên" >
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Số điện thoại:</label>
+                                <input type="text"maxlength="10" name="sdtchutro" {foreach $sinhvien['lienhe'] as $k=> $val}
+                                {if ($val.sQuanHe == "Chủ trọ")}
+                                value="{if !empty($val.sSDT)}{$val.sSDT}{/if}"
+                                {/if}
+                                {/foreach}
+                                class="form-control" placeholder="Số điện thoại">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Quan hệ:</label>
+                                <input type="text" name="quanhe" class="form-control" value="Chủ trọ" disabled>
+                            </div>
+
+
+                        </div>
+
                     </div>
                     <div class="col-md-6">
                         <div class="mb-4" style="margin-top: 5px;"><b> * Địa chỉ TT</b><br></div>
@@ -120,12 +200,13 @@
                             <div class="col-md-12 form-group">
                                 <label for="tinhtt">Tỉnh/Thành phố:</label>
                                 <select name="tinhtt" id="tinhtt" class="form-control select2">
-                                    
-                                    <option  value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
+
+                                    <option value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
                                     {if !empty($tinh)}
-                                        {foreach $tinh as $v}
-                                        <option value="{$v.PK_sMaT}" {if !empty($MaTinhTT) && $MaTinhTT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
-                                        {/foreach}
+                                    {foreach $tinh as $v}
+                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhTT) &&
+                                        $MaTinhTT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                    {/foreach}
                                     {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn tỉnh</span>
@@ -134,40 +215,42 @@
                             <div class="col-md-12 form-group">
                                 <label for="huyentt">Quận/Huyện:</label>
                                 <select name="huyentt" id="huyentt" class="form-control select2">
-                                {if empty($MaTinhTT)}
+                                    {if empty($MaTinhTT)}
                                     <option selected disabled>Bạn chưa chọn tỉnh</option>
-                                {else}
+                                    {else}
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
                                     {if !empty($huyentt)}
                                     {foreach $huyentt as $v}
-                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenTT) && $MaHuyenTT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenTT) &&
+                                        $MaHuyenTT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
-                                {/if}
+                                    {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn huyện</span>
 
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="xatt">Phường/Xã:</label>
-                                <select name="xatt" id="xatt" class="form-control select2" >
-                                {if empty($MaXaTT)}
+                                <select name="xatt" id="xatt" class="form-control select2">
+                                    {if empty($MaXaTT)}
                                     <option selected disabled>Bạn chưa chọn huyện</option>
-                                {else}
+                                    {else}
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
                                     {if !empty($xatt)}
                                     {foreach $xatt as $v}
-                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaTT) && $MaXaTT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaTT) &&
+                                        $MaXaTT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
-                                {/if}
+                                    {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn huyện</span>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Số nhà, tên đường, tổ/xóm, khu phố/thôn</label>
-                                <input type="text" name="chitiettt" value="{if !empty($ChiTietTT)}{$ChiTietTT}{/if}" class="form-control" required
-                                    placeholder="Số nhà, tên đường, tổ/xóm, khu phố/thôn">
+                                <input type="text" name="chitiettt" value="{if !empty($ChiTietTT)}{$ChiTietTT}{/if}"
+                                    class="form-control" required placeholder="Số nhà, tên đường, tổ/xóm, khu phố/thôn">
                             </div>
                         </div>
 
@@ -178,63 +261,66 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label for="tinhht">Tỉnh/Thành phố:</label>
-                                <select name="tinhht" id="tinhht" class="form-control select2" >
+                                <select name="tinhht" id="tinhht" class="form-control select2">
                                     <option value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
                                     {if !empty($tinh)}
-                                        {foreach $tinh as $v}
-                                        <option value="{$v.PK_sMaT}" {if !empty($MaTinhHT) && $MaTinhHT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
-                                        {/foreach}
+                                    {foreach $tinh as $v}
+                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhHT) &&
+                                        $MaTinhHT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                    {/foreach}
                                     {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn tỉnh</span>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="huyenht">Quận/Huyện:</label>
-                                <select name="huyenht" id="huyenht" class="form-control select2" >
-                                {if empty($MaTinhHT)}
+                                <select name="huyenht" id="huyenht" class="form-control select2">
+                                    {if empty($MaTinhHT)}
                                     <option selected disabled>Bạn chưa chọn tỉnh</option>
-                                {else}
+                                    {else}
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
                                     {if !empty($huyenht)}
                                     {foreach $huyenht as $v}
-                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenHT) && $MaHuyenHT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenHT) &&
+                                        $MaHuyenHT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
-                                {/if}
+                                    {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn huyện</span>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="xaht">Phường/Xã:</label>
-                                <select name="xaht" id="xaht" class="form-control select2" >
-                                {if empty($MaXaHT)}
+                                <select name="xaht" id="xaht" class="form-control select2">
+                                    {if empty($MaXaHT)}
                                     <option selected disabled>Bạn chưa chọn huyện</option>
-                                {else}
+                                    {else}
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
                                     {if !empty($xaht)}
                                     {foreach $xaht as $v}
-                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaHT) && $MaXaHT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaHT) &&
+                                        $MaXaHT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
-                                {/if}
+                                    {/if}
                                 </select>
                                 <span class="help-block">Chưa chọn xã</span>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Số nhà, tên đường, tổ/xóm, khu phố/thôn</label>
-                                <input type="text" name="chitietht" value="{if !empty($ChiTietHT)}{$ChiTietHT}{/if}" class="form-control"required
-                                    placeholder="Số nhà, tên đường, tổ/xóm, khu phố/thôn">
+                                <input type="text" name="chitietht" value="{if !empty($ChiTietHT)}{$ChiTietHT}{/if}"
+                                    class="form-control" required placeholder="Số nhà, tên đường, tổ/xóm, khu phố/thôn">
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" name="action" {if empty($sinhvien['hoso'].PK_sMaTK) } value="insert" {else} value="update" {/if} class="btn btn-success capnhat">Cập nhật thông tin</button>
+                    <button type="submit" name="action" {if empty($sinhvien['hoso'].PK_sMaHoSo) } value="insert" {else} value="update" {/if} class="btn btn-success capnhat">Cập nhật thông tin</button>
                 </div>
             </form>
         </div>
     </div>
-
 </div>
+
 <script type="text/javascript" src="{base_url()}public/script/hososinhvien.js"></script>
