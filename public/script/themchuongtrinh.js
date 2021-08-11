@@ -1,7 +1,6 @@
 $(document).ready(function() {
   if ($('#checkerr').length !== 0) {
     checkerr = $('#checkerr').html();
-    console.log(123);
     Swal.fire({
       icon: 'error',
       title: 'Oops...',

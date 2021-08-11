@@ -84,17 +84,17 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-5">
+                <div class="form-group col-md-5">
                     <label for="tenhc">Tên thủ tục:</label>
                     <input type="text" id="tenhc" name="tenhc" class="form-control"
                         value="{if !empty($tenhc)}{$tenhc}{/if}" placeholder="Nhập nội dung">
                 </div>
-                <div class="form-group col-xl-5">
+                <div class="form-group col-md-5">
                     <label for="mota">Mô tả:</label>
                     <input type="text" id="mota" class="form-control" name="mota" value="{if !empty($mota)}{$mota}{/if}"
                         placeholder="Nhập nội dung">
                 </div>
-                <div class="form-group col-xl-2">
+                <div class="form-group col-md-2">
                     <label for="trangthai">Trạng thái</label>
                     <select class="form-control form-group select2" name="trangthai">
                         <option selected value="tatca">Tất cả</option>
