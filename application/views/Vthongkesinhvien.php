@@ -6,62 +6,239 @@
 </nav>
 <br>
 <div class="container-fluid">
+<form action="" method="POST" class="insert" id="myForm">
+    <!--địa chỉ thường trú Modal -->
+    <div class="modal fade" id="diachittModal" tabindex="-1" role="dialog" aria-labelledby="diachittModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="diachittModalLabel">Chọn địa chỉ thường trú</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 form-group">
+                        <label for="tinhtt">Tỉnh/Thành phố:</label>
+                        <select name="tinhtt" id="tinhtt" class="form-control select2">
+                            
+                            <option  value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
+                            {if !empty($tinh)}
+                                {foreach $tinh as $v}
+                                <option value="{$v.PK_sMaT}" {if !empty($filter['tinhtt']) && $filter['tinhtt']==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                {/foreach}
+                            {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn tỉnh</span>
+
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="huyentt">Quận/Huyện:</label>
+                        <select name="huyentt" id="huyentt" class="form-control select2">
+                        {if empty($huyentt)}
+                            <option selected disabled>Bạn chưa chọn tỉnh</option>
+                        {else}
+                            <option value="0" readonly hidden>--Chọn quận/huyện--</option>
+                            {if !empty($huyentt)}
+                            {foreach $huyentt as $v}
+                            <option value="{$v.PK_sMaH}" {if !empty($filter['huyentt']) && $filter['huyentt']==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                            {/foreach}
+                            {/if}
+                        {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn huyện</span>
+
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="xatt">Phường/Xã:</label>
+                        <select name="xatt" id="xatt" class="form-control select2" >
+                        {if empty($xatt)}
+                            <option selected disabled>Bạn chưa chọn huyện</option>
+                        {else}
+                            <option value="0" readonly hidden>--Chọn phường/xã--</option>
+                            {if !empty($xatt)}
+                            {foreach $xatt as $v}
+                            <option value="{$v.PK_sMaX}" {if !empty($filter['xatt']) && $filter['xatt']==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                            {/foreach}
+                            {/if}
+                        {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn huyện</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--địa chỉ hiện tại Modal -->
+    <div class="modal fade" id="diachihtModal" tabindex="-1" role="dialog" aria-labelledby="diachihtModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="diachihtModalLabel">Chọn địa chỉ hiện tại</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 form-group">
+                        <label for="tinhht">Tỉnh/Thành phố:</label>
+                        <select name="tinhht" id="tinhht" class="form-control select2">
+                            
+                            <option  value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
+                            {if !empty($tinh)}
+                                {foreach $tinh as $v}
+                                <option value="{$v.PK_sMaT}" {if !empty($filter['tinhht']) && $filter['tinhht']==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                {/foreach}
+                            {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn tỉnh</span>
+
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="huyenht">Quận/Huyện:</label>
+                        <select name="huyenht" id="huyenht" class="form-control select2">
+                        {if empty($huyenht)}
+                            <option selected disabled>Bạn chưa chọn tỉnh</option>
+                        {else}
+                            <option value="0" readonly hidden>--Chọn quận/huyện--</option>
+                            {if !empty($huyenht)}
+                            {foreach $huyenht as $v}
+                            <option value="{$v.PK_sMaH}" {if !empty($filter['huyenht']) && $filter['huyenht']==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                            {/foreach}
+                            {/if}
+                        {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn huyện</span>
+
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="xaht">Phường/Xã:</label>
+                        <select name="xaht" id="xaht" class="form-control select2" >
+                        {if empty($xaht)}
+                            <option selected disabled>Bạn chưa chọn huyện</option>
+                        {else}
+                            <option value="0" readonly hidden>--Chọn phường/xã--</option>
+                            {if !empty($xaht)}
+                            {foreach $xaht as $v}
+                            <option value="{$v.PK_sMaX}" {if !empty($filter['xaht']) && $filter['xaht']==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                            {/foreach}
+                            {/if}
+                        {/if}
+                        </select>
+                        <span class="help-block">Chưa chọn huyện</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header text-center text-white bg-darkblue">
             <h4 style="color: #fff; margin: 0" class="text-center">Thống kê sinh viên</h4>
         </div>
         <div class="card-body">
-            <form action="" method="POST" class="insert" id="myForm">
-                <div class="row">
-                    <!-- <div class="col-md-3 form-group">
-                        <label id="inputGroup-sizing-sm">Mã sinh viên:</label>
-                        <input type="text" id="masv" name="masv" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if isset($filter['masv'])}{$filter['masv']}{/if}"
-                            placeholder="Nhập nội dung">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label id="inputGroup-sizing-sm">Họ tên:</label>
-                        <input type="text" id="hoten" name="hoten" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if isset($filter['hoten'])}{$filter['hoten']}{/if}"
-                            placeholder="Nhập nội dung">
-                    </div> -->
-                    <div class="col-md-3 form-group">
-                        <label id="tenlop">Lớp:</label>
-                        <select class="form-control select2" name="lop" aria-label="Small" aria-describedby="tenlop">
-                            <option selected value="tatca">Tất cả</option>
-                            {if !empty($params['lop'])}
-                            {foreach $params['lop'] as $v}
-                            <option value="{$v.sTenLop}" {if !empty($filter['lop']) && $filter['lop']==$v.sTenLop}selected{/if}>{$v.sTenLop}
-                            </option>
-                            {/foreach}
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label id="tenlop">Lớp:</label>
+                    <select class="form-control select2" name="lop" aria-label="Small" aria-describedby="tenlop">
+                        <option selected value="tatca">Tất cả</option>
+                        {if !empty($params['lop'])}
+                        {foreach $params['lop'] as $v}
+                        <option value="{$v.sTenLop}" {if !empty($filter['lop']) && $filter['lop']==$v.sTenLop}selected{/if}>{$v.sTenLop}
+                        </option>
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label id="gioitinh">Giới tính:</label>
+                    <select class="form-control select2" name="gioitinh" aria-label="Small" aria-describedby="gioitinh">
+                        <option selected value="tatca">Tất cả</option>
+                        <option value="1" {if $filter['gioitinh']==1}selected{/if}>Nam
+                        </option>
+                        <option value="0" {if $filter['gioitinh']=='0'}selected{/if}>Nữ
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="ngaysinh">Năm sinh:</label>
+                    <input type="number" id="ngaysinh" name="ngaysinh"
+                        value="{if !empty($filter['ngaysinh'])}{$filter['ngaysinh']}{/if}" class="form-control" aria-label="Small"
+                        placeholder="Nhập nội dung">
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="uutien">Mức độ ưu tiên:</label>
+                    <select id="uutien" class="form-control select2" name="uutien">
+                        <option selected value="tatca">Chọn</option>
+                        {if !empty($uutien)}
+                        {foreach $uutien as $v}
+                        <option value="{$v.PK_sMaNhom}" {if !empty($filter['uutien']) && $filter['uutien']==$v.PK_sMaNhom}selected{/if}>{$v.tMoTa}
+                        </option>
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label id="diachitt">Địa chỉ thường trú:</label>
+                    <div>
+                        <button style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachittModal"
+                        data-whatever="@mdo">{if !empty($filter['tinhtt'])}
+                            {if !empty($filter['huyentt'])}
+                                {if !empty($filter['xatt'])}
+                                    {foreach $xatt as $v}
+                                        {if $filter['xatt']==$v.PK_sMaX}{$v.sTenX},{/if}
+                                    {/foreach}
+                                {/if}
+                                {foreach $huyentt as $v}
+                                    {if $filter['huyentt']==$v.PK_sMaH}{$v.sTenH},{/if}
+                                {/foreach}
                             {/if}
-                        </select>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label id="gioitinh">Giới tính:</label>
-                        <select class="form-control select2" name="gioitinh" aria-label="Small" aria-describedby="gioitinh">
-                            <option selected value="tatca">Tất cả</option>
-                            <option value="1" {if $filter['gioitinh']==1}selected{/if}>Nam
-                            </option>
-                            <option value="0" {if $filter['gioitinh']=='0'}selected{/if}>Nữ
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label for="ngaysinh">Ngày sinh:</label>
-                        <input type="date" id="ngaysinh" name="ngaysinh"
-                            value="{if !empty($filter['ngaysinh'])}{$filter['ngaysinh']}{/if}" class="form-control" aria-label="Small"
-                            placeholder="Nhập nội dung">
-                    </div>
-                    <div class="col-12 form-group text-right">
-                        <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i
-                                class="fa fa-search" aria-hidden="true"></i> Thống kê</button>
-                        <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i
-                                class="fas fa-undo" aria-hidden="true"></i> Đặt lại</button>
+                            {foreach $tinh as $v}
+                                {if $filter['tinhtt']==$v.PK_sMaT}{$v.sTenT}{/if}
+                            {/foreach}
+                        {else}
+                            Chọn địa chỉ thường trú
+                        {/if} </button>
                     </div>
                 </div>
-            </form><br>
-
+                <div class="col-md-6 form-group">
+                    <label id="diachiht">Địa chỉ hiện tại:</label>
+                    <div>
+                        <button style="width:100%;border:solid 1px #ced4da;text-align:left;" type="button" class="btn" data-toggle="modal" data-target="#diachihtModal"
+                        data-whatever="@mdo">{if !empty($filter['tinhht'])}
+                            {if !empty($filter['huyenht'])}
+                                {if !empty($filter['xaht'])}
+                                    {foreach $xaht as $v}
+                                        {if $filter['xaht']==$v.PK_sMaX}{$v.sTenX},{/if}
+                                    {/foreach}
+                                {/if}
+                                {foreach $huyenht as $v}
+                                    {if $filter['huyenht']==$v.PK_sMaH}{$v.sTenH},{/if}
+                                {/foreach}
+                            {/if}
+                            {foreach $tinh as $v}
+                                {if $filter['tinhht']==$v.PK_sMaT}{$v.sTenT}{/if}
+                            {/foreach}
+                        {else}
+                            Chọn địa chỉ hiện tại
+                        {/if}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 form-group text-right">
+                    <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i
+                            class="fa fa-search" aria-hidden="true"></i> Thống kê</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i
+                            class="fas fa-undo" aria-hidden="true"></i> Đặt lại</button>
+                </div>
+            </div><br>
             <div class="table-responsive">
                 <table class='table table-hover table-striped table-bordered' id='example'>
                     <thead>
@@ -72,6 +249,9 @@
                             <th class='text-center' style='width: 6%'>Ngày sinh</th>
                             <th class='text-center' style='width: 6%'>Giới tính</th>
                             <th class='text-center' style='width: 6%'>Lớp</th>
+                            <th class='text-center' style='width: 10%'>Địa chỉ thường trú</th>
+                            <th class='text-center' style='width: 10%'>Địa chỉ hiện tại</th>
+                            <th class='text-center' style='width: 10%'>Ưu tiên</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -84,6 +264,9 @@
                             <td class='text-center'>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
                             <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
                             <td class='text-center'>{$val["sTenLop"]}</td>
+                            <td>{$val["tChiTietTT"]}</td>
+                            <td>{$val["tChiTietHT"]}</td>
+                            <td>123</td>
                         </tr>
                         {/foreach}
                         {else}
@@ -101,5 +284,6 @@
             </div>
         </div>
     </div>
+</form>
 </div>
-</div>
+<script type="text/javascript" src="{base_url()}public/script/thongkesinhvien.js"></script>

@@ -12,17 +12,17 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="form-group col-xl-5">
+                <div class="form-group col-md-5">
                     <label for="tenct">Tên chương trình:</label>
                     <input type="text" id="tenct" name="tenct" class="form-control"
                         value="{if !empty($tenct)}{$tenct}{/if}" placeholder="Nhập nội dung">
                 </div>
-                <div class="form-group col-xl-5">
+                <div class="form-group col-md-5">
                     <label for="mota">Mô tả:</label>
                     <input type="text" id="mota" class="form-control" name="mota" value="{if !empty($mota)}{$mota}{/if}"
                         placeholder="Nhập nội dung">
                 </div>
-                <div class="form-group col-xl-2">
+                <div class="form-group col-md-2">
                     <label for="trangthai">Trạng thái</label>
                     <select class="form-control form-group select2" name="trangthai">
                         <option selected value="tatca">Tất cả</option>
@@ -45,7 +45,7 @@
                         <th width="130px">Xác nhận trước</th>
                         <th width="120px">Trạng thái</th>
                         <th width="120px">Lý do</th>
-                        <th width="9%">Tác vụ</th>
+                        <th width="10%">Tác vụ</th>
                     </thead>
                     <tbody>
                         {if !empty($params['chuongtrinh'])}

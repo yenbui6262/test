@@ -13,7 +13,7 @@
         <div class="card-body">
             <form action="{$url}thongkeminhchung" method="POST" class="insert" id="myForm">
                 <div class="row">
-                    <div class="form-group col-xl-4">
+                    <div class="form-group col-md-4">
                         <label for="thongke">Thống kê theo:</label>
                         <select class="form-control form-group select2 no-search-select2" id="thongke" name="thongke">
                             <option selected value="tatca">--Chọn tiêu chí--</option>
@@ -30,7 +30,7 @@
                         </select>
                     </div>
                     {if $session['maquyen']==1||$session['maquyen']==3}
-                    <div class="form-group col-xl-3" id='chonlop' {if empty($lop)&&$action!='get_dstheolop'
+                    <div class="form-group col-md-3" id='chonlop' {if empty($lop)&&$action!='get_dstheolop'
                         &&$action!='get_dstheosinhvien' }style='display:none' {/if}>
                         <label for="lop">Lớp:</label>
                         <select id='lop' class="form-control form-group select2 no-search-select2" name="lop">
@@ -44,7 +44,7 @@
                         </select>
                     </div>
                     {/if}
-                    <div class="form-group col-xl-5" id='chonct' {if empty($tenct)&&$action!='get_dstheolop'
+                    <div class="form-group col-md-5" id='chonct' {if empty($tenct)&&$action!='get_dstheolop'
                         &&$action!='get_dstheochuongtrinh' } style='display:none' {/if}>
                         <label for="tenct">Tên chương trình:</label>
                         <select class="form-control form-group select2 no-search-select2" id='tenct' name="tenct">
@@ -147,7 +147,7 @@
                             {/foreach}
                             {else}
                             <tr>
-                                <td class="text-center" colspan="8">Không tìm thấy dữ liệu!</td>
+                                <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                             </tr>
                             {/if}
                         </tbody>
@@ -212,7 +212,7 @@
                                 {/foreach}
                                 {else}
                                 <tr>
-                                    <td class="text-center" colspan="8">Không tìm thấy dữ liệu!</td>
+                                    <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                                 </tr>
                                 {/if}
                             </tbody>
@@ -277,7 +277,7 @@
                                     {/foreach}
                                     {else}
                                     <tr>
-                                        <td class="text-center" colspan="8">Không tìm thấy dữ liệu!</td>
+                                        <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                                     </tr>
                                     {/if}
                                 </tbody>

@@ -100,11 +100,11 @@ $(document).ready(function(){
                             
                             }
                     }else{
-                        option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                        option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                     }
                     
                 }else{
-                    option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                    option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                 }
                 option +="</tbody></table>";
                 $("#ds").html(option);
@@ -185,10 +185,10 @@ $(document).ready(function(){
                                 
                             }
                         }else{
-                            option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                            option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                         }
                     }else{
-                        option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                        option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                     }
                     option +="</tbody></table>";
                     $("#ds").html(option);
@@ -265,11 +265,11 @@ $(document).ready(function(){
                                 
                                 }
                         }else{
-                            option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                            option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                         }
                         
                     }else{
-                        option+='<tr><td class="text-center" colspan = "8">Không tìm thấy dữ liệu!</td></tr>';
+                        option+='<tr><td class="text-center" colspan = "15">Không tìm thấy dữ liệu!</td></tr>';
                     }
                     option +="</tbody></table>";
                     $("#ds").html(option);
