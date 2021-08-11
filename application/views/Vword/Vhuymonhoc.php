@@ -9,12 +9,21 @@
 </head>
 <body >
     <div style="margin:0 auto; padding:2.54cm;">
-        <b>
-            <p style="text-align:center;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
-            <p style="text-align:center;">Độc lập - tự do - hạnh phúc</p>
-            <hr width="30%" style="background-color:#000">
-            <br>
-        </b>
+    <table style="text-align:center; line-height:12px">
+        <tr>
+            <td width="43%">TRƯỜNG ĐẠI HỌC MỞ HÀ NỘI</td>
+            <td><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b></td>
+
+        </tr>
+        <tr>
+            <td><b>KHOA KINH TẾ</b></td>
+            <td><b>Độc lập - tự do - hạnh phúc</b></td>
+        </tr>
+        <tr>
+            <td><b><hr width="50%" style="background-color:#000"></b></td>
+            <td><b><hr width="50%" style="background-color:#000"></b></td>
+        </tr>
+    </table>
             <p style="text-align:right;"><i> Hà Nội, ngày……tháng……năm 202….</i></p>
             <br>
         <b>
@@ -22,28 +31,31 @@
         </b>
         <br>
         <p style="text-align:left;line-height:30px">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>Kính gửi: </u></i></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>Kính gửi:</i></b>
             &nbsp;- Ban Chủ nhiệm khoa Kinh tế - Trường Đại học Mở Hà Nội 
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            - Cố vấn học tập khối .....................
+            - Cố vấn học tập lớp .....................
         </p>
         <table>
             <tr>
-                <td width="70%"colspan="2">
+                <td colspan="3">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Em tên là:&nbsp;...{$thongtin['sHoTen']}...
+                Em tên là:&nbsp;{$thongtin['sHoTen']}
                 </td>
-                <td  style="line-height:30px">Sinh ngày:&nbsp;...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...</td>
             </tr>
             <tr>
-                <td style="width:35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Lớp:&nbsp;...{$thongtin['sTenLop']}...</td>
-                <td style="width:35%">MSSV:&nbsp;...{$thongtin['PK_sMaTK']}...</td>
-                <td>SĐT:...................................</td>
+                <td style="width:30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Lớp:&nbsp;{$thongtin['sTenLop']}</td>
+                <td style="width:45%">Mã sinh viên:&nbsp;{$thongtin['PK_sMaTK']}</td>
+                <td>SĐT:........................</td>
             </tr>
         </table>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em có nguyện vọng hủy môn .............................................................................................</p>
-        <p style="text-align:left;line-height:30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do hủy môn học phần: {$thongtin['tLydo']}
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em có nguyện vọng hủy môn: <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.
+        </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do hủy học phần: {$thongtin['tLydo']}
         {if empty($thongtin['tLydo'])}......................................................................................................................................................
         <br>......................................................................................................................................................
         {/if}

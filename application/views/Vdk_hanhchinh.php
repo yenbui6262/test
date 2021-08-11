@@ -137,7 +137,7 @@
                             </td>
                             {/if}
                             <td class="text-center">
-                            <a class="btn btn-info" target="_" href="{$url}huymonhoc?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
+                            <a class="btn btn-info" target="_" href="{$url}don?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
                                         class="fas fa-download"></i></a>
                                 {if ($val.iTrangThai != 1)}
                                 <a onclick="sua('{$val.FK_sMaHanhChinh}','{$val.tLydo}','{$val.PK_sMaDangKy}')"

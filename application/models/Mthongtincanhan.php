@@ -17,9 +17,9 @@
 			$res=$this->db->get("tbl_lop")->result_array();
 			return $res;
 		}
-        public function capnhat($taikhoan,$acc){
+        public function capnhat($acc, $data){
             $this->db->where("PK_sMaTK", $acc)
-                     ->update('tbl_taikhoan', $taikhoan);
+                     ->update('tbl_taikhoan', $data);
                             
             return $this->db->affected_rows();
         }

@@ -14,8 +14,14 @@ $(document).ready(function() {
                 self.html('<img src="' + url + 'public/images/spinner.gif">');
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
-                $(".b1").eq(id).hide();
-                // $(this).removeClass("b1").addClass("b2");
+                if (self.hasClass("a1")) {
+                    // console.log("tồn tại a1");
+                } else if (self.hasClass("a2")) {
+                    // console.log("tồn tại a2");
+                } else {
+                    $(".b1").eq(0).hide();
+                }
+
                 $.ajax({
                     url: window.location.pathname,
                     type: 'POST',
@@ -41,14 +47,20 @@ $(document).ready(function() {
             } else {
                 Swal.fire({
                     title: 'Lý do',
-                    input: 'text',
+                    html: `<input type="text" id="lido" class="swal2-input" placeholder="Lý do">`,
                     inputAttributes: {
                         autocapitalize: 'off'
                     },
-                    showCancelButton: true,
+                    showCloseButton: true,
                     confirmButtonText: 'Lưu',
                     showLoaderOnConfirm: true,
-
+                    preConfirm: () => {
+                        var lydo = Swal.getPopup().querySelector('#lido').value
+                        if (!lydo) {
+                            Swal.showValidationMessage(`Vui lòng nhập lý do`)
+                        }
+                        return lydo
+                    },
                 }).then((result) => {
 
                     if (result.isConfirmed) {
@@ -58,9 +70,14 @@ $(document).ready(function() {
                         var id = $(this).attr("data-id");
                         var update = $(this).attr("data-update");
                         var lydo = result.value;
-                        $(".b1").eq(id).hide();
-                        // $(this).removeClass("b2").addClass("b1");
-                        console.log(lydo);
+                        if (self.hasClass("a1")) {
+                            // console.log("tồn tại a1");
+                        } else if (self.hasClass("a2")) {
+                            // console.log("tồn tại a2");
+                        } else {
+                            $(".b1").eq(0).hide();
+                        }
+
                         $.ajax({
                             url: window.location.pathname,
                             type: 'POST',
