@@ -8,6 +8,38 @@
             $this->load->database();
         }
 
+
+        public function capcanbolop($matk,$chucvu){
+            $this->db->set('sChucvu', $chucvu);
+			$this->db->where('PK_sMaTK',$matk);
+            $this->db->update('tbl_taikhoan');
+            return $this->db->affected_rows();
+	    }
+        public function capcanbolcd($matk){
+            $this->db->set('FK_sMaQuyen', '3');
+			$this->db->where('PK_sMaTK',$matk);
+            $this->db->update('tbl_taikhoan');
+            return $this->db->affected_rows();
+	    }
+        public function xoacanbolop($matk){
+            $this->db->set('sChucvu', '');
+			$this->db->where('PK_sMaTK',$matk);
+            $this->db->update('tbl_taikhoan');
+            return $this->db->affected_rows();
+	    }
+        public function xoacanbolcd($matk){
+            $this->db->set('FK_sMaQuyen', '2');
+			$this->db->where('PK_sMaTK',$matk);
+            $this->db->update('tbl_taikhoan');
+            return $this->db->affected_rows();
+	    }
+        public function gettaikhoan($matk)
+        {
+			$this->db->where('PK_sMaTK',$matk);
+            $this->db->select("FK_sMaQuyen,sChucvu");
+            return $this->db->get("tbl_taikhoan")->result_array();
+        }
+
         public function getListuutien(){
 			$res=$this->db->get("dm_uutien")->result_array();
 			return $res;
@@ -45,14 +77,36 @@
                         ->get('tbl_lop')->result_array();
             return $res;
         }
+
+        public function getExcel($dieukien)
+        {
+            $this->dieukien($dieukien);
+            $this->db->group_by("tk.PK_sMaTK")
+                    ->select("lop.sTenLop,tk.PK_sMaTK,tk.sHoTen,tk.dNgaySinh,tk.sChucvu,tk.iGioiTinh,tk.sTenTK,tk.FK_sMaQuyen,hs.tChiTietTT,hs.tChiTietHT,t.sTenT as tinhht,h.sTenH as huyenht,x.sTenX as xaht,tt.sTenT as tinhtt,hh.sTenH as huyentt,xx.sTenX as xatt")
+                    ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                    ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK")
+                    ->join("dm_tinh t", "t.PK_sMaT = hs.FK_sMaTinhHT")
+                    ->join("dm_huyen h", "h.PK_sMaH = hs.FK_sMaHuyenHT")
+                    ->join("dm_xa x", "x.PK_sMaX = hs.FK_sMaXaHT")
+                    ->join("dm_tinh tt", "tt.PK_sMaT = hs.FK_sMaTinhTT")
+                    ->join("dm_huyen hh", "hh.PK_sMaH = hs.FK_sMaHuyenTT")
+                    ->join("dm_xa xx", "xx.PK_sMaX = hs.FK_sMaXaTT");
+            return $this->db->get("tbl_taikhoan tk")->result_array();
+        }
         
         public function getlistsinhvien($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
-                     ->select("*")
+                     ->select("lop.sTenLop,tk.PK_sMaTK,tk.sHoTen,tk.dNgaySinh,tk.sChucvu,tk.iGioiTinh,tk.sTenTK,tk.FK_sMaQuyen,hs.tChiTietTT,hs.tChiTietHT,t.sTenT as tinhht,h.sTenH as huyenht,x.sTenX as xaht,tt.sTenT as tinhtt,hh.sTenH as huyentt,xx.sTenX as xatt")
                      ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                      ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK")
+                     ->join("dm_tinh t", "t.PK_sMaT = hs.FK_sMaTinhHT")
+                     ->join("dm_huyen h", "h.PK_sMaH = hs.FK_sMaHuyenHT")
+                     ->join("dm_xa x", "x.PK_sMaX = hs.FK_sMaXaHT")
+                     ->join("dm_tinh tt", "tt.PK_sMaT = hs.FK_sMaTinhTT")
+                     ->join("dm_huyen hh", "hh.PK_sMaH = hs.FK_sMaHuyenTT")
+                     ->join("dm_xa xx", "xx.PK_sMaX = hs.FK_sMaXaTT")
                      ->limit($limit, $start);
             return $this->db->get("tbl_taikhoan tk")->result_array();
         }
@@ -81,6 +135,13 @@
             }
             if(!empty($dieukien['uutien'])&&$dieukien['uutien']!='tatca'){
                 $this->db->where('hs.FK_sUuTien', $dieukien['uutien']);
+            }
+            if(!empty($dieukien['chucvu'])&&$dieukien['chucvu']!='tatca'){
+                if($dieukien['chucvu']=='canbolop'){
+                    $this->db->where('tk.sChucvu !=', '');
+                }else{
+                    $this->db->where('tk.FK_sMaQuyen', 3);
+                }
             }
             // địa chỉ
             if(!empty($dieukien['tinhtt'])){

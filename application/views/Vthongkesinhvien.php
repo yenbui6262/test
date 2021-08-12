@@ -158,12 +158,20 @@
                     </select>
                 </div>
                 <div class="col-md-3 form-group">
+                    <label for="chucvu">Chức vụ:</label>
+                    <select id="chucvu" class="form-control select2" name="chucvu">
+                        <option selected value="tatca">Tất cả</option>
+                        <option  value="canbolop">Cán bộ lớp</option>
+                        <option  value="canbochidoan">Cán bộ chi đoàn</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
                     <label id="gioitinh">Giới tính:</label>
                     <select class="form-control select2" name="gioitinh" aria-label="Small" aria-describedby="gioitinh">
                         <option selected value="tatca">Tất cả</option>
                         <option value="1" {if $filter['gioitinh']==1}selected{/if}>Nam
                         </option>
-                        <option value="0" {if $filter['gioitinh']=='0'}selected{/if}>Nữ
+                        <option value="2" {if $filter['gioitinh']=='0'}selected{/if}>Nữ
                         </option>
                     </select>
                 </div>
@@ -172,18 +180,6 @@
                     <input type="number" id="ngaysinh" name="ngaysinh"
                         value="{if !empty($filter['ngaysinh'])}{$filter['ngaysinh']}{/if}" class="form-control" aria-label="Small"
                         placeholder="Nhập nội dung">
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="uutien">Mức độ ưu tiên:</label>
-                    <select id="uutien" class="form-control select2" name="uutien">
-                        <option selected value="tatca">Chọn</option>
-                        {if !empty($uutien)}
-                        {foreach $uutien as $v}
-                        <option value="{$v.PK_sMaNhom}" {if !empty($filter['uutien']) && $filter['uutien']==$v.PK_sMaNhom}selected{/if}>{$v.tMoTa}
-                        </option>
-                        {/foreach}
-                        {/if}
-                    </select>
                 </div>
                 <div class="col-md-6 form-group">
                     <label id="diachitt">Địa chỉ thường trú:</label>
@@ -234,24 +230,27 @@
                 </div>
                 <div class="col-12 form-group text-right">
                     <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i
-                            class="fa fa-search" aria-hidden="true"></i> Thống kê</button>
+                            class="fa fa-search"></i>&nbsp;Thống kê</button>
+                    <button type="submit" name="export" value="export" class="btn btn-success"><i
+                            class="fas fa-file-excel"></i>&nbsp;&nbsp;Xuất Excel</button>
                     <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i
-                            class="fas fa-undo" aria-hidden="true"></i> Đặt lại</button>
+                            class="fas fa-undo"></i>&nbsp;Đặt lại</button>
                 </div>
             </div><br>
             <div class="table-responsive">
                 <table class='table table-hover table-striped table-bordered' id='example'>
                     <thead>
                         <tr>
-                            <th class='text-center' style='width: 3%'>STT</th>
+                            <th class='text-center' style='width: 2%'>STT</th>
                             <th class='text-center' style='width: 6%'>Mã sinh viên</th>
                             <th class='text-center' style='width: 10%'>Họ tên</th>
                             <th class='text-center' style='width: 6%'>Ngày sinh</th>
                             <th class='text-center' style='width: 6%'>Giới tính</th>
-                            <th class='text-center' style='width: 6%'>Lớp</th>
+                            <th class='text-center' style='width: 5%'>Lớp</th>
+                            <th class='text-center' style='width: 6%'>Chức vụ</th>
                             <th class='text-center' style='width: 10%'>Địa chỉ thường trú</th>
                             <th class='text-center' style='width: 10%'>Địa chỉ hiện tại</th>
-                            <th class='text-center' style='width: 6%'>Ưu tiên</th>
+                            <th class='text-center' style='width: 9%'>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -260,13 +259,26 @@
                         <tr>
                             <td class='text-center'>{$params['stt']++}</td>
                             <td class='text-center'>{$val["PK_sMaTK"]}</td>
-                            <td>{$val['sHoTen']}</td>
+                            <td style="font-weight:bold">{$val['sHoTen']}</td>
                             <td class='text-center'>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
                             <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
                             <td class='text-center'>{$val["sTenLop"]}</td>
-                            <td>{$val["tChiTietTT"]}</td>
-                            <td>{$val["tChiTietHT"]}</td>
-                            <td>123</td>
+                            <td class='text-center' id="{$val['PK_sMaTK']}">
+                                {if $val.FK_sMaQuyen==3 && $val.sChucvu!=''}
+                                    Cán bộ LCĐ,LCH kiêm {$val["sChucvu"]}
+                                {elseif $val.sChucvu!=''}
+                                    {$val["sChucvu"]}
+                                {elseif $val.FK_sMaQuyen==3}
+                                    Cán bộ LCĐ,LCH
+                                {/if}
+                            </td>
+                            <td>{$val.xatt}, {$val.huyentt}, {$val.tinhtt}</td>
+                            <td>{$val.xaht}, {$val.huyenht}, {$val.tinhht}</td>
+                            <td class='text-center'>
+                                <button type="submit" name="chitiet" value="{$val['PK_sMaTK']}" class="btn btn-sm btn-info btnEdit" title="chi tiết"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-sm btn-success btnEdit" onclick="capquyencanbo('{$val.PK_sMaTK}')" title="cấp quyền cán bộ"><i class="fas fa-user-check"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger btnEdit" onclick="xoaquyencanbo('{$val.PK_sMaTK}')" title="Hủy quyền cán bộ"><i class="fas fa-user-slash"></i></button>
+                            </td>
                         </tr>
                         {/foreach}
                         {else}
