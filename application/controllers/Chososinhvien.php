@@ -8,7 +8,6 @@
             
         $session = $this->session->userdata("user");
         // pr($session);
-        $email      =$this->input->post("email");
         $sdt        =$this->input->post("sdt");
         $stk        =$this->input->post("stk");
         $chinhanh   =$this->input->post("chinhanh");
@@ -21,7 +20,6 @@
         $xaht       =$this->input->post("xaht");
         $chitietht  =$this->input->post("chitietht");
         $matk       =$session['taikhoan'];
-        $Temail['tEmail']  = $email;
 
         $data= array(
             'sSDT'          =>$sdt,
@@ -36,15 +34,31 @@
             'FK_sMaXaHT'    =>$xaht,
             'tChiTietHT'    =>$chitietht,
         );
-        
+        $hotennt    =$this->input->post("hotenngthan");
+        $sdtnt      =$this->input->post("sdtngthan");
+        $quanhent   =$this->input->post("quanhe");
+        $hotenct    =$this->input->post("hotenchutro");
+        $sdtct      =$this->input->post("sdtchutro");
+        $mahoso 	= $this->Mhososinhvien->getMahs($session['taikhoan']);
+
+        $lienhe1 = array(
+            'sHoTen'    =>$hotennt,
+            'sSDT'      =>$sdtnt,
+            'sQuanHe'   =>$quanhent,
+        );
+        $lienhe2 = array(
+            'sHoTen'    => $hotenct,
+            'sSDT'      =>$sdtct,
+            'sQuanHe'   => "Chủ trọ",
+        );
         //ajax
         if($action = $this->input->post("action")){
             switch($action){
                 case "insert":
-                    $this->insertTT($data);
+                    $this->insertTT($data,$lienhe1,$lienhe2);
                     break;
                 case "update":
-                    $this->updateTT($matk, $data, $Temail);
+                    $this->updateTT($matk, $data, $lienhe1, $lienhe2);
                     break;
                 case "gethuyen":
                     $matinh = $this->input->post("matinh");
@@ -59,9 +73,11 @@
             }
             return;
         }
+        
+        $sinhvien['thongtincoban'] 	= $this->Mhososinhvien->getThongtincoban($session['taikhoan']);
         $sinhvien['hoso'] 	= $this->Mhososinhvien->getHoso($session['taikhoan']);
         $sinhvien['lop'] 	= $this->Mhososinhvien->getLop();
-
+        $sinhvien['lienhe'] = $this->Mhososinhvien->getLienhe($mahoso);
                 //lấy mã tỉnh mà sinh vien đã cập nhật trước đó
         $tinhtt	= $this->Mhososinhvien->gettinhtt($session['taikhoan']);
         $tinhht	= $this->Mhososinhvien->gettinhht($session['taikhoan']);
@@ -97,24 +113,42 @@
         // pr($temp);
         $this->load->view('layout/VContent',$temp);
 	    }
-        public function insertTT($data){
+        // insert 
+        public function insertTT($data,$lienhe1, $lienhe2){
+            $Temail['tEmail']  = $this->input->post("email");
             $session = $this->session->userdata("user");
+            $data['FK_sMaTK']=$session['taikhoan'];
             $data['PK_sMaHoSo'] = time().$session['taikhoan'];
+            $res1 = $this->Mhososinhvien->insertTT($data);
+
+            $lienhe1['FK_sMaHoSo'] = $data['PK_sMaHoSo'];
+            $lienhe2['FK_sMaHoSo'] = $data['PK_sMaHoSo'];
+
+            $lienhe1['PK_sMaDS']='A'.time().$session['taikhoan'];
+            $lienhe2['PK_sMaDS']='B'.time().$session['taikhoan'];
             
-            // pr($data);exit();
-            $res = $this->Mhososinhvien->insertTT($data);
-            if($res > 0){
+            $res2 = $this->Mhososinhvien->insertLienhe($lienhe1);
+            $res3 = $this->Mhososinhvien->insertLienhe($lienhe2);
+            
+            $this->Mhososinhvien->updateEmail($session['taikhoan'], $Temail);
+            if($res1 > 0 || $res2 > 0 || $res3 > 0){
                 setMessages("success", "Cập nhật thành công");
                 return redirect(current_url());
             }
             setMessages("danger", "Cập nhật thất bại");
             return redirect(current_url());
         }
-        public function updateTT($matk,$data, $Temail){
-            // pr($data);exit();
+        public function updateTT($matk,$data, $lienhe1, $lienhe2){
+            
+            $Temail['tEmail']  = $this->input->post("email");
+            $mads1 = $this->input->post("mads1");
+            $mads2 = $this->input->post("mads2");
+            
             $res1 = $this->Mhososinhvien->updateEmail($matk, $Temail);
             $res2 = $this->Mhososinhvien->updateTT($matk, $data);
-            if($res1 > 0 || $res2 > 0){
+            $res3 = $this->Mhososinhvien->updateLienhe($mads1,$lienhe1);
+            $res4 = $this->Mhososinhvien->updateLienhe($mads2, $lienhe2);
+            if($res1 > 0 || $res2 > 0 || $res3 > 0 || $res4 > 0){
                 setMessages("success", "Cập nhật thành công");
                 return redirect(current_url());
             }
