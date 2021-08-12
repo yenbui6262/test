@@ -211,7 +211,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        <div class="mb-4" style="margin-top: 5px;"><b> * Địa chỉ TT</b><br></div>
+                        <div class="mb-4" style="margin-top: 5px;"><b> * Địa chỉ thường trú</b><br></div>
 
                         <div class="row">
                             <div class="col-md-12 form-group">
