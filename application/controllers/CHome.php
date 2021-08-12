@@ -16,7 +16,6 @@ class CHome extends MY_Controller {
             'data'     	=> array(
                 'session'	=> $session,
                 'message' 	=> getMessages(),
-                // 'tieuchi'   => $this->Mthongtincanhan->getTieuchi()
             ),
         );
         $this->load->view('layout/VContent',$temp);

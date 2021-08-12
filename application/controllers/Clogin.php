@@ -48,7 +48,7 @@
     			return redirect('hososinhvien');
     		}elseif($session['maquyen'] == 1){
     			// la admin
-    			return redirect('Chuongtrinh');
+    			return redirect('Home');
     		}elseif ($session['maquyen'] == 3) {
 				// la lcd-lch
 				return redirect('duyetminhchung');
