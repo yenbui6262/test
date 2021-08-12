@@ -23,7 +23,7 @@
 {$SDT = $sinhvien['hoso'].sSDT}
 {$STK = $sinhvien['hoso'].sSTK}
 {$ChiNhanh = $sinhvien['hoso'].sChiNhanh}
-
+{$Uutien = $sinhvien['hoso'].PK_sMaNhom}
 <div class="container-fluid">
 
     <div class="card my-3">
@@ -31,25 +31,25 @@
             <h4 class="m-0"><i class="fas fa-user-edit"></i>&nbsp;Hồ sơ sinh viên</h4>
         </div>
         <div class="card-body">
-            <form method="POST">
+            <form method="POST" id="hoso">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4" style="margin-top: 5px;"><b> * Thông tin cá nhân</b><br></div>
                         <div class="row">
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Họ tên:</label>
                                 <input type="text" name="sHoten" value="{if !empty($hoten)}{$hoten}{/if}"
                                     class="form-control required" id="hoten" readonly>
 
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Mã sinh viên:</label>
                                 <input type="text" name="masinhvien" class="form-control "
                                     value="{if !empty($taikhoan)}{$taikhoan}{/if}" id="masinhvien" readonly>
 
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Ngày sinh</label>
+                                <label>Ngày sinh:</label>
                                 <input type="date" aria-label="Small" aria-describedby="basic-addon2" name="sNgaysinh"
                                     class="form-control datepicker required"
                                     value="{if !empty($ngaysinh)}{$ngaysinh}{/if}" id="ngaysinh" autocomplete="off"
@@ -57,7 +57,7 @@
 
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Giới tính</label>
+                                <label>Giới tính:</label>
                                 <div class="form-check-inline form-group form-control">&nbsp;&nbsp;
                                     {if $gioitinh == 1}
                                     <input type="radio" class="form-check-input" name="sGioiTinh" checked value="1"
@@ -75,10 +75,22 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group " style="margin-top: -16px;">
-                                <label>Lớp</label>
+                                <label>Lớp:</label>
                                 <input type="text" name="sTenLop" value="{if !empty($tlop)}{$tlop}{/if}"
                                     class="form-control required" autocomplete="off" id="lop" readonly>
 
+                            </div>
+                            <div class="col-md-12 form-group ">
+                                <label>Ưu tiên:</label>
+                                <select name="uutien" class="form-control select2">
+
+                                    <option value="0" readonly hidden>--Mức độ ưu tiên--</option>
+                                    {if !empty($sinhvien['uutien'])}
+                                    {foreach $sinhvien['uutien'] as $v}
+                                    <option value="{$v.PK_sMaNhom}" {if !empty($Uutien) && $Uutien==$v.PK_sMaNhom}selected{/if}>{$v.tMoTa}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -87,7 +99,7 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <label>Email</label>
+                                <label>Email:</label>
                                 <input type="email" name="email" class="form-control" required
                                     value="{if !empty($email)}{$email}{/if}" id="email" placeholder="Email">
 
@@ -95,9 +107,10 @@
 
                             <div class="col-md-12 form-group">
                                 <label>Số điện thoại:</label>
-                                <input type="text" name="sdt" class="form-control " value="{if !empty($SDT)}{$SDT}{/if}"
-                                    required placeholder="Số điện thoại">
-
+                                <input type="text"maxlength="10"{literal} pattern="[0-9]{10}"{/literal} name="sdt" id="sdt" class="form-control sdt" value="{if !empty($SDT)}{$SDT}{/if}" 
+                                onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))"
+                                required placeholder="Số điện thoại">
+                                    
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Tài khoản ngân hàng:</label>
@@ -106,7 +119,7 @@
 
                             </div>
                             <div class="col-md-12 form-group">
-                                <label>Chi nhánh</label>
+                                <label>Chi nhánh:</label>
                                 <input type="text" name="chinhanh" class="form-control " required
                                     value="{if !empty($ChiNhanh)}{$ChiNhanh}{/if}" placeholder="Chi nhánh">
 
@@ -124,7 +137,7 @@
                                 {/if}
                                 {/foreach}
                                 <label>Họ tên người thân: </label>
-                                <input type="text" name="hotenngthan" class="form-control" 
+                                <input type="text" name="hotenngthan" class="form-control"
                                 {foreach $sinhvien['lienhe'] as $k=> $val}
                                 {if ($val.sQuanHe != "Chủ trọ")}
                                 value="{if !empty($val.sHoTen)}{$val.sHoTen}{/if}"
@@ -135,12 +148,13 @@
                             <div class="col-md-12 form-group">
                                 <label>Số điện thoại:</label>
                                 <input type="text"maxlength="10" name="sdtngthan" class="form-control " 
+                                onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))"
                                 {foreach $sinhvien['lienhe'] as $k=> $val}
                                 {if ($val.sQuanHe != "Chủ trọ")}
                                 value="{if !empty($val.sSDT)}{$val.sSDT}{/if}"
                                 {/if}
                                 {/foreach}
-                                placeholder="Số điện thoại" required>
+                                placeholder="Số điện thoại" {literal} pattern="[0-9]{10}"{/literal} required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Quan hệ:</label>
@@ -168,7 +182,8 @@
                                 {/if}
                                 {/foreach}
                                 <label>Họ tên người cho thuê:</label>
-                                <input type="text" name="hotenchutro" {foreach $sinhvien['lienhe'] as $k=> $val}
+                                <input type="text" name="hotenchutro" 
+                                {foreach $sinhvien['lienhe'] as $k=> $val}
                                 {if ($val.sQuanHe == "Chủ trọ")}
                                 value="{if !empty($val.sHoTen)}{$val.sHoTen}{/if}"
                                 {/if}
@@ -177,12 +192,14 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Số điện thoại:</label>
-                                <input type="text"maxlength="10" name="sdtchutro" {foreach $sinhvien['lienhe'] as $k=> $val}
+                                <input type="text"maxlength="10" name="sdtchutro" 
+                                onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))"
+                                {foreach $sinhvien['lienhe'] as $k=> $val}
                                 {if ($val.sQuanHe == "Chủ trọ")}
                                 value="{if !empty($val.sSDT)}{$val.sSDT}{/if}"
                                 {/if}
                                 {/foreach}
-                                class="form-control" placeholder="Số điện thoại">
+                                class="form-control" placeholder="Số điện thoại"{literal}pattern="[0-9]{10}"{/literal} >
                             </div>
                             <div class="col-md-12 form-group">
                                 <label>Quan hệ:</label>
@@ -204,8 +221,7 @@
                                     <option value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
                                     {if !empty($tinh)}
                                     {foreach $tinh as $v}
-                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhTT) &&
-                                        $MaTinhTT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhTT) && $MaTinhTT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
                                     {/foreach}
                                     {/if}
                                 </select>
@@ -221,8 +237,7 @@
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
                                     {if !empty($huyentt)}
                                     {foreach $huyentt as $v}
-                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenTT) &&
-                                        $MaHuyenTT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenTT) && $MaHuyenTT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
                                     {/if}
@@ -239,8 +254,7 @@
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
                                     {if !empty($xatt)}
                                     {foreach $xatt as $v}
-                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaTT) &&
-                                        $MaXaTT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaTT) && $MaXaTT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
                                     {/if}
@@ -265,8 +279,7 @@
                                     <option value="0" readonly hidden>--Chọn tỉnh/thành phố--</option>
                                     {if !empty($tinh)}
                                     {foreach $tinh as $v}
-                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhHT) &&
-                                        $MaTinhHT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
+                                    <option value="{$v.PK_sMaT}" {if !empty($MaTinhHT) && $MaTinhHT==$v.PK_sMaT}selected{/if}>{$v.sTenT}</option>
                                     {/foreach}
                                     {/if}
                                 </select>
@@ -281,8 +294,7 @@
                                     <option value="0" readonly hidden>--Chọn quận/huyện--</option>
                                     {if !empty($huyenht)}
                                     {foreach $huyenht as $v}
-                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenHT) &&
-                                        $MaHuyenHT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
+                                    <option value="{$v.PK_sMaH}" {if !empty($MaHuyenHT) && $MaHuyenHT==$v.PK_sMaH}selected{/if}>{$v.sTenH}</option>
                                     {/foreach}
                                     {/if}
                                     {/if}
@@ -298,8 +310,7 @@
                                     <option value="0" readonly hidden>--Chọn phường/xã--</option>
                                     {if !empty($xaht)}
                                     {foreach $xaht as $v}
-                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaHT) &&
-                                        $MaXaHT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
+                                    <option value="{$v.PK_sMaX}" {if !empty($MaXaHT) && $MaXaHT==$v.PK_sMaX}selected{/if}>{$v.sTenX}</option>
                                     {/foreach}
                                     {/if}
                                     {/if}
