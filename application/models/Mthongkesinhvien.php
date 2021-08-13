@@ -15,20 +15,8 @@
             $this->db->update('tbl_taikhoan');
             return $this->db->affected_rows();
 	    }
-        public function capcanbolcd($matk){
-            $this->db->set('FK_sMaQuyen', '3');
-			$this->db->where('PK_sMaTK',$matk);
-            $this->db->update('tbl_taikhoan');
-            return $this->db->affected_rows();
-	    }
         public function xoacanbolop($matk){
             $this->db->set('sChucvu', '');
-			$this->db->where('PK_sMaTK',$matk);
-            $this->db->update('tbl_taikhoan');
-            return $this->db->affected_rows();
-	    }
-        public function xoacanbolcd($matk){
-            $this->db->set('FK_sMaQuyen', '2');
 			$this->db->where('PK_sMaTK',$matk);
             $this->db->update('tbl_taikhoan');
             return $this->db->affected_rows();
@@ -140,7 +128,7 @@
                 if($dieukien['chucvu']=='canbolop'){
                     $this->db->where('tk.sChucvu !=', '');
                 }else{
-                    $this->db->where('tk.FK_sMaQuyen', 3);
+                    $this->db->where('tk.sChucvu', 'Cán bộ LCĐ, LCH');
                 }
             }
             // địa chỉ

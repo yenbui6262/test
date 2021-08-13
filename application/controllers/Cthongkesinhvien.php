@@ -65,18 +65,6 @@
                         $taikhoan = $this->Mthongkesinhvien->gettaikhoan($matk);
                         echo json_encode($taikhoan);
                         break;
-                    case "capcanbolcd":
-                        $matk = $this->input->post("matk");
-                        $res = $this->Mthongkesinhvien->capcanbolcd($matk);
-                        $taikhoan = $this->Mthongkesinhvien->gettaikhoan($matk);
-                        echo json_encode($taikhoan);
-                        break;
-                    case "xoacanbolcd":
-                        $matk = $this->input->post("matk");
-                        $res = $this->Mthongkesinhvien->xoacanbolcd($matk);
-                        $taikhoan = $this->Mthongkesinhvien->gettaikhoan($matk);
-                        echo json_encode($taikhoan);
-                        break;
                     case "xoacanbolop":
                         $matk = $this->input->post("matk");
                         $res = $this->Mthongkesinhvien->xoacanbolop($matk);
@@ -236,11 +224,6 @@
                     $tk['iGioiTinh']='Nam';
                 }else{
                     $tk['iGioiTinh']='Nữ';
-                }
-                if($tk['sChucvu']!=''&&$tk['FK_sMaQuyen']==3){
-                    $tk['sChucvu']='Cán bộ LCĐ,LCH kiêm '.$tk['sChucvu'];
-                }else if($tk['FK_sMaQuyen']==3){
-                    $tk['sChucvu']='Cán bộ LCĐ,LCH';
                 }
 	            $array_content['A' . $start]    = $index++;
 	            $array_content['B' . $start]    = $tk['sTenTK'];

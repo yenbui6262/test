@@ -157,10 +157,8 @@ $(document).ready(function() {
 function capquyencanbo(matk) {
     Swal.fire({
         title: 'Bạn muốn cấp quyền gì?',
-        showDenyButton: true,
         showCancelButton: true,
         cancelButtonColor: "#d14529", 
-        denyButtonColor:"#2e9e92",
         confirmButtonText: `Cán bộ lớp`,
         denyButtonText: `Cán bộ LCĐ, LCH`,
       }).then((result) => {
@@ -168,7 +166,13 @@ function capquyencanbo(matk) {
         if (result.isConfirmed) {
             Swal.fire({
                 title: 'Nhập loại cán bộ lớp (Lớp trưởng, Lớp phó, Bí thư)',
-                html: `<input type="text" id="tencanbo" class="swal2-input" placeholder="Loại cán bộ lớp">`,
+                html: `<select id="tencanbo" class="swal2-input select2 form-group" >
+                            <option value="" selected >Chọn chức vụ</option>
+                            <option>Lớp trưởng</option>
+                            <option>Lớp phó</option>
+                            <option>Bí thư</option>
+                            <option>Cán bộ LCĐ, LCH</option>
+                        </select>`,
                 inputAttributes: {
                   autocapitalize: 'off'
                 },
@@ -199,12 +203,8 @@ function capquyencanbo(matk) {
                     }).done(function(data){
                         data = JSON.parse(data);
                         html = '';
-                        if(data[0].FK_sMaQuyen==3&&data[0].sChucvu!=''){
-                            html = 'Cán bộ LCĐ,LCH kiêm '+ data[0].sChucvu;
-                        }else if(data[0].sChucvu!=''){
+                        if(data[0].sChucvu!=''){
                             html = data[0].sChucvu;
-                        }else if(data[0].FK_sMaQuyen==3){
-                            html = 'Cán bộ LCĐ,LCH';
                         }
                         $('#'+matk).html(html);
                         Swal.fire('Cấp quyền thành công!', '', 'success')
@@ -212,27 +212,6 @@ function capquyencanbo(matk) {
                     
                 }
               })
-        } else if (result.isDenied) {
-            $.ajax({
-                URL: window.location.pathname,
-                type: 'post',
-                data: {
-                    'action'    : 'capcanbolcd',
-                    'matk'      : matk
-                }
-            }).done(function(data){
-                data = JSON.parse(data);
-                html = '';
-                if(data[0].FK_sMaQuyen==3&&data[0].sChucvu!=''){
-                    html = 'Cán bộ LCĐ,LCH kiêm '+ data[0].sChucvu;
-                }else if(data[0].sChucvu!=''){
-                    html = data[0].sChucvu;
-                }else if(data[0].FK_sMaQuyen==3){
-                    html = 'Cán bộ LCĐ,LCH';
-                }
-                $('#'+matk).html(html);
-                Swal.fire('Cấp quyền thành công!', '', 'success')
-            });
         }
       })
   };
@@ -241,12 +220,9 @@ function capquyencanbo(matk) {
 function xoaquyencanbo(matk) {
     Swal.fire({
         title: 'Bạn muốn xóa chức vụ gì?',
-        showDenyButton: true,
         showCancelButton: true,
         cancelButtonColor: "#d14529", 
-        denyButtonColor:"#2e9e92",
         confirmButtonText: `Cán bộ lớp`,
-        denyButtonText: `Cán bộ LCĐ, LCH`,
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
@@ -260,36 +236,11 @@ function xoaquyencanbo(matk) {
             }).done(function(data){
                 data = JSON.parse(data);
                 html = '';
-                if(data[0].FK_sMaQuyen==3&&data[0].sChucvu!=''){
-                    html = 'Cán bộ LCĐ,LCH kiêm '+ data[0].sChucvu;
-                }else if(data[0].sChucvu!=''){
+                if(data[0].sChucvu!=''){
                     html = data[0].sChucvu;
-                }else if(data[0].FK_sMaQuyen==3){
-                    html = 'Cán bộ LCĐ,LCH';
                 }
                 $('#'+matk).html(html);
                 Swal.fire('Xóa chức vụ cán bộ lớp thành công!', '', 'success')
-            });
-        } else if (result.isDenied) {
-            $.ajax({
-                URL: window.location.pathname,
-                type: 'post',
-                data: {
-                    'action'    : 'xoacanbolcd',
-                    'matk'      : matk
-                }
-            }).done(function(data){
-                data = JSON.parse(data);
-                html = '';
-                if(data[0].FK_sMaQuyen==3&&data[0].sChucvu!=''){
-                    html = 'Cán bộ LCĐ,LCH kiêm '+ data[0].sChucvu;
-                }else if(data[0].sChucvu!=''){
-                    html = data[0].sChucvu;
-                }else if(data[0].FK_sMaQuyen==3){
-                    html = 'Cán bộ LCĐ,LCH';
-                }
-                $('#'+matk).html(html);
-                Swal.fire('Xóa chức vụ cán bộ LCĐ, LCH thành công!', '', 'success')
             });
         }
       })
