@@ -161,8 +161,8 @@
                     <label for="chucvu">Chức vụ:</label>
                     <select id="chucvu" class="form-control select2" name="chucvu">
                         <option selected value="tatca">Tất cả</option>
-                        <option  value="canbolop">Cán bộ lớp</option>
-                        <option  value="canbochidoan">Cán bộ chi đoàn</option>
+                        <option  value="canbolop"  {if $filter['chucvu']=='canbolop'}selected{/if}>Cán bộ lớp</option>
+                        <option  value="canbochidoan" {if $filter['chucvu']=='canbochidoan'}selected{/if}>Cán bộ chi đoàn</option>
                     </select>
                 </div>
                 <div class="col-md-3 form-group">
@@ -264,13 +264,7 @@
                             <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
                             <td class='text-center'>{$val["sTenLop"]}</td>
                             <td class='text-center' id="{$val['PK_sMaTK']}">
-                                {if $val.FK_sMaQuyen==3 && $val.sChucvu!=''}
-                                    Cán bộ LCĐ,LCH kiêm {$val["sChucvu"]}
-                                {elseif $val.sChucvu!=''}
-                                    {$val["sChucvu"]}
-                                {elseif $val.FK_sMaQuyen==3}
-                                    Cán bộ LCĐ,LCH
-                                {/if}
+                            {$val["sChucvu"]}
                             </td>
                             <td>{$val.xatt}, {$val.huyentt}, {$val.tinhtt}</td>
                             <td>{$val.xaht}, {$val.huyenht}, {$val.tinhht}</td>
