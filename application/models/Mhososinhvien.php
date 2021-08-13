@@ -15,10 +15,10 @@
         }
 		public function getHoso($masv){
             
-            $this->db->select("hs.PK_sMaHoSo,FK_sMaTinhTT, FK_sMaHuyenTT, FK_sMaXaTT, FK_sMaTinhHT, FK_sMaHuyenHT, FK_sMaXaHT, tChiTietTT, tChiTietHT, hs.sSDT, sSTK, sChiNhanh")
+            $this->db->select("hs.PK_sMaHoSo,FK_sMaTinhTT, FK_sMaHuyenTT, FK_sMaXaTT, FK_sMaTinhHT, FK_sMaHuyenHT, FK_sMaXaHT, tChiTietTT, tChiTietHT, hs.sSDT, sSTK, sChiNhanh, ut.PK_sMaNhom")
                     ->where("tk.PK_sMaTK", $masv)
-                    ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK");
-					// ->join("tbl_lienhe lh", "lh.FK_sMaHoSo  = hs.PK_sMaHoSo");
+                    ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK")
+					->join("dm_uutien ut", "ut.PK_sMaNhom = hs.FK_sUuTien");
 			$res = $this->db->get("tbl_taikhoan tk")->row_array();
             return $res;
         }
@@ -38,6 +38,10 @@
         }
 		public function getLop(){
 			$res=$this->db->get("tbl_lop")->result_array();
+			return $res;
+		}
+		public function getUutien(){
+			$res=$this->db->get("dm_uutien")->result_array();
 			return $res;
 		}
 		public function gettinhtt( $masv){

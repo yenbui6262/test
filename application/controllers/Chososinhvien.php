@@ -8,6 +8,7 @@
             
         $session = $this->session->userdata("user");
         // pr($session);
+        $uutien  =$this->input->post("uutien");
         $sdt        =$this->input->post("sdt");
         $stk        =$this->input->post("stk");
         $chinhanh   =$this->input->post("chinhanh");
@@ -20,8 +21,9 @@
         $xaht       =$this->input->post("xaht");
         $chitietht  =$this->input->post("chitietht");
         $matk       =$session['taikhoan'];
-
+        
         $data= array(
+            'FK_sUuTien'    =>$uutien,
             'sSDT'          =>$sdt,
             'sSTK'          =>$stk,
             'sChiNhanh'     =>$chinhanh,
@@ -77,6 +79,7 @@
         $sinhvien['thongtincoban'] 	= $this->Mhososinhvien->getThongtincoban($session['taikhoan']);
         $sinhvien['hoso'] 	= $this->Mhososinhvien->getHoso($session['taikhoan']);
         $sinhvien['lop'] 	= $this->Mhososinhvien->getLop();
+        $sinhvien['uutien'] 	= $this->Mhososinhvien->getUutien();
         $sinhvien['lienhe'] = $this->Mhososinhvien->getLienhe($mahoso);
                 //lấy mã tỉnh mà sinh vien đã cập nhật trước đó
         $tinhtt	= $this->Mhososinhvien->gettinhtt($session['taikhoan']);
