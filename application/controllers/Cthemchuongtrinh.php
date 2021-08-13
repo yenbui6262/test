@@ -11,7 +11,7 @@
         public function index()
         {
             $session = $this->session->userdata("user");
-            if($session['maquyen']!=1 && $session['maquyen'] !=3){
+            if($session['maquyen']!=1){
                 return redirect(base_url().'403_Forbidden');
             }
 

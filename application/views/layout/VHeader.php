@@ -46,7 +46,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
-                {if ($session['maquyen'] == 2)}
+                {if ($session['maquyen'] == 2)||($session['maquyen'] == 3)}
                 <li class="nav-item"><a href="{$url}xacnhanthamgia" class="nav-link"><i class="fas fa-file"></i> Xác nhận tham gia</a></li>
                 <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
                 <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Thủ tục hành chính</a></li>
@@ -67,14 +67,7 @@
                     </div>
                 </li>
                 {/if}
-                {if ($session['maquyen'] == 3)}
-                <li class="nav-item">
-                    <a class="nav-link" href="{$url}thongkeminhchung"><i class="fas fa-chart-bar"></i>&nbsp;Thống kê minh chứng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{$url}duyetminhchung"><i class="fas fa-users"></i>&nbsp;Xét duyệt minh chứng</a>
-                </li>
-                {elseif $session['sChucVu']!=''}
+                {if ($session['maquyen'] == 3)||$session['sChucVu']!=''}
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Quản lý minh chứng</a>
                     <div class="dropdown-menu">
@@ -88,11 +81,11 @@
                     <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Xác nhận hành chính</a>
                 </li>
                 {/if}
-                {if ($session['maquyen'] == 1 || $session['maquyen'] == 3 || $session['maquyen'] == 4)}
+                {if ($session['maquyen'] == 1 ||$session['maquyen'] == 4)}
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Quản lý hệ thống</a>
                     <div class="dropdown-menu">
-                        {if ($session['maquyen'] == 1 || $session['maquyen'] == 3)}
+                        {if ($session['maquyen'] == 1)}
                         <a class="dropdown-item" href="{$url}Chuongtrinh">Quản lý chương trình</a>
                         {/if}
                         {if ($session['maquyen'] == 1 || $session['maquyen'] == 4)}
