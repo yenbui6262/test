@@ -11,7 +11,7 @@
         {
             $session = $this->session->userdata("user");
             $chucvu = $this->Mduyetminhchung->getchucvu($session['taikhoan'])[0]['sChucvu'];
-            if($session['maquyen']!=3 && $session['maquyen']!=1&&$chucvu!='Lớp phó'&&$chucvu!='Bí thư'&&$chucvu!='Lớp trưởng'){
+            if($session['maquyen']!=3&&$session['maquyen']!=1&&$chucvu==''){
                 return redirect(base_url().'403_Forbidden');   
             }
 
