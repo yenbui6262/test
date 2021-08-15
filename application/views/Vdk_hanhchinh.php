@@ -160,6 +160,9 @@
                     </tbody>
                 </table>
             </div>
+            {if (isset($params['links']))}
+            <div style="text-align:center" id="pagination">{$params['links']}</div>
+            {/if}
         </div>
     </div>
 </form>

@@ -26,6 +26,10 @@
             {
             	$this->xuatExcel();
             }
+            if($this->input->post('submit'))
+            {
+            	$this->importhoso();
+            }
             if($action = $this->input->post('action')){
                 switch($action){
                     case "search":
@@ -290,6 +294,61 @@
 		    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 		    $objWriter->save('php://output');
 	        exit();   
+        }
+        public function importhoso()
+        {
+            // echo ("123");exit();
+            $giatri=array();
+            PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+            $objPHPExcel = PHPExcel_IOFactory::load($_FILES['importhoso']['tmp_name']);
+
+            $hoso=$objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
+            
+            $k=2;
+            while(!empty($hoso[$k]['A'])){
+                $tunghoso = array(
+                    'FK_sMaTK'  => $hoso[$k]['B'],
+                    'sSDT'      => $hoso[$k]['C'],
+                    'sSTK'      => $hoso[$k]['D'],
+                    'sChiNhanh' => $hoso[$k]['E'],
+                );
+				
+				// print_r($tunghoso);echo "<br>";
+                $qq= $this->Mthongkesinhvien->checktaikhoan($tunghoso);
+                
+                if($qq==0){
+                    $tunghoso['PK_sMaHoSo']=time().$tunghoso['FK_sMaTK'];
+                    array_push($giatri,$tunghoso);
+                    
+                }else{
+                    
+                    $this->db->where(array('FK_sMaTK'		=> $tunghoso['FK_sMaTK']));
+                    
+                    $this->db->update("tbl_hososv", $tunghoso);
+                    $row = 1;
+                }
+				
+                $k++;
+            }
+            
+
+			if(!empty($giatri)){
+                
+                // pr($giatri);exit();
+				$kq= $this->Mthongkesinhvien->inserthoso($giatri);
+			}else{
+				$kq=0;
+			}
+            if ($kq > 0||$row ==1) 
+                {
+                    setMessages("success", "Thêm thành công", "Thêm thành công");
+                    redirect('Cthongkesinhvien');
+                } 
+                else 
+                {
+                    setMessages("error", "Thêm thất bại", "Thêm thất bại");
+                    redirect('Cthongkesinhvien');
+                }
         }
         
     }
