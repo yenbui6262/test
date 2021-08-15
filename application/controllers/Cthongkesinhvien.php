@@ -126,17 +126,7 @@
             // pr($temp['data']['params']['sinhvien']);
             $this->load->view('layout/Vcontent', $temp);
         }
-
-        private function pagination(){
-            $filter     = $this->input->post("filtermc");
-
-            $pageX      = $this->input->post("page");
-            $res        = $this->get_params($pageX-1, $filter);
-            if(!empty($res)){
-                echo json_encode($res);
-            }
-        }
-
+        
         public function get_params($page, $dieukien){
             $session = $this->session->userdata("user");
             // init params
@@ -206,7 +196,7 @@
             $dshs = $this->Mthongkesinhvien->getExcel($filter);
             // pr($dshs);
         	$objPHPExcel = new PHPExcel();
-	        $filename   = 'Mẫu nhập điểm danh sách sinh viên 5 tốt';
+	        $filename   = 'Danh sách hồ sơ sinh viên';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong
@@ -340,15 +330,16 @@
 				$kq=0;
 			}
             if ($kq > 0||$row ==1) 
-                {
-                    setMessages("success", "Thêm thành công", "Thêm thành công");
-                    redirect('Cthongkesinhvien');
-                } 
-                else 
-                {
-                    setMessages("error", "Thêm thất bại", "Thêm thất bại");
-                    redirect('Cthongkesinhvien');
-                }
+            {
+                setMessages("success", "Thêm thành công", "Thêm thành công");
+                redirect('Cthongkesinhvien');
+            } 
+            else 
+            {
+                setMessages("error", "Thêm thất bại", "Thêm thất bại");
+                redirect('Cthongkesinhvien');
+            }
+            exit();
         }
         
     }
