@@ -14,7 +14,12 @@ $(document).ready(function() {
                 self.html('<img src="' + url + 'public/images/spinner.gif">');
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
-                $(".b1").eq(id).hide();
+                if(self.hasClass("a1")){
+                    // console.log("tồn tại a2");
+                }else{
+                    $(".b1").eq(id).hide();
+
+                }
                 
 
                 $.ajax({
@@ -68,8 +73,12 @@ $(document).ready(function() {
                         var id = $(this).attr("data-id");
                         var update = $(this).attr("data-update");
                         var lydo = result.value;
-                        
-                        $(".b1").eq(id).hide();
+                        if(self.hasClass("a1")){
+                            // console.log("tồn tại a1");
+                        }else{
+                            $(".b1").eq(id).hide();
+
+                        }
                         
                         
                         $.ajax({
