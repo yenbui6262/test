@@ -15,13 +15,13 @@ $(document).ready(function() {
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
                 if(self.hasClass("a1")){
-                    // console.log("tồn tại a1");
-                }else if(self.hasClass("a2")){
                     // console.log("tồn tại a2");
                 }else{
-                    $(".b1").eq(0).hide();
+                    $(".b1").eq(id).hide();
+
                 }
                 
+
                 $.ajax({
                     url: window.location.pathname,
                     type: 'POST',
@@ -51,8 +51,11 @@ $(document).ready(function() {
                     inputAttributes: {
                       autocapitalize: 'off'
                     },
-                    showCloseButton: true,
+                    // showCloseButton: true,
+                    showCancelButton: true,
                     confirmButtonText: 'Lưu',
+                    cancelButtonColor: "#d14529",
+                    cancelButtonText: 'Hủy',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
                         var lydo = Swal.getPopup().querySelector('#lido').value
@@ -72,11 +75,11 @@ $(document).ready(function() {
                         var lydo = result.value;
                         if(self.hasClass("a1")){
                             // console.log("tồn tại a1");
-                        }else if(self.hasClass("a2")){
-                            // console.log("tồn tại a2");
                         }else{
-                            $(".b1").eq(0).hide();
+                            $(".b1").eq(id).hide();
+
                         }
+                        
                         
                         $.ajax({
                             url: window.location.pathname,

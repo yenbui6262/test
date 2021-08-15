@@ -5,7 +5,7 @@
 		{
 			parent::__construct();
 		}
-		public function getThongtincoban($masv){
+		public function getThongtincanhan($masv){
 
             $this->db->select("*")
                     ->where("PK_sMaTK", $masv)
@@ -13,12 +13,13 @@
             $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;
         }
+		
 		public function getHoso($masv){
             
             $this->db->select("hs.PK_sMaHoSo,FK_sMaTinhTT, FK_sMaHuyenTT, FK_sMaXaTT, FK_sMaTinhHT, FK_sMaHuyenHT, FK_sMaXaHT, tChiTietTT, tChiTietHT, hs.sSDT, sSTK, sChiNhanh, ut.PK_sMaNhom")
                     ->where("tk.PK_sMaTK", $masv)
-                    ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK")
-					->join("dm_uutien ut", "ut.PK_sMaNhom = hs.FK_sUuTien");
+                    ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK", 'left')
+					->join("dm_uutien ut", "ut.PK_sMaNhom = hs.FK_sUuTien" , 'left');
 			$res = $this->db->get("tbl_taikhoan tk")->row_array();
             return $res;
         }

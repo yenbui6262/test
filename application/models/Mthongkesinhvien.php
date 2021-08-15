@@ -151,5 +151,15 @@
                 $this->db->where('hs.FK_sMaXaHT', $dieukien['xaht']);
             }
         }
+        public function checktaikhoan($dieukien){
+            $this->db->where('FK_sMaTK', $dieukien['FK_sMaTK']);
+            $this->db->from('tbl_hososv');
+            $res = $this->db->get()->num_rows();
+            return $res;
+        }
+        public function inserthoso($data){
+            $this->db->insert_batch('tbl_hososv',$data);
+            return $this->db->affected_rows();
+        }
     }
 ?>

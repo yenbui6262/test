@@ -75,8 +75,7 @@
             }
             return;
         }
-        
-        $sinhvien['thongtincoban'] 	= $this->Mhososinhvien->getThongtincoban($session['taikhoan']);
+        $sinhvien['thongtincanhan'] 	= $this->Mhososinhvien->getThongtincanhan($session['taikhoan']);
         $sinhvien['hoso'] 	= $this->Mhososinhvien->getHoso($session['taikhoan']);
         $sinhvien['lop'] 	= $this->Mhososinhvien->getLop();
         $sinhvien['uutien'] 	= $this->Mhososinhvien->getUutien();
@@ -118,8 +117,8 @@
 	    }
         // insert 
         public function insertTT($data,$lienhe1, $lienhe2){
-            $Temail['tEmail']  = $this->input->post("email");
             $session = $this->session->userdata("user");
+            $Temail['tEmail']  = $this->input->post("email");
             $data['FK_sMaTK']=$session['taikhoan'];
             $data['PK_sMaHoSo'] = time().$session['taikhoan'];
             $res1 = $this->Mhososinhvien->insertTT($data);
@@ -142,15 +141,30 @@
             return redirect(current_url());
         }
         public function updateTT($matk,$data, $lienhe1, $lienhe2){
-            
+            $session = $this->session->userdata("user");
             $Temail['tEmail']  = $this->input->post("email");
             $mads1 = $this->input->post("mads1");
             $mads2 = $this->input->post("mads2");
             
             $res1 = $this->Mhososinhvien->updateEmail($matk, $Temail);
             $res2 = $this->Mhososinhvien->updateTT($matk, $data);
-            $res3 = $this->Mhososinhvien->updateLienhe($mads1,$lienhe1);
-            $res4 = $this->Mhososinhvien->updateLienhe($mads2, $lienhe2);
+
+            if( empty($this->input->post('mads1')) && empty($this->input->post('mads2'))){ //admin đã nhập hồ sơ nhưng chưa điền liên hệ
+                $FK_sMaHoSo=$this->input->post("PKmahs");
+                $lienhe1['FK_sMaHoSo'] = $FK_sMaHoSo;
+                $lienhe2['FK_sMaHoSo'] = $FK_sMaHoSo;
+
+                $lienhe1['PK_sMaDS']='A'.time().$session['taikhoan'];
+                $lienhe2['PK_sMaDS']='B'.time().$session['taikhoan'];
+
+                $res3 = $this->Mhososinhvien->insertLienhe($lienhe1);
+                $res4 = $this->Mhososinhvien->insertLienhe($lienhe2);
+            }
+            else{
+                $res3 = $this->Mhososinhvien->updateLienhe($mads1,$lienhe1);
+                $res4 = $this->Mhososinhvien->updateLienhe($mads2, $lienhe2);
+            }
+            
             if($res1 > 0 || $res2 > 0 || $res3 > 0 || $res4 > 0){
                 setMessages("success", "Cập nhật thành công");
                 return redirect(current_url());
