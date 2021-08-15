@@ -29,23 +29,9 @@
                         ->get("tbl_taikhoan tk")->result_array();
             return $res;
         }
-
-        public function getmacb($tencb)
-        {
-            $res = $this->db->select('PK_sMaTK')
-                        ->get('tbl_taikhoan')->result_array();
-            return $res;
-        }
-
-        public function deletechuongtrinh($Mact){
-            $this->db->where('PK_sMaChuongTrinh', $Mact);
-            $this->db->delete('tbl_chuongtrinh');
-            return $this->db->affected_rows();
-            
-        }
-
-        public function deletethamgia($Mact){
-            $this->db->where('sMaCT', $Mact);
+        
+        public function deletetaikhoan($TenTK){
+            $this->db->where('sTenTK', $TenTK);
             $this->db->delete('tbl_thamgia');
             return $this->db->affected_rows();
             
