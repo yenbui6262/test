@@ -151,8 +151,11 @@
                 </div>
                 <div class="modal-body">
                     <input type="file" name="importhoso" value="importhoso" class="form-control" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" name="export" value="xuatmau" class="btn btn-success"><i
+                            class="fas fa-download"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
                     <button type="submit" name="submit" value="submit" class="btn btn-primary">Xác nhận</button>
                 </div>
             </div>
@@ -293,8 +296,8 @@
                             <td class='text-center' id="{$val['PK_sMaTK']}">
                             {$val["sChucvu"]}
                             </td>
-                            <td>{$val.xatt}, {$val.huyentt}, {$val.tinhtt}</td>
-                            <td>{$val.xaht}, {$val.huyenht}, {$val.tinhht}</td>
+                            <td>{if !empty({$val.xatt})|| !empty({$val.huyentt})|| !empty({$val.tinhtt})}{$val.xatt}, {$val.huyentt}, {$val.tinhtt} {/if}</td>
+                            <td>{if !empty({$val.xaht})|| !empty({$val.huyenht})|| !empty({$val.tinhht})}{$val.xaht}, {$val.huyenht}, {$val.tinhht} {/if}</td>
                             <td class='text-center'>
                                 <button type="submit" name="chitiet" value="{$val['PK_sMaTK']}" class="btn btn-sm btn-info btnEdit" title="chi tiết"><i class="fas fa-eye"></i></button>
                                 <button type="button" class="btn btn-sm btn-success btnEdit" onclick="capquyencanbo('{$val.PK_sMaTK}')" title="cấp quyền cán bộ"><i class="fas fa-user-check"></i></button>
