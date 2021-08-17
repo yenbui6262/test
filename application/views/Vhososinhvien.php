@@ -4,14 +4,15 @@
         <li class="breadcrumb-item active" aria-current="page">Hồ sơ sinh viên</li>
     </ol>
 </nav>
-{$taikhoan = $sinhvien['thongtincoban'].PK_sMaTK}
-{$hoten = $sinhvien['thongtincoban'].sHoTen}
-{$ngaysinh = $sinhvien['thongtincoban'].dNgaySinh}
-{$gioitinh = $sinhvien['thongtincoban'].iGioiTinh}
-{$email = $sinhvien['thongtincoban'].tEmail}
-{$tlop = $sinhvien['thongtincoban'].sTenLop}
-{$mlop = $sinhvien['thongtincoban'].sFK_Lop}
+{$taikhoan = $sinhvien['thongtincanhan'].PK_sMaTK}
+{$hoten = $sinhvien['thongtincanhan'].sHoTen}
+{$ngaysinh = $sinhvien['thongtincanhan'].dNgaySinh}
+{$gioitinh = $sinhvien['thongtincanhan'].iGioiTinh}
+{$email = $sinhvien['thongtincanhan'].tEmail}
+{$tlop = $sinhvien['thongtincanhan'].sTenLop}
+{$mlop = $sinhvien['thongtincanhan'].sFK_Lop}
 
+{$Mahs = $sinhvien['hoso'].PK_sMaHoSo}
 {$MaTinhTT = $sinhvien['hoso'].FK_sMaTinhTT}
 {$MaHuyenTT = $sinhvien['hoso'].FK_sMaHuyenTT}
 {$MaXaTT = $sinhvien['hoso'].FK_sMaXaTT}
@@ -99,6 +100,7 @@
 
                         <div class="row">
                             <div class="col-md-12 form-group">
+                                <input type="hidden" name="PKmahs" value="{if !empty($Mahs)}{$Mahs}{/if}">
                                 <label>Email:</label>
                                 <input type="email" name="email" class="form-control" required
                                     value="{if !empty($email)}{$email}{/if}" id="email" placeholder="Email">

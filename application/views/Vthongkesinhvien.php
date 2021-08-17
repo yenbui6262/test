@@ -4,9 +4,8 @@
         <li class="breadcrumb-item active" aria-current="page">Thống kê sinh viên</li>
     </ol>
 </nav>
-<br>
-<div class="container-fluid">
-<form action="" method="POST" class="insert" id="myForm">
+<div class="container-fluid my-3">
+<form action="" method="POST" class="insert" id="myForm" enctype="multipart/form-data">
     <!--địa chỉ thường trú Modal -->
     <div class="modal fade" id="diachittModal" tabindex="-1" role="dialog" aria-labelledby="diachittModalLabel"
         aria-hidden="true">
@@ -139,12 +138,40 @@
             </div>
         </div>
     </div>
+    <!-- thêm hồ sơ-->
+    <div class="modal fade" id="themhosoModal" tabindex="-1" role="dialog" aria-labelledby="themhosoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="themhosoModalLabel">Thêm hồ sơ sinh viên bằng file excel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="importhoso" value="importhoso" class="form-control" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="export" value="xuatmau" class="btn btn-success"><i
+                            class="fas fa-download"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
+                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header text-center text-white bg-darkblue">
             <h4 style="color: #fff; margin: 0" class="text-center">Thống kê sinh viên</h4>
         </div>
         <div class="card-body">
             <div class="row">
+            <div class="col-12 form-group">
+
+                <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themhosoModal" data-whatever="@mdo"><i
+                            class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm hồ sơ</button>
+                </div>
                 <div class="col-md-3 form-group">
                     <label id="tenlop">Lớp:</label>
                     <select class="form-control select2" name="lop" aria-label="Small" aria-describedby="tenlop">
@@ -228,11 +255,14 @@
                         </button>
                     </div>
                 </div>
+                
                 <div class="col-12 form-group text-right">
+                    
                     <button type="submit" class="btn btn-secondary" name="action" value="search" id="search"><i
                             class="fa fa-search"></i>&nbsp;Thống kê</button>
                     <button type="submit" name="export" value="export" class="btn btn-success"><i
                             class="fas fa-file-excel"></i>&nbsp;&nbsp;Xuất Excel</button>
+                    
                     <button type="submit" class="btn btn-primary" name="action" value="reset" id="reset"><i
                             class="fas fa-undo"></i>&nbsp;Đặt lại</button>
                 </div>
@@ -266,8 +296,8 @@
                             <td class='text-center' id="{$val['PK_sMaTK']}">
                             {$val["sChucvu"]}
                             </td>
-                            <td>{$val.xatt}, {$val.huyentt}, {$val.tinhtt}</td>
-                            <td>{$val.xaht}, {$val.huyenht}, {$val.tinhht}</td>
+                            <td>{if !empty({$val.xatt})|| !empty({$val.huyentt})|| !empty({$val.tinhtt})}{$val.xatt}, {$val.huyentt}, {$val.tinhtt} {/if}</td>
+                            <td>{if !empty({$val.xaht})|| !empty({$val.huyenht})|| !empty({$val.tinhht})}{$val.xaht}, {$val.huyenht}, {$val.tinhht} {/if}</td>
                             <td class='text-center'>
                                 <button type="submit" name="chitiet" value="{$val['PK_sMaTK']}" class="btn btn-sm btn-info btnEdit" title="chi tiết"><i class="fas fa-eye"></i></button>
                                 <button type="button" class="btn btn-sm btn-success btnEdit" onclick="capquyencanbo('{$val.PK_sMaTK}')" title="cấp quyền cán bộ"><i class="fas fa-user-check"></i></button>

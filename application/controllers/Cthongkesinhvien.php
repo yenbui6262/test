@@ -22,9 +22,18 @@
                 $this->session->set_userdata("filterctsv", $chitiet);
                 redirect("chitietsinhvien");
             }
-            if($this->input->post('export'))
+            if($action = $this->input->post('export'))
             {
-            	$this->xuatExcel();
+                if($action =='export'){
+            	    $this->xuatExcel();
+                }else{
+            	    $this->xuatMauExcel();
+                }
+            }
+            
+            if($this->input->post('submit'))
+            {
+            	$this->importhoso();
             }
             if($action = $this->input->post('action')){
                 switch($action){
@@ -122,17 +131,7 @@
             // pr($temp['data']['params']['sinhvien']);
             $this->load->view('layout/Vcontent', $temp);
         }
-
-        private function pagination(){
-            $filter     = $this->input->post("filtermc");
-
-            $pageX      = $this->input->post("page");
-            $res        = $this->get_params($pageX-1, $filter);
-            if(!empty($res)){
-                echo json_encode($res);
-            }
-        }
-
+        
         public function get_params($page, $dieukien){
             $session = $this->session->userdata("user");
             // init params
@@ -195,14 +194,81 @@
         }
 
 
+        public function xuatMauExcel()
+        {
+            $objPHPExcel = new PHPExcel();
+            $filename   = 'Mẫu nhập danh sách hồ sơ sinh viên';
+            $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
+            $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
+            // lui xuong duoi title 1 dong
+            $array_content = array(
+                "A1" => "STT",
+                "B1" => "Mã sinh viên",
+                "C1" => "Số điện thoại",
+                "D1" => "Số tài khoản",
+                "E1" => "Chi nhánh",
+            );
 
+
+            $array_align = array(
+                "A1:E1"
+            );
+            $array_bold = array(
+                "A1:E1"
+            );
+            $style_array = array(
+                'borders' 					=> array(
+                    'allborders' 			=> array(
+                        'style' 			=> PHPExcel_Style_Border::BORDER_THIN
+                    ) 
+                )
+            );
+            foreach (range('A', 'E') as $column) {
+                $objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+            }
+	    	foreach ($array_align as $key => $cell) {
+	            $objPHPExcel->getActiveSheet()->getStyle($cell)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	            $objPHPExcel->getActiveSheet()->getStyle($cell)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	        }
+	        foreach ($array_bold as $cells) {
+				$objPHPExcel->getActiveSheet()->getStyle($cells)->getFont()->setBold(true);
+			}
+			foreach($array_content as $key => $value){
+	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
+	        }
+            $start--;
+			$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->applyFromArray($style_array);	
+	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToPage(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToWidth(1);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
+            $objPHPExcel->getActiveSheet()
+                    ->getPageMargins()->setTop(0.5);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setRight(0.25);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setLeft(0.25);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setBottom(0.5);
+
+		    ob_end_clean();
+		    header("Content-type: application/vnd.ms-excel");
+		    header("Content-Disposition: attachment;filename=".$filename.".xls");
+		    header("Cache-Control: max-age=0");
+
+		    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		    $objWriter->save('php://output');
+	        exit();   
+        }
         public function xuatExcel()
         {
             $filter = $this->session->userdata("filtertksv");
             $dshs = $this->Mthongkesinhvien->getExcel($filter);
             // pr($dshs);
         	$objPHPExcel = new PHPExcel();
-	        $filename   = 'Mẫu nhập điểm danh sách sinh viên 5 tốt';
+	        $filename   = 'Danh sách hồ sơ sinh viên';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong
@@ -232,11 +298,16 @@
 	            $array_content['E' . $start]    = $tk['iGioiTinh'];
 	            $array_content['F' . $start]    = $tk['sTenLop'];
 	            $array_content['G' . $start]    = $tk['sChucvu'];
-                $array_content['H' . $start]    = $tk['xatt'].', '.$tk['huyentt'].', '.$tk['tinhtt'];
-	            $array_content['I' . $start]    = $tk['xaht'].', '.$tk['huyenht'].', '.$tk['tinhht'];
-
-	            $start++;
-	        }
+                if( empty($tk['xatt'] )||empty($tk['xaht'] )){
+                    $array_content['H' . $start]    = '';
+                    $array_content['I' . $start]    = '';
+                }else{
+                    $array_content['H' . $start]    = $tk['xatt'].', '.$tk['huyentt'].', '.$tk['tinhtt'];
+                    $array_content['I' . $start]    = $tk['xaht'].', '.$tk['huyenht'].', '.$tk['tinhht'];
+                }
+                
+                $start++;
+            }
 
 
 		    $array_align = array(
@@ -245,7 +316,7 @@
 	        $array_bold = array(
 	        	"A1:I1"
 	        );
-	        $style_array = array(
+            $style_array = array(
 	    		'borders' 					=> array(
 	    			'allborders' 			=> array(
 	    				'style' 			=> PHPExcel_Style_Border::BORDER_THIN
@@ -290,6 +361,62 @@
 		    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 		    $objWriter->save('php://output');
 	        exit();   
+        }
+        public function importhoso()
+        {
+            // echo ("123");exit();
+            $giatri=array();
+            PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+            $objPHPExcel = PHPExcel_IOFactory::load($_FILES['importhoso']['tmp_name']);
+
+            $hoso=$objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
+            
+            $k=2;
+            while(!empty($hoso[$k]['A'])){
+                $tunghoso = array(
+                    'FK_sMaTK'  => $hoso[$k]['B'],
+                    'sSDT'      => $hoso[$k]['C'],
+                    'sSTK'      => $hoso[$k]['D'],
+                    'sChiNhanh' => $hoso[$k]['E'],
+                );
+				
+				// print_r($tunghoso);echo "<br>";
+                $qq= $this->Mthongkesinhvien->checktaikhoan($tunghoso);
+                
+                if($qq==0){
+                    $tunghoso['PK_sMaHoSo']=time().$tunghoso['FK_sMaTK'];
+                    array_push($giatri,$tunghoso);
+                    
+                }else{
+                    
+                    $this->db->where(array('FK_sMaTK'		=> $tunghoso['FK_sMaTK']));
+                    
+                    $this->db->update("tbl_hososv", $tunghoso);
+                    $row = 1;
+                }
+				
+                $k++;
+            }
+            
+
+			if(!empty($giatri)){
+                
+                // pr($giatri);exit();
+				$kq= $this->Mthongkesinhvien->inserthoso($giatri);
+			}else{
+				$kq=0;
+			}
+            if ($kq > 0||$row ==1) 
+            {
+                setMessages("success", "Thêm thành công", "Thêm thành công");
+                redirect('Cthongkesinhvien');
+            } 
+            else 
+            {
+                setMessages("error", "Thêm thất bại", "Thêm thất bại");
+                redirect('Cthongkesinhvien');
+            }
+            exit();
         }
         
     }

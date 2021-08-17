@@ -87,14 +87,13 @@
         {
             if(!empty($filter['phamvi'])){
                 if($filter['phamvi']=='toancanbo'){
-                    $searchQuery = " (tk.sChucvu != '' or 
-                    tk.FK_sMaQuyen = 3) ";
+                    $searchQuery = " (tk.sChucvu != '') ";
                     $this->db->where($searchQuery);
                 }elseif($filter['phamvi']=='toancanbolop'){
-                    $this->db->where('tk.sChucvu !=','""');
+                    $this->db->where('tk.sChucvu !=','Cán bộ LCĐ, LCH');
 
                 }elseif($filter['phamvi']=='toancanbochidoan'){
-                    $this->db->where('tk.FK_sMaQuyen','3');
+                    $this->db->where('tk.sChucvu','Cán bộ LCĐ, LCH');
                 }
             }
             if($filter['masvdtg']){
