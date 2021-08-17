@@ -81,7 +81,7 @@
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 25;
+            $limit_per_page = 50;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;

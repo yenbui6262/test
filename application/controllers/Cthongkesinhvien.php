@@ -385,8 +385,8 @@
                 
                 if($qq==0){
                     $tunghoso['PK_sMaHoSo']=time().$tunghoso['FK_sMaTK'];
-                    array_push($giatri,$tunghoso);
                     
+                    $kq= $this->Mthongkesinhvien->inserthoso($tunghoso);
                 }else{
                     
                     $this->db->where(array('FK_sMaTK'		=> $tunghoso['FK_sMaTK']));
@@ -398,14 +398,6 @@
                 $k++;
             }
             
-
-			if(!empty($giatri)){
-                
-                // pr($giatri);exit();
-				$kq= $this->Mthongkesinhvien->inserthoso($giatri);
-			}else{
-				$kq=0;
-			}
             if ($kq > 0||$row ==1) 
             {
                 setMessages("success", "Thêm thành công", "Thêm thành công");

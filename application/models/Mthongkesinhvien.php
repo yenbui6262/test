@@ -158,7 +158,7 @@
             return $res;
         }
         public function inserthoso($data){
-            $this->db->insert_batch('tbl_hososv',$data);
+            $this->db->insert('tbl_hososv',$data);
             return $this->db->affected_rows();
         }
     }
