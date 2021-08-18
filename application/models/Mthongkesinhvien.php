@@ -87,7 +87,7 @@
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
                      ->select("lop.sTenLop,tk.PK_sMaTK,tk.sHoTen,tk.dNgaySinh,tk.sChucvu,tk.iGioiTinh,tk.sTenTK,tk.FK_sMaQuyen,hs.tChiTietTT,hs.tChiTietHT,t.sTenT as tinhht,h.sTenH as huyenht,x.sTenX as xaht,tt.sTenT as tinhtt,hh.sTenH as huyentt,xx.sTenX as xatt")
-                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                      ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK", 'left')
                      ->join("dm_tinh t", "t.PK_sMaT = hs.FK_sMaTinhHT", 'left')
                      ->join("dm_huyen h", "h.PK_sMaH = hs.FK_sMaHuyenHT", 'left')
@@ -104,8 +104,8 @@
             $this->dieukien($dieukien);
             $res = $this->db->group_by("tk.PK_sMaTK")
                             ->select("tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
-                            ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
-                            ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK")
+                            ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
+                            ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK","left")
                             ->from("tbl_taikhoan tk")->count_all_results();
             return $res;
         }

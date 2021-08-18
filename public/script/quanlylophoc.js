@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-    $("#masv").keyup(function(){
-        var masv = $(this).val();
+    $("#tenlop").keyup(function(){
+        var tenlop = $(this).val();
         var data = {
             action: "search",
-            filter: masv,
+            filter: tenlop,
         }
         $.ajax({
             url: window.location.pathname,
@@ -21,9 +21,9 @@ $(document).ready(function() {
 
 });
 
-function xacnhanxoa(MaTK) {
+function xacnhanxoa(malop) {
     Swal.fire({
-        title: 'Bạn có chắc muốn xóa tài khoản này?',
+        title: 'Bạn có chắc muốn xóa lớp học này?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -31,12 +31,12 @@ function xacnhanxoa(MaTK) {
         confirmButtonText: 'Có, Xóa!'
       }).then((result) => {
         if (result.isConfirmed) {
-            history.pushState(null, null, link_url + "quanlytaikhoan");
-            masv =$('#masv').val();
+            history.pushState(null, null, link_url + "quanlylophoc");
+            tenlop =$('#tenlop').val();
             var data = {
                 action: "delete",
-                matk: MaTK,
-                masv:masv
+                malop: malop,
+                tenlop:tenlop
             }
         
             $.ajax({
@@ -70,16 +70,15 @@ function xacnhanxoa(MaTK) {
 
 function renderTable(data){
     var html = "";
-    if(typeof data.taikhoan !== "undefined"){
-        data.taikhoan.forEach((v)=>{
+    if(typeof data.lophoc !== "undefined"){
+        data.lophoc.forEach((v)=>{
             html += `<tr>
             <td class="text-center">${data.stt++}</td>
-            <td>${v.sTenTK}</td>
-            <td>${v.sHoTen}</td>
+            <td>${v.sTenLop}</td>
             <td class="text-center">
                 <button type="button" name="delete"
                     class="btn btn-danger btnDelete btn-sm"
-                    onclick="xacnhanxoa('${v.PK_sMaTK}');"><i
+                    onclick="xacnhanxoa('${v.PK_sMaLop}');"><i
                         class="fas fa-trash"></i></button>
             </td>
         </tr>`;

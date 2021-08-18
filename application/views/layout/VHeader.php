@@ -87,6 +87,7 @@
                     <div class="dropdown-menu">
                         {if ($session['maquyen'] == 1)}
                         <a class="dropdown-item" href="{$url}quanlytaikhoan">Quản lý tài khoản</a>
+                        <a class="dropdown-item" href="{$url}quanlylophoc">Quản lý lớp học</a>
                         <a class="dropdown-item" href="{$url}Chuongtrinh">Quản lý chương trình</a>
                         {/if}
                         {if ($session['maquyen'] == 1 || $session['maquyen'] == 4)}
