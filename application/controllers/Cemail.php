@@ -64,52 +64,25 @@ class Cemail extends MY_Controller {
         }
     }
 
-    /* Gui thong bao qua mail cho sinh vien khi ho so cua ho duoc duyet*/
-//     private function sendMailSuccess($nguoinhan) {
-//         $subject = "Thông báo";
-//         $noidungMail = "Hồ sơ của bạn đã được phê duyệt";
-
-//         $this->email->from('hoisinhvien.hou@gmail.com', 'Hệ thống cơ sở dữ liệu sinh viên 5 tốt');
-//         // tiêu đề email
-//         $this->email->subject($subject);
-//         // nội dung email
-//         $this->email->message($noidungMail);
-//         // $this->email->message($noidungMail);
-//         // gửi email cho cả đơn vị và cá nhân
-//         $this->email->to($nguoinhan);
-
-//         if ($this->email->send()) {
-//             return true;
-//         }else{
-//             show_error($this->email->print_debugger());
-//             return false;
-//         }
-
-//     }
-
     /* Gui cac tieu chi chua dat cho sinh vien*/
     private function sendMailError($mact) {
-        $tenct = "tên chương trình";
+        $tenct = $this->Memail->gettenct($mact)[0]['sTenCT'];
         $subject = "Thông báo";
         $noidungMail = "Yêu cầu xác nhận tham gia chương trình: ".$tenct;
-        $dsnguoinhan = $this->Memail->getsinhvienduocthamgia($mact);
-        $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng kinh tế');
+        $dsnguoinhan = $this->Memail->getsinhvienchuaxacnhan($mact);
+
+        $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng - Tư vấn Khoa kinh tế HOU');
         // tiêu đề email
         $this->email->subject($subject);
         // nội dung email
         $this->email->message($noidungMail);
 
-        // gửi email cho cả đơn vị và cá nhân
-        $this->email->to($dsnguoinhan);
-        /*
-        *   ccemail cho 1 người thì sẽ thông báo cho người đó về cuộc trò chuyện, và người nhận mail cũng biết điều đó
-        *   bcc cho 1 người thì giống với cc chỉ khác là người nhận mail ko biết người gửi đã cc cho người khác
-        */
+        foreach ($dsnguoinhan as $key => $value) {
+            if(!empty($value['tEmail'])){
+                $this->email->bcc($value['tEmail']);
+            }
+        }
 
-        // cc email cho ban giám hiệu
-/*        if($typeBanGiamHieu == 'ccEmail'){
-            $this->email->cc($banGiamHieu);
-        }*/
         if ($this->email->send()) {
             return true;
         }else{
@@ -123,8 +96,8 @@ class Cemail extends MY_Controller {
         $config['protocol']     = "smtp";
         $config['smtp_host']    = "ssl://smtp.gmail.com";
         $config['smtp_port']    = 465;
-        $config['smtp_user']    = "kinhte.hou@.edu.vn";
-        $config['smtp_pass']    = "kinhtepass";
+        $config['smtp_user']    = "emailkinhte";
+        $config['smtp_pass']    = "passkinhte";
         $config['mailtype']     = 'html';
         $config['newline']      = "\r\n";
         $config['charset']      = "utf-8";
