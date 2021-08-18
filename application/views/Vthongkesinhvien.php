@@ -154,8 +154,6 @@
                     <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="export" value="xuatmau" class="btn btn-success"><i
-                            class="fas fa-download"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
                     <button type="submit" name="submit" value="submit" class="btn btn-primary">Xác nhận</button>
                 </div>
             </div>
@@ -167,10 +165,11 @@
         </div>
         <div class="card-body">
             <div class="row">
-            <div class="col-12 form-group">
-
-                <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themhosoModal" data-whatever="@mdo"><i
-                            class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm hồ sơ</button>
+                <div class="col-12 form-group">
+                    <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themhosoModal" data-whatever="@mdo"><i
+                        class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm hồ sơ</button>
+                        <button type="submit" name="export" value="xuatmau" class="btn btn-info"><i
+                                class="fas fa-file-excel"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
                 </div>
                 <div class="col-md-3 form-group">
                     <label id="tenlop">Lớp:</label>

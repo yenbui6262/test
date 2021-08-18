@@ -153,7 +153,21 @@
                 $this->db->where('hs.FK_sMaXaHT', $dieukien['xaht']);
             }
         }
-        public function checktaikhoan($dieukien){
+        public function checktaikhoan($tentk){
+            $this->db->where('sTenTK', $tentk);
+            $this->db->select('PK_sMaTK');
+            $this->db->from('tbl_taikhoan');
+            $res = $this->db->get()->result_array();
+            return $res;
+        }
+        public function checklop($tenlop){
+            $this->db->where('sTenLop', $tenlop);
+            $this->db->select('PK_sMaLop');
+            $this->db->from('tbl_lop');
+            $res = $this->db->get()->result_array();
+            return $res;
+        }
+        public function checkhoso($dieukien){
             $this->db->where('FK_sMaTK', $dieukien['FK_sMaTK']);
             $this->db->from('tbl_hososv');
             $res = $this->db->get()->num_rows();
@@ -162,6 +176,20 @@
         public function inserthoso($data){
             $this->db->insert('tbl_hososv',$data);
             return $this->db->affected_rows();
+        }
+        public function updatehoso($tunghoso,$data){
+            $this->db->where($data);
+            $this->db->update("tbl_hososv", $tunghoso);
+        }
+
+        public function insertlop($data){
+            $this->db->insert('tbl_lop',$data);
+            return $this->db->affected_rows();
+        }
+        public function updatelop($malop,$dieukien){
+            $this->db->where($dieukien);
+            $this->db->set('sFK_Lop',$malop);
+            $this->db->update("tbl_taikhoan");
         }
     }
 ?>

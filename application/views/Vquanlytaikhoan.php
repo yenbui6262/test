@@ -20,6 +20,7 @@
                     </div>
                     <div class="modal-body">
                         <input type="file" name="importhoso" value="importhoso" class="form-control" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" name="importTK" value="importTK" class="btn btn-primary">Xác nhận</button>
