@@ -95,22 +95,12 @@
             // pr($temp['data']['filtertenct']);
             $this->load->view('layout/Vcontent', $temp);
         }
-        
-        private function pagination(){
-            $filter     = $this->input->post("filterqlmc");
-
-            $pageX      = $this->input->post("page");
-            $res        = $this->get_params($pageX-1, $filter);
-            if(!empty($res)){
-                echo json_encode($res);
-            }
-        }
 
         public function get_params($page, $dieukien){
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 25;
+            $limit_per_page = 50;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;

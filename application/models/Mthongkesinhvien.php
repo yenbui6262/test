@@ -85,6 +85,7 @@
         public function getlistsinhvien($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
+            $this->db->where('tk.FK_sMaQuyen','2');
             $this->db->group_by("tk.PK_sMaTK")
                      ->select("lop.sTenLop,tk.PK_sMaTK,tk.sHoTen,tk.dNgaySinh,tk.sChucvu,tk.iGioiTinh,tk.sTenTK,tk.FK_sMaQuyen,hs.tChiTietTT,hs.tChiTietHT,t.sTenT as tinhht,h.sTenH as huyenht,x.sTenX as xaht,tt.sTenT as tinhtt,hh.sTenH as huyentt,xx.sTenX as xatt")
                      ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
@@ -102,6 +103,7 @@
         public function getTotalsinhvien($dieukien=null)
         {
             $this->dieukien($dieukien);
+            $this->db->where('tk.FK_sMaQuyen','2');
             $res = $this->db->group_by("tk.PK_sMaTK")
                             ->select("tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
                             ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
