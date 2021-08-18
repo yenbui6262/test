@@ -225,7 +225,7 @@
             $objPHPExcel = PHPExcel_IOFactory::load($_FILES['importhoso']['tmp_name']);
 
             $taikhoan = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
-            $k=2;
+            $k=7;
             while(!empty($taikhoan[$k]['A'])){
                 $tungtaikhoan = array(
                     'PK_sMaTK'  => $taikhoan[$k]['B'],

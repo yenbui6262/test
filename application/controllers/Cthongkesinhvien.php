@@ -388,7 +388,7 @@
 
             $hoso=$objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             
-            $k=2;
+            $k=7;
             while(!empty($hoso[$k]['A'])){
                 $tunghoso = array(
                     'FK_sMaTK'  => $hoso[$k]['B'],
