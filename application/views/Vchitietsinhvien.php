@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Ngày sinh</td>
-                        <td>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
+                        <td>{if !empty($val.dNgaySinh)}{date("d/m/Y", strtotime($val.dNgaySinh))}{/if}</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Giới tính</td>

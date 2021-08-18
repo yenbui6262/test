@@ -289,7 +289,7 @@
                             <td class='text-center'>{$params['stt']++}</td>
                             <td class='text-center'>{$val["PK_sMaTK"]}</td>
                             <td style="font-weight:bold">{$val['sHoTen']}</td>
-                            <td class='text-center'>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
+                            <td class='text-center'>{if !empty($val.dNgaySinh)}{date("d/m/Y", strtotime($val.dNgaySinh))}{/if}</td>
                             <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
                             <td class='text-center'>{$val["sTenLop"]}</td>
                             <td class='text-center' id="{$val['PK_sMaTK']}">

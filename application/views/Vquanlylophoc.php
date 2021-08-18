@@ -7,12 +7,39 @@
 <br>
 <div class="container-fluid">
     <form action="" method="POST" enctype="multipart/form-data">
+        <!-- thêm lớp-->
+        <div class="modal fade" id="themLopModal" tabindex="-1" role="dialog" aria-labelledby="themLopModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="themLopModalLabel">Thêm lớp bằng file excel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" name="importhoso" value="importhoso" class="form-control" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="importLop" value="importLop" class="btn btn-primary">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header text-center text-white bg-darkblue">
                 <h4 style="color: #fff; margin: 0" class="text-center"><span>Danh sách lớp học</span></h4>
             </div>
             <div class="card-body">
                     <div class="row">
+                        <div class="col-12 form-group">
+                            <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themLopModal" data-whatever="@mdo"><i
+                                class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm lớp bằng Excel</button>
+                                <button type="submit"class="btn btn-info" name="export" value="export"><i
+                                class="fas fa-file-excel"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
+                        </div>
                         <div class="col-md-3 form-group">
                             <label>Tên lớp:</label>
                             <input type="text" id="tenlop" name="tenlop" class="form-control" placeholder="Nhập nội dung tìm kiếm">

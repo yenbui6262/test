@@ -138,8 +138,6 @@
 
         public function xuatExcel()
         {
-            $filter = $this->session->userdata("filtertksv");
-            // pr($dshs);
         	$objPHPExcel = new PHPExcel();
 	        $filename   = 'Mẫu nhập danh sách tài khoản sinh viên';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");

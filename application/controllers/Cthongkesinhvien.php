@@ -305,10 +305,15 @@
                 }else{
                     $tk['iGioiTinh']='Nữ';
                 }
+                if(!empty($tk['dNgaySinh'])){
+                    $tk['dNgaySinh'] = date("d/m/Y", strtotime($tk['dNgaySinh']));
+                }else{
+                    $tk['dNgaySinh']='';
+                }
 	            $array_content['A' . $start]    = $index++;
 	            $array_content['B' . $start]    = $tk['sTenTK'];
 	            $array_content['C' . $start]    = $tk['sHoTen'];
-	            $array_content['D' . $start]    = date("d/m/Y", strtotime($tk['dNgaySinh']));
+	            $array_content['D' . $start]    = $tk['dNgaySinh'];
 	            $array_content['E' . $start]    = $tk['iGioiTinh'];
 	            $array_content['F' . $start]    = $tk['sTenLop'];
 	            $array_content['G' . $start]    = $tk['sChucvu'];
@@ -401,22 +406,6 @@
                 $kq=0;
                 $row=0;
                 if(!empty($checktk)){
-                    $checklop = $this->Mthongkesinhvien->checklop($hoso[$k]['C']);
-                    if(!empty($checklop)){
-                        // update lop cho tai khoan
-                        $this->Mthongkesinhvien->updatelop($checklop[0]['PK_sMaLop'],array('PK_sMaTK'=> $checktk[0]['PK_sMaTK']));
-                    }else{
-                        // insert lop moi
-                        $lop = array(
-                            'PK_sMaLop'      => time().$hoso[$k]['C'],
-                            'sTenLop'      => $hoso[$k]['C']
-                        );
-                        $insertlop = $this->Mthongkesinhvien->insertlop($lop);
-                        if($insertlop>0){
-                            // update lop cho tai khoan
-                            $this->Mthongkesinhvien->updatelop($lop['PK_sMaLop'],array('PK_sMaTK'=> $checktk[0]['PK_sMaTK']));
-                        }
-                    }
                     $tunghoso['FK_sMaTK'] = $checktk[0]['PK_sMaTK'];
                     $qq= $this->Mthongkesinhvien->checkhoso($tunghoso);
                     if($qq==0){
