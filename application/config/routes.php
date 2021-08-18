@@ -32,6 +32,8 @@ $route['quanlyhanhchinh']               = 'Cduyethanhchinh';
 $route['quanlyhanhchinh/(:num)']		= 'Cduyethanhchinh/index/$1';
 $route['quanlytaikhoan']                = 'Cquanlytaikhoan';
 $route['quanlytaikhoan/(:num)']         = 'Cquanlytaikhoan/index/$1';
+$route['quanlylophoc']                = 'Cquanlylophoc';
+$route['quanlylophoc/(:num)']         = 'Cquanlylophoc/index/$1';
 // $route['don'] 						    = 'Cword';
 
 $route['mail'] 						    = 'Cemail';

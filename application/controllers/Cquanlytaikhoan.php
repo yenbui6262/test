@@ -146,23 +146,26 @@
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong
             $array_content = array(
-                "A1" => "STT",
-                "B1" => "Mã sinh viên",
-                "C1" => "Họ tên",
-                "A2" => "1",
-                "B2" => "20A10XXXXX",
-                "C2" => "Nguyễn Văn A",
-                "A3" => "2",
-                "B3" => "20A10XXXXX",
-                "C3" => "Nguyễn Thị B",
+                "A1" => "TRƯỜNG ĐẠI HỌC MỞ HÀ NỘI",
+                "A2" => "KHOA KINH TẾ",
+                "A4" => "DANH SÁCH TÀI KHOẢN SINH VIÊN",
+                "A6" => "STT",
+                "B6" => "Mã sinh viên",
+                "C6" => "Họ tên",
+                "A7" => "1",
+                "B7" => "20A10XXXXX",
+                "C7" => "Nguyễn Văn A",
+                "A8" => "2",
+                "B8" => "20A10XXXXX",
+                "C8" => "Nguyễn Thị B",
             );
 
 
 		    $array_align = array(
-	            "A1:C1"
+	            "A1:C6"
 	        );
 	        $array_bold = array(
-	        	"A1:C1"
+	        	"A1:C6"
 	        );
 	        $style_array = array(
 	    		'borders' 					=> array(
@@ -185,7 +188,10 @@
 	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
 	        }
             $start--;
-			$objPHPExcel->getActiveSheet()->getStyle('A1:C3')->applyFromArray($style_array);	
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:C1');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:C4');
+			$objPHPExcel->getActiveSheet()->getStyle('A6:C8')->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);

@@ -1,51 +1,83 @@
 <?php
-    class Cxacnhanthamgia extends MY_Controller {
-        public function __construct() {
-	    	parent::__construct();
-	    	$this->load->model('Mxacnhanthamgia');
-	    }
+    class Cquanlylophoc extends MY_Controller
+    {
+        public function __construct()
+        {
+            parent::__construct();
+            $this->load->model('Mquanlylophoc');
+            $this->load->library('Excel');
+        }
+
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
+            if($session['maquyen']!=1){
+                return redirect(base_url().'403_Forbidden');
+            }
+
             if($action = $this->input->post('action')){
-                if($action=='search'){
-                    $filterxn = array(
-                        'tenct'           => $this->input->post('tenct'),
-                        'mota'            => $this->input->post('mota'),
-                        'trangthai'      => $this->input->post('trangthai'),
-                    );
-                    // luu vao sesssion
-                    $this->session->set_userdata("filterxn", $filterxn);redirect('xacnhanthamgia');
-                }else if($action=='update'){
-                    /*CAp nhat khi admin an duyet */
-                    $id 	    = $this->input->post("id");
-                    $trangthai  = $this->input->post("trangthai");
-                    $lydo       = $this->input->post("lydo");
-                    $this->Mxacnhanthamgia->updatexn($id, $trangthai,$lydo);
+                switch($action){
+                    case "search"   : $this->search();break;
+                    case "delete"   : $this->delete();break;
+                    case "insert"   : $this->insert();break;
+
                 }
+                return;
             };
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $date = date("Y-m-d");
-            
-            $filterxn = $this->session->userdata("filterxn");
             $temp = array(
-                'template'  => 'Vxacnhanthamgia',
+                'template'  => 'Vquanlylophoc',
                 'data'      => array(
-                    'params'    => $this->get_params($page-1, $filterxn),
-                    'message'   => getMessages(),
-                    'tenct'     => $filterxn['tenct'],
-                    'mota'      => $filterxn['mota'],
-                    'trangthai' => $filterxn['trangthai'],
+                    'params'    => $this->get_params($page-1, ''),
+                    'message' => getMessages(),
                     'session'   => $session,
-                    'date'      => $date,
                 ),
             );
             // pr($temp);
             $this->load->view('layout/Vcontent', $temp);
         }
 
+        
+        //delete 
+        public function delete(){
+            $filter['malop'] = $this->input->post("malop");
+            $filter['tenlop'] = $this->input->post("tenlop");
+            $abc = $this->Mquanlylophoc->updatetaikhoan($filter['malop']);
+            $kq=$this->Mquanlylophoc->deletelophoc($filter['malop']);
+
+            if($kq==1){
+                $res = $this->get_params(0, $filter);
+            }else{
+                $res = 1;
+            }
+            echo json_encode($res);
+        }
+
+         //delete 
+         public function insert(){
+            $data['PK_sMaLop'] = $this->input->post("tenlop");
+            $data['sTenLop'] = $this->input->post("tenlop");
+            if(empty($data['sTenLop'])){
+                setMessages("warning", "Thông tin không được để trống");
+                redirect('quanlylophoc');
+            }
+            $check = $this->Mquanlylophoc->checklophoc($data['sTenLop']);
+            if(empty($check)){
+                $res=$this->Mquanlylophoc->insertlophoc($data);
+                setMessages("success", "Thêm thành công");
+            }else{
+                setMessages("warning", "Đã tồn tại lớp này");
+            }
+            redirect('quanlylophoc');
+        }
+
+        private function search(){
+            $filter['tenlop'] = $this->input->post("filter");
+            $res = $this->get_params(0, $filter);
+            echo json_encode($res);
+        }
+
         public function get_params($page, $dieukien){
-            $session = $this->session->userdata("user");
+
             // init params
             $params = array();
             // So trang tren 1 page
@@ -54,14 +86,15 @@
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
             $params['stt'] = $limit_per_page * $page + 1;
-            $total_records = $this->Mxacnhanthamgia->getTotalRecord($dieukien, $session['taikhoan']);
+
+            $total_records = $this->Mquanlylophoc->getTotalRecord($dieukien);
             if ($total_records > 0){
                 // get current page records
                 // ($page * $limit_per_page) vi tri ban ghi dau tien
                 // $limit_per_page la so luong ban ghi lay ra
-                $params['chuongtrinh']  = $this->Mxacnhanthamgia->getChuongtrinh($limit_per_page, $page * $limit_per_page,$dieukien, $session['taikhoan']);
+                $params['lophoc']  = $this->Mquanlylophoc->getlophoc($limit_per_page, $page * $limit_per_page,$dieukien);
                 //pr($params);
-                $config['base_url']     = base_url().'xacnhanthamgia';
+                $config['base_url']     = base_url().'quanlytaikhoan';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;
@@ -102,6 +135,6 @@
             }
             return $params;
         }
-	    
+
     }
 ?>

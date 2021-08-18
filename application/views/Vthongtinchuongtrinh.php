@@ -142,9 +142,11 @@
             data: {
                 action: "notifierFail",
                 mact: mact,
-            }
+            },
+            beforeSend: loading(),
         }).done(function(e){
             console.log(e);
+            $("#overlay").hide();
             // Toasr thong bao thanh cong
             setTimeout(() => {
                 showToast("success", "Gửi phản hồi thành công")

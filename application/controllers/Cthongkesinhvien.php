@@ -137,7 +137,7 @@
             // init params
             $params = array();
             // So trang tren 1 page
-            $limit_per_page = 5;
+            $limit_per_page = 50;
             // lay bien page tu url, nhung load tu ajax thi khong can
             /*$page = ($this->uri->segment(2)) ? ($this->uri->segment(2) - 1) : 0;*/
             $page = $page;
@@ -202,19 +202,27 @@
             $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
             // lui xuong duoi title 1 dong
             $array_content = array(
-                "A1" => "STT",
-                "B1" => "Mã sinh viên",
-                "C1" => "Số điện thoại",
-                "D1" => "Số tài khoản",
-                "E1" => "Chi nhánh",
+                "A1" => "TRƯỜNG ĐẠI HỌC MỞ HÀ NỘI",
+                "A2" => "KHOA KINH TẾ",
+                "A4" => "DANH SÁCH HỒ SƠ SINH VIÊN",
+                "A6" => "STT",
+                "B6" => "Mã sinh viên",
+                "C6" => "Số điện thoại",
+                "D6" => "Số tài khoản",
+                "E6" => "Chi nhánh",
+                "A7" => "1",
+                "B7" => "20A10xxxxxx",
+                "C7" => "03xxxxxxxx",
+                "D7" => "101xxxxxxx",
+                "E7" => "Hoàn Kiếm",
             );
 
 
             $array_align = array(
-                "A1:E1"
+                "A1:E6"
             );
             $array_bold = array(
-                "A1:E1"
+                "A1:E6"
             );
             $style_array = array(
                 'borders' 					=> array(
@@ -237,7 +245,10 @@
 	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
 	        }
             $start--;
-			$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->applyFromArray($style_array);	
+			$objPHPExcel->getActiveSheet()->mergeCells('A1:C1');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:E4');	
+			$objPHPExcel->getActiveSheet()->getStyle('A6:E7')->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
@@ -273,17 +284,20 @@
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong
             $array_content = array(
-                "A1" => "STT",
-                "B1" => "Mã sinh viên",
-                "C1" => "Họ tên",
-                "D1" => "Ngày sinh",
-                "E1" => "Giới tính",
-                "F1" => "Lớp",
-                "G1" => "Chức vụ",
-                "H1" => "Điạ chỉ thường trú",
-                "I1" => "Điạ chỉ hiện tại"
+                "A1" => "TRƯỜNG ĐẠI HỌC MỞ HÀ NỘI",
+                "A2" => "KHOA KINH TẾ",
+                "A4" => "DANH SÁCH THỐNG KÊ SINH VIÊN",
+                "A6" => "STT",
+                "B6" => "Mã sinh viên",
+                "C6" => "Họ tên",
+                "D6" => "Ngày sinh",
+                "E6" => "Giới tính",
+                "F6" => "Lớp",
+                "G6" => "Chức vụ",
+                "H6" => "Điạ chỉ thường trú",
+                "I6" => "Điạ chỉ hiện tại"
             );
-            $start=2;
+            $start=7;
 	        $index = 1;
 	        foreach ($dshs as $tk) {
                 if($tk['iGioiTinh']==1){
@@ -311,10 +325,10 @@
 
 
 		    $array_align = array(
-	            "A1:I1"
+	            "A1:I6"
 	        );
 	        $array_bold = array(
-	        	"A1:I1"
+	        	"A1:I6"
 	        );
             $style_array = array(
 	    		'borders' 					=> array(
@@ -337,7 +351,10 @@
 	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
 	        }
             $start--;
-			$objPHPExcel->getActiveSheet()->getStyle('A1:I'.$start)->applyFromArray($style_array);	
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:C1');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:I4');
+			$objPHPExcel->getActiveSheet()->getStyle('A6:I'.$start)->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);

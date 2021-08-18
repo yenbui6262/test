@@ -86,16 +86,6 @@ class Cdk_hanhchinh extends MY_Controller {
         // pr($temp);exit();
         $this->load->view('layout/VContent',$temp);
     }
-    private function pagination(){
-        $filterhc     = $this->input->post("filterhc");
-
-        $pageX      = $this->input->post("page");
-        $res        = $this->get_params($pageX-1, $filterhc);
-        if(!empty($res)){
-            echo json_encode($res);
-        }
-    }
-
     public function get_params($page, $dieukien){
         $session = $this->session->userdata("user");
         // init params

@@ -16,14 +16,21 @@
 			return $res;
 		}
 
-		public function getsinhvienduocthamgia($mact)
+		public function getsinhvienchuaxacnhan($mact)
         {
             $this->db->where('tg.sMaCT', $mact);
 			$this->db->where('tg.iTrangThai', '1');
-            $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
-                        ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK,tk.tEmail,lop.sTenLop")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->get("tbl_taikhoan tk")->result_array();
+            $res = $this->db->select("tk.tEmail")
+                        ->join("tbl_taikhoan tk", "tg.sMaTK = tk.PK_sMaTK")
+                        ->get("tbl_thamgia tg")->result_array();
+            return $res;
+        }
+
+		public function gettenct($mact)
+        {
+            $this->db->where('PK_sMaChuongTrinh', $mact);
+            $res = $this->db->select("sTenCT")
+                        ->get("tbl_chuongtrinh")->result_array();
             return $res;
         }
 

@@ -102,15 +102,6 @@ class Cdk_minhchung extends MY_Controller
         $this->load->view('layout/VContent',$temp);
        
     }
-    private function pagination(){
-        $filtermc     = $this->input->post("filtermc");
-
-        $pageX      = $this->input->post("page");
-        $res        = $this->get_params($pageX-1, $filtermc);
-        if(!empty($res)){
-            echo json_encode($res);
-        }
-    }
 
     public function get_params($page, $dieukien){
         $session = $this->session->userdata("user");
