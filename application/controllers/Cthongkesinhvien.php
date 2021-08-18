@@ -207,24 +207,22 @@
                 "A4" => "DANH SÁCH HỒ SƠ SINH VIÊN",
                 "A6" => "STT",
                 "B6" => "Mã sinh viên",
-                "C6" => "Lớp",
-                "D6" => "Số điện thoại",
-                "E6" => "Số tài khoản",
-                "F6" => "Chi nhánh",
+                "C6" => "Số điện thoại",
+                "D6" => "Số tài khoản",
+                "E6" => "Chi nhánh",
                 "A7" => "1",
                 "B7" => "20A10xxxxxx",
-                "C7" => "2010Axxxxxx",
-                "D7" => "03xxxxxxxx",
-                "E7" => "101xxxxxxx",
-                "F7" => "Hoàn Kiếm",
+                "C7" => "03xxxxxxxx",
+                "D7" => "101xxxxxxx",
+                "E7" => "Hoàn Kiếm",
             );
 
 
             $array_align = array(
-                "A1:F6"
+                "A1:E6"
             );
             $array_bold = array(
-                "A1:F6"
+                "A1:E6"
             );
             $style_array = array(
                 'borders' 					=> array(
@@ -233,7 +231,7 @@
                     ) 
                 )
             );
-            foreach (range('A', 'F') as $column) {
+            foreach (range('A', 'E') as $column) {
                 $objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
             }
 	    	foreach ($array_align as $key => $cell) {
@@ -249,8 +247,8 @@
             $start--;
 			$objPHPExcel->getActiveSheet()->mergeCells('A1:C1');	
 			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');	
-			$objPHPExcel->getActiveSheet()->mergeCells('A4:F4');	
-			$objPHPExcel->getActiveSheet()->getStyle('A6:F7')->applyFromArray($style_array);	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:E4');	
+			$objPHPExcel->getActiveSheet()->getStyle('A6:E7')->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
@@ -393,9 +391,9 @@
             $k=7;
             while(!empty($hoso[$k]['A'])){
                 $tunghoso = array(
-                    'sSDT'      => $hoso[$k]['D'],
-                    'sSTK'      => $hoso[$k]['E'],
-                    'sChiNhanh' => $hoso[$k]['F'],
+                    'sSDT'      => $hoso[$k]['C'],
+                    'sSTK'      => $hoso[$k]['D'],
+                    'sChiNhanh' => $hoso[$k]['E'],
                 );
 				
 				//check tai khoan theo ma sv;
