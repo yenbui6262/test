@@ -111,7 +111,7 @@
                             {/foreach}
                             {else}
                             <tr>
-                                <td class="text-center" colspan="6">Không tìm thấy dữ liệu!</td>
+                                <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                             </tr>
                             {/if}
                         </tbody>

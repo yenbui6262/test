@@ -46,7 +46,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             {if (!empty($session['maquyen']))}
-                {if ($session['maquyen'] == 2)||($session['maquyen'] == 3)}
+                {if ($session['maquyen'] == 2)}
                 <li class="nav-item"><a href="{$url}xacnhanthamgia" class="nav-link"><i class="fas fa-file"></i> Xác nhận tham gia</a></li>
                 <li class="nav-item"><a href="{$url}dk_minhchung" class="nav-link"><i class="fas fa-file"></i> Đăng ký minh chứng</a></li>
                 <li class="nav-item"><a href="{$url}dk_hanhchinh" class="nav-link"><i class="fas fa-file"></i> Thủ tục hành chính</a></li>
@@ -81,7 +81,7 @@
                     <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Xác nhận hành chính</a>
                 </li>
                 {/if}
-                {if ($session['maquyen'] == 1 ||$session['maquyen'] == 4)}
+                {if ($session['maquyen'] == 1)}
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Quản lý hệ thống</a>
                     <div class="dropdown-menu">
