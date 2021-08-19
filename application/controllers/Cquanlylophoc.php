@@ -152,7 +152,7 @@
         {
             // pr($dshs);
         	$objPHPExcel = new PHPExcel();
-	        $filename   = 'Mẫu nhập danh sách lớp sinh viên';
+	        $filename   = 'Mẫu nhập danh sách lớp học';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong

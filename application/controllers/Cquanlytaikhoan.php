@@ -239,18 +239,21 @@
                 }else{
                     $iGioiTinh = '2';
                 }
-                $ngaysinh = date("Y-m-d", strtotime($taikhoan[$k]['D']));
+
+                $ngaysinh = date_create_from_format('d/m/Y',$taikhoan[$k]['D']);
+                $ngaysinh = date_format($ngaysinh,"Y-m-d");
+
                 $tungtaikhoan = array(
                     'PK_sMaTK'  => $taikhoan[$k]['B'],
                     'sTenTK'    => $taikhoan[$k]['B'],
                     'sMatKhau'  => sha1($taikhoan[$k]['B']),
                     'sHoTen'    => $taikhoan[$k]['C'],
-                    'dNgaySinh' => date("Y-m-d", strtotime($taikhoan[$k]['D'])),
+                    'dNgaySinh' => $ngaysinh,
                     'iGioiTinh' =>$iGioiTinh,
                     'FK_sMaQuyen'    => '2',
 
                 );
-				print_r($ngaysinh);exit();
+
                 $checklop = $this->Mquanlytaikhoan->checklop($taikhoan[$k]['F']);
                 if(!empty($checklop)){
                     // update lop 
