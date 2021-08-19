@@ -24,6 +24,16 @@
                 }
                 return;
             };
+
+            if($this->input->post('importLop'))
+            {
+            	$this->importlophoc();
+            }
+            if($this->input->post('export'))
+            {
+            	$this->xuatExcel();
+            }
+
             $temp = array(
                 'template'  => 'Vquanlylophoc',
                 'data'      => array(
@@ -94,7 +104,7 @@
                 // $limit_per_page la so luong ban ghi lay ra
                 $params['lophoc']  = $this->Mquanlylophoc->getlophoc($limit_per_page, $page * $limit_per_page,$dieukien);
                 //pr($params);
-                $config['base_url']     = base_url().'quanlytaikhoan';
+                $config['base_url']     = base_url().'quanlylophoc';
                 $config['total_rows']   = $total_records;
                 $config['per_page']     = $limit_per_page;
                 $config['uri_segment']  = 2;
@@ -134,6 +144,111 @@
                 $params["links"] = $this->pagination->create_links();
             }
             return $params;
+        }
+
+        public function xuatExcel()
+        {
+            // pr($dshs);
+        	$objPHPExcel = new PHPExcel();
+	        $filename   = 'Mẫu nhập danh sách tài khoản sinh viên';
+	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
+	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
+		    // lui xuong duoi title 1 dong
+            $array_content = array(
+                "A1" => "TRƯỜNG ĐẠI HỌC MỞ HÀ NỘI",
+                "A2" => "KHOA KINH TẾ",
+                "A4" => "DANH SÁCH LỚP HỌC",
+                "A6" => "STT",
+                "B6" => "Tên lớp",
+                "A7" => "1",
+                "B7" => "2010AXX",
+                "A8" => "2",
+                "B8" => "2010AYY",
+            );
+
+
+		    $array_align = array(
+	            "A1:B6"
+	        );
+	        $array_bold = array(
+	        	"A1:B6"
+	        );
+	        $style_array = array(
+	    		'borders' 					=> array(
+	    			'allborders' 			=> array(
+	    				'style' 			=> PHPExcel_Style_Border::BORDER_THIN
+	    			) 
+	    		)
+	    	);
+	        foreach (range('A', 'B') as $column) {
+	    		$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+	    	}
+	    	foreach ($array_align as $key => $cell) {
+	            $objPHPExcel->getActiveSheet()->getStyle($cell)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	            $objPHPExcel->getActiveSheet()->getStyle($cell)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	        }
+	        foreach ($array_bold as $cells) {
+				$objPHPExcel->getActiveSheet()->getStyle($cells)->getFont()->setBold(true);
+			}
+			foreach($array_content as $key => $value){
+	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
+	        }
+            $start--;
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:D1');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:D2');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:D4');
+			$objPHPExcel->getActiveSheet()->getStyle('A6:B8')->applyFromArray($style_array);	
+	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToPage(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToWidth(1);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
+            $objPHPExcel->getActiveSheet()
+                    ->getPageMargins()->setTop(0.5);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setRight(0.25);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setLeft(0.25);
+            $objPHPExcel->getActiveSheet()
+                ->getPageMargins()->setBottom(0.5);
+
+		    ob_end_clean();
+		    header("Content-type: application/vnd.ms-excel");
+		    header("Content-Disposition: attachment;filename=".$filename.".xls");
+		    header("Cache-Control: max-age=0");
+
+		    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		    $objWriter->save('php://output');
+	        exit();   
+        }
+        
+        public function importlophoc()
+        {
+
+            $giatri=array();
+            PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+            $objPHPExcel = PHPExcel_IOFactory::load($_FILES['importhoso']['tmp_name']);
+
+            $lophoc = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
+            $k=7;
+            while(!empty($lophoc[$k]['A'])){
+
+				// pr($tunglophoc);
+                $checklop = $this->Mquanlylophoc->checklop($lophoc[$k]['B']);
+                if(empty($checklop)){
+                    // insert lop moi
+                    $lop = array(
+                        'PK_sMaLop'      => time().$lophoc[$k]['B'],
+                        'sTenLop'      => $lophoc[$k]['B']
+                    );
+                    $insertlop = $this->Mquanlylophoc->insertlop($lop);
+                }
+				
+                $k++;
+            }
+            setMessages("success", "Cập nhật thành công", "Cập nhật thành công");
+            redirect('quanlylophoc');
         }
 
     }

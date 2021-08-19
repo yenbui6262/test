@@ -138,8 +138,6 @@
 
         public function xuatExcel()
         {
-            $filter = $this->session->userdata("filtertksv");
-            // pr($dshs);
         	$objPHPExcel = new PHPExcel();
 	        $filename   = 'Mẫu nhập danh sách tài khoản sinh viên';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
@@ -152,20 +150,23 @@
                 "A6" => "STT",
                 "B6" => "Mã sinh viên",
                 "C6" => "Họ tên",
+                "D6" => "Lớp",
                 "A7" => "1",
                 "B7" => "20A10XXXXX",
                 "C7" => "Nguyễn Văn A",
+                "D7" => "2010Axx",
                 "A8" => "2",
-                "B8" => "20A10XXXXX",
+                "B8" => "20A10YYYYY",
                 "C8" => "Nguyễn Thị B",
+                "D8" => "2010Axx",
             );
 
 
 		    $array_align = array(
-	            "A1:C6"
+	            "A1:D6"
 	        );
 	        $array_bold = array(
-	        	"A1:C6"
+	        	"A1:D6"
 	        );
 	        $style_array = array(
 	    		'borders' 					=> array(
@@ -174,7 +175,7 @@
 	    			) 
 	    		)
 	    	);
-	        foreach (range('A', 'C') as $column) {
+	        foreach (range('A', 'D') as $column) {
 	    		$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	    	}
 	    	foreach ($array_align as $key => $cell) {
@@ -188,10 +189,10 @@
 	            $objPHPExcel->getActiveSheet()->setCellValue($key,$value);
 	        }
             $start--;
-            $objPHPExcel->getActiveSheet()->mergeCells('A1:C1');	
-			$objPHPExcel->getActiveSheet()->mergeCells('A2:C2');	
-			$objPHPExcel->getActiveSheet()->mergeCells('A4:C4');
-			$objPHPExcel->getActiveSheet()->getStyle('A6:C8')->applyFromArray($style_array);	
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:D1');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A2:D2');	
+			$objPHPExcel->getActiveSheet()->mergeCells('A4:D4');
+			$objPHPExcel->getActiveSheet()->getStyle('A6:D8')->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
@@ -227,6 +228,7 @@
             $taikhoan = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             $k=7;
             while(!empty($taikhoan[$k]['A'])){
+
                 $tungtaikhoan = array(
                     'PK_sMaTK'  => $taikhoan[$k]['B'],
                     'sTenTK'    => $taikhoan[$k]['B'],
@@ -236,6 +238,24 @@
 
                 );
 				// pr($tungtaikhoan);
+                $checklop = $this->Mquanlytaikhoan->checklop($taikhoan[$k]['D']);
+                if(!empty($checklop)){
+                    // update lop 
+                    $tungtaikhoan['sFK_Lop'] = $checklop[0]['PK_sMaLop'];
+                }else{
+                    // insert lop moi
+                    $lop = array(
+                        'PK_sMaLop'      => time().$taikhoan[$k]['D'],
+                        'sTenLop'      => $taikhoan[$k]['D']
+                    );
+                    $insertlop = $this->Mquanlytaikhoan->insertlop($lop);
+                    if($insertlop>0){
+                        // update lop 
+                        $tungtaikhoan['sFK_Lop'] = $lop['PK_sMaLop'];
+                    }
+                }
+
+
 
                 $qq= $this->Mquanlytaikhoan->checktaikhoan($tungtaikhoan);
                 

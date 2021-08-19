@@ -42,12 +42,18 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Ngày sinh</td>
-                        <td>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
+                        <td>{if !empty($val.dNgaySinh)}{date("d/m/Y", strtotime($val.dNgaySinh))}{/if}</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Giới tính</td>
                         <td>
                         {if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="font-weight:600;">Số tài khoản ngân hàng</td>
+                        <td>
+                            {$val.sSTK} {if !empty($val.sChiNhanh)}(Chi nhánh: {$val.sChiNhanh}){/if}
                         </td>
                     </tr>
                     <tr>
@@ -58,14 +64,25 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Địa chỉ thường trú</td>
-                        <td>{$val.xatt}, {$val.huyentt}, {$val.tinhtt} (Chi tiết: {$val.tChiTietTT})</td>
+                        <td>{if !empty($val.tinhtt)}{$val.xatt}, {$val.huyentt}, {$val.tinhtt} (Chi tiết: {$val.tChiTietTT}){/if}</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Địa chỉ hiện tại</td>
-                        <td>{$val.xaht}, {$val.huyenht}, {$val.tinhht} (Chi tiết: {$val.tChiTietHT})</td>
+                        <td>{if !empty($val.tinhht)}{$val.xaht}, {$val.huyenht}, {$val.tinhht} (Chi tiết: {$val.tChiTietHT}){/if}</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="font-weight:600;">Liên hệ</td>
+                        <td>
+                            <div style="padding:5px 0;">
+                                Email: {$val.tEmail}
+                            </div>
+                            <div style="padding:5px 0;">
+                                Sđt: {$val.sSDT}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="font-weight:600;">Liên hệ người thân</td>
                         <td>{if !empty($lienhe)}
                             {foreach $lienhe as $k => $v}
                             <div style="padding:5px 0;">

@@ -71,7 +71,7 @@
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
                     ->select("lop.sTenLop,tk.PK_sMaTK,tk.sHoTen,tk.dNgaySinh,tk.sChucvu,tk.iGioiTinh,tk.sTenTK,tk.FK_sMaQuyen,hs.tChiTietTT,hs.tChiTietHT,t.sTenT as tinhht,h.sTenH as huyenht,x.sTenX as xaht,tt.sTenT as tinhtt,hh.sTenH as huyentt,xx.sTenX as xatt")
-                    ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                    ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                     ->join("tbl_hososv hs", "hs.FK_sMaTK = tk.PK_sMaTK", 'left')
                     ->join("dm_tinh t", "t.PK_sMaT = hs.FK_sMaTinhHT", 'left')
                     ->join("dm_huyen h", "h.PK_sMaH = hs.FK_sMaHuyenHT", 'left')
@@ -153,7 +153,14 @@
                 $this->db->where('hs.FK_sMaXaHT', $dieukien['xaht']);
             }
         }
-        public function checktaikhoan($dieukien){
+        public function checktaikhoan($tentk){
+            $this->db->where('sTenTK', $tentk);
+            $this->db->select('PK_sMaTK');
+            $this->db->from('tbl_taikhoan');
+            $res = $this->db->get()->result_array();
+            return $res;
+        }
+        public function checkhoso($dieukien){
             $this->db->where('FK_sMaTK', $dieukien['FK_sMaTK']);
             $this->db->from('tbl_hososv');
             $res = $this->db->get()->num_rows();
@@ -162,6 +169,10 @@
         public function inserthoso($data){
             $this->db->insert('tbl_hososv',$data);
             return $this->db->affected_rows();
+        }
+        public function updatehoso($tunghoso,$data){
+            $this->db->where($data);
+            $this->db->update("tbl_hososv", $tunghoso);
         }
     }
 ?>

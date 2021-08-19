@@ -305,10 +305,15 @@
                 }else{
                     $tk['iGioiTinh']='Nữ';
                 }
+                if(!empty($tk['dNgaySinh'])){
+                    $tk['dNgaySinh'] = date("d/m/Y", strtotime($tk['dNgaySinh']));
+                }else{
+                    $tk['dNgaySinh']='';
+                }
 	            $array_content['A' . $start]    = $index++;
 	            $array_content['B' . $start]    = $tk['sTenTK'];
 	            $array_content['C' . $start]    = $tk['sHoTen'];
-	            $array_content['D' . $start]    = date("d/m/Y", strtotime($tk['dNgaySinh']));
+	            $array_content['D' . $start]    = $tk['dNgaySinh'];
 	            $array_content['E' . $start]    = $tk['iGioiTinh'];
 	            $array_content['F' . $start]    = $tk['sTenLop'];
 	            $array_content['G' . $start]    = $tk['sChucvu'];
@@ -391,25 +396,26 @@
             $k=7;
             while(!empty($hoso[$k]['A'])){
                 $tunghoso = array(
-                    'FK_sMaTK'  => $hoso[$k]['B'],
                     'sSDT'      => $hoso[$k]['C'],
                     'sSTK'      => $hoso[$k]['D'],
                     'sChiNhanh' => $hoso[$k]['E'],
                 );
 				
-				// print_r($tunghoso);echo "<br>";
-                $qq= $this->Mthongkesinhvien->checktaikhoan($tunghoso);
-                
-                if($qq==0){
-                    $tunghoso['PK_sMaHoSo']=time().$tunghoso['FK_sMaTK'];
-                    
-                    $kq= $this->Mthongkesinhvien->inserthoso($tunghoso);
-                }else{
-                    
-                    $this->db->where(array('FK_sMaTK'		=> $tunghoso['FK_sMaTK']));
-                    
-                    $this->db->update("tbl_hososv", $tunghoso);
-                    $row = 1;
+				//check tai khoan theo ma sv;
+                $checktk = $this->Mthongkesinhvien->checktaikhoan($hoso[$k]['B']);
+                $kq=0;
+                $row=0;
+                if(!empty($checktk)){
+                    $tunghoso['FK_sMaTK'] = $checktk[0]['PK_sMaTK'];
+                    $qq= $this->Mthongkesinhvien->checkhoso($tunghoso);
+                    if($qq==0){
+                        $tunghoso['PK_sMaHoSo']=time().$tunghoso['FK_sMaTK'];
+                        $kq= $this->Mthongkesinhvien->inserthoso($tunghoso);
+                        $kq=1;
+                    }else{
+                        $row = $this->Mthongkesinhvien->updatehoso($tunghoso,array('FK_sMaTK'=> $tunghoso['FK_sMaTK']));
+                        $row = 1;
+                    }
                 }
 				
                 $k++;

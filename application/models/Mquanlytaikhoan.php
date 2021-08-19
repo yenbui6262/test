@@ -97,5 +97,24 @@
             
         }
 
+
+        public function checklop($tenlop){
+            $this->db->where('sTenLop', $tenlop);
+            $this->db->select('PK_sMaLop');
+            $this->db->from('tbl_lop');
+            $res = $this->db->get()->result_array();
+            return $res;
+        }
+
+        public function insertlop($data){
+            $this->db->insert('tbl_lop',$data);
+            return $this->db->affected_rows();
+        }
+        public function updatelop($malop,$dieukien){
+            $this->db->where($dieukien);
+            $this->db->set('sFK_Lop',$malop);
+            $this->db->update("tbl_taikhoan");
+        }
+
     }
 ?>

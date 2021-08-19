@@ -154,8 +154,6 @@
                     <br><i>(Yêu cầu nhập theo đúng mẫu Excel! )</i>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="export" value="xuatmau" class="btn btn-success"><i
-                            class="fas fa-download"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
                     <button type="submit" name="submit" value="submit" class="btn btn-primary">Xác nhận</button>
                 </div>
             </div>
@@ -167,10 +165,11 @@
         </div>
         <div class="card-body">
             <div class="row">
-            <div class="col-12 form-group">
-
-                <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themhosoModal" data-whatever="@mdo"><i
-                            class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm hồ sơ</button>
+                <div class="col-12 form-group">
+                    <button type="button"class="btn btn-success"data-toggle="modal" data-target="#themhosoModal" data-whatever="@mdo"><i
+                        class="fas fa-file-excel"></i>&nbsp;&nbsp;Thêm hồ sơ</button>
+                        <button type="submit" name="export" value="xuatmau" class="btn btn-info"><i
+                                class="fas fa-file-excel"></i>&nbsp;&nbsp;Xuất mẫu Excel</button>
                 </div>
                 <div class="col-md-3 form-group">
                     <label id="tenlop">Lớp:</label>
@@ -290,7 +289,7 @@
                             <td class='text-center'>{$params['stt']++}</td>
                             <td class='text-center'>{$val["PK_sMaTK"]}</td>
                             <td style="font-weight:bold">{$val['sHoTen']}</td>
-                            <td class='text-center'>{date("d/m/Y", strtotime($val.dNgaySinh))}</td>
+                            <td class='text-center'>{if !empty($val.dNgaySinh)}{date("d/m/Y", strtotime($val.dNgaySinh))}{/if}</td>
                             <td class='text-center'>{if ($val["iGioiTinh"]=='1')}Nam{else}Nữ{/if}</td>
                             <td class='text-center'>{$val["sTenLop"]}</td>
                             <td class='text-center' id="{$val['PK_sMaTK']}">
