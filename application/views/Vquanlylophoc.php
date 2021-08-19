@@ -45,7 +45,7 @@
                             <input type="text" id="tenlop" name="tenlop" class="form-control" placeholder="Nhập nội dung tìm kiếm">
                         </div>
                         <div class="col-md-4 form-group timkiem">
-                            <button type="submit" class="btn btn-success timkiemchild" name="action" value="insert"><i
+                            <button type="button" class="btn btn-success timkiemchild" onclick="themlop()"><i
                             class="fa fa-plus" aria-hidden="true"></i>&nbsp;Thêm lớp</button>
                         </div>
                     </div>

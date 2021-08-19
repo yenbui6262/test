@@ -150,15 +150,21 @@
                 "A6" => "STT",
                 "B6" => "Mã sinh viên",
                 "C6" => "Họ tên",
-                "D6" => "Lớp",
+                "D6" => "Ngày sinh",
+                "E6" => "Giới tính",
+                "F6" => "Lớp",
                 "A7" => "1",
                 "B7" => "20A10XXXXX",
                 "C7" => "Nguyễn Văn A",
-                "D7" => "2010Axx",
+                "D7" => "26/11/2002",
+                "E7" => "Nam",
+                "F7" => "2010Axx",
                 "A8" => "2",
                 "B8" => "20A10YYYYY",
                 "C8" => "Nguyễn Thị B",
-                "D8" => "2010Axx",
+                "D8" => "26/11/2002",
+                "E8" => "Nữ",
+                "F8" => "2010Axx",
             );
 
 
@@ -175,7 +181,7 @@
 	    			) 
 	    		)
 	    	);
-	        foreach (range('A', 'D') as $column) {
+	        foreach (range('A', 'F') as $column) {
 	    		$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	    	}
 	    	foreach ($array_align as $key => $cell) {
@@ -192,7 +198,7 @@
             $objPHPExcel->getActiveSheet()->mergeCells('A1:D1');	
 			$objPHPExcel->getActiveSheet()->mergeCells('A2:D2');	
 			$objPHPExcel->getActiveSheet()->mergeCells('A4:D4');
-			$objPHPExcel->getActiveSheet()->getStyle('A6:D8')->applyFromArray($style_array);	
+			$objPHPExcel->getActiveSheet()->getStyle('A6:F8')->applyFromArray($style_array);	
 	        $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 	    	$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
 			$objPHPExcel->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
@@ -228,25 +234,32 @@
             $taikhoan = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             $k=7;
             while(!empty($taikhoan[$k]['A'])){
-
+                if($taikhoan[$k]['E']=="Nam"){
+                    $iGioiTinh = '1';
+                }else{
+                    $iGioiTinh = '2';
+                }
+                $ngaysinh = date("Y-m-d", strtotime($taikhoan[$k]['D']));
                 $tungtaikhoan = array(
                     'PK_sMaTK'  => $taikhoan[$k]['B'],
                     'sTenTK'    => $taikhoan[$k]['B'],
                     'sMatKhau'  => sha1($taikhoan[$k]['B']),
                     'sHoTen'    => $taikhoan[$k]['C'],
+                    'dNgaySinh' => date("Y-m-d", strtotime($taikhoan[$k]['D'])),
+                    'iGioiTinh' =>$iGioiTinh,
                     'FK_sMaQuyen'    => '2',
 
                 );
-				// pr($tungtaikhoan);
-                $checklop = $this->Mquanlytaikhoan->checklop($taikhoan[$k]['D']);
+				print_r($ngaysinh);exit();
+                $checklop = $this->Mquanlytaikhoan->checklop($taikhoan[$k]['F']);
                 if(!empty($checklop)){
                     // update lop 
                     $tungtaikhoan['sFK_Lop'] = $checklop[0]['PK_sMaLop'];
                 }else{
                     // insert lop moi
                     $lop = array(
-                        'PK_sMaLop'      => time().$taikhoan[$k]['D'],
-                        'sTenLop'      => $taikhoan[$k]['D']
+                        'PK_sMaLop'      => time().$taikhoan[$k]['F'],
+                        'sTenLop'      => $taikhoan[$k]['F']
                     );
                     $insertlop = $this->Mquanlytaikhoan->insertlop($lop);
                     if($insertlop>0){

@@ -64,20 +64,22 @@
 
          //delete 
          public function insert(){
-            $data['PK_sMaLop'] = $this->input->post("tenlop");
-            $data['sTenLop'] = $this->input->post("tenlop");
-            if(empty($data['sTenLop'])){
-                setMessages("warning", "Thông tin không được để trống");
-                redirect('quanlylophoc');
-            }
+            
+            $data['PK_sMaLop'] = $this->input->post("lop");
+            $data['sTenLop'] = $this->input->post("lop");
+            
             $check = $this->Mquanlylophoc->checklophoc($data['sTenLop']);
+            
             if(empty($check)){
-                $res=$this->Mquanlylophoc->insertlophoc($data);
-                setMessages("success", "Thêm thành công");
+                // pr($data);exit();
+                $lop=$this->Mquanlylophoc->insertlophoc($data);
+                $res = $this->get_params(0, $filter=null);
+            }else if($check>0){
+                $res = 2;
             }else{
-                setMessages("warning", "Đã tồn tại lớp này");
+                $res =1;
             }
-            redirect('quanlylophoc');
+            echo json_encode($res);
         }
 
         private function search(){
@@ -150,7 +152,7 @@
         {
             // pr($dshs);
         	$objPHPExcel = new PHPExcel();
-	        $filename   = 'Mẫu nhập danh sách tài khoản sinh viên';
+	        $filename   = 'Mẫu nhập danh sách lớp sinh viên';
 	        $objPHPExcel->getProperties()->setCreator("HOU")->setLastModifiedBy("Administrator");
 	        $objPHPExcel->getDefaultStyle()->getFont()->setName('Times new Roman')->setSize(11);
 		    // lui xuong duoi title 1 dong
