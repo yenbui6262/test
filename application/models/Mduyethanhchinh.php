@@ -12,7 +12,7 @@
             $res = $this->db-> select("dky.PK_sMaDangKy")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
                         -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                         ->from("tbl_dangkydon dky")->count_all_results();
             return $res;
         }
@@ -36,11 +36,13 @@
         public function getdondangky($limit, $start,$dieukien)
         {
             $this->dieukien($dieukien);
-            $res = $this->db->order_by("dky.iTrangThai,tk.sHoTen")
+            $res = $this->db->order_by("dky.iTrangThai")
+                        ->order_by("dky.dTGThem","DESC")
+                        ->order_by("tk.sHoTen")
                         -> select("dky.PK_sMaDangKy, tk.sHoTen, tk.PK_sMaTK, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai, dky.tLydo")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
                         -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                         ->limit($limit, $start)
                         ->get("tbl_dangkydon dky")->result_array();
             return $res;

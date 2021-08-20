@@ -18,6 +18,8 @@ function sua(key,  mact) {
 
     document.getElementById("themhc").style.display = 'none';
     document.getElementById("suahc").style.display = 'inline-block';
+    window.scrollTo(300, 100);
+
 }
 $(document).ready(function() {
     if ($('#checkerr').length !== 0) {

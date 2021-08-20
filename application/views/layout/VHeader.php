@@ -81,13 +81,15 @@
                     <a class="nav-link" href="{$url}quanlyhanhchinh"><i class="fas fa-users"></i>&nbsp;Xác nhận hành chính</a>
                 </li>
                 {/if}
-                {if ($session['maquyen'] == 1)}
+                {if ($session['maquyen'] == 1)||($session['maquyen'] == 3)||($session['maquyen'] == 4)}
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button">Quản lý hệ thống</a>
                     <div class="dropdown-menu">
                         {if ($session['maquyen'] == 1)}
                         <a class="dropdown-item" href="{$url}quanlytaikhoan">Quản lý tài khoản</a>
                         <a class="dropdown-item" href="{$url}quanlylophoc">Quản lý lớp học</a>
+                        {/if}
+                        {if ($session['maquyen'] == 1 || $session['maquyen'] == 3)}
                         <a class="dropdown-item" href="{$url}Chuongtrinh">Quản lý chương trình</a>
                         {/if}
                         {if ($session['maquyen'] == 1 || $session['maquyen'] == 4)}

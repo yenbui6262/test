@@ -98,8 +98,10 @@
                     <label for="trangthai">Trạng thái</label>
                     <select class="form-control form-group select2" name="trangthai">
                         <option selected value="tatca">Tất cả</option>
-                        <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
-                        <option value="'0'" {if isset($trangthai) && $trangthai=='0' }selected{/if}>Chưa duyệt</option>
+                        <option value="2" {if isset($trangthai) && $trangthai==2}selected{/if}>Đã duyệt</option>
+                        <option value="1" {if isset($trangthai) && $trangthai==1 }selected{/if}>Chưa duyệt</option>
+                        <option value="3" {if isset($trangthai) && $trangthai==3 }selected{/if}>Không duyệt</option>
+
                     </select>
                 </div>
                 <div class="col-12 form-group text-right">
@@ -127,21 +129,21 @@
                             <td>{$val.sTenHanhChinh}</td>
                             <td>{$val.tMota}</td>
                             <td class="text-center">{date("d/m/Y", strtotime($val.dTGThem))}</td>
-                            {if ($val.iTrangThai == '0')}
                             <td class="text-center">
+                            {if ($val.iTrangThai == 1)}
                                 <span class="badge badge-warning">Chưa duyệt</span>
-                            </td>
-                            {else}
-                            <td class="text-center">
+                            {elseif ($val.iTrangThai == 2)}
                                 <span class="badge badge-success">Đã duyệt</span>
-                            </td>
+                            {elseif ($val.iTrangThai == 3)}
+                                <span class="badge badge-danger">Không duyệt</span>
                             {/if}
+                            </td>
                             <td class="text-center">
                             <a class="btn btn-info" target="_" href="{base_url()}Cword/{$val.maudon}?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
                                         class="fas fa-download"></i></a>
-                                {if ($val.iTrangThai != 1)}
+                                {if ($val.iTrangThai == 1)}
                                 <a onclick="sua('{$val.FK_sMaHanhChinh}','{$val.tLydo}','{$val.PK_sMaDangKy}')"
-                                            class="btn btn-success btnEdit" title="Sửa minh chứng" style="color: white;"
+                                            class="btn btn-warning btnEdit" title="Sửa minh chứng"
                                             data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
                                 
                                 <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"

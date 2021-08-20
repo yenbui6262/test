@@ -11,10 +11,12 @@ $(document).ready(function() {
             if(self.hasClass("btn-success")){
                 // dang la duyet, gio an la bo duyet
                 $(this).removeClass("btn-success");
-                $(this).attr("title","Bỏ duyệt");
+                $(this).attr("title","Không duyệt");
                 self.html('<img src="' + url + 'public/images/spinner.gif">');
                 var id = $(this).attr("data-id");
                 var update = $(this).attr("data-update");
+                $(".b1").eq(id).remove();
+
                 $.ajax({
                     url: window.location.pathname,
                     type: 'POST',
@@ -22,11 +24,11 @@ $(document).ready(function() {
                     data: {
                         action: "update",
                         id: update,
-                        trangthai: "1",
+                        trangthai: "2",
                     }
                 }).done(function(data){
                     $(".badge").eq(id).toggle("slow", function(){
-                        $(".badge").eq(id).removeClass("badge-warning").addClass("badge-success");
+                        $(".badge").eq(id).removeClass("badge-danger").removeClass("badge-warning").addClass("badge-success");
                         $(".badge").eq(id).text("Đã duyệt");
                         $(".badge").eq(id).toggle("slow",()=>{
                             check = true;
@@ -49,12 +51,12 @@ $(document).ready(function() {
                     data: {
                         action: "update",
                         id: update,
-                        trangthai: "0",
+                        trangthai: "3",
                     }
                 }).done(function(data){
                     $(".badge").eq(id).toggle("slow", function(){
-                        $(".badge").eq(id).removeClass("badge-success").addClass("badge-warning");
-                        $(".badge").eq(id).text("Chưa duyệt");
+                        $(".badge").eq(id).removeClass("badge-success").addClass("badge-danger");
+                        $(".badge").eq(id).text("Không duyệt");
                         $(".badge").eq(id).toggle("slow", e =>{
                             check = true;
                             self.addClass("btn-success");

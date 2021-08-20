@@ -47,6 +47,12 @@
             return $this->db->affected_rows();
             
         }
+        public function deletedangkydon($Mahc){
+            $this->db->where('FK_sMaHanhChinh', $Mahc);
+            $this->db->delete('tbl_dangkydon');
+            return $this->db->affected_rows();
+            
+        }
         
         //cập nhật 
         public function updatehanhchinh($Mahc, $data)
