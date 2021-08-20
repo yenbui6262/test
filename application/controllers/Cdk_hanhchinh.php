@@ -17,7 +17,7 @@ class Cdk_hanhchinh extends MY_Controller {
                         'FK_sMaCanbo'       => null,
                         'FK_sMaHanhChinh'   => $post_data['Ma'],
                         'dTGThem'           => $date,
-                        'iTrangThai'        => "0",
+                        'iTrangThai'        => "1",
                         'tLydo'             => $post_data['lydo'],
 
                     );

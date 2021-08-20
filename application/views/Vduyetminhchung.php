@@ -133,12 +133,14 @@
                                 <td class="text-center">
                                     <a href="{$val.tLink}" class="btn btn-sm btn-info"><i class="fas fa-eye" title="Link minh chứng"></i></a>
                                     {if $val.dThoiGIanKT >= date('Y-m-d')}
-                                        {if ($val.iTrangThaiCD == 1)||($val.iTrangThaiCD == 3)||($val.iTrangThaiCD == '')}
-                                            <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
+                                        {if ($val.iTrangThaiCD == 3)}
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}" class="btn btn-sm btn-success check a1 b1" type="submit" title="Duyệt" ><i class="fas fa-user-check"></i></button>
                                         {else if ($val.iTrangThaiCD == 2)}
-                                            <button title="Hủy duyệt" class="btn btn-sm btn-warning check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}" class="btn btn-sm btn-danger  check a1 b1" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
+                                        {else}
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}"class="btn btn-sm btn-success check b1" type="submit" title="Duyệt"><i class="fas fa-user-check"></i></button>
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}"class="btn btn-sm btn-danger check" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
                                         {/if}
-                                            <button title="Không duyệt" class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
                                     {/if}
                                 </td>
                             </tr>
@@ -179,12 +181,14 @@
                                 <td class="text-center">
                                     <a href="{$val.tLink}" class="btn btn-sm btn-info"><i class="fas fa-eye" title="Link minh chứng"></i></a>
                                     {if $val.dThoiGIanKT >= date('Y-m-d')&&$val.iTrangThaiCD==''}
-                                        {if ($val.iTrangThai == 1)||($val.iTrangThai == 3)}
-                                            <button title="Duyệt" class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-check"></i></button>
+                                        {if ($val.iTrangThai == 3)}
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}" class="btn btn-sm btn-success check a1 b1" type="submit" title="Duyệt" ><i class="fas fa-user-check"></i></button>
                                         {else if ($val.iTrangThai == 2)}
-                                            <button title="Hủy duyệt" class="btn btn-sm btn-warning check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}" class="btn btn-sm btn-danger  check a1 b1" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
+                                        {else}
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}"class="btn btn-sm btn-success check b1" type="submit" title="Duyệt"><i class="fas fa-user-check"></i></button>
+                                        <button data-id="{$key}" data-update="{$val.PK_sMaMC}"class="btn btn-sm btn-danger check" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
                                         {/if}
-                                            <button title="Không duyệt" class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaMC}"><i class="fa fa-user-slash"></i></button>
                                     {/if}
                                 </td>
                             </tr>

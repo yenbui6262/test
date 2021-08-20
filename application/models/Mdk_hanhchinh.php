@@ -38,10 +38,11 @@ class Mdk_hanhchinh extends My_Model
     
     public function getDon($limit, $start,$dieukien,$masv){
         $this->dieukien($dieukien);
-        $this->db->select("*")
+        $this->db->order_by("iTrangThai")
+                ->order_by("dTGThem","DESC")
+                ->select("*")
                 ->where('FK_sMaSV',$masv)
                 ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
-                ->order_by('dTGThem desc,PK_sMaHanhChinh')
                 ->limit($limit, $start);
         $res= $this->db->get("tbl_dangkydon")->result_array();
         return $res;
