@@ -10,8 +10,7 @@
 <body>
     <div style="margin:0 auto; padding:2.54cm;">
         <b>
-            <p style="text-align:center;">Đề nghị phát hành lại thẻ LIÊN KẾT SINH VIÊN <br><i>Student ATM Card Reissuance Request</i></p>
-            <p style="text-align:center;"></p>
+            <p style="text-align:center;font-size: 15pt">Đề nghị phát hành lại thẻ LIÊN KẾT SINH VIÊN <br><i>Student ATM Card Reissuance Request</i></p>
             <br>
         </b>
         <b>
@@ -24,7 +23,7 @@
         <p>Địa chỉ/ <i>Address</i>:.........................................................Số điện thoại/ <i>Tel</i>:......................</p>
         <p>Tên trường/ <i>Name of institution</i>: Trường Đại học Mở Hà Nội.</p>
         <p>Mã sinh viên/ <i>Student ID</i>: &nbsp;...{$thongtin['PK_sMaTK']}...</p>
-        <p>Lớp/ <i>Class</i>:&nbsp;...{$thongtin['sTenLop']}... Ngành học/ <i>Major in</i>: Kinh tế</p>
+        <p>Lớp/ <i>Class</i>:&nbsp;...{$thongtin['sTenLop']}... Ngành học/ <i>Major in</i>: &nbsp;..................</p>
         <p>Khoa/ <i>Faculty</i>: ..... Kinh tế ................. Khóa học/ <i>School year</i>:...............</p>
         <p>Đề nghị Ngân hàng phát hành lại thẻ cho tôi–<i> I request the Bank to reissue ATM card for me:</i></p>
         <p>-&nbsp;Đề nghị khoá vĩnh viễn thẻ cũ/ <i>Pls terminate my old card No</i>- <b>Số thẻ</b>:&nbsp; ..................</p>

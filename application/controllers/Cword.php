@@ -9,13 +9,7 @@ class Cword extends MY_Controller {
 	}
 	public function index()
 	{
-		// $madangky= $this->input->get('madangky');
-        // $data = $this->Mword->gethanhchinh($madangky);
-        // if($data['maudon']){
-        //     $this->$data['maudon']();exit();
-        // }else{
-        //     echo "mẫu không có sẵn";exit();
-        // }
+		echo "Đơn không có sẵn";
 	}
     public function capbangdiem(){
         $session = $this->session->userdata("user");
@@ -25,7 +19,6 @@ class Cword extends MY_Controller {
             'message' 	=> getMessages(),
             'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
         );
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxincapbangdiem.doc");
@@ -73,7 +66,6 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donvayvonnganhang.doc");
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vvayvonnganhang',$data);
 
     }
@@ -89,7 +81,6 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxinphuckhaobaithi.doc");
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vphuckhaobaithi',$data);
 
     }
@@ -104,7 +95,6 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxinmiengiamhocphi.doc");
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vmiengiamhocphi',$data);
 
     }
@@ -119,7 +109,6 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donlamthevethangxebuyt.doc");
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vvethangxebuyt',$data);
 
     }
@@ -134,7 +123,6 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Donxacnhandansu.doc");
-        // $data['thongtin']=$this->Mword->getThongtincoban($session['taikhoan']);
         $this->parser->parse('Vword/Vxacnhandansu',$data);
 
     }
@@ -226,6 +214,36 @@ class Cword extends MY_Controller {
         header("Content-Disposition: attachment;Filename=Donxinkiemtradiem.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/Vkiemtradiem',$data);
+
+    }
+    public function dangkytotnghiep(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Dondangkytotnghiep.doc");
+        // pr($data);exit();
+        $this->parser->parse('Vword/Vdangkytotnghiep',$data);
+
+    }
+    public function camdoanhoanthanhCTDT(){
+        $session = $this->session->userdata("user");
+        $madangky= $this->input->get('madangky');
+            $data     	= array(
+                'session'	=> $session,
+                'message' 	=> getMessages(),
+                'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
+            );
+            
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=Giaycamdoandahoanthanhchuongtrinhdaotao.doc");
+        // pr($data);exit();
+        $this->parser->parse('Vword/VcamdoanhoanthanhCTDT',$data);
 
     }
 }

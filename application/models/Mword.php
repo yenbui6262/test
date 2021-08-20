@@ -5,13 +5,6 @@
 		{
 			parent::__construct();
 		}
-        // public function gethanhchinh($madk){
-        //     $res = $this->db->select("*")
-        //                 ->where("PK_sMaDangKy", $madk)
-        //                 ->join("tbl_dangkydon", "FK_sMaHanhChinh = PK_sMaHanhChinh")
-        //                 ->get("dm_hanhchinh")->row_array();
-        //     return $res;
-        // }
 		public function getThongtincoban($masv, $madk){
             
             $this->db->select("*")
