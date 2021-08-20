@@ -33,13 +33,14 @@ class Mdk_minhchung extends My_Model
                         ->where('iTrangThai', 2)
                         ->where('sMaTK', $masv)
                         ->order_by("PK_sMaChuongTrinh asc");
-            return $this->db->get("tbl_thamgia")->result_array();
+            return $this->db->get("tbl_thamgia tg")->result_array();
         }
         public function getMinhchung($limit, $start,$dieukien,$masv){
             $this->dieukien($dieukien);
-            $res=$this->db->select("PK_sMaMC, ct.PK_sMaChuongTrinh,FK_sMaCT,ct.sTenCT, ct.tMota, tLink, mc.FK_sMaCBCD,mc.FK_sMaCB,iTrangThai, iTrangThaiCD,dThoiGIanBD,dThoiGIanKT")
+            $res=$this->db->select("PK_sMaMC, ct.PK_sMaChuongTrinh,FK_sMaCT,ct.sTenCT, ct.tMota, tLink, mc.FK_sMaCBCD,mc.FK_sMaCB,iTrangThai, iTrangThaiCD,dThoiGIanBD,dThoiGIanKT,tk.sChucvu")
                     ->where('FK_sMaSV',$masv)
                     ->join("tbl_chuongtrinh ct","ct.PK_sMaChuongTrinh=mc.FK_sMaCT")
+                    ->join("tbl_taikhoan tk","tk.PK_sMaTK=mc.FK_sMaCB",'left')
                     ->order_by("dThoiGIanKT desc,PK_sMaChuongTrinh ")
                     ->limit($limit, $start);
             return $this->db->get("tbl_minhchung mc")->result_array();

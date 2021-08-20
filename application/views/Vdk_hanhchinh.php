@@ -61,7 +61,7 @@
                             <option value="0" readonly hidden>--Chọn tên thủ tục--</option>
                             {if !empty ($hanhchinh)}
                             {foreach $hanhchinh as $k => $val}
-                            <option value="{$val.PK_sMaHanhChinh}">{$val.sTenHanhChinh}</option>
+                            <option value="{$val.PK_sMaHanhChinh}"hidden>{$val.sTenHanhChinh}</option>
                             {/foreach}
                             {/if}
                         </select>
@@ -139,18 +139,17 @@
                             {/if}
                             </td>
                             <td class="text-center">
-                            <a class="btn btn-info" target="_" href="{base_url()}Cword/{$val.maudon}?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
-                                        class="fas fa-download"></i></a>
-                                {if ($val.iTrangThai == 1)}
-                                <a onclick="sua('{$val.FK_sMaHanhChinh}','{$val.tLydo}','{$val.PK_sMaDangKy}')"
-                                            class="btn btn-warning btnEdit" title="Sửa minh chứng"
+                                <a class="btn btn-info {if empty($val.maudon)}disabled{/if}" target="_" href="{base_url()}Cword/{$val.maudon}?madangky={$val.PK_sMaDangKy}" title="Xem biểu mẫu"><i
+                                        class="fas fa-download"></i></a> 
+                                <a onclick="sua('{$val.FK_sMaHanhChinh}','{$val.tLydo}','{$val.PK_sMaDangKy}')" 
+                                            class="btn btn-warning btnEdit {if ($val.iTrangThai != 1)}disabled{/if}" title="Sửa minh chứng"
                                             data-toggle="modal" data-target="#editModal" data-whatever="@mdo"><i class="fa fa-user-edit"></i></a>
                                 
-                                <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"
+                                <button name="delete" value="{$val.PK_sMaDangKy}" class="btn btn-danger" type="submit"{if ($val.iTrangThai != 1)}disabled{/if}
                                     title="Hủy đơn"
-                                    onclick="return confirm('Bạn có muốn hủy đăng ký đơn hành chính này không này không?');"><i
+                                    onclick="return confirm('Bạn có muốn hủy đăng ký đơn thủ tục hành chính này không này không?');"><i
                                         class="fas fa-trash"></i></button>
-                                {/if}
+                                
                             </td>
                         </tr>
                         {/foreach}
