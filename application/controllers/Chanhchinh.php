@@ -81,6 +81,7 @@
         
         //delete 
         public function delete($mahc){
+            $this->Mhanhchinh->deletedangkydon($mahc);
 
             $row    = $this->Mhanhchinh->deletehanhchinh($mahc);
             

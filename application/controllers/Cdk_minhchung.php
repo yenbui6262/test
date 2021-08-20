@@ -8,6 +8,9 @@ class Cdk_minhchung extends MY_Controller
     }
     public function index($page=1){
         $session = $this->session->userdata("user");
+        if($session['maquyen']!=2){
+            return redirect(base_url().'403_Forbidden');    
+        }
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date = date("Y-m-d H:i:s");
         if($this->input->post('minhchung')){

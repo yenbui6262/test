@@ -18,9 +18,92 @@ $(document).ready(function() {
         });
     });
 
-
 });
+function themlop(){
+    Swal.fire({
+        title: 'Lớp',
+        html: `<input type="text" id="ilop" class="swal2-input" placeholder="Nhập tên lớp">`,
+        inputAttributes: {
+        autocapitalize: 'off'
+        },
+        // showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Lưu',
+        cancelButtonColor: "#d14529",
+        cancelButtonText: 'Hủy',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+            var lop = Swal.getPopup().querySelector('#ilop').value
+            if (!lop) {
+            Swal.showValidationMessage(`Vui lòng nhập tên lớp`)
+            }
+            return lop 
+        },
+    }).then((result) => {
 
+        if (result.isConfirmed) {
+            var lop = result.value;
+            history.pushState(null, null, link_url + "quanlylophoc");
+            tenlop =$('#tenlop').val();
+            var data = {
+                action: "insert",
+                lop:lop
+            }
+        
+            $.ajax({
+                url: window.location.pathname,
+                type: "post",
+                data: data,
+                beforeSend: loading(),
+            }).done(function(data){
+              data = JSON.parse(data);
+              if(data==1){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Thêm thất bại!',
+                  })  
+                
+              }else if(data==2){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Đã tồn tại lớp!',
+                  })   
+              }else{
+                renderTable(data);
+                Swal.fire(
+                    'Đã thêm!',
+                    'Bạn đã thêm thành công.',
+                    'success'
+                  ) 
+              }
+            }).always(function(e){
+                $("#overlay").hide();
+            });
+
+            // $.ajax({
+            //     url: window.location.pathname,
+            //     type: 'POST',
+            //     dataType: 'html',
+            //     data: {
+            //         action: "insert",
+            //         lop: lop,
+            //     }
+            // }).done(function(data){
+            //     console.log(data);
+            //     // data = JSON.parse(data);
+            //     // html = '';
+            //     // if(data[0].sChucvu!=''){
+            //     //     html = data[0].sChucvu;
+            //     // }
+            //     // $('#'+matk).html(html);
+            //     // Swal.fire('Cấp quyền thành công!', '', 'success')
+                
+            // });
+        }
+    });
+}
 function xacnhanxoa(malop) {
     Swal.fire({
         title: 'Bạn có chắc muốn xóa lớp học này?',

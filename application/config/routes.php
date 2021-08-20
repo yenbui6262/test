@@ -17,7 +17,7 @@ $route['thongkeminhchung']              = 'Cthongkeminhchung';
 $route['thongkeminhchung/(:num)']		= 'Cthongkeminhchung/index/$1';
 $route['thongkesinhvien']               = 'Cthongkesinhvien';
 $route['thongkesinhvien/(:num)']		= 'Cthongkesinhvien/index/$1';
-$route['chitietsinhvien']              = 'Cchitietsinhvien';
+$route['chitietsinhvien']               = 'Cchitietsinhvien';
 $route['thongtinchuongtrinh']           = 'Cthongtinchuongtrinh';
 $route['thongtinchuongtrinh/(:num)']	= 'Cthongtinchuongtrinh/index/$1';
 $route['thongtincanhan']                = 'Cthongtincanhan';
@@ -32,16 +32,17 @@ $route['quanlyhanhchinh']               = 'Cduyethanhchinh';
 $route['quanlyhanhchinh/(:num)']		= 'Cduyethanhchinh/index/$1';
 $route['quanlytaikhoan']                = 'Cquanlytaikhoan';
 $route['quanlytaikhoan/(:num)']         = 'Cquanlytaikhoan/index/$1';
-$route['quanlylophoc']                = 'Cquanlylophoc';
-$route['quanlylophoc/(:num)']         = 'Cquanlylophoc/index/$1';
+$route['quanlylophoc']                  = 'Cquanlylophoc';
+$route['quanlylophoc/(:num)']           = 'Cquanlylophoc/index/$1';
 // $route['don'] 						    = 'Cword';
 
 $route['mail'] 						    = 'Cemail';
 $route['sendmail'] 					    = 'Cemail/sending_email';
 $route['themchuongtrinh']               = 'Cthemchuongtrinh';
-$route['suachuongtrinh']               = 'Cthemchuongtrinh';
+$route['suachuongtrinh']                = 'Cthemchuongtrinh';
 
 
 $route['default_controller'] = 'Clogin';
-$route['404_override'] = '';
+$route['404_override'] 				    = 'C404';
+$route['403_Forbidden'] 			    = 'C403';
 $route['translate_uri_dashes'] = FALSE;

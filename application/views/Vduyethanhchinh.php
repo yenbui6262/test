@@ -36,9 +36,10 @@
                         <select class="form-control select2 no-search-select2" name="trangthai" aria-label="Small"
                             aria-describedby="trangthai">
                             <option selected value="tatca">Tất cả</option>
-                            <option value="1" {if isset($trangthai) && $trangthai==1}selected{/if}>Đã duyệt</option>
-                            <option value="0" {if isset($trangthai) && $trangthai=='0' }selected{/if}>Chưa duyệt
-                            </option>
+                            <option value="2" {if isset($trangthai) && $trangthai==2}selected{/if}>Đã duyệt</option>
+                            <option value="1" {if isset($trangthai) && $trangthai==1 }selected{/if}>Chưa duyệt</option>
+                            <option value="3" {if isset($trangthai) && $trangthai==3 }selected{/if}>Không duyệt</option>
+
                         </select>
                     </div>
                     <div class="col-md-3 form-group chuongtrinh">
@@ -72,9 +73,9 @@
                                 <th class="text-center" style="width: 10%">Mã Sinh viên</th>
                                 <th class="text-center" style="width: 15%">Họ tên</th>
                                 <th class="text-center" style="width: 18%">Tên thủ tục</th>
-                                <th class="text-center" style="width: 37%">Lý do</th>
+                                <th class="text-center" style="width: 27%">Lý do</th>
                                 <th class="text-center" style="width: 10%">Trạng thái</th>
-                                <th class="text-center" style="width: 100px !important;">Tác vụ</th>
+                                <th class="text-center" style="width: 10%">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
@@ -86,22 +87,26 @@
                                 <td><a><strong>{$val.sHoTen}</strong></a></td>
                                 <td>{$val.sTenHanhChinh}</td>
                                 <td>{$val.tLydo}</td>
-                                {if ($val.iTrangThai == 0)}
                                 <td class="text-center">
+                                {if ($val.iTrangThai == 1)}
                                     <span class="badge badge-warning">Chưa duyệt</span>
-                                </td>
-                                {else}
-                                <td class="text-center">
+                                {elseif ($val.iTrangThai == 2)}
                                     <span class="badge badge-success">Đã duyệt</span>
-                                </td>
+                                {elseif ($val.iTrangThai == 3)}
+                                    <span class="badge badge-danger">Không duyệt</span>
                                 {/if}
+                                </td>
                                 <td class="text-center">
-                                    {if ($val.iTrangThai == '0')}
-                                        <button class="btn btn-sm btn-success check" data-id="{$key}" data-update="{$val.PK_sMaDangKy}"><i class="fa fa-user-check"></i></button>
+                                    {if ($val.iTrangThai == 3)}
+                                    <button data-id="{$key}" data-update="{$val.PK_sMaDangKy}" class="btn btn-sm btn-success check a1 b1" type="submit" title="Duyệt" ><i class="fas fa-user-check"></i></button>
+                                    {else if ($val.iTrangThai == 2)}
+                                    <button data-id="{$key}" data-update="{$val.PK_sMaDangKy}" class="btn btn-sm btn-danger  check a1 b1" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
                                     {else}
-                                        <button class="btn btn-sm btn-danger check" data-id="{$key}" data-update="{$val.PK_sMaDangKy}"><i class="fa fa-user-slash"></i></button>
+                                    <button data-id="{$key}" data-update="{$val.PK_sMaDangKy}"class="btn btn-sm btn-success check b1" type="submit" title="Duyệt"><i class="fas fa-user-check"></i></button>
+                                    <button data-id="{$key}" data-update="{$val.PK_sMaDangKy}"class="btn btn-sm btn-danger check" type="submit" title="Không duyệt"><i class="fas fa-user-slash"></i></button>
+                                    
                                     {/if}
-                                    <!-- <button type="button" class="btn btn-default notifier" data-toggle="modal" data-target="#modal-default" title="Gửi thông báo" value="{$val.PK_sMaminhchung}"><i class="far fa-envelope fa-lg"></i></button> -->
+
                                 </td>
                                 <!-- <td class="text-center">
                                     <button type="submit" name="edit" value="{$val['PK_sMaDangKy']}"
@@ -111,7 +116,7 @@
                             {/foreach}
                             {else}
                             <tr>
-                                <td class="text-center" colspan="6">Không tìm thấy dữ liệu!</td>
+                                <td class="text-center" colspan="15">Không tìm thấy dữ liệu!</td>
                             </tr>
                             {/if}
                         </tbody>

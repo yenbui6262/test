@@ -60,7 +60,11 @@
             $res = $this->db->get()->result_array();
             return $res;
         }
-
+        public function getlop(){
+            $res = $this->db->select('*')
+                        ->get('tbl_lop')->result_array();
+            return $res;
+        }
         public function insertlop($data){
             $this->db->insert('tbl_lop',$data);
             return $this->db->affected_rows();

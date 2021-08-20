@@ -6,6 +6,9 @@ class Cdk_hanhchinh extends MY_Controller {
     }
     public function index($page=1){
         $session = $this->session->userdata("user");
+        if($session['maquyen']!=2){
+            return redirect(base_url().'403_Forbidden');    
+        }
         $date = date("Y-m-d H:i:s");
         $hanhchinh  = $this->Mdk_hanhchinh->getHanhchinh();
         if($this->input->post("hanhchinh")){
@@ -17,7 +20,7 @@ class Cdk_hanhchinh extends MY_Controller {
                         'FK_sMaCanbo'       => null,
                         'FK_sMaHanhChinh'   => $post_data['Ma'],
                         'dTGThem'           => $date,
-                        'iTrangThai'        => "0",
+                        'iTrangThai'        => "1",
                         'tLydo'             => $post_data['lydo'],
 
                     );

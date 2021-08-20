@@ -9,7 +9,7 @@
 
             $this->db->select("*")
                     ->where("PK_sMaTK", $masv)
-                    ->join("tbl_lop", "PK_sMaLop = sFK_Lop");
+                    ->join("tbl_lop", "PK_sMaLop = sFK_Lop","left");
             $res = $this->db->get("tbl_taikhoan")->row_array();
             return $res;
         }

@@ -17,7 +17,7 @@
             $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, mc.tLink, lop.sTenLop")
                         -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                         -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                         ->from("tbl_minhchung mc")->count_all_results();
             return $res;
         }
@@ -63,17 +63,19 @@
             if($maquyen==1||$maquyen==3){
                 $this->db-> where('mc.iTrangThai', '2');
                 $this->db-> order_by("mc.iTrangThaiCD");
+                $this->db-> order_by("tk.sHoTen");
                 $this->db-> order_by("mc.dTGduyet",'DESC');
             }else{
                 $this->db-> where('tk.sFK_lop', $malop);
                 $this->db-> order_by("mc.iTrangThai");
+                $this->db-> order_by("tk.sHoTen");
                 $this->db-> order_by("ct.dThoiGIanKT",'DESC');
             }
                         
             $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,mc.iTrangThaiCD,ct.dThoiGIanKT,ct.sTenCT,ct.dThoiGIanBD")
                             -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
                             -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                            -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                            -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                             -> limit($limit, $start)
                             -> get("tbl_minhchung mc")->result_array();
             return $res;
