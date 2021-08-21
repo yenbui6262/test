@@ -15,7 +15,7 @@
                 <div class="row">
                     <div style="display:none" class="col-12">
                         <div class="form-group">
-                            <input type="text" name="mahc" value="{(set_value('mahc')) ? set_value('mahc') : null}}">
+                            <input type="text" name="mahc" value="{(set_value('mahc')) ? set_value('mahc') : null}">
                         </div>
                     </div>
                     <div class="col-md-4 form-group">

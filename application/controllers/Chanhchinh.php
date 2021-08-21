@@ -15,11 +15,11 @@
                 return redirect(base_url().'403_Forbidden');
             }
             $check='';
-            $action='';
+            $sua='';
             if($action = $this->input->post('action')){
                 switch($action){
                     case 'insert'    : $check = $this->addhanhchinh();break;
-                    case 'edit'      : $check = $this->update();$action=$this->input->post('mahc');break;
+                    case 'edit'      : $sua='sua';$check = $this->update();break;
                     case "search"    : 
                         $filter = array(
                         'tenhc'           => $this->input->post('tenhc'),
@@ -45,7 +45,7 @@
                     'mota' => $filter['mota'],
                     'session'   => $session,
                     'check'     => $check,
-                    'action'    => $action
+                    'action'    => $sua
                 ),
             );
             // pr($temp);
