@@ -92,7 +92,7 @@
 
         public function deletedangkydon($MaTK){
             $this->db->where('FK_sMaSV', $MaTK);
-            $this->db->delete('tbl_dangkydon');
+            $this->db->delete('hs_tbl_dangkydon');
             return $this->db->affected_rows();
             
         }
@@ -101,13 +101,13 @@
         public function checklop($tenlop){
             $this->db->where('sTenLop', $tenlop);
             $this->db->select('PK_sMaLop');
-            $this->db->from('tbl_lop');
+            $this->db->from('hs_tbl_lop');
             $res = $this->db->get()->result_array();
             return $res;
         }
 
         public function insertlop($data){
-            $this->db->insert('tbl_lop',$data);
+            $this->db->insert('hs_tbl_lop',$data);
             return $this->db->affected_rows();
         }
         public function updatelop($malop,$dieukien){
