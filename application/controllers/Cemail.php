@@ -66,9 +66,17 @@ class Cemail extends MY_Controller {
 
     /* Gui cac tieu chi chua dat cho sinh vien*/
     private function sendMailError($mact) {
-        $tenct = $this->Memail->gettenct($mact)[0]['sTenCT'];
-        $subject = "Thông báo";
-        $noidungMail = "Yêu cầu xác nhận tham gia chương trình: ".$tenct;
+        $chuongtrinh = $this->Memail->gettenct($mact);
+        $tenct='';
+        if(!empty($chuongtrinh)){
+            $tenct=$chuongtrinh[0]['sTenCT'];
+        }
+        $subject = "Thông báo xác nhận tham gia chương trình ".$tenct;
+        $noidungMail = "Thông báo đến sinh viên thực hiện xác nhận tham gia chương trình ".$tenct. "<br/>";
+        if(!empty($chuongtrinh[0]['dThoiGianXN'])){
+            $noidungMail .= "Hạn đến ngày ".date("d/m/Y", strtotime($chuongtrinh[0]['dThoiGianXN'])). "<br/>";
+        }
+        $noidungMail .= "Đây là hệ thống trả lời tự động vui lòng không trả lời lại thư này";
         $dsnguoinhan = $this->Memail->getsinhvienchuaxacnhan($mact);
 
         $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng - Tư vấn Khoa kinh tế HOU');
@@ -96,8 +104,8 @@ class Cemail extends MY_Controller {
         $config['protocol']     = "smtp";
         $config['smtp_host']    = "ssl://smtp.gmail.com";
         $config['smtp_port']    = 465;
-        $config['smtp_user']    = "emailkinhte";
-        $config['smtp_pass']    = "passkinhte";
+        $config['smtp_user']    = "emailkhoakt";
+        $config['smtp_pass']    = "emailpass";
         $config['mailtype']     = 'html';
         $config['newline']      = "\r\n";
         $config['charset']      = "utf-8";

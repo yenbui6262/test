@@ -29,7 +29,7 @@
 		public function gettenct($mact)
         {
             $this->db->where('PK_sMaChuongTrinh', $mact);
-            $res = $this->db->select("sTenCT")
+            $res = $this->db->select("sTenCT,dThoiGianXN")
                         ->get("hs_tbl_chuongtrinh")->result_array();
             return $res;
         }
