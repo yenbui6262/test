@@ -41,9 +41,7 @@
         <p>Điện thoại:&nbsp;.....................................................</p>
         <p>Em hiện là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành:&nbsp;........................</p>
         <p>Khóa học:....................&nbsp;&nbsp;Khoa:...Kinh tế..</p>
-        <p>Em làm đơn này xin phép nghỉ học tạm thời và bảo lưu kết quả học tập vì lý do:{if !empty($thongtin['tLydo'])}{$thongtin['tLydo']}{else}......................................................................................................................................................
-        <br>......................................................................................................................................................
-        {/if}</p>
+        <p>Em làm đơn này xin phép nghỉ học tạm thời và bảo lưu kết quả học tập vì lý do:</p>
         <table>
             <tr>
                 <td width="75%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Được điều động vào các lực lượng vũ trang</td>
@@ -64,6 +62,7 @@
         <p style="text-align:right;"><i>........................, ngày ............... tháng ............  năm............</i><br>
             (Sinh viên ký và ghi rõ họ tên)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
+        <p>&nbsp; </p>
         <p>&nbsp; </p>
         <p>&nbsp; </p>
         <p>&nbsp; </p>

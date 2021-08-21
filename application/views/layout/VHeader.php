@@ -110,7 +110,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     {if ($session['maquyen'] == 2)}
                     <a class="dropdown-item" href="{$url}hososinhvien">Hồ sơ sinh viên</a>
-                    <a class="dropdown-item" href="{$url}thongtincanhan">Tài khoản</a>
+                    <a class="dropdown-item" href="{$url}thongtincanhan">Đổi mật khẩu</a>
                     {/if}
                     <a class="dropdown-item" href="{$url}dangxuat">Đăng xuất</a>
                 </div>
