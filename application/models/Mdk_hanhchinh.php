@@ -17,13 +17,13 @@ class Mdk_hanhchinh extends My_Model
         return $count;
     }
     private function dieukien($dieukien=null){
-        if(!empty($dieukien['tenhc'])){
+        if(isset($dieukien['tenhc'])){
             $this->db->like('sTenHanhChinh', $dieukien['tenhc']);
         }
-        if(!empty($dieukien['mota'])){
+        if(isset($dieukien['mota'])){
             $this->db->like('tMota', $dieukien['mota']);
         }
-        if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+        if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('iTrangThai', $dieukien['trangthai']);
             }
         

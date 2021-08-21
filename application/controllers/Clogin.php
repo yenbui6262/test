@@ -1,6 +1,6 @@
 <?php 
 
-	class Clogin extends MY_Controller {
+	class Clogin extends CI_Controller {
 
 	    public function __construct() {
 	    	parent::__construct();
@@ -27,7 +27,7 @@
 
 	    	$check_user = $this->Mlogin->get_many_where('hs_tbl_taikhoan', array('sTenTK' => $user, 'sMatKhau' => sha1($password)));
 
-	    	if(empty($check_user)){
+	    	if(!($check_user)){
 	    		return "Sai tên tài khoản hoặc mật khẩu";
 	    	}
 

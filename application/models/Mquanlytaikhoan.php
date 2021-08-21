@@ -17,7 +17,7 @@
         }
 
         private function dieukien($dieukien=null){
-            if(!empty($dieukien['masv'])){
+            if(isset($dieukien['masv'])){
                 $searchQuery = "(tk.sTenTK like '%".$dieukien['masv']."%' or 
                 tk.sHoTen like '%".$dieukien['masv']."%') ";
                 $this->db->where($searchQuery);

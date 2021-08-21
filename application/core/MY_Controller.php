@@ -8,7 +8,7 @@ class MY_Controller extends CI_Controller {
         date_default_timezone_set('Asia/Bangkok');
         // for login session
         if(current_url() != base_url() && current_url() != base_url('dangnhap') && current_url() != base_url('dangky'))
-            if(empty($this->session->userdata('user'))){
+            if(!($this->session->userdata('user'))){
                 setMessages("warning","Vui lòng đăng nhập tài khoản!");
                 return redirect(base_url());
             }

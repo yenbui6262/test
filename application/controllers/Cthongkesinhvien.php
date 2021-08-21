@@ -91,20 +91,20 @@
             $xatt_list    = '';
             $xaht_list    = '';
 
-            if(!empty($filter['tinhtt'])){
+            if(isset($filter['tinhtt'])){
                 // lấy huyện
                 $huyentt_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhtt']);   
 
             }
-            if(!empty($filter['huyentt'])){
+            if(isset($filter['huyentt'])){
                 // lấy xã
                 $xatt_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyentt']);
             }
-            if(!empty($filter['tinhht'])){
+            if(isset($filter['tinhht'])){
                 // lấy huyện
                 $huyenht_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhht']);  
             }
-            if(!empty($filter['huyenht'])){
+            if(isset($filter['huyenht'])){
                 // lấy xã
                 $xaht_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyenht']);
             }
@@ -305,7 +305,7 @@
                 }else{
                     $tk['iGioiTinh']='Nữ';
                 }
-                if(!empty($tk['dNgaySinh'])){
+                if(isset($tk['dNgaySinh'])){
                     $tk['dNgaySinh'] = date("d/m/Y", strtotime($tk['dNgaySinh']));
                 }else{
                     $tk['dNgaySinh']='';
@@ -317,7 +317,7 @@
 	            $array_content['E' . $start]    = $tk['iGioiTinh'];
 	            $array_content['F' . $start]    = $tk['sTenLop'];
 	            $array_content['G' . $start]    = $tk['sChucvu'];
-                if( empty($tk['xatt'] )||empty($tk['xaht'] )){
+                if( !($tk['xatt'] )|| !($tk['xaht'] )){
                     $array_content['H' . $start]    = '';
                     $array_content['I' . $start]    = '';
                 }else{
@@ -394,7 +394,7 @@
             $hoso=$objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             
             $k=7;
-            while(!empty($hoso[$k]['A'])){
+            while(isset($hoso[$k]['A'])){
                 $tunghoso = array(
                     'sSDT'      => $hoso[$k]['C'],
                     'sSTK'      => $hoso[$k]['D'],
@@ -405,7 +405,7 @@
                 $checktk = $this->Mthongkesinhvien->checktaikhoan($hoso[$k]['B']);
                 $kq=0;
                 $row=0;
-                if(!empty($checktk)){
+                if(isset($checktk)){
                     $tunghoso['FK_sMaTK'] = $checktk[0]['PK_sMaTK'];
                     $qq= $this->Mthongkesinhvien->checkhoso($tunghoso);
                     if($qq==0){

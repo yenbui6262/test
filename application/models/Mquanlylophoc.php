@@ -16,7 +16,7 @@
         }
 
         private function dieukien($dieukien=null){
-            if(!empty($dieukien['tenlop'])){
+            if(isset($dieukien['tenlop'])){
                 $searchQuery = "(lop.sTenLop like '%".$dieukien['tenlop']."%') ";
                 $this->db->where($searchQuery);
             }

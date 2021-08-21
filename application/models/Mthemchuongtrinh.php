@@ -85,7 +85,7 @@
 
         public function searchsinhvien($filter=null)
         {
-            if(!empty($filter['phamvi'])){
+            if(isset($filter['phamvi'])){
                 if($filter['phamvi']=='toancanbo'){
                     $searchQuery = " (tk.sChucvu != '') ";
                     $this->db->where($searchQuery);

@@ -15,8 +15,8 @@ class MY_Model extends CI_Model
 	{
 		$this->db->select($truongcanlay);
 		$this->db->where($_primary_key,$_id);
-		$res = $this->db->get($_table_name)->row_array()[$truongcanlay];
-		return $res;
+		$res = $this->db->get($_table_name)->row_array();
+		return $res[$truongcanlay];
 	}
 	public function get_where_in($_table_name,$_primary_key,$_array_id) 
 	{
@@ -67,7 +67,7 @@ class MY_Model extends CI_Model
 
 	public function select_where($table,$select_column,$where_column,$key){
 		$this->db->select($select_column);
-		if(!empty($where_column)){
+		if(isset($where_column)){
 			$this->db->where($where_column,$key);
 		}
 		return $this->db->get($table)->result_array();

@@ -70,13 +70,13 @@
 
             $svthamgia       = $this->input->post('checksv');
 
-            if(empty($tenct))
+            if(!($tenct))
 				return 'Nhập tên chương trình';
-            if(empty($mota))
+            if(!($mota))
                 return 'Nhập mô tả';
-            if(empty($thoigianbd))
+            if(!($thoigianbd))
                 return 'Nhập thời gian bắt đầu';
-            if(empty($thoigiankt))
+            if(!($thoigiankt))
                 return 'Nhập thời gian kết thúc';
             if($thoigianbd>$thoigiankt)
                 return 'Thời gian không hợp lệ';
@@ -123,13 +123,13 @@
 
             $svthamgia       = $this->input->post('checksv');
 
-            if(empty($tenct))
+            if(!($tenct))
 				return 'Nhập tên chương trình';
-            if(empty($mota))
+            if(!($mota))
                 return 'Nhập mô tả';
-            if(empty($thoigianbd))
+            if(!($thoigianbd))
                 return 'Nhập thời gian bắt đầu';
-            if(empty($thoigiankt))
+            if(!($thoigiankt))
                 return 'Nhập thời gian kết thúc';
             if($thoigianbd>$thoigiankt)
                 return 'Thời gian không hợp lệ';

@@ -23,17 +23,17 @@
         }
 
         private function dieukien($dieukien=null){
-            if(!empty($dieukien['tenct'])&&$dieukien['tenct']!='tatca'){
+            if(isset($dieukien['tenct'])&&$dieukien['tenct']!='tatca'){
                 $this->db->like('ct.sTenCT', $dieukien['tenct']);
             }
             
-            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'&&$dieukien['action']!='get_dstheochuongtrinh'){
+            if(isset($dieukien['lop'])&&$dieukien['lop']!='tatca'&&$dieukien['action']!='get_dstheochuongtrinh'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
-            if(!empty($dieukien['thoigianbd'])){
+            if(isset($dieukien['thoigianbd'])){
                 $this->db->where('ct.dThoiGIanBD >=', $dieukien['thoigianbd']);
             }
-            if(!empty($dieukien['thoigiankt'])){
+            if(isset($dieukien['thoigiankt'])){
                 $this->db->where('ct.dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
             

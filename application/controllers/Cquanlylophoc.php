@@ -70,7 +70,7 @@
             
             $check = $this->Mquanlylophoc->checklophoc($data['sTenLop']);
             
-            if(empty($check)){
+            if(!($check)){
                 // pr($data);exit();
                 $lop=$this->Mquanlylophoc->insertlophoc($data);
                 $res = $this->get_params(0, $filter=null);
@@ -234,11 +234,11 @@
 
             $lophoc = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             $k=7;
-            while(!empty($lophoc[$k]['A'])){
+            while(isset($lophoc[$k]['A'])){
 
 				// pr($tunglophoc);
                 $checklop = $this->Mquanlylophoc->checklop($lophoc[$k]['B']);
-                if(empty($checklop)){
+                if(!($checklop)){
                     // insert lop moi
                     $lop = array(
                         'PK_sMaLop'      => time().$lophoc[$k]['B'],

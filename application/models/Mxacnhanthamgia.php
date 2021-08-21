@@ -17,13 +17,13 @@
         }
 
         private function dieukien($dieukien=null){
-            if(!empty($dieukien['tenct'])){
+            if(isset($dieukien['tenct'])){
                 $this->db->like('sTenCT', $dieukien['tenct']);
             }
-            if(!empty($dieukien['mota'])){
+            if(isset($dieukien['mota'])){
                 $this->db->like('tMota', $dieukien['mota']);
             }
-            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+            if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('iTrangThai', $dieukien['trangthai']);
             }
             
