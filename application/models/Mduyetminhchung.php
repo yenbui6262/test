@@ -15,10 +15,10 @@
             }
             $this->dieukien($dieukien,$maquyen);
             $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, mc.tLink, lop.sTenLop")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                        -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
-                        ->from("tbl_minhchung mc")->count_all_results();
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                        -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
+                        ->from("hs_tbl_minhchung mc")->count_all_results();
             return $res;
         }
 
@@ -73,41 +73,41 @@
             }
                         
             $res = $this->db-> select("mc.PK_sMaMC, tk.sHoTen, tk.dNgaySinh, tk.PK_sMaTK,lop.sTenLop, mc.tLink,mc.iTrangThai,mc.iTrangThaiCD,ct.dThoiGIanKT,ct.sTenCT,ct.dThoiGIanBD")
-                            -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                            -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                            -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
+                            -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                            -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                            -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                             -> limit($limit, $start)
-                            -> get("tbl_minhchung mc")->result_array();
+                            -> get("hs_tbl_minhchung mc")->result_array();
             return $res;
         }
 
         public function getchucvu($ma){
             $this->db->where('PK_sMaTK',$ma);
             $res = $this->db->select('sChucvu,sFK_lop')
-                        ->get('tbl_taikhoan')->result_array();
+                        ->get('hs_tbl_taikhoan')->result_array();
             return $res;
         }
 
         public function getlop(){
             $res = $this->db->select('*')
-                        ->get('tbl_lop')->result_array();
+                        ->get('hs_tbl_lop')->result_array();
             return $res;
         }
         public function getchuongtrinh(){
             $res = $this->db->select('sTenCT')
-                        ->get('tbl_chuongtrinh')->result_array();
+                        ->get('hs_tbl_chuongtrinh')->result_array();
             return $res;
         }
 
         public function updateminhchung($id, $iTrangthai,$macb,$now){
             $this->db->where("PK_sMaMC", $id);
-            $this->db->update("tbl_minhchung", array('iTrangThai' => $iTrangthai,'FK_sMaCB' => $macb,'dTGDuyet' => $now));
+            $this->db->update("hs_tbl_minhchung", array('iTrangThai' => $iTrangthai,'FK_sMaCB' => $macb,'dTGDuyet' => $now));
             return $this->db->affected_rows();
         }
         
         public function updateminhchungcb($id, $iTrangthai,$macb,$now){
             $this->db->where("PK_sMaMC", $id);
-            $this->db->update("tbl_minhchung", array('iTrangThaiCD' => $iTrangthai,'FK_sMaCBCD' => $macb,'dTGDuyetCD' => $now));
+            $this->db->update("hs_tbl_minhchung", array('iTrangThaiCD' => $iTrangthai,'FK_sMaCBCD' => $macb,'dTGDuyetCD' => $now));
             return $this->db->affected_rows();
         }
     }

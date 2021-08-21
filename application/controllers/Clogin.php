@@ -25,7 +25,7 @@
 	    	$user       = $this->input->post('username');
 	    	$password   = $this->input->post('password');
 
-	    	$check_user = $this->Mlogin->get_many_where('tbl_taikhoan', array('sTenTK' => $user, 'sMatKhau' => sha1($password)));
+	    	$check_user = $this->Mlogin->get_many_where('hs_tbl_taikhoan', array('sTenTK' => $user, 'sMatKhau' => sha1($password)));
 
 	    	if(empty($check_user)){
 	    		return "Sai tên tài khoản hoặc mật khẩu";

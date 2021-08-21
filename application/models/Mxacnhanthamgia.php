@@ -8,10 +8,10 @@
         public function getTotalRecord($dieukien, $masv){
             
             $this->dieukien($dieukien);
-            $this->db->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = sMaCT")
+            $this->db->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = sMaCT")
                     ->select("sMaDS")
                     ->where('sMaTK',$masv)
-                    ->from('tbl_thamgia');
+                    ->from('hs_tbl_thamgia');
             $count = $this->db->count_all_results();
             return $count;
         }
@@ -34,11 +34,11 @@
             $this->dieukien($dieukien);
             $res = $this->db->order_by("dThoiGianXN",'DESC')
                         ->order_by("dThoiGianKT")
-                        ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = sMaCT")
+                        ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = sMaCT")
                         ->select("*")
                         ->where('sMaTK',$masv)
                         ->limit($limit, $start)
-                        ->get("tbl_thamgia")->result_array();
+                        ->get("hs_tbl_thamgia")->result_array();
             return $res;
         }
 
@@ -46,7 +46,7 @@
         public function updatexn($id, $trangthai, $lydo)
         {
             $this->db->where('sMaDS', $id);
-            $this->db->update('tbl_thamgia', array('iTrangThai' => $trangthai , 'tLyDo' => $lydo));
+            $this->db->update('hs_tbl_thamgia', array('iTrangThai' => $trangthai , 'tLyDo' => $lydo));
             return $this->db->affected_rows();
         }
 

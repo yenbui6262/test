@@ -27,9 +27,9 @@
             $this->db->where('tg.sMaCT', $dieukien['mact']);
             $this->dieukien($dieukien);
             $res = $this->db->select("tk.PK_sMaTK")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
-                        ->get("tbl_taikhoan tk");
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->join("hs_tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
+                        ->get("hs_tbl_taikhoan tk");
             $count = $this->db->count_all_results();
             return $count;
         }
@@ -39,10 +39,10 @@
             $this->dieukien($dieukien);
             $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
                         ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK,tg.iTrangThai,tLydo,lop.sTenLop")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->join("hs_tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
                         ->limit($limit, $start)
-                        ->get("tbl_taikhoan tk")->result_array();
+                        ->get("hs_tbl_taikhoan tk")->result_array();
             return $res;
         }//end get ttsv
 
@@ -52,8 +52,8 @@
 
             $this->db->where('tg.sMaCT', $dieukien);
             $res = $this->db->select("tk.PK_sMaTK")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->from("tbl_taikhoan tk")->count_all_results();
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->from("hs_tbl_taikhoan tk")->count_all_results();
             return $res;
         }
         public function khongthamgia($dieukien){
@@ -61,8 +61,8 @@
             $this->db->where('tg.sMaCT', $dieukien);
             $this->db->where('tg.iTrangThai', '3');
             $res = $this->db->select("tk.PK_sMaTK")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->from("tbl_taikhoan tk")->count_all_results();
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->from("hs_tbl_taikhoan tk")->count_all_results();
             return $res;
         }
         public function thamgia($dieukien){
@@ -70,8 +70,8 @@
             $this->db->where('tg.sMaCT', $dieukien);
             $this->db->where('tg.iTrangThai', '2');
             $res = $this->db->select("tk.PK_sMaTK")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->from("tbl_taikhoan tk")->count_all_results();
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->from("hs_tbl_taikhoan tk")->count_all_results();
             return $res;
         }
 
@@ -81,13 +81,13 @@
 
             $this->db->where('PK_sMaChuongTrinh',$mact);
             $res = $this->db->select("*")
-                        ->get("tbl_chuongtrinh")->result_array();
+                        ->get("hs_tbl_chuongtrinh")->result_array();
             return $res;
         }
 
         public function getlop(){
             $res = $this->db->select('*')
-                        ->get('tbl_lop')->result_array();
+                        ->get('hs_tbl_lop')->result_array();
             return $res;
         }
         

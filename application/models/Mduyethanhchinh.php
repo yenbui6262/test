@@ -10,10 +10,10 @@
         public function getTotalRecord($dieukien){
             $this->dieukien($dieukien);
             $res = $this->db-> select("dky.PK_sMaDangKy")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
-                        -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
-                        ->from("tbl_dangkydon dky")->count_all_results();
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
+                        -> join("hs_dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
+                        ->from("hs_tbl_dangkydon dky")->count_all_results();
             return $res;
         }
 
@@ -40,28 +40,28 @@
                         ->order_by("dky.dTGThem","DESC")
                         ->order_by("tk.sHoTen")
                         -> select("dky.PK_sMaDangKy, tk.sHoTen, tk.PK_sMaTK, lop.sTenLop, hc.sTenHanhChinh, dky.iTrangThai, dky.tLydo")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
-                        -> join("dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = dky.FK_sMaSV")
+                        -> join("hs_dm_hanhchinh hc", "hc.PK_sMaHanhChinh = dky.FK_sMaHanhChinh")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop","left")
                         ->limit($limit, $start)
-                        ->get("tbl_dangkydon dky")->result_array();
+                        ->get("hs_tbl_dangkydon dky")->result_array();
             return $res;
         }
 
         public function getlop(){
             $res = $this->db->select('*')
-                        ->get('tbl_lop')->result_array();
+                        ->get('hs_tbl_lop')->result_array();
             return $res;
         }
         public function gethanhchinh(){
             $res = $this->db->select('sTenHanhChinh')
-                        ->get('dm_hanhchinh')->result_array();
+                        ->get('hs_dm_hanhchinh')->result_array();
             return $res;
         }
 
         public function updatehanhchinh($id, $iTrangthai,$macb,$now){
             $this->db->where("PK_sMaDangKy", $id);
-            $this->db->update("tbl_dangkydon", array('iTrangThai' => $iTrangthai,'FK_sMaCanbo' => $macb,'dTGDuyet' => $now));
+            $this->db->update("hs_tbl_dangkydon", array('iTrangThai' => $iTrangthai,'FK_sMaCanbo' => $macb,'dTGDuyet' => $now));
         }
         
     }

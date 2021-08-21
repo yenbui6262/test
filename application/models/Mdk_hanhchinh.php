@@ -10,9 +10,9 @@ class Mdk_hanhchinh extends My_Model
         $this->dieukien($dieukien);
         $this->db->select("PK_sMaHanhChinh")
                 ->where('FK_sMaSV',$masv)
-                ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
+                ->join('hs_dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
                 ->limit(50)
-                 ->from('tbl_dangkydon');
+                 ->from('hs_tbl_dangkydon');
         $count = $this->db->count_all_results();
         return $count;
     }
@@ -31,7 +31,7 @@ class Mdk_hanhchinh extends My_Model
     public function getHanhchinh(){
         $this->db->select("*")
                  ->order_by('PK_sMaHanhChinh');
-        $res = $this->db->get("dm_hanhchinh")->result_array();
+        $res = $this->db->get("hs_dm_hanhchinh")->result_array();
         return $res;
     }
     
@@ -42,23 +42,23 @@ class Mdk_hanhchinh extends My_Model
                 ->order_by("dTGThem","DESC")
                 ->select("*")
                 ->where('FK_sMaSV',$masv)
-                ->join('dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
+                ->join('hs_dm_hanhchinh',"FK_sMaHanhChinh=PK_sMaHanhChinh")
                 ->limit($limit, $start);
-        $res= $this->db->get("tbl_dangkydon")->result_array();
+        $res= $this->db->get("hs_tbl_dangkydon")->result_array();
         return $res;
     }
     public function insertHanhchinh($donhc){
-        $this->db->insert("tbl_dangkydon",$donhc);
+        $this->db->insert("hs_tbl_dangkydon",$donhc);
         return $this->db->affected_rows();
     }
     public function deleteHanhchinh($madk){
         $this->db->where('PK_sMaDangKy',$madk)
-                 ->delete("tbl_dangkydon");
+                 ->delete("hs_tbl_dangkydon");
         return $this->db->affected_rows();
     }
     public function updateHanhchinh($madk, $donhc){
         $this->db->where('PK_sMaDangKy',$madk)
-                 ->update("tbl_dangkydon", $donhc);
+                 ->update("hs_tbl_dangkydon", $donhc);
         return $this->db->affected_rows();
     }
     public function findDon($data)
@@ -66,7 +66,7 @@ class Mdk_hanhchinh extends My_Model
             $res = $this->db->where('FK_sMaHanhChinh',$data['FK_sMaHanhChinh'])
                             ->where('FK_sMaSV',$data['FK_sMaSV'])
                             ->where('iTrangThai','1')
-                            ->get('tbl_dangkydon')->result_array();
+                            ->get('hs_tbl_dangkydon')->result_array();
                     return count($res);
         }
 }

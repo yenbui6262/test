@@ -13,7 +13,7 @@
 
             $this->db->where('PK_sMaChuongTrinh',$mact);
             $res = $this->db->select("*")
-                        ->get("tbl_chuongtrinh")->result_array();
+                        ->get("hs_tbl_chuongtrinh")->result_array();
             return $res;
         }
 
@@ -23,26 +23,26 @@
             $this->db->where('tg.sMaCT', $dieukien);
             $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
                         ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK,tg.iTrangThai")
-                        ->join("tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
-                        ->get("tbl_taikhoan tk")->result_array();
+                        ->join("hs_tbl_thamgia tg", "tg.sMaTK = tk.PK_sMaTK")
+                        ->get("hs_tbl_taikhoan tk")->result_array();
             return $res;
         }
 
         public function getmacb($tencb)
         {
             $res = $this->db->select('PK_sMaTK')
-                        ->get('tbl_taikhoan')->result_array();
+                        ->get('hs_tbl_taikhoan')->result_array();
             return $res;
         }
 
         public function insertchuongtrinh($data)
         {
-            $this->db->insert('tbl_chuongtrinh', $data);
+            $this->db->insert('hs_tbl_chuongtrinh', $data);
             return $this->db->affected_rows();
         }
         public function insertthamgia($data)
         {
-            $this->db->insert('tbl_thamgia', $data);
+            $this->db->insert('hs_tbl_thamgia', $data);
             return $this->db->affected_rows();
         }
         
@@ -50,7 +50,7 @@
         public function updatechuongtrinh($mact,$data)
         {
             $this->db->where('PK_sMaChuongTrinh', $mact);
-            $this->db->update('tbl_chuongtrinh', $data);
+            $this->db->update('hs_tbl_chuongtrinh', $data);
             return $this->db->count_all_results();
         }
         // public function updatethamgia($data)
@@ -58,14 +58,14 @@
         //     $this->db->set('sMaDS', $data['sMaDS']);
         //     $this->db->where('sMaTK', $data['sMaTK']);
         //     $this->db->where('sMaCT', $data['sMaCT'])
-        //              ->from('tbl_thamgia');
+        //              ->from('hs_tbl_thamgia');
         //     return $this->db->count_all_results();
         // }
         public function deletethamgia($mact,$masv)
         {
             $this->db->where_not_in('sMaTK',$masv);
             $this->db->where('sMaCT', $mact);
-            $this->db->delete('tbl_thamgia');
+            $this->db->delete('hs_tbl_thamgia');
             return $this->db->count_all_results();
         }
         public function checkthamgia($data)
@@ -73,12 +73,12 @@
             $this->db->where('sMaTK', $data['sMaTK']);
             $this->db->where('sMaCT', $data['sMaCT']);
             $this->db->select("sMaDS")
-                     ->from('tbl_thamgia');
+                     ->from('hs_tbl_thamgia');
             return  $this->db->count_all_results();
         }
         public function getlop(){
             $res = $this->db->select('*')
-                        ->get('tbl_lop')->result_array();
+                        ->get('hs_tbl_lop')->result_array();
             return $res;
         }
 
@@ -104,8 +104,8 @@
             }
             $res = $this->db->order_by("tk.sHoTen,tk.sTenTK")
                         ->select("tk.PK_sMaTK,tk.sHoTen,tk.sTenTK")
-                        ->join("tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
-                        ->get("tbl_taikhoan tk")->result_array();
+                        ->join("hs_tbl_lop lop", "tk.sFK_Lop = lop.PK_sMaLop")
+                        ->get("hs_tbl_taikhoan tk")->result_array();
             return $res;
         }
 

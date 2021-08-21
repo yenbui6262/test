@@ -15,10 +15,10 @@
             $res = $this->db->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         ->order_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung,ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                        -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
-                        ->from("tbl_minhchung mc")->count_all_results();
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                        -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        ->from("hs_tbl_minhchung mc")->count_all_results();
             return $res;
         }
 
@@ -49,11 +49,11 @@
                         ->order_by("lop.sTenLop")
                         ->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         -> select("lop.sTenLop, ct.sTenCT,count(mc.PK_sMaMC) as sominhchung, ct.PK_sMaChuongTrinh,lop.PK_sMaLop,ct.dThoiGIanBD,ct.dThoiGIanKT")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                        -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                        -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                         ->limit($limit, $start)
-                        ->get("tbl_minhchung mc")->result_array();
+                        ->get("hs_tbl_minhchung mc")->result_array();
             return $res;
         }
         public function sodaduyettheolop($limit, $start,$dieukien)
@@ -64,11 +64,11 @@
                         ->order_by("lop.sTenLop")
                         ->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         -> select("count(mc.PK_sMaMC) as sodaduyet, ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                        -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                        -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                         ->limit($limit, $start)
-                        ->get("tbl_minhchung mc")->result_array();
+                        ->get("hs_tbl_minhchung mc")->result_array();
             return $res;
         }
         public function sodaduyettheochuongtrinh($limit, $start,$dieukien)
@@ -78,10 +78,10 @@
             $this->db->order_by("dThoiGIanKT",'DESC')
                      ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("count('mc.FK_sMaSV') as sodaduyet,ct.PK_sMaChuongTrinh")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
         public function socbdaduyettheochuongtrinh($limit, $start,$dieukien)
         {
@@ -90,10 +90,10 @@
             $this->db->order_by("dThoiGIanKT",'DESC')
                      ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("count('mc.FK_sMaSV') as sodaduyet,ct.PK_sMaChuongTrinh")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
         public function sodaduyettheosinhvien($limit, $start,$dieukien)
         {
@@ -101,11 +101,11 @@
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
                      ->select("count('mc.FK_sMaCT') as sodaduyet,tk.PK_sMaTK")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
 
         public function socbdaduyettheosinhvien($limit, $start,$dieukien)
@@ -114,11 +114,11 @@
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
                      ->select("count('mc.FK_sMaCT') as sodaduyet,tk.PK_sMaTK")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
         public function socbdaduyettheolop($limit, $start,$dieukien)
         {
@@ -128,28 +128,28 @@
                         ->order_by("lop.sTenLop")
                         ->group_by("lop.PK_sMaLop,ct.PK_sMaChuongTrinh")
                         -> select("count(mc.PK_sMaMC) as sodaduyet, ct.PK_sMaChuongTrinh,lop.PK_sMaLop")
-                        -> join("tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
-                        -> join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                        -> join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                        -> join("hs_tbl_taikhoan tk", "tk.PK_sMaTK = mc.FK_sMaSV")
+                        -> join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                        -> join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                         ->limit($limit, $start)
-                        ->get("tbl_minhchung mc")->result_array();
+                        ->get("hs_tbl_minhchung mc")->result_array();
             return $res;
         }
 
         public function getchucvu($ma){
             $this->db->where('PK_sMaTK',$ma);
             $res = $this->db->select('sFK_lop')
-                        ->get('tbl_taikhoan')->result_array();
+                        ->get('hs_tbl_taikhoan')->result_array();
             return $res;
         }
         public function getlop(){
             $res = $this->db->select('*')
-                        ->get('tbl_lop')->result_array();
+                        ->get('hs_tbl_lop')->result_array();
             return $res;
         }
         public function getchuongtrinh(){
             $res = $this->db->select('sTenCT')
-                        ->get('tbl_chuongtrinh')->result_array();
+                        ->get('hs_tbl_chuongtrinh')->result_array();
             return $res;
         }
         
@@ -161,11 +161,11 @@
             $this->dieukien($dieukien);
             $this->db->group_by("tk.PK_sMaTK")
                      ->select("count('mc.FK_sMaCT') as sochuongtrinh,tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                     ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
 
         public function getTotalsinhvien($dieukien=null,$ma,$malop)
@@ -176,10 +176,10 @@
             $this->dieukien($dieukien);
             $res = $this->db->group_by("tk.PK_sMaTK")
                             ->select("count('mc.FK_sMaCT') as sochuongtrinh,tk.PK_sMaTK, tk.sHoTen, lop.sTenLop")
-                            ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                            ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                            ->join("tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
-                            ->from("tbl_taikhoan tk")->count_all_results();
+                            ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                            ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                            ->join("hs_tbl_lop lop", "lop.PK_sMaLop = tk.sFK_Lop")
+                            ->from("hs_tbl_taikhoan tk")->count_all_results();
             return $res;
         }
 
@@ -192,10 +192,10 @@
             $this->db->order_by("ct.dThoiGIanKT",'DESC')
                      ->group_by("ct.PK_sMaChuongTrinh")
                      ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh,ct.dThoiGIanBD,ct.dThoiGIanKT")
-                     ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                     ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                     ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                     ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
                      ->limit($limit, $start);
-            return $this->db->get("tbl_taikhoan tk")->result_array();
+            return $this->db->get("hs_tbl_taikhoan tk")->result_array();
         }
 
         public function getTotalchuongtrinh($dieukien=null,$ma,$malop)
@@ -206,9 +206,9 @@
             $this->dieukien($dieukien);
             $res = $this->db->group_by("ct.PK_sMaChuongTrinh")
                             ->select("count('mc.FK_sMaSV') as soluong,ct.sTenCT,ct.PK_sMaChuongTrinh")
-                            ->join("tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
-                            ->join("tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
-                            ->from("tbl_taikhoan tk")->count_all_results();
+                            ->join("hs_tbl_minhchung mc", "mc.FK_sMaSV = tk.PK_sMaTK")
+                            ->join("hs_tbl_chuongtrinh ct", "ct.PK_sMaChuongTrinh = mc.FK_sMaCT")
+                            ->from("hs_tbl_taikhoan tk")->count_all_results();
             return $res;
         }
 

@@ -10,7 +10,7 @@
         public function getTotalRecord($dieukien){
             $this->dieukien($dieukien);
             $this->db->select("PK_sMaHanhChinh")
-                     ->from('dm_hanhchinh');
+                     ->from('hs_dm_hanhchinh');
             $count = $this->db->count_all_results();
             return $count;
         }
@@ -31,25 +31,25 @@
             $res = $this->db->order_by("sTenHanhChinh")
                         ->select("*")
                         ->limit($limit, $start)
-                        ->get("dm_hanhchinh")->result_array();
+                        ->get("hs_dm_hanhchinh")->result_array();
             return $res;
         }
 
         public function inserthanhchinh($data)
         {
-            $this->db->insert('dm_hanhchinh', $data);
+            $this->db->insert('hs_dm_hanhchinh', $data);
             return $this->db->affected_rows();
         }
 
         public function deletehanhchinh($Mahc){
             $this->db->where('PK_sMaHanhChinh', $Mahc);
-            $this->db->delete('dm_hanhchinh');
+            $this->db->delete('hs_dm_hanhchinh');
             return $this->db->affected_rows();
             
         }
         public function deletedangkydon($Mahc){
             $this->db->where('FK_sMaHanhChinh', $Mahc);
-            $this->db->delete('tbl_dangkydon');
+            $this->db->delete('hs_tbl_dangkydon');
             return $this->db->affected_rows();
             
         }
@@ -58,7 +58,7 @@
         public function updatehanhchinh($Mahc, $data)
         {
             $this->db->where('PK_sMaHanhChinh', $Mahc);
-            $this->db->update('dm_hanhchinh', $data);
+            $this->db->update('hs_dm_hanhchinh', $data);
             return $this->db->affected_rows();
         }
     }
