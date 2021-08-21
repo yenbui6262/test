@@ -72,14 +72,14 @@ class Cemail extends MY_Controller {
             $tenct=$chuongtrinh[0]['sTenCT'];
         }
         $subject = "Thông báo xác nhận tham gia chương trình ".$tenct;
-        $noidungMail = "Thông báo đến sinh viên thực hiện xác nhận tham gia chương trình ".$tenct. "<br/>";
+        $noidungMail = "[Đây là email trả lời tự động, vui lòng không trả lời lại thư này.]<br/>Kính gửi<br/>".
+                        "Thông báo đến sinh viên thực hiện xác nhận tham gia chương trình ".$tenct. "<br/>";
         if(!empty($chuongtrinh[0]['dThoiGianXN'])){
-            $noidungMail .= "Hạn đến ngày ".date("d/m/Y", strtotime($chuongtrinh[0]['dThoiGianXN'])). "<br/>";
+            $noidungMail .= "Hạn xác nhận đến ngày ".date("d/m/Y", strtotime($chuongtrinh[0]['dThoiGianXN'])). "<br/>";
         }
-        $noidungMail .= "Đây là hệ thống trả lời tự động vui lòng không trả lời lại thư này";
         $dsnguoinhan = $this->Memail->getsinhvienchuaxacnhan($mact);
 
-        $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng - Tư vấn Khoa kinh tế HOU');
+        $this->email->from('minhchungtuvan.hou@gmail.com', 'Hệ thống Minh chứng - Tư vấn Khoa kinh tế HOU');
         // tiêu đề email
         $this->email->subject($subject);
         // nội dung email
@@ -104,8 +104,8 @@ class Cemail extends MY_Controller {
         $config['protocol']     = "smtp";
         $config['smtp_host']    = "ssl://smtp.gmail.com";
         $config['smtp_port']    = 465;
-        $config['smtp_user']    = "emailkhoakt";
-        $config['smtp_pass']    = "emailpass";
+        $config['smtp_user']    = "minhchungtuvan.hou@gmail.com";
+        $config['smtp_pass']    = "kngfp123@#";
         $config['mailtype']     = 'html';
         $config['newline']      = "\r\n";
         $config['charset']      = "utf-8";
