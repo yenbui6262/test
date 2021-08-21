@@ -65,7 +65,7 @@ class Mdk_hanhchinh extends My_Model
         {
             $res = $this->db->where('FK_sMaHanhChinh',$data['FK_sMaHanhChinh'])
                             ->where('FK_sMaSV',$data['FK_sMaSV'])
-                            ->where('iTrangThai','0')
+                            ->where('iTrangThai','1')
                             ->get('tbl_dangkydon')->result_array();
                     return count($res);
         }

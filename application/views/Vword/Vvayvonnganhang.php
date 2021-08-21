@@ -35,12 +35,13 @@
         </b>
         <p>
             Họ và tên học sinh (sinh
-            viên):...{$thongtin['sHoTen']}........................................................ <br>
+            viên):&nbsp; <b style="text-transform: uppercase;">{$thongtin['sHoTen']}</b>  . <br>
 
-            Ngày sinh:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...................
+            Ngày sinh:&nbsp;{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Giới tính (Nam / Nữ):...{if
-            $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}............................... <br>
+            Giới tính:&nbsp;&nbsp;&nbsp;Nam&nbsp;&nbsp;<span style="border:solid 1px black;">{if $thongtin['iGioiTinh']==1}&nbsp;&nbsp;x&nbsp;&nbsp;{else}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;Nữ&nbsp;&nbsp;<span style="border:solid 1px black;">{if $thongtin['iGioiTinh']==2}&nbsp;&nbsp;x&nbsp;&nbsp;{else}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}</span>
+             <br>
 
             CMTND số:................................
             Ngày cấp:...............................
@@ -50,8 +51,7 @@
             tế....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Số thẻ HSSV:&nbsp;...{$thongtin['PK_sMaTK']}..... <br>
             Khoá: 20....- 20.........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loại hình đào tạo:
             ................................................. ......................<br>
-            Hệ đào tạo (Đại học, cao đẳng, .............. ): .....................................................
-            ........................................................................................... <br>
+            Hệ đào tạo (Đại học, cao đẳng, .............. ): ..................................................... ........................ <br>
             Ngày nhập học:....../....../20.........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thời gian ra trường (tháng/
             năm):......./......./20...... <br>
             Mã trường theo học (mã quy ước trong quy chế tuyển sinh):...MHN............ <br>
@@ -81,7 +81,7 @@
                 <td><i>(Ký, ghi rõ họ tên)</i></td>
             </tr>
             <tr>
-                <td><br><br><br></td>
+                <td><br><br><br><br></td>
             </tr>
         </table>
     </div>
@@ -113,12 +113,13 @@
         </b>
         <p>
             Họ và tên học sinh (sinh
-            viên):...{$thongtin['sHoTen']}........................................................ <br>
+            viên):&nbsp; <b style="text-transform: uppercase;">{$thongtin['sHoTen']}</b>  . <br>
 
-            Ngày sinh:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...................
+            Ngày sinh:&nbsp;{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Giới tính (Nam / Nữ):...{if
-            $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}............................... <br>
+            Giới tính:&nbsp;&nbsp;&nbsp;Nam&nbsp;&nbsp;<span style="border:solid 1px black;">{if $thongtin['iGioiTinh']==1}&nbsp;&nbsp;x&nbsp;&nbsp;{else}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;Nữ&nbsp;&nbsp;<span style="border:solid 1px black;">{if $thongtin['iGioiTinh']==2}&nbsp;&nbsp;x&nbsp;&nbsp;{else}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/if}</span>
+             <br>
 
             CMTND số:................................
             Ngày cấp:...............................
@@ -127,8 +128,7 @@
             Mã trường theo học (mã quy ước trong quy chế tuyển sinh ĐH, CĐ, TCCN):...MHN............ <br>
             Tên trường:..Trường Đại học Mở Hà
             Nội................................................................................. <br>
-            Ngành học: ...Kinh
-            tế.................................................................................................................
+            Ngành học: ...............................................................................................................................
             <br>
             Hệ đào tạo (Đại học, cao đẳng, TCCN, dạy nghề: Đại học <br>
             Khoá: 20....- 20.........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Loại hình đào tạo:

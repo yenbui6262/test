@@ -9,7 +9,7 @@
 </head>
 <body >
     <div style="padding: 2.54cm;">
-        <table style="text-align:center; line-height:10px">
+        <table style="text-align:center; font-size: 12pt;">
             <tr>
                 <td width="43%">BỘ GIÁO DỤC VÀ ĐÀO TẠO</td>
                 <td><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b></td>
@@ -36,12 +36,14 @@
         - Trưởng Khoa .....................................................
         </p>
         <p>Tên em là:...{$thongtin['sHoTen']}...&nbsp;&nbsp;Giới tính:...{if $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}...</p>
-        <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:......</p>
-        <p>Hộ khẩu thường trú:......</p>
-        <p>Điện thoại: ......</p>
-        <p>Em hiện là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành: ..Kinh tế...</p>
+        <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:................................................................................................</p>
+        <p>Hộ khẩu thường trú:&nbsp;................................................................................................................</p>
+        <p>Điện thoại:&nbsp;.....................................................</p>
+        <p>Em hiện là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành:&nbsp;........................</p>
         <p>Khóa học:....................&nbsp;&nbsp;Khoa:...Kinh tế..</p>
-        <p>Em làm đơn này xin phép nghỉ học tạm thời và bảo lưu kết quả học tập vì lý do:</p>
+        <p>Em làm đơn này xin phép nghỉ học tạm thời và bảo lưu kết quả học tập vì lý do:{if !empty($thongtin['tLydo'])}{$thongtin['tLydo']}{else}......................................................................................................................................................
+        <br>......................................................................................................................................................
+        {/if}</p>
         <table>
             <tr>
                 <td width="75%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Được điều động vào các lực lượng vũ trang</td>
@@ -62,7 +64,6 @@
         <p style="text-align:right;"><i>........................, ngày ............... tháng ............  năm............</i><br>
             (Sinh viên ký và ghi rõ họ tên)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
-        <p>&nbsp; </p>
         <p>&nbsp; </p>
         <p>&nbsp; </p>
         <p>&nbsp; </p>

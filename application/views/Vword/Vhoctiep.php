@@ -30,10 +30,10 @@
         </p>
         <p style="text-align:center; margin-top:2px">Kính gửi:&nbsp;&nbsp;Hiệu trưởng Trường Đại học Mở Hà Nội</p>
         <p>Em tên là:...{$thongtin['sHoTen']}...&nbsp;&nbsp;Giới tính:...{if $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}...</p>
-        <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:......</p>
-        <p>Hộ khẩu thường trú:......</p>
-        <p>Điện thoại: ......</p>
-        <p>Em là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành: ..Kinh tế...</p>
+        <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:.............................................................................................</p>
+        <p>Hộ khẩu thường trú:&nbsp;.............................................................................................................</p>
+        <p>Điện thoại: ..............................</p>
+        <p>Em là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành:&nbsp;......................................</p>
         <p>Khóa học:....................&nbsp;&nbsp;Khoa:...Kinh tế..</p>
         <p>Em đã xin phép nghỉ học tạm thời và bảo lưu kết quả học tập và đã được Hiệu trưởng Trường</p><p> Đại học Mở Hà Nội phê chuẩn đồng ý ngày  ....................</p>
         <p>Nay em có nguyện vọng quay lại xin được học tiếp kể từ học kỳ........ năm học...............</p>

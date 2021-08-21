@@ -30,7 +30,7 @@ class Cdk_hanhchinh extends MY_Controller {
                     return redirect(current_url());
                 }
                 if($this->Mdk_hanhchinh->findDon($donhc) > 0){
-                    setMessages("warning", "Đã Đăng ký đơn");
+                    setMessages("warning", "Đã đăng ký đơn");
                     return redirect(current_url());
                 }
                 $row=$this->Mdk_hanhchinh->insertHanhchinh($donhc);

@@ -147,7 +147,11 @@
                                 <span class="badge badge-warning">Chưa duyệt</span>
                             {/if}
                             </td>
-                            <td>{if !empty($v.FK_sMaCBCD)}{$v.FK_sMaCBCD}{else}{if (!empty($v.FK_sMaCB) && $v.iTrangThai==3)}Cán bộ lớp{else}Đang đợi duyệt{/if}{/if}</td>
+                            <td>{if !empty($v.FK_sMaCBCD)}{$v.FK_sMaCBCD}{else}
+                                    {if (!empty($v.FK_sMaCB) && $v.iTrangThai==3)}
+                                    {$v.sChucvu}{else}Đang đợi duyệt
+                                    {/if}
+                                {/if}</td>
                             <td class="text-center">
                                 <a class="btn btn-info" target="_" href="{$v.tLink}" title="Xem minh chứng"><i class="fas fa-eye"></i></a>
                                 

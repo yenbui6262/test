@@ -36,7 +36,7 @@
                 <td>Mã số sinh viên:&nbsp;...{$thongtin['PK_sMaTK']}...</td>
             </tr>
             <tr>
-                <td>Ngành học: ...Kinh tế...</td>
+                <td>Ngành học:&nbsp;..........................</td>
                 <td>Lớp:&nbsp;...{$thongtin['sTenLop']}...</td>
             </tr>
             <tr>
