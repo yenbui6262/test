@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2021 at 04:32 AM
+-- Generation Time: Aug 21, 2021 at 06:09 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -23,21 +23,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dm_hanhchinh`
+-- Table structure for table `hs_dm_hanhchinh`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_hanhchinh` (
-  `PK_sMaHanhChinh` varchar(50) NOT NULL,
-  `sTenHanhChinh` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `tMota` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+CREATE TABLE IF NOT EXISTS `hs_dm_hanhchinh` (
+  `PK_sMaHanhChinh` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sTenHanhChinh` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `tMota` text COLLATE utf8_unicode_ci,
   `maudon` text CHARACTER SET utf16 COLLATE utf16_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dm_hanhchinh`
+-- Dumping data for table `hs_dm_hanhchinh`
 --
 
-INSERT INTO `dm_hanhchinh` (`PK_sMaHanhChinh`, `sTenHanhChinh`, `tMota`, `maudon`) VALUES
+INSERT INTO `hs_dm_hanhchinh` (`PK_sMaHanhChinh`, `sTenHanhChinh`, `tMota`, `maudon`) VALUES
 ('1629511345615', 'Đơn xin nghỉ học tạm thời và bảo lưu kết quả học tập', 'Lập đơn xin nghỉ học tạm thời và bảo lưu kết quả học tập. Chú ý: Nếu trong vòng 01 tháng kể từ khi hết hạn được phép nghỉ mà sinh viên không quay lại Trường hoặc không liên hệ với Trường thì Nhà trường sẽ xử lý Xóa tên sinh viên', 'nghihocvabaoluu\n'),
 ('1629511365860', 'Đơn xin hủy môn học phần', 'Lập đơn xin hủy môn học phần', 'huymonhoc\n'),
 ('162951137992', 'Giấy xác nhận vay vốn cam kết', 'Lập giấy xác nhận vay vốn cam kết', 'vayvonnganhang\n'),
@@ -57,20 +57,20 @@ INSERT INTO `dm_hanhchinh` (`PK_sMaHanhChinh`, `sTenHanhChinh`, `tMota`, `maudon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dm_huyen`
+-- Table structure for table `hs_dm_huyen`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_huyen` (
+CREATE TABLE IF NOT EXISTS `hs_dm_huyen` (
   `PK_sMaH` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `sTenH` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `FK_sMaT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dm_huyen`
+-- Dumping data for table `hs_dm_huyen`
 --
 
-INSERT INTO `dm_huyen` (`PK_sMaH`, `sTenH`, `FK_sMaT`) VALUES
+INSERT INTO `hs_dm_huyen` (`PK_sMaH`, `sTenH`, `FK_sMaT`) VALUES
 ('001', 'Quận Ba Đình', '01'),
 ('002', 'Quận Hoàn Kiếm', '01'),
 ('003', 'Quận Tây Hồ', '01'),
@@ -782,19 +782,19 @@ INSERT INTO `dm_huyen` (`PK_sMaH`, `sTenH`, `FK_sMaT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dm_tinh`
+-- Table structure for table `hs_dm_tinh`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_tinh` (
+CREATE TABLE IF NOT EXISTS `hs_dm_tinh` (
   `PK_sMaT` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `sTenT` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dm_tinh`
+-- Dumping data for table `hs_dm_tinh`
 --
 
-INSERT INTO `dm_tinh` (`PK_sMaT`, `sTenT`) VALUES
+INSERT INTO `hs_dm_tinh` (`PK_sMaT`, `sTenT`) VALUES
 ('01', 'Thành phố Hà Nội'),
 ('02', 'Tỉnh Hà Giang'),
 ('04', 'Tỉnh Cao Bằng'),
@@ -862,19 +862,19 @@ INSERT INTO `dm_tinh` (`PK_sMaT`, `sTenT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dm_uutien`
+-- Table structure for table `hs_dm_uutien`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_uutien` (
-  `PK_sMaNhom` varchar(50) NOT NULL,
-  `tMoTa` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `hs_dm_uutien` (
+  `PK_sMaNhom` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `tMoTa` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dm_uutien`
+-- Dumping data for table `hs_dm_uutien`
 --
 
-INSERT INTO `dm_uutien` (`PK_sMaNhom`, `tMoTa`) VALUES
+INSERT INTO `hs_dm_uutien` (`PK_sMaNhom`, `tMoTa`) VALUES
 ('1', 'Nhóm A'),
 ('2', 'Nhóm B'),
 ('3', 'Nhóm C'),
@@ -883,20 +883,20 @@ INSERT INTO `dm_uutien` (`PK_sMaNhom`, `tMoTa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dm_xa`
+-- Table structure for table `hs_dm_xa`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_xa` (
+CREATE TABLE IF NOT EXISTS `hs_dm_xa` (
   `PK_sMaX` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `sTenX` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `FK_sMaH` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `dm_xa`
+-- Dumping data for table `hs_dm_xa`
 --
 
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('00001', 'Phường Phúc Xá', '001'),
 ('00004', 'Phường Trúc Bạch', '001'),
 ('00006', 'Phường Vĩnh Phúc', '001'),
@@ -2438,7 +2438,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('04597', 'Xã Phình Hồ', '139'),
 ('04600', 'Xã Trạm Tấu', '139'),
 ('04603', 'Xã Tà Si Láng', '139');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('04606', 'Xã Pá Hu', '139'),
 ('04609', 'Xã Làng Nhì', '139'),
 ('04612', 'Xã Bản Công', '139'),
@@ -3993,7 +3993,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('09778', 'Xã Hiệp Thuận', '272'),
 ('09781', 'Xã Liên Hiệp', '272'),
 ('09784', 'Thị trấn Phùng', '273');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('09787', 'Xã Trung Châu', '273'),
 ('09790', 'Xã Thọ An', '273'),
 ('09793', 'Xã Thọ Xuân', '273'),
@@ -5540,7 +5540,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('14608', 'Xã Khánh Thành', '375'),
 ('14611', 'Xã Khánh Nhạc', '375'),
 ('14614', 'Xã Khánh Thủy', '375');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('14617', 'Xã Khánh Hồng', '375'),
 ('14620', 'Thị trấn Phát Diệm', '376'),
 ('14623', 'Thị trấn Bình Minh', '376'),
@@ -7090,7 +7090,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('19711', 'Xã Hải Dương', '470'),
 ('19714', 'Xã Hải Định', '470'),
 ('19717', 'Xã Hải Lâm', '470');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('19726', 'Xã Hải Phong', '470'),
 ('19729', 'Xã Hải Trường', '470'),
 ('19735', 'Xã Hải Sơn', '470'),
@@ -8636,7 +8636,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('24127', 'Phường Thống Nhất', '643'),
 ('24130', 'Phường Thành Nhất', '643'),
 ('24133', 'Phường Thắng Lợi', '643');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('24136', 'Phường Tân Lợi', '643'),
 ('24139', 'Phường Thành Công', '643'),
 ('24142', 'Phường Tân Thành', '643'),
@@ -10187,7 +10187,7 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('28534', 'Xã Thân Cửu Nghĩa', '821'),
 ('28537', 'Xã Tam Hiệp', '821'),
 ('28540', 'Xã Điềm Hy', '821');
-INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
+INSERT INTO `hs_dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 ('28543', 'Xã Nhị Bình', '821'),
 ('28546', 'Xã Dưỡng Điềm', '821'),
 ('28549', 'Xã Đông Hòa', '821'),
@@ -11520,119 +11520,119 @@ INSERT INTO `dm_xa` (`PK_sMaX`, `sTenX`, `FK_sMaH`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_chuongtrinh`
+-- Table structure for table `hs_tbl_chuongtrinh`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_chuongtrinh` (
-  `PK_sMaChuongTrinh` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_chuongtrinh` (
+  `PK_sMaChuongTrinh` varchar(50) CHARACTER SET latin1 NOT NULL,
   `sTenCT` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   `tMota` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci,
-  `FK_sMaCB` varchar(50) NOT NULL,
+  `FK_sMaCB` varchar(50) CHARACTER SET latin1 NOT NULL,
   `dThoiGIanBD` date NOT NULL,
   `dThoiGIanKT` date NOT NULL,
   `dThoiGianXN` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_dangkydon`
+-- Table structure for table `hs_tbl_dangkydon`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_dangkydon` (
-  `PK_sMaDangKy` varchar(50) NOT NULL,
-  `FK_sMaSV` varchar(50) NOT NULL,
-  `FK_sMaCanbo` varchar(50) DEFAULT NULL,
-  `FK_sMaHanhChinh` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_dangkydon` (
+  `PK_sMaDangKy` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaSV` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaCanbo` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `FK_sMaHanhChinh` varchar(50) CHARACTER SET latin1 NOT NULL,
   `dTGThem` datetime NOT NULL,
   `dTGDuyet` datetime DEFAULT NULL,
   `iTrangThai` int(5) NOT NULL,
   `tLydo` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_hososv`
+-- Table structure for table `hs_tbl_hososv`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_hososv` (
-  `PK_sMaHoSo` varchar(50) NOT NULL,
-  `FK_sMaTK` varchar(50) NOT NULL,
-  `FK_sMaTinhTT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `FK_sMaHuyenTT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `FK_sMaXaTT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `FK_sMaTinhHT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `FK_sMaHuyenHT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `FK_sMaXaHT` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_hososv` (
+  `PK_sMaHoSo` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaTK` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaTinhTT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_sMaHuyenTT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_sMaXaTT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_sMaTinhHT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_sMaHuyenHT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_sMaXaHT` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tChiTietTT` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci,
   `tChiTietHT` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci,
-  `FK_sUuTien` varchar(50) DEFAULT NULL,
-  `sSDT` varchar(12) DEFAULT NULL,
-  `sSTK` varchar(13) DEFAULT NULL,
+  `FK_sUuTien` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `sSDT` varchar(12) CHARACTER SET latin1 DEFAULT NULL,
+  `sSTK` varchar(13) CHARACTER SET latin1 DEFAULT NULL,
   `sChiNhanh` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lienhe`
+-- Table structure for table `hs_tbl_lienhe`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_lienhe` (
-  `PK_sMaDS` varchar(50) NOT NULL,
-  `FK_sMaHoSo` varchar(50) NOT NULL,
-  `sHoTen` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sSDT` varchar(12) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sQuanHe` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `hs_tbl_lienhe` (
+  `PK_sMaDS` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaHoSo` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sHoTen` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sSDT` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sQuanHe` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lop`
+-- Table structure for table `hs_tbl_lop`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_lop` (
-  `PK_sMaLop` varchar(50) NOT NULL,
-  `sTenLop` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `hs_tbl_lop` (
+  `PK_sMaLop` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sTenLop` varchar(50) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_minhchung`
+-- Table structure for table `hs_tbl_minhchung`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_minhchung` (
-  `PK_sMaMC` varchar(50) NOT NULL,
-  `FK_sMaSV` varchar(50) NOT NULL,
-  `FK_sMaCT` varchar(50) NOT NULL,
-  `tLink` text NOT NULL,
-  `FK_sMaCB` varchar(50) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_minhchung` (
+  `PK_sMaMC` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaSV` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaCT` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `tLink` text CHARACTER SET latin1 NOT NULL,
+  `FK_sMaCB` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `dTGDuyet` datetime DEFAULT NULL,
   `iTrangThai` int(11) DEFAULT NULL,
-  `FK_sMaCBCD` varchar(50) DEFAULT NULL,
+  `FK_sMaCBCD` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `dTGDuyetCD` datetime DEFAULT NULL,
   `iTrangThaiCD` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_quyen`
+-- Table structure for table `hs_tbl_quyen`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_quyen` (
-  `PK_sMaQuyen` varchar(50) NOT NULL,
-  `sTenQuyen` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `hs_tbl_quyen` (
+  `PK_sMaQuyen` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sTenQuyen` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tbl_quyen`
+-- Dumping data for table `hs_tbl_quyen`
 --
 
-INSERT INTO `tbl_quyen` (`PK_sMaQuyen`, `sTenQuyen`) VALUES
+INSERT INTO `hs_tbl_quyen` (`PK_sMaQuyen`, `sTenQuyen`) VALUES
 ('1', 'Admin'),
 ('2', 'Sinh viên'),
 ('3', 'Liên chi đoàn, liên chi hội'),
@@ -11641,27 +11641,27 @@ INSERT INTO `tbl_quyen` (`PK_sMaQuyen`, `sTenQuyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_taikhoan`
+-- Table structure for table `hs_tbl_taikhoan`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_taikhoan` (
-  `PK_sMaTK` varchar(50) NOT NULL,
-  `sTenTK` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `sMatKhau` varchar(50) NOT NULL,
-  `FK_sMaQuyen` varchar(50) NOT NULL,
-  `sHoTen` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `sFK_Lop` varchar(50) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_taikhoan` (
+  `PK_sMaTK` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sTenTK` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `sMatKhau` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `FK_sMaQuyen` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sHoTen` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `sFK_Lop` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `iGioiTinh` int(5) DEFAULT NULL,
   `dNgaySinh` date DEFAULT NULL,
-  `tEmail` text,
+  `tEmail` text CHARACTER SET latin1,
   `sChucvu` varchar(50) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tbl_taikhoan`
+-- Dumping data for table `hs_tbl_taikhoan`
 --
 
-INSERT INTO `tbl_taikhoan` (`PK_sMaTK`, `sTenTK`, `sMatKhau`, `FK_sMaQuyen`, `sHoTen`, `sFK_Lop`, `iGioiTinh`, `dNgaySinh`, `tEmail`, `sChucvu`) VALUES
+INSERT INTO `hs_tbl_taikhoan` (`PK_sMaTK`, `sTenTK`, `sMatKhau`, `FK_sMaQuyen`, `sHoTen`, `sFK_Lop`, `iGioiTinh`, `dNgaySinh`, `tEmail`, `sChucvu`) VALUES
 ('Admin', 'Admin', '4e865071602d398af602bc39f76c9d31fa136221', '1', 'Admin', NULL, NULL, NULL, NULL, NULL),
 ('BPHC', 'BPHC', 'b30a081aa8feb30b4946e3f2281663b401b39bce', '4', 'Bộ phận hành chính Khoa Kinh Tế', NULL, NULL, NULL, NULL, NULL),
 ('LCDLCH', 'LCDKKT', '8c4547f7f98d2dd94e12056b87110044b67392c9', '3', 'Liên chi đoàn khoa Kinh Tế', NULL, NULL, NULL, NULL, NULL);
@@ -11669,73 +11669,73 @@ INSERT INTO `tbl_taikhoan` (`PK_sMaTK`, `sTenTK`, `sMatKhau`, `FK_sMaQuyen`, `sH
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_thamgia`
+-- Table structure for table `hs_tbl_thamgia`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_thamgia` (
-  `sMaDS` varchar(50) NOT NULL,
-  `sMaCT` varchar(50) NOT NULL,
-  `sMaTK` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hs_tbl_thamgia` (
+  `sMaDS` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sMaCT` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `sMaTK` varchar(50) CHARACTER SET latin1 NOT NULL,
   `iTrangThai` int(11) NOT NULL,
   `tLyDo` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `dm_hanhchinh`
+-- Indexes for table `hs_dm_hanhchinh`
 --
-ALTER TABLE `dm_hanhchinh`
+ALTER TABLE `hs_dm_hanhchinh`
   ADD PRIMARY KEY (`PK_sMaHanhChinh`);
 
 --
--- Indexes for table `dm_huyen`
+-- Indexes for table `hs_dm_huyen`
 --
-ALTER TABLE `dm_huyen`
+ALTER TABLE `hs_dm_huyen`
   ADD PRIMARY KEY (`PK_sMaH`),
   ADD KEY `FK_iMaT` (`FK_sMaT`);
 
 --
--- Indexes for table `dm_tinh`
+-- Indexes for table `hs_dm_tinh`
 --
-ALTER TABLE `dm_tinh`
+ALTER TABLE `hs_dm_tinh`
   ADD PRIMARY KEY (`PK_sMaT`);
 
 --
--- Indexes for table `dm_uutien`
+-- Indexes for table `hs_dm_uutien`
 --
-ALTER TABLE `dm_uutien`
+ALTER TABLE `hs_dm_uutien`
   ADD PRIMARY KEY (`PK_sMaNhom`);
 
 --
--- Indexes for table `dm_xa`
+-- Indexes for table `hs_dm_xa`
 --
-ALTER TABLE `dm_xa`
+ALTER TABLE `hs_dm_xa`
   ADD PRIMARY KEY (`PK_sMaX`),
   ADD KEY `dm_xa_ibfk_1` (`FK_sMaH`);
 
 --
--- Indexes for table `tbl_chuongtrinh`
+-- Indexes for table `hs_tbl_chuongtrinh`
 --
-ALTER TABLE `tbl_chuongtrinh`
+ALTER TABLE `hs_tbl_chuongtrinh`
   ADD PRIMARY KEY (`PK_sMaChuongTrinh`),
   ADD KEY `index_ct_canbo` (`FK_sMaCB`);
 
 --
--- Indexes for table `tbl_dangkydon`
+-- Indexes for table `hs_tbl_dangkydon`
 --
-ALTER TABLE `tbl_dangkydon`
+ALTER TABLE `hs_tbl_dangkydon`
   ADD PRIMARY KEY (`PK_sMaDangKy`),
   ADD KEY `index_don_canbo` (`FK_sMaCanbo`),
   ADD KEY `index_don_sv` (`FK_sMaSV`),
   ADD KEY `index_don_hc` (`FK_sMaHanhChinh`);
 
 --
--- Indexes for table `tbl_hososv`
+-- Indexes for table `hs_tbl_hososv`
 --
-ALTER TABLE `tbl_hososv`
+ALTER TABLE `hs_tbl_hososv`
   ADD PRIMARY KEY (`PK_sMaHoSo`),
   ADD UNIQUE KEY `FK_sMaTK` (`FK_sMaTK`),
   ADD KEY `FK_sMaTinhTT` (`FK_sMaTinhTT`),
@@ -11747,22 +11747,22 @@ ALTER TABLE `tbl_hososv`
   ADD KEY `FK_sUuTien` (`FK_sUuTien`);
 
 --
--- Indexes for table `tbl_lienhe`
+-- Indexes for table `hs_tbl_lienhe`
 --
-ALTER TABLE `tbl_lienhe`
+ALTER TABLE `hs_tbl_lienhe`
   ADD PRIMARY KEY (`PK_sMaDS`),
   ADD KEY `FK_sMaHoSo` (`FK_sMaHoSo`);
 
 --
--- Indexes for table `tbl_lop`
+-- Indexes for table `hs_tbl_lop`
 --
-ALTER TABLE `tbl_lop`
+ALTER TABLE `hs_tbl_lop`
   ADD PRIMARY KEY (`PK_sMaLop`);
 
 --
--- Indexes for table `tbl_minhchung`
+-- Indexes for table `hs_tbl_minhchung`
 --
-ALTER TABLE `tbl_minhchung`
+ALTER TABLE `hs_tbl_minhchung`
   ADD PRIMARY KEY (`PK_sMaMC`),
   ADD KEY `index_mc_sv` (`FK_sMaSV`),
   ADD KEY `index_mc_ct` (`FK_sMaCT`),
@@ -11770,23 +11770,23 @@ ALTER TABLE `tbl_minhchung`
   ADD KEY `FK_sMaCBCD` (`FK_sMaCBCD`);
 
 --
--- Indexes for table `tbl_quyen`
+-- Indexes for table `hs_tbl_quyen`
 --
-ALTER TABLE `tbl_quyen`
+ALTER TABLE `hs_tbl_quyen`
   ADD PRIMARY KEY (`PK_sMaQuyen`);
 
 --
--- Indexes for table `tbl_taikhoan`
+-- Indexes for table `hs_tbl_taikhoan`
 --
-ALTER TABLE `tbl_taikhoan`
+ALTER TABLE `hs_tbl_taikhoan`
   ADD PRIMARY KEY (`PK_sMaTK`),
   ADD KEY `maQuyen` (`FK_sMaQuyen`),
   ADD KEY `index_lop_tk` (`sFK_Lop`);
 
 --
--- Indexes for table `tbl_thamgia`
+-- Indexes for table `hs_tbl_thamgia`
 --
-ALTER TABLE `tbl_thamgia`
+ALTER TABLE `hs_tbl_thamgia`
   ADD PRIMARY KEY (`sMaDS`),
   ADD KEY `sMaCT` (`sMaCT`),
   ADD KEY `sMaTK` (`sMaTK`);
@@ -11796,66 +11796,66 @@ ALTER TABLE `tbl_thamgia`
 --
 
 --
--- Constraints for table `dm_huyen`
+-- Constraints for table `hs_dm_huyen`
 --
-ALTER TABLE `dm_huyen`
-  ADD CONSTRAINT `dm_huyen_ibfk_1` FOREIGN KEY (`FK_sMaT`) REFERENCES `dm_tinh` (`PK_sMaT`);
+ALTER TABLE `hs_dm_huyen`
+  ADD CONSTRAINT `hs_dm_huyen_ibfk_1` FOREIGN KEY (`FK_sMaT`) REFERENCES `hs_dm_tinh` (`PK_sMaT`);
 
 --
--- Constraints for table `dm_xa`
+-- Constraints for table `hs_dm_xa`
 --
-ALTER TABLE `dm_xa`
-  ADD CONSTRAINT `dm_xa_ibfk_1` FOREIGN KEY (`FK_sMaH`) REFERENCES `dm_huyen` (`PK_sMaH`);
+ALTER TABLE `hs_dm_xa`
+  ADD CONSTRAINT `hs_dm_xa_ibfk_1` FOREIGN KEY (`FK_sMaH`) REFERENCES `hs_dm_huyen` (`PK_sMaH`);
 
 --
--- Constraints for table `tbl_dangkydon`
+-- Constraints for table `hs_tbl_dangkydon`
 --
-ALTER TABLE `tbl_dangkydon`
-  ADD CONSTRAINT `tbl_dangkydon_ibfk_1` FOREIGN KEY (`FK_sMaHanhChinh`) REFERENCES `dm_hanhchinh` (`PK_sMaHanhChinh`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_dangkydon_ibfk_2` FOREIGN KEY (`FK_sMaSV`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_dangkydon_ibfk_3` FOREIGN KEY (`FK_sMaCanbo`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_dangkydon`
+  ADD CONSTRAINT `hs_tbl_dangkydon_ibfk_1` FOREIGN KEY (`FK_sMaHanhChinh`) REFERENCES `hs_dm_hanhchinh` (`PK_sMaHanhChinh`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_dangkydon_ibfk_2` FOREIGN KEY (`FK_sMaSV`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_dangkydon_ibfk_3` FOREIGN KEY (`FK_sMaCanbo`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_hososv`
+-- Constraints for table `hs_tbl_hososv`
 --
-ALTER TABLE `tbl_hososv`
-  ADD CONSTRAINT `tbl_hososv_ibfk_1` FOREIGN KEY (`FK_sMaTinhTT`) REFERENCES `dm_tinh` (`PK_sMaT`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_2` FOREIGN KEY (`FK_sMaTinhHT`) REFERENCES `dm_tinh` (`PK_sMaT`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_3` FOREIGN KEY (`FK_sMaHuyenTT`) REFERENCES `dm_huyen` (`PK_sMaH`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_4` FOREIGN KEY (`FK_sMaHuyenHT`) REFERENCES `dm_huyen` (`PK_sMaH`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_5` FOREIGN KEY (`FK_sMaXaTT`) REFERENCES `dm_xa` (`PK_sMaX`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_6` FOREIGN KEY (`FK_sMaXaHT`) REFERENCES `dm_xa` (`PK_sMaX`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_7` FOREIGN KEY (`FK_sUuTien`) REFERENCES `dm_uutien` (`PK_sMaNhom`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_hososv_ibfk_8` FOREIGN KEY (`FK_sMaTK`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_hososv`
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_1` FOREIGN KEY (`FK_sMaTinhTT`) REFERENCES `hs_dm_tinh` (`PK_sMaT`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_2` FOREIGN KEY (`FK_sMaTinhHT`) REFERENCES `hs_dm_tinh` (`PK_sMaT`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_3` FOREIGN KEY (`FK_sMaHuyenTT`) REFERENCES `hs_dm_huyen` (`PK_sMaH`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_4` FOREIGN KEY (`FK_sMaHuyenHT`) REFERENCES `hs_dm_huyen` (`PK_sMaH`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_5` FOREIGN KEY (`FK_sMaXaTT`) REFERENCES `hs_dm_xa` (`PK_sMaX`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_6` FOREIGN KEY (`FK_sMaXaHT`) REFERENCES `hs_dm_xa` (`PK_sMaX`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_7` FOREIGN KEY (`FK_sUuTien`) REFERENCES `hs_dm_uutien` (`PK_sMaNhom`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_hososv_ibfk_8` FOREIGN KEY (`FK_sMaTK`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_lienhe`
+-- Constraints for table `hs_tbl_lienhe`
 --
-ALTER TABLE `tbl_lienhe`
-  ADD CONSTRAINT `tbl_lienhe_ibfk_1` FOREIGN KEY (`FK_sMaHoSo`) REFERENCES `tbl_hososv` (`PK_sMaHoSo`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_lienhe`
+  ADD CONSTRAINT `hs_tbl_lienhe_ibfk_1` FOREIGN KEY (`FK_sMaHoSo`) REFERENCES `hs_tbl_hososv` (`PK_sMaHoSo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_minhchung`
+-- Constraints for table `hs_tbl_minhchung`
 --
-ALTER TABLE `tbl_minhchung`
-  ADD CONSTRAINT `tbl_minhchung_ibfk_1` FOREIGN KEY (`FK_sMaSV`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_minhchung_ibfk_2` FOREIGN KEY (`FK_sMaCT`) REFERENCES `tbl_chuongtrinh` (`PK_sMaChuongTrinh`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_minhchung_ibfk_3` FOREIGN KEY (`FK_sMaCB`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_minhchung_ibfk_4` FOREIGN KEY (`FK_sMaCBCD`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_minhchung`
+  ADD CONSTRAINT `hs_tbl_minhchung_ibfk_1` FOREIGN KEY (`FK_sMaSV`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_minhchung_ibfk_2` FOREIGN KEY (`FK_sMaCT`) REFERENCES `hs_tbl_chuongtrinh` (`PK_sMaChuongTrinh`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_minhchung_ibfk_3` FOREIGN KEY (`FK_sMaCB`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_minhchung_ibfk_4` FOREIGN KEY (`FK_sMaCBCD`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_taikhoan`
+-- Constraints for table `hs_tbl_taikhoan`
 --
-ALTER TABLE `tbl_taikhoan`
-  ADD CONSTRAINT `tbl_taikhoan_ibfk_1` FOREIGN KEY (`sFK_Lop`) REFERENCES `tbl_lop` (`PK_sMaLop`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_taikhoan_ibfk_2` FOREIGN KEY (`FK_sMaQuyen`) REFERENCES `tbl_quyen` (`PK_sMaQuyen`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_taikhoan`
+  ADD CONSTRAINT `hs_tbl_taikhoan_ibfk_1` FOREIGN KEY (`sFK_Lop`) REFERENCES `hs_tbl_lop` (`PK_sMaLop`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_taikhoan_ibfk_2` FOREIGN KEY (`FK_sMaQuyen`) REFERENCES `hs_tbl_quyen` (`PK_sMaQuyen`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_thamgia`
+-- Constraints for table `hs_tbl_thamgia`
 --
-ALTER TABLE `tbl_thamgia`
-  ADD CONSTRAINT `tbl_thamgia_ibfk_1` FOREIGN KEY (`sMaTK`) REFERENCES `tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_thamgia_ibfk_2` FOREIGN KEY (`sMaCT`) REFERENCES `tbl_chuongtrinh` (`PK_sMaChuongTrinh`) ON UPDATE CASCADE;
+ALTER TABLE `hs_tbl_thamgia`
+  ADD CONSTRAINT `hs_tbl_thamgia_ibfk_1` FOREIGN KEY (`sMaTK`) REFERENCES `hs_tbl_taikhoan` (`PK_sMaTK`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `hs_tbl_thamgia_ibfk_2` FOREIGN KEY (`sMaCT`) REFERENCES `hs_tbl_chuongtrinh` (`PK_sMaChuongTrinh`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
