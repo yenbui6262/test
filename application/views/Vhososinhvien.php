@@ -85,7 +85,7 @@
                                 <label>Ưu tiên:</label>
                                 <select name="uutien" class="form-control select2">
 
-                                    <option value="null" readonly hidden>--Mức độ ưu tiên--</option>
+                                    <option readonly hidden>--Mức độ ưu tiên--</option>
                                     {if !empty($sinhvien['uutien'])}
                                     {foreach $sinhvien['uutien'] as $v}
                                     <option value="{$v.PK_sMaNhom}" {if !empty($Uutien) && $Uutien==$v.PK_sMaNhom}selected{/if}>{$v.tMoTa}</option>
