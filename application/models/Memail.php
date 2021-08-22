@@ -1,6 +1,18 @@
 <?php 
 
 	class Memail extends MY_Model {
+		public function laylaimatkhau($taikhoan){
+			$this->db->select("PK_sMaTK");
+			$this->db->where("PK_sMaTK", $taikhoan);
+			$this->db->from("hs_tbl_taikhoan");
+			$res = $this->db->count_all_results();
+			return $res;
+		}
+		public function updatematkhau($taikhoan, $newPass){
+			$this->db->where("PK_sMaTK", $taikhoan)
+                    ->set("sMatKhau", sha1($newPass))
+                    ->update("hs_tbl_taikhoan");
+		}
 		public function checkPass($taikhoan){
 			$res = $this->db->where("PK_sMaTK", $taikhoan['taikhoan'])
 							->where("sMatKhau", $taikhoan['sMatKhau'])

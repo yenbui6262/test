@@ -18,18 +18,15 @@ class Cemail extends MY_Controller {
             if($action == "laylaimatkhau"){
                 $taikhoan = $this->input->post("username");
                 $email = $this->input->post("email");
-
-                $this->db->select("PK_sMaTK");
-                $this->db->where("PK_sMaTK", $taikhoan);
-                $this->db->from("tbl_taikhoan");
-                $row = $this->db->count_all_results();
+                
+                $row =$this->Memail->laylaimatkhau($taikhoan);
                 
                 if($row > 0){
                     $newPass = substr(sha1(rand(10,100)), rand(0,34), 6);
                     // update lai mat khau
-                    $this->db->where("PK_sMaTK", $taikhoan)
-                    ->set("sMatKhau", sha1($newPass))
-                    ->update("tbl_taikhoan");
+                    
+                    $this->Memail->updatematkhau($taikhoan, $newPass);
+
                     $this->sendPass($taikhoan, $email, $newPass);
                 }
                 echo $row;
@@ -47,13 +44,11 @@ class Cemail extends MY_Controller {
         $subject = "Cấp lại mật khẩu cho tài khoản có mã sinh viên ".$taikhoan;
         $noidungMail = "Mật khẩu mới là ".$newPass.". Vui lòng đổi lại mật khẩu mới để tiếp tục sử dụng.";
 
-        $this->email->from('PPTphamthao@gmail.com', 'Hệ thống Minh chứng kinh tế');
+        $this->email->from('kinhte.hou@.edu.vn', 'Hệ thống Minh chứng - Tư vấn Khoa kinh tế HOU');
         // tiêu đề email
         $this->email->subject($subject);
         // nội dung email
         $this->email->message($noidungMail);
-        // $this->email->message($noidungMail);
-        // gửi email cho cả đơn vị và cá nhân
         $this->email->to($email);
 
         if ($this->email->send()) {

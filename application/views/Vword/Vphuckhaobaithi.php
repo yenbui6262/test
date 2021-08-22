@@ -55,7 +55,7 @@
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phòng thi số...............................&nbsp;&nbsp;&nbsp;&nbsp;Số báo danh:..........................................................
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ca thi.........................................&nbsp;&nbsp;&nbsp;&nbsp;Mã đề thi được phát:..............................................
         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ngày ..... Tháng ..... Năm ...........&nbsp;&nbsp;Khoa kinh tế đã công bố điểm bài thi kết thúc học phần là:....... điểm. Em cảm thấy kết quả điểm thi đã công bố chưa phản ánh đúng khả năng làm bài của em.</p>
-        <p style="text-align:left;line-height:26px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nay em làm đơn này kính đề nghị Khoa kinh tế, Phòng Khảo thi và Quản lý chất lượng xem xét và phúc khảo lại bài thi trên của em.</p>
+        <p style="text-align:left;line-height:26px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nay em làm đơn này kính đề nghị Khoa kinh tế, Phòng Khảo thí và Quản lý chất lượng xem xét và phúc khảo lại bài thi trên của em.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kính mong Ban Chủ nhiệm Khoa xem xét và giải quyết.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em xin chân thành cảm ơn!</p>
         <table width="100%"style="text-align:center;">
