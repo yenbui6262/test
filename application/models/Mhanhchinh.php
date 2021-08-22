@@ -16,10 +16,10 @@
         }
 
         private function dieukien($dieukien=null){
-            if(isset($dieukien['tenhc'])){
+            if(!empty($dieukien['tenhc'])){
                 $this->db->like('sTenHanhChinh', $dieukien['tenhc']);
             }
-            if(isset($dieukien['mota'])){
+            if(!empty($dieukien['mota'])){
                 $this->db->where('tMota', $dieukien['mota']);
             }
             

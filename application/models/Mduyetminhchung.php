@@ -23,37 +23,37 @@
         }
 
         private function dieukien($dieukien=null,$ma){
-            if(isset($dieukien['tenct'])&&$dieukien['tenct']!='tatca'){
+            if(!empty($dieukien['tenct'])&&$dieukien['tenct']!='tatca'){
                 $this->db->where('ct.sTenCT', $dieukien['tenct']);
             }
-            if(isset($dieukien['hoten'])){
+            if(!empty($dieukien['hoten'])){
                 $this->db->like('tk.sHoTen', $dieukien['hoten']);
             }
-            if(isset($dieukien['masv'])){
+            if(!empty($dieukien['masv'])){
                 $this->db->like('tk.PK_sMaTK', $dieukien['masv']);
             }
 
             if($ma==1||$ma==3){
-                if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+                if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                     $this->db->where('mc.iTrangThaiCD', $dieukien['trangthai']);
                 }
-                if(isset($dieukien['lop'])&&$dieukien['lop']!='tatca'){
+                if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                     $this->db->where('lop.sTenLop', $dieukien['lop']);
                 }
             }else{
-                if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+                if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                     $this->db->where('mc.iTrangThai', $dieukien['trangthai']);
                 }
             }
 
-            if(isset($dieukien['tinhtrang'])&&$dieukien['tinhtrang']!='tatca'){
+            if(!empty($dieukien['tinhtrang'])&&$dieukien['tinhtrang']!='tatca'){
                 $this->db->where('ct.dThoiGIanBD <=', $dieukien['now']);
                 $this->db->where('ct.dThoiGIanKT >=', $dieukien['now']);
             }
-            if(isset($dieukien['thoigianbd'])){
+            if(!empty($dieukien['thoigianbd'])){
                 $this->db->where('ct.dThoiGIanBD >=', $dieukien['thoigianbd']);
             }
-            if(isset($dieukien['thoigiankt'])){
+            if(!empty($dieukien['thoigiankt'])){
                 $this->db->where('ct.dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
         }

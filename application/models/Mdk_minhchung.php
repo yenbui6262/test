@@ -12,16 +12,16 @@ class Mdk_minhchung extends My_Model
             return $count;
         }
         private function dieukien($dieukien=null){
-            if(isset($dieukien['tenchuongtrinh'])){
+            if(!empty($dieukien['tenchuongtrinh'])){
                 $this->db->like('sTenCT', $dieukien['tenchuongtrinh']);
             }
-            if(isset($dieukien['thoigianbd'])){
+            if(!empty($dieukien['thoigianbd'])){
                 $this->db->where('dThoiGIanBD >=', $dieukien['thoigianbd']);
             }
-            if(isset($dieukien['thoigiankt'])){
+            if(!empty($dieukien['thoigiankt'])){
                 $this->db->where('dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
-            if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('iTrangThaiCD', $dieukien['trangthai']);
             }
         }

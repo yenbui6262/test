@@ -115,19 +115,19 @@
 
         private function dieukien($dieukien=null){
 
-            if(isset($dieukien['lop'])&&$dieukien['lop']!='tatca'){
+            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
-            if(isset($dieukien['ngaysinh'])){
+            if(!empty($dieukien['ngaysinh'])){
                 $this->db->where('year(tk.dNgaySinh)', $dieukien['ngaysinh']);
             }
-            if(isset($dieukien['gioitinh'])&&$dieukien['gioitinh']!='tatca'){
+            if(!empty($dieukien['gioitinh'])&&$dieukien['gioitinh']!='tatca'){
                 $this->db->where('tk.iGioiTinh', $dieukien['gioitinh']);
             }
-            if(isset($dieukien['uutien'])&&$dieukien['uutien']!='tatca'){
+            if(!empty($dieukien['uutien'])&&$dieukien['uutien']!='tatca'){
                 $this->db->where('hs.FK_sUuTien', $dieukien['uutien']);
             }
-            if(isset($dieukien['chucvu'])&&$dieukien['chucvu']!='tatca'){
+            if(!empty($dieukien['chucvu'])&&$dieukien['chucvu']!='tatca'){
                 if($dieukien['chucvu']=='canbolop'){
                     $this->db->where('tk.sChucvu !=', '');
                 }else{
@@ -135,22 +135,22 @@
                 }
             }
             // địa chỉ
-            if(isset($dieukien['tinhtt'])){
+            if(!empty($dieukien['tinhtt'])){
                 $this->db->where('hs.FK_sMaTinhTT', $dieukien['tinhtt']);
             }
-            if(isset($dieukien['huyentt'])){
+            if(!empty($dieukien['huyentt'])){
                 $this->db->where('hs.FK_sMaHuyenTT', $dieukien['huyentt']);
             }
-            if(isset($dieukien['xatt'])){
+            if(!empty($dieukien['xatt'])){
                 $this->db->where('hs.FK_sMaXaTT', $dieukien['xatt']);
             }
-            if(isset($dieukien['tinhht'])){
+            if(!empty($dieukien['tinhht'])){
                 $this->db->where('hs.FK_sMaTinhHT', $dieukien['tinhht']);
             }
-            if(isset($dieukien['huyenht'])){
+            if(!empty($dieukien['huyenht'])){
                 $this->db->where('hs.FK_sMaHuyenHT', $dieukien['huyenht']);
             }
-            if(isset($dieukien['xaht'])){
+            if(!empty($dieukien['xaht'])){
                 $this->db->where('hs.FK_sMaXaHT', $dieukien['xaht']);
             }
         }

@@ -122,7 +122,7 @@
             $params['stt'] = $limit_per_page * $page + 1;
             $params['tenct'] = $this->Mthongkeminhchung->getchuongtrinh();
             $params['lop'] = $this->Mthongkeminhchung->getlop();
-            if(isset($dieukien['action'])&&$dieukien['action']=='get_dstheosinhvien'){
+            if(!empty($dieukien['action'])&&$dieukien['action']=='get_dstheosinhvien'){
                 $total_records = $this->Mthongkeminhchung->getTotalsinhvien($dieukien,$session['maquyen'],$lop);
             }elseif($dieukien['action']=='get_dstheolop'){
                 $total_records = $this->Mthongkeminhchung->getTotalRecord($dieukien,$session['maquyen'],$lop);

@@ -18,16 +18,16 @@
         }
 
         private function dieukien($dieukien=null){
-            if(isset($dieukien['tenhc'])&&$dieukien['tenhc']!='tatca'){
+            if(!empty($dieukien['tenhc'])&&$dieukien['tenhc']!='tatca'){
                 $this->db->like('hc.sTenHanhChinh', $dieukien['tenhc']);
             }
-            if(isset($dieukien['hoten'])){
+            if(!empty($dieukien['hoten'])){
                 $this->db->like('tk.sHoTen', $dieukien['hoten']);
             }
-            if(isset($dieukien['lop'])&&$dieukien['lop']!='tatca'){
+            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
             }
-            if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where('dky.iTrangThai', $dieukien['trangthai']);
             }
             

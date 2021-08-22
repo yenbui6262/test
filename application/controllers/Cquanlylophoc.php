@@ -234,7 +234,7 @@
 
             $lophoc = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             $k=7;
-            while(isset($lophoc[$k]['A'])){
+            while(!empty($lophoc[$k]['A'])){
 
 				// pr($tunglophoc);
                 $checklop = $this->Mquanlylophoc->checklop($lophoc[$k]['B']);

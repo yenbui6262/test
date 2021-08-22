@@ -49,7 +49,7 @@
 
             $pageX      = $this->input->post("page");
             $res        = $this->get_params($pageX-1, $filter);
-            if(isset($res)){
+            if(!empty($res)){
                 echo json_encode($res);
             }
         }

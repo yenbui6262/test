@@ -16,16 +16,16 @@
         }
 
         private function dieukien($dieukien=null){
-            if(isset($dieukien['tenct'])){
+            if(!empty($dieukien['tenct'])){
                 $this->db->like('ct.sTenCT', $dieukien['tenct']);
             }
-            if(isset($dieukien['mota'])){
+            if(!empty($dieukien['mota'])){
                 $this->db->where('ct.tMota', $dieukien['mota']);
             }
-            if(isset($dieukien['thoigianbd'])){
+            if(!empty($dieukien['thoigianbd'])){
                 $this->db->where('ct.dThoiGIanBD >=', $dieukien['thoigianbd']);
             }
-            if(isset($dieukien['thoigiankt'])){
+            if(!empty($dieukien['thoigiankt'])){
                 $this->db->where('ct.dThoiGIanKT <=', $dieukien['thoigiankt']);
             }
             

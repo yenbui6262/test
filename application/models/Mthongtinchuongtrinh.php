@@ -10,15 +10,15 @@
 
         // get ttsv
         private function dieukien($dieukien){
-            if(isset($dieukien['hotenmasv'])){
+            if(!empty($dieukien['hotenmasv'])){
                 $searchQuery = " (tk.sTenTK like '%".$dieukien['hotenmasv']."%' or 
                     tk.sHoTen like '%".$dieukien['hotenmasv']."%') ";
                     $this->db->where($searchQuery);
             }
-            if(isset($dieukien['lop'])&&$dieukien['lop']!='tatca'){
+            if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                 $this->db->where("lop.sTenLop",$dieukien['lop']);
             }
-            if(isset($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
+            if(!empty($dieukien['trangthai'])&&$dieukien['trangthai']!='tatca'){
                 $this->db->where("tg.iTrangThai",$dieukien['trangthai']);
             }
         }

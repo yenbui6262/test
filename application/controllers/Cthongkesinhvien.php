@@ -91,20 +91,20 @@
             $xatt_list    = '';
             $xaht_list    = '';
 
-            if(isset($filter['tinhtt'])){
+            if(!empty($filter['tinhtt'])){
                 // lấy huyện
                 $huyentt_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhtt']);   
 
             }
-            if(isset($filter['huyentt'])){
+            if(!empty($filter['huyentt'])){
                 // lấy xã
                 $xatt_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyentt']);
             }
-            if(isset($filter['tinhht'])){
+            if(!empty($filter['tinhht'])){
                 // lấy huyện
                 $huyenht_list 	= $this->Mthongkesinhvien->getListhuyen($filter['tinhht']);  
             }
-            if(isset($filter['huyenht'])){
+            if(!empty($filter['huyenht'])){
                 // lấy xã
                 $xaht_list 	    = $this->Mthongkesinhvien->getListxa($filter['huyenht']);
             }
@@ -305,7 +305,7 @@
                 }else{
                     $tk['iGioiTinh']='Nữ';
                 }
-                if(isset($tk['dNgaySinh'])){
+                if(!empty($tk['dNgaySinh'])){
                     $tk['dNgaySinh'] = date("d/m/Y", strtotime($tk['dNgaySinh']));
                 }else{
                     $tk['dNgaySinh']='';
@@ -394,7 +394,7 @@
             $hoso=$objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             
             $k=7;
-            while(isset($hoso[$k]['A'])){
+            while(!empty($hoso[$k]['A'])){
                 $tunghoso = array(
                     'sSDT'      => $hoso[$k]['C'],
                     'sSTK'      => $hoso[$k]['D'],
@@ -405,7 +405,7 @@
                 $checktk = $this->Mthongkesinhvien->checktaikhoan($hoso[$k]['B']);
                 $kq=0;
                 $row=0;
-                if(isset($checktk)){
+                if(!empty($checktk)){
                     $tunghoso['FK_sMaTK'] = $checktk[0]['PK_sMaTK'];
                     $qq= $this->Mthongkesinhvien->checkhoso($tunghoso);
                     if($qq==0){

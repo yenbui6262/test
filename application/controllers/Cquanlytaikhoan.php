@@ -233,7 +233,7 @@
 
             $taikhoan = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true,true);
             $k=7;
-            while(isset($taikhoan[$k]['A'])){
+            while(!empty($taikhoan[$k]['A'])){
                 if($taikhoan[$k]['E']=="Nam"){
                     $iGioiTinh = '1';
                 }else{
