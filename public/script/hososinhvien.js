@@ -19,6 +19,7 @@ $(document).ready(function() {
                 html += '<option value="' + v.PK_sMaH + '">' + v.sTenH + '</option>';
             });
             $('#huyentt').html(html);
+            $('#xatt').html('<option selected disabled>Bạn chưa chọn huyện</option>');
         });
     });
     $('#huyentt').on('change', function(e) {
@@ -57,6 +58,8 @@ $(document).ready(function() {
                 html += '<option value="' + v.PK_sMaH + '">' + v.sTenH + '</option>';
             });
             $('#huyenht').html(html);
+            $('#xaht').html('<option selected disabled>Bạn chưa chọn huyện</option>');
+
         });
     });
     $('#huyenht').on('change', function(e) {

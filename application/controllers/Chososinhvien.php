@@ -23,19 +23,56 @@
         $matk       =$session['taikhoan'];
         
         $data= array(
-            'FK_sUuTien'    =>$uutien,
             'sSDT'          =>$sdt,
             'sSTK'          =>$stk,
             'sChiNhanh'     =>$chinhanh,
-            'FK_sMaTinhTT'  => $tinhtt,
-            'FK_sMaHuyenTT' =>$huyentt,
-            'FK_sMaXaTT'    =>$xatt,
             'tChiTietTT'    =>$chitiettt,
-            'FK_sMaTinhHT'  =>$tinhht,
-            'FK_sMaHuyenHT' =>$huyenht,
-            'FK_sMaXaHT'    =>$xaht,
             'tChiTietHT'    =>$chitietht,
         );
+        if(!empty($uutien)){
+            $data['FK_sUuTien'] = $uutien;
+        }else{
+            $data['FK_sUuTien'] = NULL;
+        }
+        if($tinhht!=0){
+            $data['FK_sMaTinhHT'] = $tinhht;
+            if($huyenht!=0){
+                $data['FK_sMaHuyenHT'] = $huyenht;
+                if($xaht!=0){
+                    $data['FK_sMaXaHT'] = $xaht;
+                }else{
+                    $data['FK_sMaXaHT']     = NULL;
+                }
+            }else{
+                $data['FK_sMaHuyenHT']  = NULL;
+                $data['FK_sMaXaHT']     = NULL;
+            }
+        }else{
+            $data['FK_sMaTinhHT']   = NULL;
+            $data['FK_sMaHuyenHT']  = NULL;
+            $data['FK_sMaXaHT']     = NULL;
+        }
+
+        if($tinhtt!=0){
+            $data['FK_sMaTinhTT'] = $tinhtt;
+            if($huyentt!=0){
+                $data['FK_sMaHuyenTT']  = $huyentt;
+                if($xatt!=0){
+                    $data['FK_sMaXaTT'] = $xatt;
+                }else{
+                    $data['FK_sMaXaTT'] = NULL;
+                }
+            }else{
+                $data['FK_sMaHuyenTT']  = NULL;
+                $data['FK_sMaXaTT']     = NULL;
+            }
+
+        }else{
+            $data['FK_sMaTinhTT']   = NULL;
+            $data['FK_sMaHuyenTT']  = NULL;
+            $data['FK_sMaXaTT']     = NULL;
+        }
+
         $hotennt    =$this->input->post("hotenngthan");
         $sdtnt      =$this->input->post("sdtngthan");
         $quanhent   =$this->input->post("quanhe");
