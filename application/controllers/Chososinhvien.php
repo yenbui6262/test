@@ -149,7 +149,7 @@
             $res1 = $this->Mhososinhvien->updateEmail($matk, $Temail);
             $res2 = $this->Mhososinhvien->updateTT($matk, $data);
 
-            if( empty($this->input->post('mads1')) && empty($this->input->post('mads2'))){ //admin đã nhập hồ sơ nhưng chưa điền liên hệ
+            if( !($this->input->post('mads1')) && !($this->input->post('mads2'))){ //admin đã nhập hồ sơ nhưng chưa điền liên hệ
                 $FK_sMaHoSo=$this->input->post("PKmahs");
                 $lienhe1['FK_sMaHoSo'] = $FK_sMaHoSo;
                 $lienhe2['FK_sMaHoSo'] = $FK_sMaHoSo;

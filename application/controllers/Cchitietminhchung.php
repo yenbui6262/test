@@ -18,22 +18,28 @@
             }
 
             if($this->input->post('chitietct')){
+                $tenct = $this->Mchitietminhchung->gettenct($this->input->post('chitietct'));
+                $sominhchung = $this->Mchitietminhchung->getsosinhvienthamgia($this->input->post('chitietct'));
                 $filtertkmc=array(
                     'mact'    =>$this->input->post('chitietct'),
-                    'tenct'           => $this->Mchitietminhchung->gettenct($this->input->post('chitietct'))[0]['sTenCT'],
-                    'sominhchung'      => $this->Mchitietminhchung->getsosinhvienthamgia($this->input->post('chitietct'))[0]['sosinhvien'], 
+                    'tenct'           => $tenct[0]['sTenCT'],
+                    'sominhchung'      => $sominhchung[0]['sosinhvien'], 
                 );
                 $this->session->set_userdata("filterqlmc", $filtertkmc);
                 redirect('chitietminhchung');
             }elseif($this->input->post('chitietlop')){
                 $ma = explode(",", $this->input->post('chitietlop'));
+                $tenct = $this->Mchitietminhchung->gettenct($ma[1]);
+                $lop = $this->Mchitietminhchung->gettenlop($ma[0]);
+                $sominhchung = $this->Mchitietminhchung->getsosinhvienthamgialop($ma[1],$ma[0]);
+                $sosinhvienlop = $this->Mchitietminhchung->getsosinhvien($ma[0]);
                 $filtertkmc=array(
                     'mact'            => $ma[1],
                     'malop'           => $ma[0],
-                    'tenct'           => $this->Mchitietminhchung->gettenct($ma[1])[0]['sTenCT'],
-                    'lop'             => $this->Mchitietminhchung->gettenlop($ma[0])[0]['sTenLop'],
-                    'sominhchung'     => $this->Mchitietminhchung->getsosinhvienthamgialop($ma[1],$ma[0])[0]['sosinhvien'],
-                    'sosinhvienlop'   => $this->Mchitietminhchung->getsosinhvien($ma[0])[0]['sosinhvien']
+                    'tenct'           => $tenct[0]['sTenCT'],
+                    'lop'             => $lop[0]['sTenLop'],
+                    'sominhchung'     => $sominhchung[0]['sosinhvien'],
+                    'sosinhvienlop'   => $sosinhvienlop[0]['sosinhvien']
                 );
                 // pr($filtertkmc);
                 $this->session->set_userdata("filterqlmc", $filtertkmc);
@@ -125,10 +131,12 @@
                 );
                 $total_records = $this->Mchitietminhchung->getTotalRecord($dieukien);
             }else{
+                $tenct = $this->Mchitietminhchung->gettensv($dieukien['masv']);
+                $thongtinsv = $this->Mchitietminhchung->gettensv($dieukien['masv']);
                 $params=array(
                     'stt' => $limit_per_page * $page + 1,
-                    'tenct' =>  $this->Mchitietminhchung->gettensv($dieukien['masv'])[0]['sHoTen'],
-                    'thongtinsv'=>  $this->Mchitietminhchung->gettensv($dieukien['masv'])[0],
+                    'tenct' =>  $tenct[0]['sHoTen'],
+                    'thongtinsv'=>  $thongtinsv[0],
                     'lop' => '',
                     'action' => 2,
                 );

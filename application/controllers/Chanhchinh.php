@@ -57,9 +57,9 @@
             $tenhc        = $this->input->post('tenhc');
             $mota      = $this->input->post('mota');
 
-            if(empty($tenhc))
+            if(!($tenhc))
 				return 'Nhập tên thủ tục';
-            if(empty($mota))
+            if(!($mota))
                 return 'Nhập mô tả';
 
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
@@ -103,9 +103,9 @@
                 'sTenHanhChinh'      => $tenhc,
                 'tMota'              => $mota,
             );
-            if(empty($tenhc))
+            if(!($tenhc))
 				return 'Nhập tên thủ tục';
-            if(empty($mota))
+            if(!($mota))
                 return 'Nhập mô tả';
             $row = $this->Mhanhchinh->updatehanhchinh($mahc, $data);
             if($row > 0){

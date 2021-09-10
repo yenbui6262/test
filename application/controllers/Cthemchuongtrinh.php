@@ -81,11 +81,12 @@
             if($thoigianbd>$thoigiankt)
                 return 'Thời gian không hợp lệ';
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
+            $macb = $this->Mthemchuongtrinh->getmacb($session['taikhoan']);
             $data = array(
                 'PK_sMaChuongTrinh'      => time().rand(1,1000),
                 'stenCT'              => $tenct,
                 'tMota'              => $mota,
-                'FK_sMaCB'              => $this->Mthemchuongtrinh->getmacb($session['taikhoan'])[0]['PK_sMaTK'],
+                'FK_sMaCB'              => $macb[0]['PK_sMaTK'],
                 'dThoiGIanBD'            => $thoigianbd,
                 'dThoiGIanKT'            => $thoigiankt,
                 'dThoiGianXN'            => $thoigiandk
@@ -134,10 +135,11 @@
             if($thoigianbd>$thoigiankt)
                 return 'Thời gian không hợp lệ';
             // mảng bao gồm các giá trị được gán cho các trường dữ liệu trong csdl
+            $macb = $this->Mthemchuongtrinh->getmacb($session['taikhoan']);
             $data = array(
                 'stenCT'              => $tenct,
                 'tMota'              => $mota,
-                'FK_sMaCB'              => $this->Mthemchuongtrinh->getmacb($session['taikhoan'])[0]['PK_sMaTK'],
+                'FK_sMaCB'              => $macb[0]['PK_sMaTK'],
                 'dThoiGIanBD'            => $thoigianbd,
                 'dThoiGIanKT'            => $thoigiankt,
                 'dThoiGianXN'            => $thoigiandk

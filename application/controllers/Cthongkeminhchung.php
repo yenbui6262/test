@@ -111,7 +111,8 @@
 
         public function get_params($page, $dieukien){
             $session = $this->session->userdata("user");
-            $lop = $this->Mthongkeminhchung->getchucvu($session['taikhoan'])[0]['sFK_lop'];
+            $chucvu = $this->Mthongkeminhchung->getchucvu($session['taikhoan']);
+            $lop = $chucvu[0]['sFK_lop'];
             // init params
             $params = array();
             // So trang tren 1 page

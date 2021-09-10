@@ -10,7 +10,8 @@
         public function index($page=1)
         {
             $session = $this->session->userdata("user");
-            $chucvu = $this->Mduyetminhchung->getchucvu($session['taikhoan'])[0]['sChucvu'];
+            $getchuc = $this->Mduyetminhchung->getchucvu($session['taikhoan']);
+            $chucvu = $getchuc[0]['sChucvu'];
             if($session['maquyen']!=3&&$session['maquyen']!=1&&$chucvu==''){
                 return redirect(base_url().'403_Forbidden');   
             }
@@ -71,7 +72,8 @@
 
         public function get_params($page, $dieukien){
             $session = $this->session->userdata("user");
-            $lop = $this->Mduyetminhchung->getchucvu($session['taikhoan'])[0]['sFK_lop'];
+            $chucvu = $this->Mduyetminhchung->getchucvu($session['taikhoan']);
+            $lop = $chucvu[0]['sFK_lop'];
             // init params
             $params = array();
             // So trang tren 1 page
