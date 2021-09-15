@@ -14,9 +14,9 @@
             <form action="{$url}quanlyhanhchinh" method="POST" class="insert" id="myForm">
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label id="inputGroup-sizing-sm">Họ tên:</label>
-                        <input type="text" id="hoten" name="hoten" class="form-control" aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm" value="{if isset($hoten)}{$hoten}{/if}"
+                        <label id="inputGroup-sizing-sm">Mã sinh viên:</label>
+                        <input type="text" id="masv" name="masv" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm" value="{if isset($masv)}{$masv}{/if}"
                             placeholder="Nhập nội dung">
                     </div>
                     <div class="col-md-3 form-group lophoc">

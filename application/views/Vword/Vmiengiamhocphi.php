@@ -34,15 +34,15 @@
         
         Mã số sinh viên:&nbsp;{$thongtin['PK_sMaTK']} <br>
         Thuộc đối tượng:........................................................................................................................ <br>
-        Số tài khoản ngân hàng:............................................................................................................. <br>
-        Tên chi nhánh giao dịch:............................................................................................................ <br>
+        Số tài khoản ngân hàng:...{$thongtin['sSTK']}... <br>
+        Tên chi nhánh giao dịch:..{$thongtin['sChiNhanh']}... <br>
         Tên ngân hàng:........................................................................................................................... <br>
         
         <p>Căn cứ vào Nghị định số 86/2015/NĐ-CP của Chính phủ, tôi làm đơn này đề nghị được Nhà trường xem xét để được miễn, giảm học phí theo quy định và chế độ hiện hành.</p>
         <table style="text-align:center; line-height:12px">
             <tr>
-                <td colspan="5" style="width:60%;"></td>
-                <td>Hà Nội, ngày .... tháng .... năm 202...</td>
+                <td colspan="5" style="width:50%;"></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hà Nội, ngày .... tháng .... năm 202...</td>
             </tr>
             <tr><td colspan="5"><b>Xác nhận của Khoa </b></td><td><b>Người làm đơn</b></td></tr>
             <tr><td colspan="5"><i> (Quản lý sinh viên)</i></td><td><i>(Ký tên và ghi rõ họ tên)</i></td></tr>
@@ -82,16 +82,16 @@
         
         Mã số sinh viên:&nbsp;{$thongtin['PK_sMaTK']}  <br>
         Thuộc đối tượng:........................................................................................................................ <br>
-        Số tài khoản ngân hàng:............................................................................................................. <br>
-        Tên chi nhánh giao dịch:............................................................................................................ <br>
+        Số tài khoản ngân hàng:...{$thongtin['sSTK']}... <br>
+        Tên chi nhánh giao dịch:..{$thongtin['sChiNhanh']}... <br>
         Tên ngân hàng:........................................................................................................................... <br>
         Thuộc đối tượng: dân tộc thiểu số thuộc hộ nghèo <br>
 
         <p>Căn cứ Quyết định số 66/2013/QĐ-TTg của Chính phủ, tôi làm đơn này đề nghị được Nhà trường xem xét để hỗ trợ chi phí học tập học kỳ.......năm học............................. theo quy định.</p>
         <table style="text-align:center; line-height:12px">
             <tr>
-                <td colspan="5" style="width:60%;"></td>
-                <td>Hà Nội, ngày .... tháng .... năm 202...</td>
+                <td colspan="5" style="width:50%;"></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hà Nội, ngày .... tháng .... năm 202...</td>
             </tr>
             <tr><td colspan="5"><b>Xác nhận của Khoa </b></td><td><b>Người làm đơn</b></td></tr>
             <tr><td colspan="5"><i> (Quản lý sinh viên)</i></td><td><i>(Ký tên và ghi rõ họ tên)</i></td></tr>

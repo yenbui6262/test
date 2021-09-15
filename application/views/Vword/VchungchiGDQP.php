@@ -25,10 +25,14 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ngày sinh:&nbsp;...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Là sinh viên lớp:&nbsp;...{$thongtin['sTenLop']}...&nbsp; Khoa Kinh tế - Trường Đại học Mở Hà Nội</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mã số sinh viên:&nbsp;...{$thongtin['PK_sMaTK']}...</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do xin cấp lại:{$thongtin['tLydo']}</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do xin cấp lại: {if !empty($thongtin['tLydo'])}{$thongtin['tLydo']}.{else}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......................................................................................................................................................<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......................................................................................................................................................
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......................................................................................................................................................
+        {/if}</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kính đề nghị Trung tâm cấp lại Chứng chỉ Giáo dục quốc phòng cho em.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em xin trân trọng cảm ơn.</p>
-        <p style="text-align:right;"><i> ..................., ngày……tháng……năm 202….</i></p>
+        <p style="text-align:right;"><i> ..................., ngày……tháng……năm...….</i></p>
         <table width="100%"style="text-align:center;">
             <tr>
                 <td width="50%"><b></b></td>
@@ -45,3 +49,5 @@
     </style>
 </body>
 </html>
+
+

@@ -13,9 +13,9 @@
             <tr>
                 <td colspan="3" style="text-align:left">
                 <b>Tuyến buýt đăng ký:</b><br><br>
-                <b>Một tuyến</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Ghi số hiệu tuyến vào ô)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	<br>
-                <b>Liên tuyến:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bình thường(Không đi tuyến 54)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-                <b>Liên tuyến và Tuyến 54</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Đi tất cả các tuyến)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	<br>
+                <b>Một tuyến</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Ghi số hiệu tuyến vào ô)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	<br><br>
+                <b>Liên tuyến:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bình thường(Không đi tuyến 54)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+                <b>Liên tuyến và Tuyến 54</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Đi tất cả các tuyến)&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:solid 1px #333399;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	<br><br>
                 (Đánh dấu vào ô cần đăng ký)
                 </td>
                 <td colspan="2" style="text-align:right;">
@@ -36,12 +36,12 @@
         
         &nbsp;&nbsp;&nbsp;&nbsp;Ngày tháng năm sinh: {date("d/m/Y", strtotime($thongtin['dNgaySinh']))}
         <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Địa chỉ: ........................................................................................................................... <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;.........................................................................................................................................<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Trường/Cơ quan: ............................................................................................................ <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Lớp/Khóa học: ................................................................................................................ <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Địa chỉ:{if !empty($thongtin['xaht'])}{$thongtin['xaht']},{$thongtin['huyenht']},{$thongtin['tinhht']}{/if}<br>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;Trường/Cơ quan: Trường Đại Học Mở Hà Nội <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Lớp/Khóa học: ...{$thongtin['sTenLop']}....<br>
         &nbsp;&nbsp;&nbsp;&nbsp;Điểm nhận thẻ: ............................................................................................................... <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Điện thoại liên hệ (nếu có): ............................................................................................ <br></div>
+        &nbsp;&nbsp;&nbsp;&nbsp;Điện thoại liên hệ (nếu có): ...{$thongtin['sSDT']}... <br></div>
         
         <div style="font-style: italic;">
         <b>Một số quy định với khách hàng khi đăng ký làm thẻ vé tháng xe buýt:</b>  <br>
@@ -62,7 +62,7 @@
         body{
             font-family: 'Times New Roman', Arial, sans-serif;
             font-size: 12pt;
-            line-height: 7px;
+            line-height: 17px;
         }
     </style>
 </body>

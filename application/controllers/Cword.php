@@ -20,8 +20,8 @@ class Cword extends MY_Controller {
             'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
         );
         
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxincapbangdiem.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxincapbangdiem.doc");
         $this->parser->parse('Vword/Vcapbangdiem',$data);
     }
     public function nghihocvabaoluu(){
@@ -33,9 +33,9 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinnghihocvabaoluu.doc");
-        // pr($data);exit();
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinnghihocvabaoluu.doc");
+        //pr($data);exit();
         $this->parser->parse('Vword/Vnghihocvabaoluu',$data);
 
     }
@@ -48,8 +48,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinhuymonhoc.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinhuymonhoc.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/Vhuymonhoc',$data);
 
@@ -64,8 +64,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donvayvonnganhang.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donvayvonnganhang.doc");
         $this->parser->parse('Vword/Vvayvonnganhang',$data);
 
     }
@@ -79,8 +79,9 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinphuckhaobaithi.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinphuckhaobaithi.doc");
+
         $this->parser->parse('Vword/Vphuckhaobaithi',$data);
 
     }
@@ -93,8 +94,9 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinmiengiamhocphi.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinmiengiamhocphi.doc");
+        //pr($data);exit();
         $this->parser->parse('Vword/Vmiengiamhocphi',$data);
 
     }
@@ -107,8 +109,9 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donlamthevethangxebuyt.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donlamthevethangxebuyt.doc");
+        //pr($data);exit();
         $this->parser->parse('Vword/Vvethangxebuyt',$data);
 
     }
@@ -121,8 +124,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxacnhandansu.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxacnhandansu.doc");
         $this->parser->parse('Vword/Vxacnhandansu',$data);
 
     }
@@ -135,9 +138,9 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinthoihoc.doc");
-        // pr($data);exit();
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinthoihoc.doc");
+        //pr($data);exit();
         $this->parser->parse('Vword/Vthoihoc',$data);
 
     }
@@ -150,8 +153,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinhoctiep.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinhoctiep.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/Vhoctiep',$data);
 
@@ -165,8 +168,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=GiaydenghicaplaitheATM.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=GiaydenghicaplaitheATM.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/VcaplaiATM',$data);
 
@@ -180,8 +183,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Giayxacnhansv.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Giayxacnhansv.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/VxacnhanSV',$data);
 
@@ -195,8 +198,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=DonxincaplaichungchiGDQP.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=DonxincaplaichungchiGDQP.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/VchungchiGDQP',$data);
 
@@ -210,8 +213,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Donxinkiemtradiem.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Donxinkiemtradiem.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/Vkiemtradiem',$data);
 
@@ -227,7 +230,7 @@ class Cword extends MY_Controller {
             
         header("Content-type: application/vnd.ms-word");
         header("Content-Disposition: attachment;Filename=Dondangkytotnghiep.doc");
-        // pr($data);exit();
+        //pr($data);exit();
         $this->parser->parse('Vword/Vdangkytotnghiep',$data);
 
     }
@@ -240,8 +243,8 @@ class Cword extends MY_Controller {
                 'thongtin'   => $this->Mword->getThongtincoban($session['taikhoan'], $madangky)
             );
             
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Giaycamdoandahoanthanhchuongtrinhdaotao.doc");
+        // header("Content-type: application/vnd.ms-word");
+        // header("Content-Disposition: attachment;Filename=Giaycamdoandahoanthanhchuongtrinhdaotao.doc");
         // pr($data);exit();
         $this->parser->parse('Vword/VcamdoanhoanthanhCTDT',$data);
 

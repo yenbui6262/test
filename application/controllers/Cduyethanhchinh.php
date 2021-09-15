@@ -16,7 +16,7 @@
             if($action = $this->input->post('action')){
                 if($action=='search'){
                     $filterqlhc = array(
-                        'hoten'    => $this->input->post('hoten'),
+                        'masv'    => $this->input->post('masv'),
                         'tenhc'    => $this->input->post('tenhc'),
                         'trangthai'=> $this->input->post('trangthai'),
                         'lop'      => $this->input->post('lop')
@@ -45,7 +45,7 @@
                 'data'      => array(
                     'params'    => $this->get_params($page-1, $filter),
                     'message'   => getMessages(),
-                    'hoten'     => $filter['hoten'],
+                    'masv'     => $filter['masv'],
                     'lop'       => $filter['lop'],
                     'trangthai' => $filter['trangthai'],
                     'tenhc'     => $filter['tenhc'],

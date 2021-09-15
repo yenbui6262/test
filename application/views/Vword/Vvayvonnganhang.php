@@ -136,7 +136,7 @@
             Lớp:&nbsp;...{$thongtin['sTenLop']}........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Số
             thẻ HSSV:&nbsp;...{$thongtin['PK_sMaTK']}..... <br>
             Khoa:...Kinh
-            tế...........................................................................................................................
+            tế..
             <br>
             Ngày nhập học:....../....../20.........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thời gian ra trường (tháng/
             năm):......./......./20...... <br>
@@ -170,7 +170,7 @@
 
         </table>
         <p>- Trong thời gian theo học tại trường, anh (chị) .......................................... không bị xử
-            phạt hành chính trở lên về các hành vi: cờ bạc, nghiện hút, trộm cắp, buôn lậu.
+            phạt hành chính trở lên về các hành vi: cờ bạc, nghiện hút, trộm cắp, buôn lậu.<br>
             - Số tài khoản của nhà trường: ....................................................................... <br>
             Tại ngân hàng: .......................................................................................</p>
         <table style="text-align:center; line-height:12px">

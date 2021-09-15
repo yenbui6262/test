@@ -19,15 +19,17 @@
         </b>
         <br>
         <p>Tên tôi là/ <i>Cardholder’s name</i>:&nbsp;...{$thongtin['sHoTen']}...</p>
-        <p>Số CMT/ <i>ID /PP No</i>:.......................Ngày cấp/ <i>Issue date</i>.................Nơi cấp/ <i>Place of issue</i>:......................</p>
-        <p>Địa chỉ/ <i>Address</i>:.........................................................Số điện thoại/ <i>Tel</i>:......................</p>
+        <p>Số CMT/ <i>ID /PP No</i>:.........................................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ngày cấp/ <i>Issue date</i>.............................</p>
+        <p>Nơi cấp/ <i>Place of issue</i>:.............................................................................................................</p>
+        <p>Địa chỉ/ <i>Address</i>:..{if !empty($thongtin['xaht'])}{$thongtin['xaht']},{$thongtin['huyenht']},{$thongtin['tinhht']}{/if}.</p>
+        <p>Số điện thoại/ <i>Tel</i>:{$thongtin['sSDT']}</p>
         <p>Tên trường/ <i>Name of institution</i>: Trường Đại học Mở Hà Nội.</p>
         <p>Mã sinh viên/ <i>Student ID</i>: &nbsp;...{$thongtin['PK_sMaTK']}...</p>
-        <p>Lớp/ <i>Class</i>:&nbsp;...{$thongtin['sTenLop']}... Ngành học/ <i>Major in</i>: &nbsp;..................</p>
-        <p>Khoa/ <i>Faculty</i>: ..... Kinh tế ................. Khóa học/ <i>School year</i>:...............</p>
+        <p>Lớp/ <i>Class</i>:&nbsp;...{$thongtin['sTenLop']}...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp Ngành học/ <i>Major in</i>: &nbsp;............................................</p>
+        <p>Khoa/ <i>Faculty</i>: ... Kinh tế ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Khóa học/ <i>School year</i>:..................................</p>
         <p>Đề nghị Ngân hàng phát hành lại thẻ cho tôi–<i> I request the Bank to reissue ATM card for me:</i></p>
-        <p>-&nbsp;Đề nghị khoá vĩnh viễn thẻ cũ/ <i>Pls terminate my old card No</i>- <b>Số thẻ</b>:&nbsp; ..................</p>
-        <p>Tôi trả lại ngân hàng: ............ chiếc thẻ cũ/ <i>I returned to the Bank</i>: ...........card</p>
+        <p>-&nbsp;Đề nghị khoá vĩnh viễn thẻ cũ/ <i>Pls terminate my old card No</i>- <b>Số thẻ</b>:&nbsp; ...............................</p>
+        <p>Tôi trả lại ngân hàng: ......................... chiếc thẻ cũ/ <i>I returned to the Bank</i>: .....................card</p>
         <p>+&nbsp;Các yêu cầu khác (nếu có)/ <i>Others (if any)</i>: .................... ......................... ...................... ............................................. ............................................. ......................... .........................</p>
         <p><u><b>Cam kết của chủ thẻ: </b></u>Tôi cam kết thực hiện đúng, đầy đủ các điều kiện và điều khoản phát hành và sử dụng thẻ Vietcombank Connect 24 của Ngân hàng Ngoại thương Việt Nam.</p>
         <p><b><i>I commit to strictly comply with all terms and conditions on VCB-ATM card issuance and usage attached to this request.</i></b></p>

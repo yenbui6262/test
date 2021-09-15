@@ -47,7 +47,7 @@
                 <td style="width:30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Lớp:&nbsp;{$thongtin['sTenLop']}</td>
                 <td style="width:45%">Mã sinh viên:&nbsp;{$thongtin['PK_sMaTK']}</td>
-                <td>SĐT:........................</td>
+                <td>SĐT:....{$thongtin['sSDT']}......</td>
             </tr>
         </table>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em có nguyện vọng hủy môn: <br>
@@ -56,8 +56,8 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. ...................................................................................................
         </p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lý do hủy học phần: {$thongtin['tLydo']}
-        {if empty($thongtin['tLydo'])}......................................................................................................................................................
-        <br>......................................................................................................................................................
+        {if empty($thongtin['tLydo'])}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;............................................................................................................................................
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..........................................................................................................................................
         {/if}
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kính mong Ban Chủ nhiệm Khoa xem xét và giải quyết.</p>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em xin chân thành cảm ơn!</p>

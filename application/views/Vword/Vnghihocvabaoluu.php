@@ -37,8 +37,8 @@
         </p>
         <p>Tên em là:...{$thongtin['sHoTen']}...&nbsp;&nbsp;Giới tính:...{if $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}...</p>
         <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:................................................................................................</p>
-        <p>Hộ khẩu thường trú:&nbsp;................................................................................................................</p>
-        <p>Điện thoại:&nbsp;.....................................................</p>
+        <p>Hộ khẩu thường trú:&nbsp;{if !empty($thongtin['xatt'])}{$thongtin['xatt']},{$thongtin['huyentt']},{$thongtin['tinhtt']}{/if}....</p>
+        <p>Điện thoại:&nbsp;....{$thongtin['sSDT']}.....</p>
         <p>Em hiện là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành:&nbsp;........................</p>
         <p>Khóa học:....................&nbsp;&nbsp;Khoa:...Kinh tế..</p>
         <p>Em làm đơn này xin phép nghỉ học tạm thời và bảo lưu kết quả học tập vì lý do:</p>
@@ -114,7 +114,7 @@
         body{
             font-family: 'Times New Roman', Arial, sans-serif;
             font-size: 12pt;
-            line-height: 8px;
+            /* line-height: 8px; */
         }
     </style>
 </body>

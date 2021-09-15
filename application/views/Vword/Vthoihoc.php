@@ -24,11 +24,12 @@
             &nbsp; Ban Giám hiệu Trường Đại học Mở Hà Nội</b>
         </p>
         <p>Tôi tên:&nbsp;...{$thongtin['sHoTen']}...&nbsp;Mã số sinh viên:&nbsp;...{$thongtin['PK_sMaTK']}...</p>
-        <p>Ngày sinh:&nbsp;...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;&nbsp;Hộ khẩu thường trú:...................................</p>
-        <p>Hiện đang học lớp (ngành):&nbsp;...{$thongtin['sTenLop']}..........................&nbsp;Khóa:..........................</p>
-        <p>Hệ đào tạo:..............tại Trường Đại học Mở Hà Nội.</p>
+        <p>Ngày sinh:&nbsp;...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}..</p>
+        <p>Hộ khẩu thường trú:{if !empty($thongtin['xatt'])}{$thongtin['xatt']},{$thongtin['huyentt']},{$thongtin['tinhtt']}{/if}</p>
+        <p>Hiện đang học lớp (ngành):&nbsp;...{$thongtin['sTenLop']}..........................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Khóa:.................................</p>
+        <p>Hệ đào tạo:..........................tại Trường Đại học Mở Hà Nội.</p>
         <p>Nay tôi làm đơn này gửi đến Ban Giám Hiệu cho phép tôi được thôi học tại Trường Đại học Mở Hà Nội.</p>
-        <p>Lý do thôi học:{if !empty($thongtin['tLydo'])}{$thongtin['tLydo']}.{else}......................................................................................................................................................
+        <p>Lý do thôi học: {if !empty($thongtin['tLydo'])}{$thongtin['tLydo']}.{else}......................................................................................................................................................
         <br>......................................................................................................................................................
         {/if}</p>
         <p>Rất mong được sự chấp thuận của Ban Giám Hiệu.</p>

@@ -30,11 +30,11 @@
         </p>
         <p style="text-align:center; margin-top:2px">Kính gửi:&nbsp;&nbsp;Hiệu trưởng Trường Đại học Mở Hà Nội</p>
         <p>Em tên là:...{$thongtin['sHoTen']}...&nbsp;&nbsp;Giới tính:...{if $thongtin['iGioiTinh']==1}{"Nam"}{else}{"Nữ"}{/if}...</p>
-        <p>Sinh ngày:...{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}...&nbsp;&nbsp;Tại:.............................................................................................</p>
-        <p>Hộ khẩu thường trú:&nbsp;.............................................................................................................</p>
-        <p>Điện thoại: ..............................</p>
-        <p>Em là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;Ngành:&nbsp;......................................</p>
-        <p>Khóa học:....................&nbsp;&nbsp;Khoa:...Kinh tế..</p>
+        <p>Sinh ngày:{date("d/m/Y", strtotime($thongtin['dNgaySinh']))}&nbsp;&nbsp;Tại:.............................................................................................</p>
+        <p>Hộ khẩu thường trú:&nbsp;{if !empty($thongtin['xatt'])}{$thongtin['xatt']},{$thongtin['huyentt']},{$thongtin['tinhtt']}{/if}.
+        <p>Điện thoại: {$thongtin['sSDT']}</p>
+        <p>Em là sinh viên lớp:...{$thongtin['sTenLop']}..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ngành:&nbsp;.................................................</p>
+        <p>Khóa học:....................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Khoa:...Kinh tế..</p>
         <p>Em đã xin phép nghỉ học tạm thời và bảo lưu kết quả học tập và đã được Hiệu trưởng Trường</p><p> Đại học Mở Hà Nội phê chuẩn đồng ý ngày  ....................</p>
         <p>Nay em có nguyện vọng quay lại xin được học tiếp kể từ học kỳ........ năm học...............</p>
         <p>Trong thời gian nghỉ học tạm thời và sinh sống tại nơi cư trú, em không vi phạm pháp luật,</p><p> chấp hành tốt chính sách của Đảng và Nhà nước.</p>
@@ -58,7 +58,7 @@
         body{
             font-family: 'Times New Roman', Arial, sans-serif;
             font-size: 12pt;
-            line-height: 8px;
+            /* line-height: 8px; */
         }
     </style>
 </body>

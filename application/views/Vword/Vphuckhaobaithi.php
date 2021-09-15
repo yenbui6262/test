@@ -46,7 +46,7 @@
             <tr>
                 <td style="padding-left:26px;" colspan="2">
                 Lớp:&nbsp;{$thongtin['sTenLop']}&nbsp;&nbsp;&nbsp;&nbsp;MSSV:&nbsp;{$thongtin['PK_sMaTK']}&nbsp;&nbsp;&nbsp;</td>
-                <td>SĐT:..............................</td>
+                <td>SĐT:...{$thongtin['sSDT']}...</td>
             </tr>
         </table>
         <p style="text-align:left;line-height:26px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vừa qua, em đã tham gia kỳ thi hết học phần do Khoa tổ chức, tại địa điểm thi........

@@ -21,8 +21,8 @@
             if(!empty($dieukien['tenhc'])&&$dieukien['tenhc']!='tatca'){
                 $this->db->like('hc.sTenHanhChinh', $dieukien['tenhc']);
             }
-            if(!empty($dieukien['hoten'])){
-                $this->db->like('tk.sHoTen', $dieukien['hoten']);
+            if(!empty($dieukien['masv'])){
+                $this->db->like('tk.PK_sMaTK', $dieukien['masv']);
             }
             if(!empty($dieukien['lop'])&&$dieukien['lop']!='tatca'){
                 $this->db->where('lop.sTenLop', $dieukien['lop']);
